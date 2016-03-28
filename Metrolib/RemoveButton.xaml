@@ -17,12 +17,12 @@
                         <Grid Background="Transparent">
                             <Image
                                 Width="16" Height="16"
-                                Source="pack://application:,,,/Resources/ic_clear_black_18dp.png"
+                                Source="pack://application:,,,/Metrolib;component/Resources/ic_clear_black_18dp.png"
                                 x:Name="PART_Black"
                                 Visibility="{Binding IsBlack, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalse2CollapsedConverter}}" />
                             <Image
                                 Width="16" Height="16"
-                                Source="pack://application:,,,/Resources/ic_clear_white_18dp.png"
+                                Source="pack://application:,,,/Metrolib;component/Resources/ic_clear_white_18dp.png"
                                 x:Name="PART_White"
                                 Visibility="{Binding IsWhite, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalse2CollapsedConverter}}" />
                         </Grid>
