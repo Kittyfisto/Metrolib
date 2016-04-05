@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls.Primitives;
 
-namespace Metrolib
+namespace Metrolib.Controls
 {
 	public class TextToggleButton : ToggleButton
 	{

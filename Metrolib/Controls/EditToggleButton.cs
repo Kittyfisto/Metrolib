@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls.Primitives;
 
-namespace Tailviewer.Ui.Controls
+namespace Metrolib.Controls
 {
 	public class EditToggleButton : ToggleButton
 	{

@@ -1,14 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Tailviewer.Ui.Controls"
-                    xmlns:metrolib="clr-namespace:Metrolib">
+                    xmlns:metrolib="clr-namespace:Metrolib" xmlns:converters="clr-namespace:Metrolib.Converters"
+                    xmlns:local="clr-namespace:Metrolib.Controls">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Themes/Constants.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <metrolib:BoolFalseToCollapsedConverter x:Key="BoolFalse2CollapsedConverter" />
-    <metrolib:BoolTrueToCollapsedConverter x:Key="BoolTrue2CollapsedConverter" />
+    <converters:BoolFalseToCollapsedConverter x:Key="BoolFalse2CollapsedConverter" />
+    <converters:BoolTrueToCollapsedConverter x:Key="BoolTrue2CollapsedConverter" />
     
     <Style TargetType="{x:Type local:EditToggleButton}">
         <Setter Property="Control.Background" Value="{x:Null}" />

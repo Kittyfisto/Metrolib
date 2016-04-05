@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentAssertions;
+using Metrolib.Controls;
 using NUnit.Framework;
 
 namespace Metrolib.Test

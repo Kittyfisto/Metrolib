@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Metrolib
+namespace Metrolib.Controls
 {
 	public class AddButton : Button
 	{

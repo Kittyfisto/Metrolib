@@ -1,15 +1,17 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:converters="clr-namespace:Metrolib">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:converters="clr-namespace:Metrolib"
+                    xmlns:converters2="clr-namespace:Metrolib.Converters"
+                    xmlns:controls="clr-namespace:Metrolib.Controls">
 
-    <converters:BoolFalseToCollapsedConverter x:Key="BoolFalse2CollapsedConverter" />
-    <converters:BoolTrueToCollapsedConverter x:Key="BoolTrue2CollapsedConverter" />
+    <converters2:BoolFalseToCollapsedConverter x:Key="BoolFalse2CollapsedConverter" />
+    <converters2:BoolTrueToCollapsedConverter x:Key="BoolTrue2CollapsedConverter" />
 
-    <Style TargetType="{x:Type converters:RemoveButton}">
+    <Style TargetType="{x:Type controls:RemoveButton}">
         <Setter Property="Control.Background" Value="{x:Null}" />
         <Setter Property="Control.BorderBrush" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type converters:RemoveButton}">
+                <ControlTemplate TargetType="{x:Type controls:RemoveButton}">
                     <Border BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"

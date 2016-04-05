@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace Metrolib
+namespace Metrolib.Controls
 {
 	public class MouseWheelGesture : MouseGesture
 	{

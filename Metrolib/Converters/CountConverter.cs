@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Windows.Data;
 
 // ReSharper disable CheckNamespace
-namespace Metrolib
+namespace Metrolib.Converters
 // ReSharper restore CheckNamespace
 {
 	/// <summary>
