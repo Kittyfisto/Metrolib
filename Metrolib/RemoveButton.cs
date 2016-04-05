@@ -4,6 +4,9 @@ using System.Windows.Input;
 
 namespace Metrolib
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class RemoveButton : Button
 	{
 		public static readonly DependencyProperty IsInvertedProperty =
