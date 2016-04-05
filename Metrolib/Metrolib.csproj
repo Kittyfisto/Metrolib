@@ -99,6 +99,7 @@
     <Compile Include="Controls\OneWayToggle.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="IDispatcher.cs" />
+    <Compile Include="ManualDispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
