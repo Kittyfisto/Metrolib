@@ -97,6 +97,8 @@
     <Compile Include="Controls\MouseWheelGesture.cs" />
     <Compile Include="Controls\NotificationBadge.cs" />
     <Compile Include="Controls\OneWayToggle.cs" />
+    <Compile Include="DelegateCommand.cs" />
+    <Compile Include="IDispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -116,6 +118,7 @@
     <Compile Include="Controls\RemoveButton.cs" />
     <Compile Include="Controls\TextToggleButton.cs" />
     <Compile Include="Size.cs" />
+    <Compile Include="UiDispatcher.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
