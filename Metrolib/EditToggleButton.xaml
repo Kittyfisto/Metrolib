@@ -4,7 +4,7 @@
                     xmlns:metrolib="clr-namespace:Metrolib">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Tailviewer;component/Themes/Constants.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Themes/Constants.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <metrolib:BoolFalseToCollapsedConverter x:Key="BoolFalse2CollapsedConverter" />
@@ -23,12 +23,12 @@
                         <Grid Background="Transparent">
                             <Image
                                 Width="16" Height="16"
-                                Source="pack://application:,,,/Resources/ic_mode_edit_black_18dp.png"
+                                Source="pack://application:,,,/Metrolib;component/Resources/ic_mode_edit_black_18dp.png"
                                 x:Name="PART_Black"
                                 Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolTrue2CollapsedConverter}}" />
                             <Image
                                 Width="16" Height="16"
-                                Source="pack://application:,,,/Resources/ic_mode_edit_white_18dp.png"
+                                Source="pack://application:,,,/Metrolib;component/Resources/ic_mode_edit_white_18dp.png"
                                 x:Name="PART_White"
                                 Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalse2CollapsedConverter}}" />
                         </Grid>

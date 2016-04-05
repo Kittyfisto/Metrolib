@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:Metrolib">
     
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Tailviewer;component/Themes/Constants.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Themes/Constants.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <local:BoolFalseToCollapsedConverter x:Key="BoolFalseToCollapsedConverter" />
