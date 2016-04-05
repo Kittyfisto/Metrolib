@@ -62,8 +62,7 @@
                             <controls:RemoveButton
                                 Visibility="{Binding HasFilterText, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalseToCollapsedConverter}}"
                                 Grid.Column="1"
-                                x:Name="PART_RemoveFilterText"
-                                />
+                                x:Name="PART_RemoveFilterText" />
 
                         </Grid>
                     </Border>

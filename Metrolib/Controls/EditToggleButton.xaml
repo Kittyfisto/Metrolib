@@ -9,7 +9,7 @@
 
     <converters:BoolFalseToCollapsedConverter x:Key="BoolFalse2CollapsedConverter" />
     <converters:BoolTrueToCollapsedConverter x:Key="BoolTrue2CollapsedConverter" />
-    
+
     <Style TargetType="{x:Type local:EditToggleButton}">
         <Setter Property="Control.Background" Value="{x:Null}" />
         <Setter Property="Control.BorderBrush" Value="{x:Null}" />

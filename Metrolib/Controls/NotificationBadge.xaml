@@ -9,14 +9,12 @@
                     <Border BorderBrush="White"
                             BorderThickness="1"
                             CornerRadius="2"
-                            Background="Red"
-                            >
+                            Background="Red">
                         <ContentPresenter
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             TextBlock.Foreground="White"
-                            Margin="4"
-                            />
+                            Margin="4" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

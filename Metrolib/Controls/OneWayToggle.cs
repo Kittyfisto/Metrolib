@@ -18,6 +18,11 @@ namespace Metrolib.Controls
 		public static readonly DependencyProperty IsCheckedProperty =
 			DependencyProperty.Register("IsChecked", typeof (bool), typeof (OneWayToggle), new PropertyMetadata(default(bool)));
 
+		static OneWayToggle()
+		{
+			DefaultStyleKeyProperty.OverrideMetadata(typeof (OneWayToggle), new FrameworkPropertyMetadata(typeof (OneWayToggle)));
+		}
+
 		public bool IsChecked
 		{
 			get { return (bool) GetValue(IsCheckedProperty); }
@@ -40,11 +45,6 @@ namespace Metrolib.Controls
 		{
 			get { return (bool) GetValue(HasLeftBorderProperty); }
 			set { SetValue(HasLeftBorderProperty, value); }
-		}
-
-		static OneWayToggle()
-		{
-			DefaultStyleKeyProperty.OverrideMetadata(typeof (OneWayToggle), new FrameworkPropertyMetadata(typeof (OneWayToggle)));
 		}
 
 		protected override void OnMouseDown(MouseButtonEventArgs e)

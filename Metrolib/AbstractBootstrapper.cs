@@ -5,42 +5,50 @@ using System.Reflection;
 namespace Metrolib
 {
 	/// <summary>
-	/// Base class for any bootstrapper to get the application running.
+	///     Base class for any bootstrapper to get the application running.
 	/// </summary>
 	/// <remarks>
-	/// Responsible for:
-	/// - Loading assemblies from embedded resources
-	/// - (Live) Auto updating (TODO)
+	///     Responsible for:
+	///     - Loading assemblies from embedded resources
+	///     - (Live) Auto updating (TODO)
 	/// </remarks>
 	public class AbstractBootstrapper
 	{
-		protected static void SetupDependencies()
+		private static string _containingAssembly;
+
+		/// <summary>
+		/// Allows 3rd party assemblies to be resolved from an embedded resources in the given assembly under
+		/// %Assembly%\ThirdParty\
+		/// </summary>
+		/// <param name="containingAssembly"></param>
+		protected static void EnableEmbeddedDependencyLoading(string containingAssembly)
 		{
+			_containingAssembly = containingAssembly;
 			AppDomain.CurrentDomain.AssemblyResolve += ResolveAssembly;
 		}
 
-		protected static Assembly ResolveAssembly(object sender, ResolveEventArgs args)
+		private static Assembly ResolveAssembly(object sender, ResolveEventArgs args)
 		{
-			var name = args.Name;
+			string name = args.Name;
 
 			var assemblyName = new AssemblyName(name);
 			string fileName = assemblyName.Name;
 
-			string resource = string.Format("Tailviewer.ThirdParty.{0}.dll", fileName);
+			string resource = string.Format("{0}.ThirdParty.{1}.dll", _containingAssembly, fileName);
 			Assembly curAsm = Assembly.GetExecutingAssembly();
 			using (Stream stream = curAsm.GetManifestResourceStream(resource))
 			{
 				if (stream == null)
 					return null;
 
-				var data = ReadFully(stream);
+				byte[] data = ReadFully(stream);
 				return Assembly.Load(data);
 			}
 		}
 
 		private static byte[] ReadFully(Stream input)
 		{
-			var buffer = new byte[16 * 1024];
+			var buffer = new byte[16*1024];
 			using (var ms = new MemoryStream())
 			{
 				int read;

@@ -5,7 +5,6 @@ using System.Windows.Input;
 namespace Metrolib.Controls
 {
 	/// <summary>
-	/// 
 	/// </summary>
 	public class RemoveButton : Button
 	{
@@ -21,9 +20,9 @@ namespace Metrolib.Controls
 		public static readonly DependencyProperty IsWhiteProperty = IsWhitePropertyKey.DependencyProperty;
 
 		private static readonly DependencyPropertyKey IsBlackPropertyKey
-			= DependencyProperty.RegisterReadOnly("IsBlack", typeof(bool), typeof(RemoveButton),
-												  new FrameworkPropertyMetadata(true,
-																				FrameworkPropertyMetadataOptions.None));
+			= DependencyProperty.RegisterReadOnly("IsBlack", typeof (bool), typeof (RemoveButton),
+			                                      new FrameworkPropertyMetadata(true,
+			                                                                    FrameworkPropertyMetadataOptions.None));
 
 		public static readonly DependencyProperty IsBlackProperty = IsBlackPropertyKey.DependencyProperty;
 
@@ -32,15 +31,21 @@ namespace Metrolib.Controls
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (RemoveButton), new FrameworkPropertyMetadata(typeof (RemoveButton)));
 		}
 
+		public RemoveButton()
+		{
+			MouseEnter += OnMouseEnter;
+			MouseLeave += OnMouseLeave;
+		}
+
 		public bool IsWhite
 		{
-			get { return (bool)GetValue(IsWhiteProperty); }
+			get { return (bool) GetValue(IsWhiteProperty); }
 			protected set { SetValue(IsWhitePropertyKey, value); }
 		}
 
 		public bool IsBlack
 		{
-			get { return (bool)GetValue(IsBlackProperty); }
+			get { return (bool) GetValue(IsBlackProperty); }
 			protected set { SetValue(IsBlackPropertyKey, value); }
 		}
 
@@ -53,12 +58,6 @@ namespace Metrolib.Controls
 		private static void OnIsInvertedChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
 		{
 			((RemoveButton) dependencyObject).OnIsInvertedChanged((bool) args.NewValue);
-		}
-
-		public RemoveButton()
-		{
-			MouseEnter += OnMouseEnter;
-			MouseLeave += OnMouseLeave;
 		}
 
 		private void OnMouseLeave(object sender, MouseEventArgs mouseEventArgs)

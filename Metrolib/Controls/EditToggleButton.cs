@@ -7,7 +7,8 @@ namespace Metrolib.Controls
 	{
 		static EditToggleButton()
 		{
-			DefaultStyleKeyProperty.OverrideMetadata(typeof(EditToggleButton), new FrameworkPropertyMetadata(typeof(EditToggleButton)));
+			DefaultStyleKeyProperty.OverrideMetadata(typeof (EditToggleButton),
+			                                         new FrameworkPropertyMetadata(typeof (EditToggleButton)));
 		}
 	}
 }

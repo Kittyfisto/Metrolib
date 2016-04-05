@@ -8,8 +8,6 @@ namespace Metrolib.Test
 	[TestFixture]
 	public sealed class RemoveButtonTest
 	{
-		private RemoveButton _button;
-
 		[SetUp]
 		[STAThread]
 		public void SetUp()
@@ -17,14 +15,7 @@ namespace Metrolib.Test
 			_button = new RemoveButton();
 		}
 
-		[Test]
-		[STAThread]
-		public void TestCtor()
-		{
-			_button.IsInverted.Should().BeFalse();
-			_button.IsWhite.Should().BeFalse();
-			_button.IsBlack.Should().BeTrue();
-		}
+		private RemoveButton _button;
 
 		[Test]
 		[STAThread]
@@ -35,6 +26,15 @@ namespace Metrolib.Test
 			_button.IsBlack.Should().BeFalse();
 
 			_button.IsInverted = false;
+			_button.IsWhite.Should().BeFalse();
+			_button.IsBlack.Should().BeTrue();
+		}
+
+		[Test]
+		[STAThread]
+		public void TestCtor()
+		{
+			_button.IsInverted.Should().BeFalse();
 			_button.IsWhite.Should().BeFalse();
 			_button.IsBlack.Should().BeTrue();
 		}

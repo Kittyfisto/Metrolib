@@ -12,5 +12,5 @@
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/OneWayToggle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextToggleButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
+
 </ResourceDictionary>

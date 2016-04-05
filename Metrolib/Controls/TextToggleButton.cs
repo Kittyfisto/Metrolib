@@ -7,7 +7,8 @@ namespace Metrolib.Controls
 	{
 		static TextToggleButton()
 		{
-			DefaultStyleKeyProperty.OverrideMetadata(typeof(TextToggleButton), new FrameworkPropertyMetadata(typeof(TextToggleButton)));
+			DefaultStyleKeyProperty.OverrideMetadata(typeof (TextToggleButton),
+			                                         new FrameworkPropertyMetadata(typeof (TextToggleButton)));
 		}
 	}
 }
