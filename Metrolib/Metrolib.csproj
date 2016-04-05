@@ -87,7 +87,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controls\AddButton.cs" />
     <Compile Include="Controls\AlertControl.cs" />
     <Compile Include="Converters\BoolFalseToHiddenConverter.cs" />
