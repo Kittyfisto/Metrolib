@@ -114,6 +114,7 @@
     <Compile Include="Controls\FilterTextBox.cs" />
     <Compile Include="Controls\RemoveButton.cs" />
     <Compile Include="Controls\TextToggleButton.cs" />
+    <Compile Include="Size.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
