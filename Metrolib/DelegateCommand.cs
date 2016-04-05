@@ -24,8 +24,20 @@ namespace Metrolib
 			_execute();
 		}
 
-#pragma warning disable 67
+		/// <summary>
+		/// Fires the <see cref="CanExecuteChanged"/> event.
+		/// </summary>
+		public void RaiseCanExecuteChanged()
+		{
+			var fn = CanExecuteChanged;
+			if (fn != null)
+				fn(this, null);
+		}
+
+		/// <summary>
+		/// Shall be fired whenever the command's <see cref="CanExecute"/> potentially returns a different
+		/// value than previously.
+		/// </summary>
 		public event EventHandler CanExecuteChanged;
-#pragma warning restore 67
 	}
 }
