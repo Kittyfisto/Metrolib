@@ -6,6 +6,7 @@ namespace Metrolib
 	public class DelegateCommand : ICommand
 	{
 		private readonly Action _execute;
+		private readonly Func<bool> _canExecute;
 
 		public DelegateCommand(Action execute)
 		{
@@ -14,9 +15,18 @@ namespace Metrolib
 			_execute = execute;
 		}
 
+		public DelegateCommand(Action execute, Func<bool> canExecute)
+		{
+			if (execute == null) throw new ArgumentNullException("execute");
+			if (canExecute == null) throw new ArgumentNullException("canExecute");
+
+			_execute = execute;
+			_canExecute = canExecute;
+		}
+
 		public bool CanExecute(object parameter)
 		{
-			return true;
+			return _canExecute == null || _canExecute();
 		}
 
 		public void Execute(object parameter)
