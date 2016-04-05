@@ -15,15 +15,19 @@ namespace Metrolib
 	public class AbstractBootstrapper
 	{
 		private static string _containingAssembly;
+		private static string _subFolder;
 
 		/// <summary>
 		/// Allows 3rd party assemblies to be resolved from an embedded resources in the given assembly under
-		/// %Assembly%\ThirdParty\
+		/// %Assembly%\%subfolder%\
 		/// </summary>
 		/// <param name="containingAssembly"></param>
-		protected static void EnableEmbeddedDependencyLoading(string containingAssembly)
+		/// <param name="subFolder"></param>
+		protected static void EnableEmbeddedDependencyLoading(string containingAssembly, string subFolder)
 		{
 			_containingAssembly = containingAssembly;
+			_subFolder = subFolder;
+
 			AppDomain.CurrentDomain.AssemblyResolve += ResolveAssembly;
 		}
 
@@ -34,7 +38,7 @@ namespace Metrolib
 			var assemblyName = new AssemblyName(name);
 			string fileName = assemblyName.Name;
 
-			string resource = string.Format("{0}.ThirdParty.{1}.dll", _containingAssembly, fileName);
+			string resource = string.Format("{0}.{1}.{2}.dll", _containingAssembly, _subFolder, fileName);
 			Assembly curAsm = Assembly.GetExecutingAssembly();
 			using (Stream stream = curAsm.GetManifestResourceStream(resource))
 			{
