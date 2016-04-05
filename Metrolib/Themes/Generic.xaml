@@ -3,14 +3,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/AddButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/AlertControl.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/EditToggleButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/FilterTextBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/RemoveButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/NotificationBadge.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/OneWayToggle.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/TextToggleButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/AddButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/AlertControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/EditToggleButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/FilterTextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/RemoveButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/NotificationBadge.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/OneWayToggle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextToggleButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
 </ResourceDictionary>

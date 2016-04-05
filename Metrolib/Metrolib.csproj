@@ -45,31 +45,31 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="AddButton.xaml">
+    <Page Include="Controls\AddButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="AlertControl.xaml">
+    <Page Include="Controls\AlertControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="EditToggleButton.xaml">
+    <Page Include="Controls\EditToggleButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="NotificationBadge.xaml">
+    <Page Include="Controls\NotificationBadge.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="OneWayToggle.xaml">
+    <Page Include="Controls\OneWayToggle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="RemoveButton.xaml">
+    <Page Include="Controls\RemoveButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="TextToggleButton.xaml">
+    <Page Include="Controls\TextToggleButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -81,21 +81,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="FilterTextBox.xaml">
+    <Page Include="Controls\FilterTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddButton.cs" />
-    <Compile Include="AlertControl.cs" />
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Controls\AddButton.cs" />
+    <Compile Include="Controls\AlertControl.cs" />
     <Compile Include="Converters\BoolFalseToHiddenConverter.cs" />
     <Compile Include="Converters\CountConverter.cs" />
     <Compile Include="Converters\TimeSpanConverter.cs" />
-    <Compile Include="EditToggleButton.cs" />
-    <Compile Include="MouseWheelGesture.cs" />
-    <Compile Include="NotificationBadge.cs" />
-    <Compile Include="OneWayToggle.cs" />
+    <Compile Include="Controls\EditToggleButton.cs" />
+    <Compile Include="Controls\MouseWheelGesture.cs" />
+    <Compile Include="Controls\NotificationBadge.cs" />
+    <Compile Include="Controls\OneWayToggle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -111,9 +112,9 @@
     </Compile>
     <Compile Include="Converters\BoolFalseToCollapsedConverter.cs" />
     <Compile Include="Converters\BoolTrueToCollapsedConverter.cs" />
-    <Compile Include="FilterTextBox.cs" />
-    <Compile Include="RemoveButton.cs" />
-    <Compile Include="TextToggleButton.cs" />
+    <Compile Include="Controls\FilterTextBox.cs" />
+    <Compile Include="Controls\RemoveButton.cs" />
+    <Compile Include="Controls\TextToggleButton.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
