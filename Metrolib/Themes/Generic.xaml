@@ -1,4 +1,4 @@
-﻿<ResourceDictionary
+<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -7,6 +7,7 @@
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/AlertControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/EditToggleButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/FilterTextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/FlavourTextBlock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/RemoveButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/NotificationBadge.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/OneWayToggle.xaml" />
