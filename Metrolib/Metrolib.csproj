@@ -127,6 +127,7 @@
     <Compile Include="Controls\FilterTextBox.cs" />
     <Compile Include="Controls\RemoveButton.cs" />
     <Compile Include="Controls\TextToggleButton.cs" />
+    <Compile Include="Settings\Settings.cs" />
     <Compile Include="Size.cs" />
     <Compile Include="UiDispatcher.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
