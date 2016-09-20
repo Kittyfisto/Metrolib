@@ -17,6 +17,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="8" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -29,6 +30,12 @@
         <Border Background="Black" Grid.Column="4" Grid.Row="2">
             <controls:ExpanderToggleButton IsInverted="True" Padding="4" Width="32" Height="32" />
         </Border>
-        
+
+        <TextBlock Text="VisibilityToggleButton" Grid.Row="3" />
+        <controls:VisibilityToggleButton Grid.Column="2" Grid.Row="3" Padding="4" Width="32" Height="32" ToolTip="An eye" />
+        <Border Background="Black" Grid.Column="4" Grid.Row="3">
+            <controls:VisibilityToggleButton IsInverted="True" Padding="4" Width="32" Height="32" ToolTip="An eye" />
+        </Border>
+
     </Grid>
 </Window>

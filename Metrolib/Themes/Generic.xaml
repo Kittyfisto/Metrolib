@@ -13,6 +13,7 @@
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/NotificationBadge.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/OneWayToggle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextToggleButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/VisibilityToggleButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
