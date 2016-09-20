@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Converters/Converters.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/AddButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/AlertControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/EditToggleButton.xaml" />
