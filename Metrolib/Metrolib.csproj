@@ -112,6 +112,7 @@
     <Compile Include="Controls\FlavourTextBlock.cs" />
     <Compile Include="Converters\BoolFalseToHiddenConverter.cs" />
     <Compile Include="Converters\CountConverter.cs" />
+    <Compile Include="Converters\InvertBoolConverter.cs" />
     <Compile Include="Converters\TimeSpanConverter.cs" />
     <Compile Include="Controls\EditToggleButton.cs" />
     <Compile Include="Controls\MouseWheelGesture.cs" />
