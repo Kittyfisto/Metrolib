@@ -18,6 +18,7 @@
             <RowDefinition Height="8" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -25,17 +26,20 @@
         <TextBlock FontSize="16" Text="Normal" Grid.Column="2" />
         <TextBlock FontSize="16" Text="Inverted" Grid.Column="4" />
 
-        <TextBlock Text="ExpanderToggleButton" Grid.Row="2" />
+        <TextBlock Text="ExpanderToggleButton" Grid.Row="2" VerticalAlignment="Center" />
         <controls:ExpanderToggleButton Grid.Column="2" Grid.Row="2" Padding="4" Width="32" Height="32" />
         <Border Background="Black" Grid.Column="4" Grid.Row="2">
             <controls:ExpanderToggleButton IsInverted="True" Padding="4" Width="32" Height="32" />
         </Border>
 
-        <TextBlock Text="VisibilityToggleButton" Grid.Row="3" />
+        <TextBlock Text="VisibilityToggleButton" Grid.Row="3" VerticalAlignment="Center" />
         <controls:VisibilityToggleButton Grid.Column="2" Grid.Row="3" Padding="4" Width="32" Height="32" ToolTip="An eye" />
         <Border Background="Black" Grid.Column="4" Grid.Row="3">
             <controls:VisibilityToggleButton IsInverted="True" Padding="4" Width="32" Height="32" ToolTip="An eye" />
         </Border>
+
+        <TextBlock Text="FilterTextBox" Grid.Row="4" VerticalAlignment="Center" />
+        <controls:FilterTextBox Grid.Column="2" Grid.Row="4" Margin="4" Width="100" Watermark="Search stuff" />
 
     </Grid>
 </Window>
