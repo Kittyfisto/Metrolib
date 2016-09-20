@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.NET WPF library for metro apps</description>
     <releaseNotes>Alpha release</releaseNotes>
-    <copyright>Copyright 2015</copyright>
+    <copyright>Copyright 2016</copyright>
     <tags>.NET WPF Metro</tags>
     <dependencies>
       <!--<dependency id="SampleDependency" version="1.0" />-->

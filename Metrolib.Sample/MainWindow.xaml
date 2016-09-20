@@ -25,9 +25,9 @@
         <TextBlock FontSize="16" Text="Inverted" Grid.Column="4" />
 
         <TextBlock Text="ExpanderToggleButton" Grid.Row="2" />
-        <controls:ExpanderToggleButton Grid.Column="2" Grid.Row="2" Padding="4" />
+        <controls:ExpanderToggleButton Grid.Column="2" Grid.Row="2" Padding="4" Width="32" Height="32" />
         <Border Background="Black" Grid.Column="4" Grid.Row="2">
-            <controls:ExpanderToggleButton IsInverted="True" Padding="4" />
+            <controls:ExpanderToggleButton IsInverted="True" Padding="4" Width="32" Height="32" />
         </Border>
         
     </Grid>

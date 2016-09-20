@@ -13,13 +13,13 @@
     <EllipseGeometry x:Key="Circle" Center="12,12" RadiusX="12" RadiusY="12" />
 
     <Style TargetType="{x:Type controls:ExpanderToggleButton}">
+        <Setter Property="Width" Value="32" />
+        <Setter Property="Height" Value="32" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:ExpanderToggleButton}">
                     <Grid>
-                        <Viewbox Width="24" Height="24" Margin="{TemplateBinding Padding}"
-                                 SnapsToDevicePixels="True"
-                                 >
+                        <Viewbox Margin="{TemplateBinding Padding}">
                             <Canvas Width="24" Height="24">
                                 <!-- We have a separate hitbox because we want ONE defined hitbox for mouse/touch interaction -->
                                 <Path x:Name="PART_Hitbox" Fill="Transparent" Data="{StaticResource Circle}"/>
@@ -33,10 +33,10 @@
                     <ControlTemplate.Triggers>
                         <!-- ChevronUp/Down depending on IsChecked -->
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Data" TargetName="PART_Chevron" Value="{StaticResource ChevronDown}"/>
+                            <Setter Property="Data" TargetName="PART_Chevron" Value="{StaticResource ChevronDown}" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="False">
-                            <Setter Property="Data" TargetName="PART_Chevron" Value="{StaticResource ChevronUp}"/>
+                            <Setter Property="Data" TargetName="PART_Chevron" Value="{StaticResource ChevronUp}" />
                         </Trigger>
 
                         <!-- Chevron and Circle color based on IsSelected -->

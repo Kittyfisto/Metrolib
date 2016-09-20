@@ -10,7 +10,7 @@ namespace Metrolib.Controls
 		: ToggleButton
 	{
 		public static readonly DependencyProperty IsInvertedProperty =
-			DependencyProperty.Register("IsInverted", typeof(bool), typeof(ExpanderToggleButton),
+			DependencyProperty.Register("IsInverted", typeof (bool), typeof (ExpanderToggleButton),
 			                            new PropertyMetadata(false));
 
 		static ExpanderToggleButton()
