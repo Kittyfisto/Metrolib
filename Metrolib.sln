@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metrolib", "Metrolib\Metrol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metrolib.Test", "Metrolib.Test\Metrolib.Test.csproj", "{092515A0-A36C-4177-B2C5-32FCB5FF8E67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metrolib.Sample", "Metrolib.Sample\Metrolib.Sample.csproj", "{47B2A88D-1E51-469D-A24E-8F05B1FB994D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{092515A0-A36C-4177-B2C5-32FCB5FF8E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{092515A0-A36C-4177-B2C5-32FCB5FF8E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{092515A0-A36C-4177-B2C5-32FCB5FF8E67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47B2A88D-1E51-469D-A24E-8F05B1FB994D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47B2A88D-1E51-469D-A24E-8F05B1FB994D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47B2A88D-1E51-469D-A24E-8F05B1FB994D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47B2A88D-1E51-469D-A24E-8F05B1FB994D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

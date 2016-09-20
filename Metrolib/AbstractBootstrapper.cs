@@ -1,8 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-
-namespace Metrolib
+﻿namespace Metrolib
 {
 	/// <summary>
 	///     Base class for any bootstrapper to get the application running.
