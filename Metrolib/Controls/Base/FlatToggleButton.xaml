@@ -7,10 +7,10 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="DefaultFlatToggleButtonStyle" TargetType="{x:Type base:FlatToggleButton}">
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{StaticResource BorderBrushSelected}" />
         <Setter Property="InvertedForeground" Value="White" />
         <Setter Property="HoveredBackground" Value="{StaticResource BackgroundBrushHovered}" />
-        <Setter Property="Width" Value="32" />
-        <Setter Property="Height" Value="32" />
     </Style>
 </ResourceDictionary>

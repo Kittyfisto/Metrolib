@@ -1,9 +1,12 @@
 ﻿using System.Windows;
-using System.Windows.Controls.Primitives;
+using Metrolib.Controls.Base;
 
 namespace Metrolib.Controls
 {
-	public class EditToggleButton : ToggleButton
+	/// <summary>
+	/// A toggle button that allows to toggle between editing and not-.
+	/// </summary>
+	public class EditToggleButton : FlatToggleButton
 	{
 		static EditToggleButton()
 		{

@@ -2,8 +2,15 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:sample="clr-namespace:Metrolib.Sample"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="800">
     <Grid Margin="8">
-        <sample:Buttons />
+        <TabControl>
+            <TabItem Header="Buttons">
+                <sample:Buttons />
+            </TabItem>
+            <TabItem Header="Toggle Buttons">
+                <sample:ToggleButtons Grid.Column="1" />
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

@@ -3,23 +3,40 @@
                     xmlns:controls="clr-namespace:Metrolib.Controls">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Themes/Constants.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Base/FlatToggleButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="{x:Type controls:TextToggleButton}">
+    <Style TargetType="{x:Type controls:TextToggleButton}" BasedOn="{StaticResource DefaultFlatToggleButtonStyle}">
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Background" Value="White" />
+        <Setter Property="Foreground" Value="Black" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:TextToggleButton}">
-                    <Border Background="{TemplateBinding Background}"
+                    <Border x:Name="PART_MainBorder"
+                            Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Padding="{TemplateBinding Padding}"
                             SnapsToDevicePixels="True">
-                        <ContentPresenter VerticalAlignment="Center"
+                        <ContentPresenter x:Name="PART_Presenter"
+                                          VerticalAlignment="Center"
                                           HorizontalAlignment="Center" />
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <!-- Foreground when disabled -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_Presenter" Property="Control.Foreground" Value="{StaticResource BorderBrushDisabled}" />
+                        </Trigger>
+                        <!-- Foreground, Background when disabled and checked -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="False" />
+                                <Condition Property="IsChecked" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_MainBorder" Property="Background" Value="{StaticResource BorderBrushDisabled}" />
+                            <Setter TargetName="PART_Presenter" Property="Control.Foreground" Value="{Binding InvertedForeground, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -1,9 +1,9 @@
 ﻿using System.Windows;
-using System.Windows.Controls.Primitives;
+using Metrolib.Controls.Base;
 
 namespace Metrolib.Controls
 {
-	public class TextToggleButton : ToggleButton
+	public class TextToggleButton : FlatToggleButton
 	{
 		static TextToggleButton()
 		{

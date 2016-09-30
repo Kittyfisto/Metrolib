@@ -172,15 +172,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\ic_add_black_18dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\ic_clear_black_18dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\ic_clear_white_18dp.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\ic_mode_edit_white_18dp.png" />
   </ItemGroup>
   <ItemGroup>
