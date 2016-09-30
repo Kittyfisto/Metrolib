@@ -19,10 +19,15 @@
     <SolidColorBrush x:Key="BorderBrushHovered" Color="#E5E5E5" />
     <SolidColorBrush x:Key="BorderBrushSelected" Color="#3998D6" />
     <SolidColorBrush x:Key="BorderBrushSelectedAndHovered" Color="#3998D6" />
+    <SolidColorBrush x:Key="BorderBrushDisabled" Color="#C9DAEB" />
 
     <!-- BORDER THICKNESSES -->
 
     <system:Double x:Key="SlimBorder">1</system:Double>
-    <Thickness x:Key="SlimBorderThickness" Bottom="1" Left="1" Right="1" Top="1" />
+    <Thickness x:Key="SlimBorderThickness"
+               Bottom="{StaticResource SlimBorder}"
+               Left="{StaticResource SlimBorder}"
+               Right="{StaticResource SlimBorder}"
+               Top="{StaticResource SlimBorder}" />
 
 </ResourceDictionary>

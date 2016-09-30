@@ -65,6 +65,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ExportButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Base\FlatButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Base\FlatToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\VisibilityToggleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -111,7 +123,9 @@
     <Compile Include="Controls\AddButton.cs" />
     <Compile Include="Controls\AlertControl.cs" />
     <Compile Include="Controls\ExpanderToggleButton.cs" />
-    <Compile Include="Controls\ExtToggleButton.cs" />
+    <Compile Include="Controls\ExportButton.cs" />
+    <Compile Include="Controls\Base\FlatToggleButton.cs" />
+    <Compile Include="Controls\Base\FlatButton.cs" />
     <Compile Include="Controls\VisibilityToggleButton.cs" />
     <Compile Include="Controls\FlavourTextBlock.cs" />
     <Compile Include="Converters\BoolFalseToHiddenConverter.cs" />

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Metrolib.Controls.Base;
 
 namespace Metrolib.Controls
 {
@@ -6,7 +7,7 @@ namespace Metrolib.Controls
 	///     A toggle button that is typically used to expand/contract an area of the UI.
 	/// </summary>
 	public class ExpanderToggleButton
-		: ExtToggleButton
+		: FlatToggleButton
 	{
 		static ExpanderToggleButton()
 		{

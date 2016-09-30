@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Metrolib.Controls.Base;
 
 namespace Metrolib.Controls
 {
@@ -6,7 +7,7 @@ namespace Metrolib.Controls
 	///     A toggle button that allows the user to control whether a filter is being used to include or exclude items.
 	/// </summary>
 	public class VisibilityToggleButton
-		: ExtToggleButton
+		: FlatToggleButton
 	{
 		static VisibilityToggleButton()
 		{

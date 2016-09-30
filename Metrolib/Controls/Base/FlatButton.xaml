@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:base="clr-namespace:Metrolib.Controls.Base">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Themes/Constants.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="DefaultFlatButtonStyle" TargetType="{x:Type base:FlatButton}">
+        <Setter Property="Foreground" Value="{StaticResource BorderBrushSelected}" />
+        <Setter Property="InvertedForeground" Value="White" />
+        <Setter Property="HoveredBackground" Value="{StaticResource BackgroundBrushHovered}" />
+        <Setter Property="PressedBackground" Value="{StaticResource BackgroundBrushPressed}" />
+        <Setter Property="Width" Value="32" />
+        <Setter Property="Height" Value="32" />
+    </Style>
+</ResourceDictionary>

@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Threading;
-using Metrolib;
 
-namespace Tailviewer.Test
+namespace Metrolib
 {
 	public sealed class ManualDispatcher
 		: IDispatcher

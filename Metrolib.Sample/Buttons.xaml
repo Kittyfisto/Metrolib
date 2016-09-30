@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="Metrolib.Sample.Buttons"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:Metrolib.Controls;assembly=Metrolib"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="340">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="8"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="8"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="8"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="8" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock FontSize="16" Text="Control" />
+        <TextBlock FontSize="16" Text="Normal" Grid.Column="2" />
+        <TextBlock FontSize="16" Text="Inverted" Grid.Column="4" />
+        <TextBlock FontSize="16" Text="Disabled" Grid.Column="6" />
+
+        <TextBlock Text="AddButton" Grid.Row="2" VerticalAlignment="Center" />
+        <controls:AddButton Grid.Column="2" Grid.Row="2" />
+        <Border Background="Black" Grid.Column="4" Grid.Row="2">
+            <controls:AddButton IsInverted="True" />
+        </Border>
+        <controls:AddButton Grid.Column="6" Grid.Row="2" IsEnabled="False" />
+
+        <TextBlock Text="ExpanderToggleButton" Grid.Row="4" VerticalAlignment="Center" />
+        <controls:ExpanderToggleButton Grid.Column="2" Grid.Row="4" Padding="4" />
+        <Border Background="Black" Grid.Column="4" Grid.Row="4">
+            <controls:ExpanderToggleButton IsInverted="True" Padding="4" />
+        </Border>
+        <controls:ExpanderToggleButton Grid.Column="6" Grid.Row="4" Padding="4" IsEnabled="False" />
+
+        <TextBlock Text="VisibilityToggleButton" Grid.Row="5" VerticalAlignment="Center" />
+        <controls:VisibilityToggleButton Grid.Column="2" Grid.Row="5" Padding="4" ToolTip="An eye" />
+        <Border Background="Black" Grid.Column="4" Grid.Row="5">
+            <controls:VisibilityToggleButton IsInverted="True" Padding="4" ToolTip="An eye" />
+        </Border>
+        <controls:VisibilityToggleButton Grid.Column="6" Grid.Row="5" Padding="4" ToolTip="An eye" IsEnabled="False" />
+
+        <TextBlock Text="ExportButton" Grid.Row="6" VerticalAlignment="Center" />
+        <controls:ExportButton Grid.Column="2" Grid.Row="6" Margin="4" />
+        <Border Background="Black" Grid.Column="4" Grid.Row="6">
+            <controls:ExportButton Margin="4" IsInverted="True" />
+        </Border>
+        <controls:ExportButton Grid.Column="6" Grid.Row="6" Margin="4" IsEnabled="False" />
+
+        <TextBlock Text="RemoveButton" Grid.Row="7" VerticalAlignment="Center" />
+        <controls:RemoveButton Grid.Column="2" Grid.Row="7" />
+        <Border Background="Black" Grid.Column="4" Grid.Row="7">
+            <controls:RemoveButton IsInverted="True" />
+        </Border>
+        <controls:RemoveButton Grid.Column="6" Grid.Row="7" IsEnabled="False" />
+
+        <TextBlock Text="EditToggleButton" Grid.Row="8" VerticalAlignment="Center" />
+        <controls:EditToggleButton Grid.Column="2" Grid.Row="8" Margin="4" />
+
+    </Grid>
+</UserControl>

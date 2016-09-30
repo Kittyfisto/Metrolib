@@ -2,6 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:Metrolib.Controls">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Base/FlatToggleButton.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
     <Geometry x:Key="ChevronDown">
         M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z
     </Geometry>
@@ -12,7 +16,7 @@
 
     <EllipseGeometry x:Key="Circle" Center="12,12" RadiusX="12" RadiusY="12" />
 
-    <Style TargetType="{x:Type controls:ExpanderToggleButton}">
+    <Style TargetType="{x:Type controls:ExpanderToggleButton}" BasedOn="{StaticResource DefaultFlatToggleButtonStyle}">
         <Setter Property="Width" Value="32" />
         <Setter Property="Height" Value="32" />
         <Setter Property="Template">
@@ -41,18 +45,24 @@
 
                         <!-- Chevron and Circle color based on IsSelected -->
                         <Trigger Property="IsInverted" Value="True">
-                            <Setter Property="Fill" TargetName="PART_Chevron" Value="White" />
-                            <Setter Property="Stroke" TargetName="PART_Circle" Value="White" />
+                            <Setter Property="Fill" TargetName="PART_Chevron" Value="{Binding InvertedForeground,RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter Property="Stroke" TargetName="PART_Circle" Value="{Binding InvertedForeground,RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
                         <Trigger Property="IsInverted" Value="False">
-                            <Setter Property="Fill" TargetName="PART_Chevron" Value="Black" />
-                            <Setter Property="Stroke" TargetName="PART_Circle" Value="Black" />
+                            <Setter Property="Fill" TargetName="PART_Chevron" Value="{Binding Foreground,RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter Property="Stroke" TargetName="PART_Circle" Value="{Binding Foreground,RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
 
+                        <!-- Color of icon when disabled -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_Chevron" Property="Fill" Value="{StaticResource BorderBrushDisabled}" />
+                        </Trigger>
+                        
                         <!-- The circle is only visible when the user hovers over it -->
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Visibility" TargetName="PART_Circle" Value="Visible" />
                         </Trigger>
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
