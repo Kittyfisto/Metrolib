@@ -5,8 +5,12 @@
     <!-- COLORS -->
 
     <SolidColorBrush x:Key="TextBrushDefault" Color="Black" />
-    <SolidColorBrush x:Key="TextBrushSelected" Color="#FFFBFA" />
+    <SolidColorBrush x:Key="TextBrushInverted" Color="#FFFBFA" />
+    <SolidColorBrush x:Key="TextBrushDisabled" Color="#C9DAEB" />
 
+    <SolidColorBrush x:Key="TextBrushUnimportant" Color="#B7B7B7" />
+    <SolidColorBrush x:Key="TextBrushUnimportantInverted" Color="#DAECF7" />
+    
     <SolidColorBrush x:Key="BackgroundBrushDefault" Color="White" />
     <SolidColorBrush x:Key="BackgroundBrushHovered" Color="#F2F2F2" />
     <SolidColorBrush x:Key="BackgroundBrushPressed" Color="#CCCCCC" />

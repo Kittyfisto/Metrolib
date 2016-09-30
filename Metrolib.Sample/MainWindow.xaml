@@ -5,11 +5,14 @@
         Title="MainWindow" Height="350" Width="800">
     <Grid Margin="8">
         <TabControl>
+            <TabItem Header="TextBlocks">
+                <sample:TextBlocks />
+            </TabItem>
             <TabItem Header="Buttons">
                 <sample:Buttons />
             </TabItem>
             <TabItem Header="Toggle Buttons">
-                <sample:ToggleButtons Grid.Column="1" />
+                <sample:ToggleButtons />
             </TabItem>
         </TabControl>
     </Grid>

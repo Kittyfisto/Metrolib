@@ -45,7 +45,7 @@
                 <Setter Property="Background" Value="{StaticResource BackgroundBrushHovered}" />
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Foreground" Value="{StaticResource TextBrushSelected}" />
+                <Setter Property="Foreground" Value="{StaticResource TextBrushInverted}" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>

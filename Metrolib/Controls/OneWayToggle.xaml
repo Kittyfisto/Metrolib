@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Metrolib" xmlns:converters="clr-namespace:Metrolib.Converters"
+                    xmlns:converters="clr-namespace:Metrolib.Converters"
                     xmlns:controls="clr-namespace:Metrolib.Controls">
 
     <ResourceDictionary.MergedDictionaries>
@@ -73,7 +73,7 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="Background" Value="{StaticResource BackgroundBrushSelected}" />
                 <Setter Property="BorderBrush" Value="{StaticResource BorderBrushSelected}" />
-                <Setter Property="TextElement.Foreground" Value="{StaticResource TextBrushSelected}" />
+                <Setter Property="TextElement.Foreground" Value="{StaticResource TextBrushInverted}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -84,7 +84,7 @@
                  to NOT change the background color any further when the user hovers with the mouse over said button. -->
                 <Setter Property="Background" Value="{StaticResource BackgroundBrushSelected}" />
                 <Setter Property="BorderBrush" Value="{StaticResource BorderBrushSelected}" />
-                <Setter Property="TextElement.Foreground" Value="{StaticResource TextBrushSelected}" />
+                <Setter Property="TextElement.Foreground" Value="{StaticResource TextBrushInverted}" />
             </MultiTrigger>
         </Style.Triggers>
     </Style>
