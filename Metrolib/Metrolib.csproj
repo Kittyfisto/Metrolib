@@ -69,7 +69,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Base\FlatButton.xaml">
+    <Page Include="Controls\FlatButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -78,6 +78,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\FlatTextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MoreButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,8 +137,9 @@
     <Compile Include="Controls\ExpanderToggleButton.cs" />
     <Compile Include="Controls\ExportButton.cs" />
     <Compile Include="Controls\Base\FlatToggleButton.cs" />
-    <Compile Include="Controls\Base\FlatButton.cs" />
+    <Compile Include="Controls\FlatButton.cs" />
     <Compile Include="Controls\FlatTextBlock.cs" />
+    <Compile Include="Controls\MoreButton.cs" />
     <Compile Include="Controls\Properties.cs" />
     <Compile Include="Controls\SubTextBlock.cs" />
     <Compile Include="Controls\VisibilityToggleButton.cs" />

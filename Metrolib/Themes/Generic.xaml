@@ -13,9 +13,10 @@
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/SubTextBlock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/FlavourTextBlock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/FilterTextBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/RemoveButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/MoreButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/NotificationBadge.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/OneWayToggle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/RemoveButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextToggleButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/VisibilityToggleButton.xaml" />
     </ResourceDictionary.MergedDictionaries>

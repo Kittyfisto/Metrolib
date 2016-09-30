@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using Metrolib.Controls.Base;
 
 namespace Metrolib.Controls
 {

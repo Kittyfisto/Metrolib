@@ -3,7 +3,7 @@
                     xmlns:controls="clr-namespace:Metrolib.Controls">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Base/FlatButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/FlatButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Geometry x:Key="Remove">
@@ -13,41 +13,20 @@
     <Style TargetType="{x:Type controls:RemoveButton}" BasedOn="{StaticResource DefaultFlatButtonStyle}">
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="Padding" Value="4" />
-        <Setter Property="Template">
+        <Setter Property="HoveredForeground" Value="White" />
+        <Setter Property="PressedForeground" Value="White" />
+        <Setter Property="HoveredBackground" Value="#E81123" />
+        <Setter Property="PressedBackground" Value="#F1707A" />
+        <Setter Property="ContentTemplate">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type controls:RemoveButton}">
-                    <Grid x:Name="PART_MainGrid" Background="{TemplateBinding Background}">
-                        <Viewbox Margin="{TemplateBinding Padding}">
-                            <Canvas Width="24" Height="24">
-                                <Path x:Name="PART_Icon" Data="{StaticResource Remove}" />
-                            </Canvas>
-                        </Viewbox>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <!-- Filter color based on IsInverted -->
-                        <Trigger Property="controls:Properties.IsInverted" Value="True">
-                            <Setter Property="Fill" TargetName="PART_Icon"
-                                    Value="{Binding InvertedForeground, RelativeSource={RelativeSource TemplatedParent}}" />
-                        </Trigger>
-                        <Trigger Property="controls:Properties.IsInverted" Value="False">
-                            <Setter Property="Fill" TargetName="PART_Icon"
-                                    Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
-                        </Trigger>
-                        <!-- Background when mouse over -->
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="PART_MainGrid" Property="Background" Value="#E81123" />
-                            <Setter TargetName="PART_Icon" Property="Fill" Value="{Binding InvertedForeground, RelativeSource={RelativeSource TemplatedParent}}" />
-                        </Trigger>
-                        <!-- Background when pressed -->
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="PART_MainGrid" Property="Background" Value="#F1707A" />
-                        </Trigger>
-                        <!-- Color of icon when disabled -->
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="PART_Icon" Property="Fill" Value="{StaticResource BorderBrushDisabled}" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
+                <DataTemplate>
+                    <Viewbox>
+                        <Canvas Width="24" Height="24">
+                            <Path x:Name="PART_Icon" Data="{StaticResource Remove}"
+                                  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:FlatButton}}}"/>
+                        </Canvas>
+                    </Viewbox>
+                </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
