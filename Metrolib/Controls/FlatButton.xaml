@@ -1,18 +1,18 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:base="clr-namespace:Metrolib.Controls.Base" xmlns:controls="clr-namespace:Metrolib.Controls">
+                    xmlns:controls="clr-namespace:Metrolib.Controls">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Themes/Constants.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="DefaultFlatButtonStyle" TargetType="{x:Type controls:FlatButton}">
+    <Style TargetType="{x:Type controls:FlatButton}">
         <Setter Property="Foreground" Value="{StaticResource BorderBrushSelected}" />
-        <Setter Property="HoveredForeground" Value="{StaticResource BorderBrushSelected}" />
-        <Setter Property="PressedForeground" Value="{StaticResource BorderBrushSelected}" />
+        <Setter Property="HoveredForeground" Value="{StaticResource ForegroundBrushHovered}" />
+        <Setter Property="PressedForeground" Value="{StaticResource ForegroundBrushPressed}" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="HoveredBackground" Value="{StaticResource BackgroundBrushHovered}" />
-        <Setter Property="PressedBackground" Value="{StaticResource BackgroundBrushPressed}" />
+        <Setter Property="HoveredBackground" Value="Transparent" />
+        <Setter Property="PressedBackground" Value="Transparent" />
         <Setter Property="InvertedForeground" Value="White" />
         <Setter Property="Padding" Value="4" />
         <Setter Property="Template">
@@ -25,16 +25,14 @@
                         <Rectangle x:Name="PART_PressedRect"
                                    Fill="{TemplateBinding PressedBackground}"
                                    Opacity="0"
-                                   RenderTransformOrigin="0.5, 0">
-                            <Rectangle.RenderTransform>
-                                <ScaleTransform />
-                            </Rectangle.RenderTransform>
-                        </Rectangle>
+                                   RenderTransformOrigin="0.5, 0" />
                         <ContentPresenter x:Name="PART_Presenter"
                                           Margin="{TemplateBinding Padding}"
                                           Content="{TemplateBinding Content}"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
+                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <!-- Color of foreground when inverted -->
@@ -76,6 +74,8 @@
 
                         <!-- Background when mouse is pressed -->
                         <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Foreground"
+                                    Value="{Binding PressedForeground, RelativeSource={RelativeSource Self}}" />
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>

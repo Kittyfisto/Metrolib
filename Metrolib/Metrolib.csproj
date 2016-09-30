@@ -57,6 +57,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\ToggleButtonBase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\EditToggleButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -73,7 +77,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Base\FlatToggleButton.xaml">
+    <Page Include="Controls\FlatToggleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -109,10 +113,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\TextToggleButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Converters\Converters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -134,9 +134,10 @@
     <Compile Include="AbstractBootstrapper.cs" />
     <Compile Include="Controls\AddButton.cs" />
     <Compile Include="Controls\AlertControl.cs" />
+    <Compile Include="Controls\ToggleButtonBase.cs" />
     <Compile Include="Controls\ExpanderToggleButton.cs" />
     <Compile Include="Controls\ExportButton.cs" />
-    <Compile Include="Controls\Base\FlatToggleButton.cs" />
+    <Compile Include="Controls\FlatToggleButton.cs" />
     <Compile Include="Controls\FlatButton.cs" />
     <Compile Include="Controls\FlatTextBlock.cs" />
     <Compile Include="Controls\MoreButton.cs" />
@@ -172,7 +173,6 @@
     <Compile Include="Converters\BoolTrueToCollapsedConverter.cs" />
     <Compile Include="Controls\FilterTextBox.cs" />
     <Compile Include="Controls\RemoveButton.cs" />
-    <Compile Include="Controls\TextToggleButton.cs" />
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="Size.cs" />
     <Compile Include="UiDispatcher.cs" />

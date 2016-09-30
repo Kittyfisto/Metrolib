@@ -8,10 +8,10 @@
             <TabItem Header="TextBlocks">
                 <sample:TextBlocks />
             </TabItem>
-            <TabItem Header="Buttons" IsSelected="True">
+            <TabItem Header="Buttons">
                 <sample:Buttons />
             </TabItem>
-            <TabItem Header="Toggle Buttons">
+            <TabItem Header="Toggle Buttons" IsSelected="True">
                 <sample:ToggleButtons />
             </TabItem>
         </TabControl>

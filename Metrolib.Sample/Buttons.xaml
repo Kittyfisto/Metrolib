@@ -24,6 +24,7 @@
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -32,32 +33,39 @@
         <TextBlock Text="Inverted" Grid.Column="4" />
         <TextBlock Text="Disabled" Grid.Column="6" />
 
-        <TextBlock Text="AddButton" Grid.Row="2" VerticalAlignment="Center" />
-        <controls:AddButton Grid.Column="2" Grid.Row="2" />
+        <TextBlock Text="FlatButton" Grid.Row="2" VerticalAlignment="Center" />
+        <controls:FlatButton Grid.Column="2" Grid.Row="2" Content="Foobar" />
         <Border Background="Black" Grid.Column="4" Grid.Row="2">
+            <controls:FlatButton controls:Properties.IsInverted="True" Content="Foobar" />
+        </Border>
+        <controls:FlatButton Grid.Column="6" Grid.Row="2" IsEnabled="False" Content="Foobar" />
+
+        <TextBlock Text="AddButton" Grid.Row="3" VerticalAlignment="Center" />
+        <controls:AddButton Grid.Column="2" Grid.Row="3" />
+        <Border Background="Black" Grid.Column="4" Grid.Row="3">
             <controls:AddButton controls:Properties.IsInverted="True" />
         </Border>
-        <controls:AddButton Grid.Column="6" Grid.Row="2" IsEnabled="False" />
+        <controls:AddButton Grid.Column="6" Grid.Row="3" IsEnabled="False" />
 
-        <TextBlock Text="RemoveButton" Grid.Row="3" VerticalAlignment="Center" />
-        <controls:RemoveButton Grid.Column="2" Grid.Row="3" />
-        <Border Background="Black" Grid.Column="4" Grid.Row="3">
+        <TextBlock Text="RemoveButton" Grid.Row="4" VerticalAlignment="Center" />
+        <controls:RemoveButton Grid.Column="2" Grid.Row="4" />
+        <Border Background="Black" Grid.Column="4" Grid.Row="4">
             <controls:RemoveButton controls:Properties.IsInverted="True" />
         </Border>
-        <controls:RemoveButton Grid.Column="6" Grid.Row="3" IsEnabled="False" />
+        <controls:RemoveButton Grid.Column="6" Grid.Row="4" IsEnabled="False" />
 
-        <TextBlock Text="ExportButton" Grid.Row="4" VerticalAlignment="Center" />
-        <controls:ExportButton Grid.Column="2" Grid.Row="4" />
-        <Border Background="Black" Grid.Column="4" Grid.Row="4">
+        <TextBlock Text="ExportButton" Grid.Row="5" VerticalAlignment="Center" />
+        <controls:ExportButton Grid.Column="2" Grid.Row="5" />
+        <Border Background="Black" Grid.Column="4" Grid.Row="5">
             <controls:ExportButton controls:Properties.IsInverted="True" />
         </Border>
-        <controls:ExportButton Grid.Column="6" Grid.Row="4" IsEnabled="False" />
+        <controls:ExportButton Grid.Column="6" Grid.Row="5" IsEnabled="False" />
 
-        <TextBlock Text="MoreButton" Grid.Row="5" VerticalAlignment="Center" />
-        <controls:MoreButton Grid.Column="2" Grid.Row="5" />
-        <Border Background="Black" Grid.Column="4" Grid.Row="5">
+        <TextBlock Text="MoreButton" Grid.Row="6" VerticalAlignment="Center" />
+        <controls:MoreButton Grid.Column="2" Grid.Row="6" />
+        <Border Background="Black" Grid.Column="4" Grid.Row="6">
             <controls:MoreButton controls:Properties.IsInverted="True" />
         </Border>
-        <controls:MoreButton Grid.Column="6" Grid.Row="5" IsEnabled="False" />
+        <controls:MoreButton Grid.Column="6" Grid.Row="6" IsEnabled="False" />
     </Grid>
 </UserControl>

@@ -9,6 +9,7 @@
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/EditToggleButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ExpanderToggleButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ExportButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/FlatButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/FlatTextBlock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/SubTextBlock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/FlavourTextBlock.xaml" />
@@ -17,7 +18,7 @@
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/NotificationBadge.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/OneWayToggle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/RemoveButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextToggleButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtonBase.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/VisibilityToggleButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 

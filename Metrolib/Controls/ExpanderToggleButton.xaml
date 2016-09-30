@@ -3,7 +3,7 @@
                     xmlns:controls="clr-namespace:Metrolib.Controls">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Base/FlatToggleButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/FlatToggleButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Geometry x:Key="ChevronDown">
@@ -16,7 +16,7 @@
 
     <EllipseGeometry x:Key="Circle" Center="12,12" RadiusX="12" RadiusY="12" />
 
-    <Style TargetType="{x:Type controls:ExpanderToggleButton}" BasedOn="{StaticResource DefaultFlatToggleButtonStyle}">
+    <Style TargetType="{x:Type controls:ExpanderToggleButton}" BasedOn="{StaticResource {x:Type controls:FlatToggleButton}}">
         <Setter Property="Width" Value="32" />
         <Setter Property="Height" Value="32" />
         <Setter Property="Template">

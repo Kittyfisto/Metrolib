@@ -4,7 +4,7 @@
                     xmlns:local="clr-namespace:Metrolib.Controls">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Base/FlatToggleButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/FlatToggleButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <converters:BoolFalseToCollapsedConverter x:Key="BoolFalse2CollapsedConverter" />
@@ -14,71 +14,18 @@
         M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z
     </Geometry>
     
-    <Style TargetType="{x:Type local:EditToggleButton}" BasedOn="{StaticResource DefaultFlatToggleButtonStyle}">
-        <Setter Property="Template">
+    <Style TargetType="{x:Type local:EditToggleButton}" BasedOn="{StaticResource {x:Type local:FlatToggleButton}}">
+        <Setter Property="ContentTemplate">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:EditToggleButton}">
-                    <Grid x:Name="PART_MainGrid"
-                          Background="{TemplateBinding Background}"
-                          Margin="{TemplateBinding Margin}">
-                        <Viewbox Margin="{TemplateBinding Padding}">
-                            <Canvas Width="24" Height="24">
-                                <Path x:Name="PART_Icon" Data="{StaticResource Pen}"
-                                      Fill="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"
-                                      />
-                            </Canvas>
-                        </Viewbox>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <!-- Background when mouse over -->
-                        <Trigger Property="IsMouseOver" Value="True">
-                            
-                            <Setter TargetName="PART_MainGrid" Property="Background" Value="{Binding HoveredBackground,RelativeSource={RelativeSource TemplatedParent}}" />
-                        </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsMouseOver" Value="False" />
-                                <Condition Property="IsChecked" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="PART_MainGrid" Property="Background" Value="{StaticResource BackgroundBrushSelected}" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsMouseOver" Value="True" />
-                                <Condition Property="IsChecked" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="PART_MainGrid" Property="Background" Value="{StaticResource BackgroundBrushSelectedAndHovered}" />
-                        </MultiTrigger>
-
-                        <!-- Foreground when checked -->
-                        <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="PART_Icon" Property="Fill" Value="{Binding InvertedForeground, RelativeSource={RelativeSource TemplatedParent}}" />
-                        </Trigger>
-
-                        <!-- Background when pressed -->
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="PART_MainGrid" Property="Background" Value="{StaticResource BackgroundBrushPressed}" />
-                        </Trigger>
-                        
-                        <!-- Foreground when disabled -->
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="PART_Icon" Property="Fill" Value="{StaticResource BorderBrushDisabled}" />
-                        </Trigger>
-
-                        <!-- Foreground, Background when disabled and checked -->
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsEnabled" Value="False" />
-                                <Condition Property="IsChecked" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="PART_MainGrid" Property="Background" Value="{StaticResource BorderBrushDisabled}" />
-                            <Setter TargetName="PART_Icon" Property="Fill" Value="{Binding InvertedForeground, RelativeSource={RelativeSource TemplatedParent}}" />
-                        </MultiTrigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
+                <DataTemplate>
+                    <Viewbox>
+                        <Canvas Width="24" Height="24">
+                            <Path x:Name="PART_Icon" Data="{StaticResource Pen}"
+                                      Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:FlatToggleButton}}}" />
+                        </Canvas>
+                    </Viewbox>
+                </DataTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-        </Style.Triggers>
     </Style>
 </ResourceDictionary>
