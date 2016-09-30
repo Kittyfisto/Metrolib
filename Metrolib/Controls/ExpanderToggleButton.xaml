@@ -44,11 +44,11 @@
                         </Trigger>
 
                         <!-- Chevron and Circle color based on IsSelected -->
-                        <Trigger Property="IsInverted" Value="True">
+                        <Trigger Property="controls:Properties.IsInverted" Value="True">
                             <Setter Property="Fill" TargetName="PART_Chevron" Value="{Binding InvertedForeground,RelativeSource={RelativeSource TemplatedParent}}" />
                             <Setter Property="Stroke" TargetName="PART_Circle" Value="{Binding InvertedForeground,RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
-                        <Trigger Property="IsInverted" Value="False">
+                        <Trigger Property="controls:Properties.IsInverted" Value="False">
                             <Setter Property="Fill" TargetName="PART_Chevron" Value="{Binding Foreground,RelativeSource={RelativeSource TemplatedParent}}" />
                             <Setter Property="Stroke" TargetName="PART_Circle" Value="{Binding Foreground,RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>

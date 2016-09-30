@@ -10,10 +10,6 @@ namespace Metrolib.Controls.Base
 	public class FlatButton
 		: Button
 	{
-		public static readonly DependencyProperty IsInvertedProperty =
-			DependencyProperty.Register("IsInverted", typeof (bool), typeof (FlatButton),
-			                            new PropertyMetadata(false));
-
 		public static readonly DependencyProperty InvertedForegroundProperty =
 			DependencyProperty.Register("InvertedForeground", typeof (Brush), typeof (FlatButton),
 			                            new PropertyMetadata(default(Brush)));
@@ -57,19 +53,6 @@ namespace Metrolib.Controls.Base
 		{
 			get { return (Brush) GetValue(InvertedForegroundProperty); }
 			set { SetValue(InvertedForegroundProperty, value); }
-		}
-
-		/// <summary>
-		///     Whether or not the colors of this toggle button are inverted.
-		///     Set to false by default.
-		/// </summary>
-		/// <remarks>
-		///     When inverted, the chevron is drawn in white instead of black.
-		/// </remarks>
-		public bool IsInverted
-		{
-			get { return (bool) GetValue(IsInvertedProperty); }
-			set { SetValue(IsInvertedProperty, value); }
 		}
 	}
 }

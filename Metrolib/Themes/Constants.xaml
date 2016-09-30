@@ -12,6 +12,7 @@
     <SolidColorBrush x:Key="BackgroundBrushPressed" Color="#CCCCCC" />
     <SolidColorBrush x:Key="BackgroundBrushSelected" Color="#3998D6" />
     <SolidColorBrush x:Key="BackgroundBrushSelectedAndHovered" Color="#348BC1" />
+    <SolidColorBrush x:Key="BackgroundBrushSelectedUnfocused" Color="#E7E7E7" />
 
     <SolidColorBrush x:Key="SeparatorBrush" Color="#E5E5E5" />
 

@@ -23,10 +23,10 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <!-- Color of icon when normal/inverted -->
-                        <Trigger Property="IsInverted" Value="True">
+                        <Trigger Property="controls:Properties.IsInverted" Value="True">
                             <Setter TargetName="PART_Icon" Property="Fill" Value="{Binding InvertedForeground,RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
-                        <Trigger Property="IsInverted" Value="False">
+                        <Trigger Property="controls:Properties.IsInverted" Value="False">
                             <Setter TargetName="PART_Icon" Property="Fill" Value="{Binding Foreground,RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
                         <!-- Color of icon when disabled -->

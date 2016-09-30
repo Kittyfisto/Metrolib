@@ -25,11 +25,11 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <!-- Filter color based on IsInverted -->
-                        <Trigger Property="IsInverted" Value="True">
+                        <Trigger Property="controls:Properties.IsInverted" Value="True">
                             <Setter Property="Fill" TargetName="PART_Icon"
                                     Value="{Binding InvertedForeground, RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
-                        <Trigger Property="IsInverted" Value="False">
+                        <Trigger Property="controls:Properties.IsInverted" Value="False">
                             <Setter Property="Fill" TargetName="PART_Icon"
                                     Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
