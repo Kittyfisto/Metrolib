@@ -1,11 +1,10 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
 using System.Windows.Media;
 
 // ReSharper disable CheckNamespace
+
 namespace Metrolib.Controls
 // ReSharper restore CheckNamespace
 {
@@ -13,14 +12,18 @@ namespace Metrolib.Controls
 	///     Base class for toggle buttons of this library.
 	/// </summary>
 	/// <remarks>
-	/// When a <see cref="ButtonBase.ContextMenu"/> is attached to this button, it is automatically opened for as long as
-	/// the button is checked. Similarly, when the contextmenu is closed, the button is automatically unchecked.
+	///     When a <see cref="ButtonBase.ContextMenu" /> is attached to this button, it is automatically opened for as long as
+	///     the button is checked. Similarly, when the contextmenu is closed, the button is automatically unchecked.
 	/// </remarks>
 	public class ToggleButtonBase
 		: ToggleButton
 	{
 		public static readonly DependencyProperty InvertedForegroundProperty =
 			DependencyProperty.Register("InvertedForeground", typeof (Brush), typeof (ToggleButtonBase),
+			                            new PropertyMetadata(default(Brush)));
+
+		public static readonly DependencyProperty NormalForegroundProperty =
+			DependencyProperty.Register("NormalForeground", typeof (Brush), typeof (ToggleButtonBase),
 			                            new PropertyMetadata(default(Brush)));
 
 		public static readonly DependencyProperty HoveredBackgroundProperty =
@@ -42,7 +45,7 @@ namespace Metrolib.Controls
 		}
 
 		/// <summary>
-		/// Initializes a <see cref="ToggleButtonBase"/>.
+		///     Initializes a <see cref="ToggleButtonBase" />.
 		/// </summary>
 		public ToggleButtonBase()
 		{
@@ -51,43 +54,13 @@ namespace Metrolib.Controls
 			ContextMenuClosing += OnContextMenuClosing;
 		}
 
-		private void OnContextMenuOpening(object sender, ContextMenuEventArgs contextMenuEventArgs)
+		/// <summary>
+		/// 
+		/// </summary>
+		public Brush NormalForeground
 		{
-			IsChecked = true;
-		}
-
-		private void OnContextMenuClosing(object sender, ContextMenuEventArgs contextMenuEventArgs)
-		{
-			IsChecked = false;
-		}
-
-		private void OnChecked(object sender, RoutedEventArgs routedEventArgs)
-		{
-			var menu = ContextMenu;
-			if (menu != null)
-			{
-				if (IsChecked == true)
-				{
-					menu.Placement = PlacementMode.Bottom;
-					menu.PlacementTarget = this;
-					menu.IsOpen = true;
-				}
-				else
-				{
-					menu.IsOpen = false;
-				}
-				menu.Closed += ContextMenuOnClosed;
-			}
-		}
-
-		private void ContextMenuOnClosed(object sender, RoutedEventArgs routedEventArgs)
-		{
-			var contextMenu = sender as ContextMenu;
-			if (contextMenu != null)
-			{
-				contextMenu.Closed -= ContextMenuOnClosed;
-				IsChecked = false;
-			}
+			get { return (Brush) GetValue(NormalForegroundProperty); }
+			set { SetValue(NormalForegroundProperty, value); }
 		}
 
 		/// <summary>
@@ -124,6 +97,45 @@ namespace Metrolib.Controls
 		{
 			get { return (Brush) GetValue(InvertedForegroundProperty); }
 			set { SetValue(InvertedForegroundProperty, value); }
+		}
+
+		private void OnContextMenuOpening(object sender, ContextMenuEventArgs contextMenuEventArgs)
+		{
+			IsChecked = true;
+		}
+
+		private void OnContextMenuClosing(object sender, ContextMenuEventArgs contextMenuEventArgs)
+		{
+			IsChecked = false;
+		}
+
+		private void OnChecked(object sender, RoutedEventArgs routedEventArgs)
+		{
+			ContextMenu menu = ContextMenu;
+			if (menu != null)
+			{
+				if (IsChecked == true)
+				{
+					menu.Placement = PlacementMode.Bottom;
+					menu.PlacementTarget = this;
+					menu.IsOpen = true;
+				}
+				else
+				{
+					menu.IsOpen = false;
+				}
+				menu.Closed += ContextMenuOnClosed;
+			}
+		}
+
+		private void ContextMenuOnClosed(object sender, RoutedEventArgs routedEventArgs)
+		{
+			var contextMenu = sender as ContextMenu;
+			if (contextMenu != null)
+			{
+				contextMenu.Closed -= ContextMenuOnClosed;
+				IsChecked = false;
+			}
 		}
 	}
 }
