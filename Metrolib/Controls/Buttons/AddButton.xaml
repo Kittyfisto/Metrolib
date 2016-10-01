@@ -1,21 +1,22 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:Metrolib.Controls">
+
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/FlatButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/FlatButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Geometry x:Key="DotsVertical">
-        M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z
+    <Geometry x:Key="Add">
+        M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z
     </Geometry>
 
-    <Style TargetType="{x:Type controls:MoreButton}" BasedOn="{StaticResource {x:Type controls:FlatButton}}">
+    <Style TargetType="{x:Type controls:AddButton}" BasedOn="{StaticResource {x:Type controls:FlatButton}}">
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
                     <Viewbox>
                         <Canvas Width="24" Height="24">
-                            <Path x:Name="PART_Icon" Data="{StaticResource DotsVertical}"
+                            <Path x:Name="PART_Icon" Data="{StaticResource Add}"
                                   Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:FlatButton}}, Mode=OneWay}" />
                         </Canvas>
                     </Viewbox>

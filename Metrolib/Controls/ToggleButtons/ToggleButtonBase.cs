@@ -1,12 +1,21 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Media;
 
+// ReSharper disable CheckNamespace
 namespace Metrolib.Controls
+// ReSharper restore CheckNamespace
 {
 	/// <summary>
 	///     Base class for toggle buttons of this library.
 	/// </summary>
+	/// <remarks>
+	/// When a <see cref="ButtonBase.ContextMenu"/> is attached to this button, it is automatically opened for as long as
+	/// the button is checked. Similarly, when the contextmenu is closed, the button is automatically unchecked.
+	/// </remarks>
 	public class ToggleButtonBase
 		: ToggleButton
 	{
@@ -30,6 +39,55 @@ namespace Metrolib.Controls
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (ToggleButtonBase),
 			                                         new FrameworkPropertyMetadata(typeof (ToggleButtonBase)));
+		}
+
+		/// <summary>
+		/// Initializes a <see cref="ToggleButtonBase"/>.
+		/// </summary>
+		public ToggleButtonBase()
+		{
+			Checked += OnChecked;
+			ContextMenuOpening += OnContextMenuOpening;
+			ContextMenuClosing += OnContextMenuClosing;
+		}
+
+		private void OnContextMenuOpening(object sender, ContextMenuEventArgs contextMenuEventArgs)
+		{
+			IsChecked = true;
+		}
+
+		private void OnContextMenuClosing(object sender, ContextMenuEventArgs contextMenuEventArgs)
+		{
+			IsChecked = false;
+		}
+
+		private void OnChecked(object sender, RoutedEventArgs routedEventArgs)
+		{
+			var menu = ContextMenu;
+			if (menu != null)
+			{
+				if (IsChecked == true)
+				{
+					menu.Placement = PlacementMode.Bottom;
+					menu.PlacementTarget = this;
+					menu.IsOpen = true;
+				}
+				else
+				{
+					menu.IsOpen = false;
+				}
+				menu.Closed += ContextMenuOnClosed;
+			}
+		}
+
+		private void ContextMenuOnClosed(object sender, RoutedEventArgs routedEventArgs)
+		{
+			var contextMenu = sender as ContextMenu;
+			if (contextMenu != null)
+			{
+				contextMenu.Closed -= ContextMenuOnClosed;
+				IsChecked = false;
+			}
 		}
 
 		/// <summary>

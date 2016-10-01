@@ -2,8 +2,15 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
+// ReSharper disable CheckNamespace
 namespace Metrolib.Controls
+// ReSharper restore CheckNamespace
 {
+	/// <summary>
+	/// A button that can only be toggled on, but not off by itself.
+	/// Should be used in conjunction with at least one other <see cref="OneWayToggle"/> to allow
+	/// the user to switch between two or more states (identical to a group of <see cref="RadioButton"/>s).
+	/// </summary>
 	public class OneWayToggle : ContentControl
 	{
 		public static readonly DependencyProperty HasLeftBorderProperty =

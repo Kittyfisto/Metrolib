@@ -2,7 +2,9 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
+// ReSharper disable CheckNamespace
 namespace Metrolib.Controls
+// ReSharper restore CheckNamespace
 {
 	/// <summary>
 	///     The base class for any button offered by this library.

@@ -49,7 +49,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\AddButton.xaml">
+    <Page Include="Controls\Buttons\AddButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -57,47 +57,55 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\ToggleButtonBase.xaml">
+    <Page Include="Controls\ContextMenu\FlatContextMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\EditToggleButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\ExpanderToggleButton.xaml">
+    <Page Include="Controls\ToggleButtons\MoreToggleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\ExportButton.xaml">
+    <Page Include="Controls\ToggleButtons\ToggleButtonBase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\FlatButton.xaml">
+    <Page Include="Controls\ToggleButtons\EditToggleButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ToggleButtons\ExpanderToggleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\FlatToggleButton.xaml">
+    <Page Include="Controls\Buttons\ExportButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\FlatTextBlock.xaml">
+    <Page Include="Controls\Buttons\FlatButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\MoreButton.xaml">
+    <Page Include="Controls\ToggleButtons\FlatToggleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\SubTextBlock.xaml">
+    <Page Include="Controls\TextBlocks\FlatTextBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\VisibilityToggleButton.xaml">
+    <Page Include="Controls\Buttons\MoreButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\FlavourTextBlock.xaml">
+    <Page Include="Controls\TextBlocks\SubTextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ToggleButtons\VisibilityToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TextBlocks\FlavourTextBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -105,11 +113,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\OneWayToggle.xaml">
+    <Page Include="Controls\ToggleButtons\OneWayToggle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\RemoveButton.xaml">
+    <Page Include="Controls\Buttons\RemoveButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -125,34 +133,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\FilterTextBox.xaml">
+    <Page Include="Controls\TextBoxes\FilterTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractBootstrapper.cs" />
-    <Compile Include="Controls\AddButton.cs" />
+    <Compile Include="Controls\Buttons\AddButton.cs" />
     <Compile Include="Controls\AlertControl.cs" />
-    <Compile Include="Controls\ToggleButtonBase.cs" />
-    <Compile Include="Controls\ExpanderToggleButton.cs" />
-    <Compile Include="Controls\ExportButton.cs" />
-    <Compile Include="Controls\FlatToggleButton.cs" />
-    <Compile Include="Controls\FlatButton.cs" />
-    <Compile Include="Controls\FlatTextBlock.cs" />
-    <Compile Include="Controls\MoreButton.cs" />
+    <Compile Include="Controls\ContextMenu\FlatContextMenu.cs" />
+    <Compile Include="Controls\ToggleButtons\MoreToggleButton.cs" />
+    <Compile Include="Controls\ToggleButtons\ToggleButtonBase.cs" />
+    <Compile Include="Controls\ToggleButtons\ExpanderToggleButton.cs" />
+    <Compile Include="Controls\Buttons\ExportButton.cs" />
+    <Compile Include="Controls\ToggleButtons\FlatToggleButton.cs" />
+    <Compile Include="Controls\Buttons\FlatButton.cs" />
+    <Compile Include="Controls\TextBlocks\FlatTextBlock.cs" />
+    <Compile Include="Controls\Buttons\MoreButton.cs" />
     <Compile Include="Controls\Properties.cs" />
-    <Compile Include="Controls\SubTextBlock.cs" />
-    <Compile Include="Controls\VisibilityToggleButton.cs" />
-    <Compile Include="Controls\FlavourTextBlock.cs" />
+    <Compile Include="Controls\TextBlocks\SubTextBlock.cs" />
+    <Compile Include="Controls\ToggleButtons\VisibilityToggleButton.cs" />
+    <Compile Include="Controls\TextBlocks\FlavourTextBlock.cs" />
     <Compile Include="Converters\BoolFalseToHiddenConverter.cs" />
     <Compile Include="Converters\CountConverter.cs" />
     <Compile Include="Converters\InvertBoolConverter.cs" />
     <Compile Include="Converters\TimeSpanConverter.cs" />
-    <Compile Include="Controls\EditToggleButton.cs" />
+    <Compile Include="Controls\ToggleButtons\EditToggleButton.cs" />
     <Compile Include="Controls\MouseWheelGesture.cs" />
     <Compile Include="Controls\NotificationBadge.cs" />
-    <Compile Include="Controls\OneWayToggle.cs" />
+    <Compile Include="Controls\ToggleButtons\OneWayToggle.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="IDispatcher.cs" />
     <Compile Include="ManualDispatcher.cs" />
@@ -171,8 +181,8 @@
     </Compile>
     <Compile Include="Converters\BoolFalseToCollapsedConverter.cs" />
     <Compile Include="Converters\BoolTrueToCollapsedConverter.cs" />
-    <Compile Include="Controls\FilterTextBox.cs" />
-    <Compile Include="Controls\RemoveButton.cs" />
+    <Compile Include="Controls\TextBoxes\FilterTextBox.cs" />
+    <Compile Include="Controls\Buttons\RemoveButton.cs" />
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="Size.cs" />
     <Compile Include="UiDispatcher.cs" />

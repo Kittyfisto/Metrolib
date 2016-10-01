@@ -2,7 +2,9 @@
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
+// ReSharper disable CheckNamespace
 namespace Metrolib.Controls
+// ReSharper restore CheckNamespace
 {
 	/// <summary>
 	///     A toggle button that is typically used to expand/contract an area of the UI.

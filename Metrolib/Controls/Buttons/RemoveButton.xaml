@@ -3,7 +3,7 @@
                     xmlns:controls="clr-namespace:Metrolib.Controls">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/FlatButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/FlatButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Geometry x:Key="Remove">

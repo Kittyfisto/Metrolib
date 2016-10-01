@@ -1,5 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:converters="clr-namespace:Metrolib"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters2="clr-namespace:Metrolib.Converters"
                     xmlns:controls="clr-namespace:Metrolib.Controls">
 

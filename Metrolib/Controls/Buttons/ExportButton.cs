@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 
+// ReSharper disable CheckNamespace
 namespace Metrolib.Controls
+// ReSharper restore CheckNamespace
 {
 	/// <summary>
 	///     A simple button that allows for the exporting of data.
