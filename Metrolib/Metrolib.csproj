@@ -49,6 +49,18 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\About\AboutControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Tab\FlatTabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Tab\FlatTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Buttons\AddButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -140,10 +152,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractBootstrapper.cs" />
+    <Compile Include="Controls\About\AboutControl.cs" />
     <Compile Include="Controls\Buttons\AddButton.cs" />
     <Compile Include="Controls\AlertControl.cs" />
     <Compile Include="Controls\ContextMenu\FlatContextMenu.cs" />
     <Compile Include="Controls\ContextMenu\FlatMenuItem.cs" />
+    <Compile Include="Controls\Tab\FlatTabControl.cs" />
+    <Compile Include="Controls\Tab\FlatTabItem.cs" />
     <Compile Include="Controls\ToggleButtons\ToggleButtonBase.cs" />
     <Compile Include="Controls\ToggleButtons\ExpanderToggleButton.cs" />
     <Compile Include="Controls\Buttons\ExportButton.cs" />
@@ -165,6 +180,7 @@
     <Compile Include="Controls\NotificationBadge.cs" />
     <Compile Include="Controls\ToggleButtons\OneWayToggle.cs" />
     <Compile Include="DelegateCommand.cs" />
+    <Compile Include="DependencyObjectExtensions.cs" />
     <Compile Include="IDispatcher.cs" />
     <Compile Include="ManualDispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

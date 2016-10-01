@@ -26,8 +26,7 @@
                         Padding="{TemplateBinding Padding}"
                         NormalForeground="{StaticResource TextBrushDefault}"
                         HoveredForeground="White"
-                        PressedForeground="White"
-                        />
+                        PressedForeground="White" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

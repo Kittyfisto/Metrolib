@@ -1,10 +1,15 @@
 ﻿<Window x:Class="Metrolib.Sample.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:sample="clr-namespace:Metrolib.Sample"
+        xmlns:sample="clr-namespace:Metrolib.Sample" xmlns:controls="clr-namespace:Metrolib.Controls;assembly=Metrolib"
+        xmlns:tab="clr-namespace:Metrolib.Controls.Tab;assembly=Metrolib"
         Title="MainWindow" Height="350" Width="800">
-    <Grid Margin="8">
-        <TabControl>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TabControl  Margin="8,0,8,8">
             <TabItem Header="TextBlocks">
                 <sample:TextBlocks />
             </TabItem>
@@ -15,5 +20,38 @@
                 <sample:ToggleButtons />
             </TabItem>
         </TabControl>
+        
+        <controls:MoreButton VerticalAlignment="Top"
+                             HorizontalAlignment="Right"
+                             Grid.Column="1"
+                             Width="28"
+                             Height="28">
+            <FrameworkElement.ContextMenu>
+                <controls:FlatContextMenu Placement="Bottom"
+                                          AnchorAlignment="Right"
+                                          VerticalOffset="-10"
+                                          HorizontalOffset="-99">
+                    <controls:FlatMenuItem Header="About Metrolib..." Command="{Binding ShowCommand, Source={x:Reference About}}" />
+                </controls:FlatContextMenu>
+            </FrameworkElement.ContextMenu>
+        </controls:MoreButton>
+        
+        <controls:AboutControl x:Name="About" Grid.ColumnSpan="2"
+                               VerticalContentAlignment="Center"
+                               HorizontalContentAlignment="Center">
+            <tab:FlatTabControl>
+                <controls:FlatTabItem Header="Metrolib">
+                    
+                </controls:FlatTabItem>
+                <controls:FlatTabItem Header="Licenses">
+                    
+                </controls:FlatTabItem>
+                <tab:FlatTabControl.Resources>
+                    <Style TargetType="{x:Type TabPanel}">
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                    </Style>
+                </tab:FlatTabControl.Resources>
+            </tab:FlatTabControl>
+        </controls:AboutControl>
     </Grid>
 </Window>
