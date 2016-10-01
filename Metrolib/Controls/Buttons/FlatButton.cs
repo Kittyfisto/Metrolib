@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 
 // ReSharper disable CheckNamespace
+
 namespace Metrolib.Controls
 // ReSharper restore CheckNamespace
 {
@@ -14,6 +15,10 @@ namespace Metrolib.Controls
 	{
 		public static readonly DependencyProperty InvertedForegroundProperty =
 			DependencyProperty.Register("InvertedForeground", typeof (Brush), typeof (FlatButton),
+			                            new PropertyMetadata(default(Brush)));
+
+		public static readonly DependencyProperty NormalForegroundProperty =
+			DependencyProperty.Register("NormalForeground", typeof (Brush), typeof (FlatButton),
 			                            new PropertyMetadata(default(Brush)));
 
 		public static readonly DependencyProperty HoveredForegroundProperty =
@@ -40,6 +45,12 @@ namespace Metrolib.Controls
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (FlatButton),
 			                                         new FrameworkPropertyMetadata(typeof (FlatButton)));
+		}
+
+		public Brush NormalForeground
+		{
+			get { return (Brush) GetValue(NormalForegroundProperty); }
+			set { SetValue(NormalForegroundProperty, value); }
 		}
 
 		/// <summary>

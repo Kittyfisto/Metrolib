@@ -7,9 +7,12 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type controls:FlatButton}">
-        <Setter Property="Foreground" Value="{StaticResource BorderBrushSelected}" />
+        <Setter Property="NormalForeground" Value="{StaticResource BorderBrushSelected}" />
         <Setter Property="HoveredForeground" Value="{StaticResource ForegroundBrushHovered}" />
         <Setter Property="PressedForeground" Value="{StaticResource ForegroundBrushPressed}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{Binding NormalForeground, RelativeSource={RelativeSource Self}}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="HoveredBackground" Value="Transparent" />
         <Setter Property="PressedBackground" Value="Transparent" />
@@ -31,8 +34,8 @@
                                           Content="{TemplateBinding Content}"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
                                           ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                          VerticalAlignment="Center"
-                                          HorizontalAlignment="Center" />
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <!-- Color of foreground when inverted -->
@@ -43,7 +46,6 @@
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Foreground" Value="{StaticResource BorderBrushDisabled}" />
                         </Trigger>
-
                         <!-- Background when mouse enter/leave -->
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Foreground"

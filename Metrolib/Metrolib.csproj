@@ -61,6 +61,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ContextMenu\FlatMenuItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ToggleButtons\MoreToggleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -143,6 +147,7 @@
     <Compile Include="Controls\Buttons\AddButton.cs" />
     <Compile Include="Controls\AlertControl.cs" />
     <Compile Include="Controls\ContextMenu\FlatContextMenu.cs" />
+    <Compile Include="Controls\ContextMenu\FlatMenuItem.cs" />
     <Compile Include="Controls\ToggleButtons\MoreToggleButton.cs" />
     <Compile Include="Controls\ToggleButtons\ToggleButtonBase.cs" />
     <Compile Include="Controls\ToggleButtons\ExpanderToggleButton.cs" />

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Media;
 
 namespace Metrolib.Controls
 {
@@ -8,6 +9,46 @@ namespace Metrolib.Controls
 	public class Properties
 		: DependencyObject
 	{
+		#region ActualForeground
+
+		/// <summary>
+		///     This dependency property can be used to tell a <see cref="FrameworkElement" /> or even an entire sub-tree of the visual tree
+		///     to render the foreground using the specified brush.
+		/// </summary>
+		/// <remarks>
+		///     Most controls offered by this library properly implement an inverted style.
+		/// </remarks>
+		public static readonly DependencyProperty ActualForegroundProperty =
+			DependencyProperty.RegisterAttached(
+				"ActualForeground",
+				typeof (Brush),
+				typeof (Properties),
+				new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+
+		/// <summary>
+		///     Retrieves the value of the <see cref="ActualForegroundProperty" />.
+		/// </summary>
+		/// <param name="d"></param>
+		/// <returns></returns>
+		public static Brush GetActualForeground(DependencyObject d)
+		{
+			return (Brush) d.GetValue(ActualForegroundProperty);
+		}
+
+		/// <summary>
+		///     Sets the value of the <see cref="ActualForegroundProperty" />.
+		/// </summary>
+		/// <param name="d"></param>
+		/// <param name="value"></param>
+		public static void SetActualForeground(DependencyObject d, Brush value)
+		{
+			d.SetValue(ActualForegroundProperty, value);
+		}
+
+		#endregion
+
+		#region IsInverted
+
 		/// <summary>
 		///     This dependency property can be used to tell a <see cref="FrameworkElement" /> or even an entire sub-tree of the visual tree
 		///     to render inverted.
@@ -41,5 +82,7 @@ namespace Metrolib.Controls
 		{
 			d.SetValue(IsInvertedProperty, value);
 		}
+
+		#endregion
 	}
 }
