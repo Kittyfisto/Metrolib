@@ -18,10 +18,11 @@
         <Setter Property="HasDropShadow" Value="True" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="Padding" Value="0" />
+        <Setter Property="AnchorAlignment" Value="Left" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:FlatContextMenu}">
-                    <Grid Margin="5,0,5,5">
+                    <Grid Margin="5,5,5,5">
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -30,7 +31,7 @@
                                         Margin="{TemplateBinding Padding}"
                                         KeyboardNavigation.DirectionalNavigation="Cycle" />
                         </Border>
-                        <Grid Margin="8,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Grid Margin="8,0,8,0" HorizontalAlignment="{TemplateBinding AnchorAlignment}" VerticalAlignment="Top">
                             <Path Data="{StaticResource Arrow}" Fill="White" />
                             <Path x:Name="PART_HoveredPath" Data="{StaticResource Arrow}"
                                   Fill="{StaticResource BackgroundBrushSelected}"

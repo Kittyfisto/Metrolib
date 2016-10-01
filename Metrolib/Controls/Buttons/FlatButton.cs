@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -45,6 +46,21 @@ namespace Metrolib.Controls
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (FlatButton),
 			                                         new FrameworkPropertyMetadata(typeof (FlatButton)));
+		}
+
+		public FlatButton()
+		{
+			Click += OnClick;
+		}
+
+		private void OnClick(object sender, RoutedEventArgs routedEventArgs)
+		{
+			var menu = ContextMenu;
+			if (menu != null)
+			{
+				menu.PlacementTarget = this;
+				menu.IsOpen = true;
+			}
 		}
 
 		public Brush NormalForeground

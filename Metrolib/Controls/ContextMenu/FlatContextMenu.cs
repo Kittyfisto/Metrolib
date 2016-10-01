@@ -20,6 +20,10 @@ namespace Metrolib.Controls
 			DependencyProperty.Register("IsFirstItemHovered", typeof (bool), typeof (FlatContextMenu),
 			                            new PropertyMetadata(default(bool)));
 
+		public static readonly DependencyProperty AnchorAlignmentProperty =
+			DependencyProperty.Register("AnchorAlignment", typeof (HorizontalAlignment), typeof (FlatContextMenu),
+			                            new PropertyMetadata(default(HorizontalAlignment)));
+
 		private readonly DispatcherTimer _timer;
 
 		static FlatContextMenu()
@@ -36,6 +40,16 @@ namespace Metrolib.Controls
 			_timer = new DispatcherTimer(DispatcherPriority.Normal) {Interval = TimeSpan.FromMilliseconds(10)};
 			_timer.Tick += TimerOnTick;
 			_timer.Start();
+		}
+
+		/// <summary>
+		/// The horizontal alignment of the anchor.
+		/// Is set to <see cref="HorizontalAlignment.Left"/> by default.
+		/// </summary>
+		public HorizontalAlignment AnchorAlignment
+		{
+			get { return (HorizontalAlignment) GetValue(AnchorAlignmentProperty); }
+			set { SetValue(AnchorAlignmentProperty, value); }
 		}
 
 		/// <summary>

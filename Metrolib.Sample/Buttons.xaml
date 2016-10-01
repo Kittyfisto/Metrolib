@@ -62,7 +62,15 @@
         <controls:ExportButton Grid.Column="6" Grid.Row="5" IsEnabled="False" />
 
         <TextBlock Text="MoreButton" Grid.Row="6" VerticalAlignment="Center" />
-        <controls:MoreButton Grid.Column="2" Grid.Row="6" />
+        <controls:MoreButton Grid.Column="2" Grid.Row="6">
+            <FrameworkElement.ContextMenu>
+                <controls:FlatContextMenu Placement="Bottom" VerticalOffset="-10" HorizontalOffset="2">
+                    <controls:FlatMenuItem Header="First..." />
+                    <controls:FlatMenuItem Header="Second..." />
+                    <controls:FlatMenuItem Header="Third..." />
+                </controls:FlatContextMenu>
+            </FrameworkElement.ContextMenu>
+        </controls:MoreButton>
         <Border Background="Black" Grid.Column="4" Grid.Row="6">
             <controls:MoreButton controls:Properties.IsInverted="True" />
         </Border>

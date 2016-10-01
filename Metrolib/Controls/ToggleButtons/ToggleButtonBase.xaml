@@ -15,6 +15,8 @@
         <Setter Property="HoveredBackground" Value="{StaticResource BackgroundBrushHovered}" />
         <Setter Property="PressedBackground" Value="{StaticResource BackgroundBrushPressed}" />
         <Setter Property="CheckedBackground" Value="{StaticResource BackgroundBrushSelected}" />
+        <Setter Property="ContextMenu.HorizontalOffset" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="ContextMenu.VerticalOffset" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{Binding HoveredBackground, RelativeSource={RelativeSource Self}}" />

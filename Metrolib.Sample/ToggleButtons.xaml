@@ -62,19 +62,6 @@
         <controls:EditToggleButton Grid.Column="2" Grid.Row="5" />
         <controls:EditToggleButton Grid.Column="6" Grid.Row="5" IsEnabled="False" />
         <controls:EditToggleButton Grid.Column="8" Grid.Row="5" IsEnabled="False" IsChecked="True" />
-        
-        <TextBlock Text="MoreToggleButton" Grid.Row="6" VerticalAlignment="Center" />
-        <controls:MoreToggleButton Grid.Column="2" Grid.Row="6">
-            <FrameworkElement.ContextMenu>
-                <controls:FlatContextMenu>
-                    <controls:FlatMenuItem Header="First..." />
-                    <controls:FlatMenuItem Header="Second..." />
-                    <controls:FlatMenuItem Header="Third..." />
-                </controls:FlatContextMenu>
-            </FrameworkElement.ContextMenu>
-        </controls:MoreToggleButton>
-        <controls:MoreToggleButton Grid.Column="6" Grid.Row="6" IsEnabled="False" />
-        <controls:MoreToggleButton Grid.Column="8" Grid.Row="6" IsEnabled="False" IsChecked="True" />
 
     </Grid>
 </UserControl>
