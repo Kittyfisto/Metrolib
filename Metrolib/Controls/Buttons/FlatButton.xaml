@@ -57,14 +57,14 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="PART_HoveredRect"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         From="0" To="1"
+                                                         From="0.6" To="1"
                                                          Duration="0:0:0.200" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
-                                    <Storyboard FillBehavior="Stop">
+                                    <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="PART_HoveredRect"
                                                          Storyboard.TargetProperty="Opacity"
                                                          From="1" To="0"
