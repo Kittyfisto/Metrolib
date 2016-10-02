@@ -35,7 +35,7 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="PART_CheckedRect"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         From="0"
+                                                         From="0.6"
                                                          To="1"
                                                          Duration="0:0:0.200">
                                             <DoubleAnimation.EasingFunction>
