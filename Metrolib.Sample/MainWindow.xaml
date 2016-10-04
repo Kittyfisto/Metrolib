@@ -16,8 +16,11 @@
             <controls:FlatTabItem Header="Buttons" >
                 <sample:Buttons />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="Toggle Buttons" IsSelected="True">
+            <controls:FlatTabItem Header="Toggle Buttons">
                 <sample:ToggleButtons />
+            </controls:FlatTabItem>
+            <controls:FlatTabItem Header="Scrolling" IsSelected="True">
+                <sample:Scrolling />
             </controls:FlatTabItem>
         </tab:FlatTabControl>
         

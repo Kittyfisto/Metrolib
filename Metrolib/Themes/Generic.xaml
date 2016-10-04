@@ -5,11 +5,16 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Converters/Converters.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/About/AboutControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/AlertControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ContextMenu/FlatContextMenu.xaml" />
+
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/About/AboutControl.xaml" />
 
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Tab/FlatTabControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Tab/FlatTabItem.xaml" />
+
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Scroll/FlatScrollBar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Scroll/FlatScrollViewer.xaml" />
 
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBlocks/FlatTextBlock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBlocks/FlavourTextBlock.xaml" />

@@ -53,6 +53,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Scrolling.xaml.cs">
+      <DependentUpon>Scrolling.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TextBlocks.xaml.cs">
       <DependentUpon>TextBlocks.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Scrolling.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TextBlocks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
