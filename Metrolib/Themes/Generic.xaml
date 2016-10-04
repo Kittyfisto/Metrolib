@@ -12,7 +12,6 @@
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Tab/FlatTabItem.xaml" />
 
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBlocks/FlatTextBlock.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBlocks/SubTextBlock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBlocks/FlavourTextBlock.xaml" />
         
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBoxes/FilterTextBox.xaml" />

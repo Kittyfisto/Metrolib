@@ -7,7 +7,6 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type controls:FlatTextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
-        <Setter Property="Foreground" Value="{StaticResource TextBrushDefault}" />
         <Style.Triggers>
             <Trigger Property="controls:Properties.IsInverted" Value="True">
                 <Setter Property="Foreground" Value="{StaticResource TextBrushInverted}" />

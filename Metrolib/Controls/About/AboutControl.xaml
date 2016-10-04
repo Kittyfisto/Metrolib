@@ -29,8 +29,8 @@
                                 <local:ExpanderToggleButton Margin="4" Height="28" Width="28"
                                                             VerticalAlignment="Center"
                                                             IsChecked="{Binding IsOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
-                                <local:FlatTextBlock Text="About" FontSize="{StaticResource TextSizeH1}"
-                                                     VerticalAlignment="Center" />
+                                <TextBlock Text="About" FontSize="{StaticResource TextSizeH1}"
+                                           VerticalAlignment="Center" />
                             </StackPanel>
 
                             <ContentPresenter Content="{TemplateBinding Content}"
@@ -88,13 +88,13 @@
                                                 <CubicEase EasingMode="EaseIn" />
                                             </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
                                                          From="1"
                                                          To="0"
                                                          Duration="0:0:0.500">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CubicEase EasingMode="EaseOut" />
-                                                </DoubleAnimation.EasingFunction>
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
                                                                        BeginTime="0:0:0.500">

@@ -37,8 +37,8 @@
         </controls:MoreButton>
         
         <controls:AboutControl x:Name="About" Grid.ColumnSpan="2"
-                               VerticalContentAlignment="Center"
-                               HorizontalContentAlignment="Center">
+                               VerticalContentAlignment="Stretch"
+                               HorizontalContentAlignment="Stretch">
             <tab:FlatTabControl>
                 <controls:FlatTabItem Header="Metrolib">
                     

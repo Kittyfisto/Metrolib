@@ -109,10 +109,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\TextBlocks\SubTextBlock.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\ToggleButtons\VisibilityToggleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,7 +163,6 @@
     <Compile Include="Controls\TextBlocks\FlatTextBlock.cs" />
     <Compile Include="Controls\Buttons\MoreButton.cs" />
     <Compile Include="Controls\Properties.cs" />
-    <Compile Include="Controls\TextBlocks\SubTextBlock.cs" />
     <Compile Include="Controls\ToggleButtons\VisibilityToggleButton.cs" />
     <Compile Include="Controls\TextBlocks\FlavourTextBlock.cs" />
     <Compile Include="Converters\BoolFalseToHiddenConverter.cs" />
