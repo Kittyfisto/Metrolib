@@ -25,8 +25,13 @@
                             <Rectangle x:Name="PART_SelectedHoveredRect"
                                        Fill="{StaticResource BackgroundBrushSelectedAndHovered}"
                                        Opacity="0" />
-                            <ContentPresenter ContentSource="Header"
+                            <ContentPresenter Content="{TemplateBinding Header}"
+                                              ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
+                                              TextBlock.Foreground="{TemplateBinding Foreground}"
                                               x:Name="PART_Header"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"
                                               Margin="{TemplateBinding Padding}" />
                         </Grid>
                     </Border>
@@ -61,7 +66,7 @@
                         </Trigger>
                         <!-- Foreground/Background when selected -->
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Foreground" Value="{StaticResource TextBrushInverted}" />
+                            <Setter TargetName="PART_Header" Property="TextBlock.Foreground" Value="{StaticResource TextBrushInverted}" />
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>

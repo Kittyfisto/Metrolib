@@ -9,17 +9,17 @@
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <TabControl  Margin="8,0,8,8">
-            <TabItem Header="TextBlocks">
+        <tab:FlatTabControl  Margin="8,0,8,8">
+            <controls:FlatTabItem Header="TextBlocks">
                 <sample:TextBlocks />
-            </TabItem>
-            <TabItem Header="Buttons" >
+            </controls:FlatTabItem>
+            <controls:FlatTabItem Header="Buttons" >
                 <sample:Buttons />
-            </TabItem>
-            <TabItem Header="Toggle Buttons" IsSelected="True">
+            </controls:FlatTabItem>
+            <controls:FlatTabItem Header="Toggle Buttons" IsSelected="True">
                 <sample:ToggleButtons />
-            </TabItem>
-        </TabControl>
+            </controls:FlatTabItem>
+        </tab:FlatTabControl>
         
         <controls:MoreButton VerticalAlignment="Top"
                              HorizontalAlignment="Right"
@@ -42,7 +42,10 @@
                     
                 </controls:FlatTabItem>
                 <controls:FlatTabItem Header="Licenses">
-                    
+
+                </controls:FlatTabItem>
+                <controls:FlatTabItem Header="Release Notes">
+
                 </controls:FlatTabItem>
                 <tab:FlatTabControl.Resources>
                     <Style TargetType="{x:Type TabPanel}">
