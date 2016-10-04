@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -17,7 +18,22 @@ namespace Metrolib.Controls
 			                                                                    FrameworkPropertyMetadataOptions.None));
 
 		public static readonly DependencyProperty IsOpenProperty =
-			DependencyProperty.Register("IsOpen", typeof (bool), typeof (AboutControl), new PropertyMetadata(default(bool)));
+			DependencyProperty.Register("IsOpen", typeof (bool), typeof (AboutControl), new PropertyMetadata(false, OnIsOpenChanged));
+
+		private static void OnIsOpenChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+		{
+			((AboutControl) dependencyObject).OnIsOpenChanged((bool) args.NewValue);
+		}
+
+		private void OnIsOpenChanged(bool isOpen)
+		{
+			if (IsOpen)
+			{
+				// We want to take away focus from the last focused element
+				// so the ugly dotted border disappears.
+				Focus();
+			}
+		}
 
 		public static readonly DependencyProperty ShowCommandProperty
 			= ShowCommandPropertyKey.DependencyProperty;

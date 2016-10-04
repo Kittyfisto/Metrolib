@@ -36,9 +36,7 @@
             </FrameworkElement.ContextMenu>
         </controls:MoreButton>
         
-        <controls:AboutControl x:Name="About" Grid.ColumnSpan="2"
-                               VerticalContentAlignment="Stretch"
-                               HorizontalContentAlignment="Stretch">
+        <controls:AboutControl x:Name="About" Grid.ColumnSpan="2">
             <tab:FlatTabControl>
                 <controls:FlatTabItem Header="Metrolib">
                     
