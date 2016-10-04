@@ -23,6 +23,8 @@
 
     <SolidColorBrush x:Key="ForegroundBrushHovered" Color="#2061A1" />
     <SolidColorBrush x:Key="ForegroundBrushPressed" Color="#0B4680" />
+    <SolidColorBrush x:Key="ForegroundBrushSelected" Color="#3998D6" />
+    <SolidColorBrush x:Key="ForegroundBrushSelectedAndHovered" Color="#3998D6" />
 
     <SolidColorBrush x:Key="SeparatorBrush" Color="#E5E5E5" />
 

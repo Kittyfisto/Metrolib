@@ -11,22 +11,35 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{Binding NormalForeground, RelativeSource={RelativeSource Self}}" />
         <Setter Property="NormalForeground" Value="{StaticResource BorderBrushSelected}" />
+        <Setter Property="HoveredForeground" Value="{StaticResource ForegroundBrushHovered}" />
+        <Setter Property="PressedForeground" Value="{StaticResource ForegroundBrushPressed}" />
+        <Setter Property="CheckedForeground" Value="White" />
+        <Setter Property="HoveredAndCheckedForeground" Value="White" />
         <Setter Property="InvertedForeground" Value="White" />
-        <Setter Property="HoveredBackground" Value="{StaticResource BackgroundBrushHovered}" />
-        <Setter Property="PressedBackground" Value="{StaticResource BackgroundBrushPressed}" />
+        <Setter Property="HoveredBackground" Value="Transparent" />
+        <Setter Property="PressedBackground" Value="Transparent" />
         <Setter Property="CheckedBackground" Value="{StaticResource BackgroundBrushSelected}" />
         <Setter Property="ContextMenu.HorizontalOffset" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" />
         <Setter Property="ContextMenu.VerticalOffset" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{Binding HoveredBackground, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="Foreground" Value="{Binding HoveredForeground, RelativeSource={RelativeSource Self}}" />
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Background" Value="{Binding CheckedBackground, RelativeSource={RelativeSource Self}}" />
-                <Setter Property="Foreground" Value="{Binding InvertedForeground, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="Foreground" Value="{Binding CheckedForeground, RelativeSource={RelativeSource Self}}" />
             </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="True" />
+                    <Condition Property="IsMouseOver" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Foreground" Value="{Binding HoveredAndCheckedForeground, RelativeSource={RelativeSource Self}}" />
+            </MultiTrigger>
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="Background" Value="{Binding PressedBackground, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="Foreground" Value="{Binding PressedForeground, RelativeSource={RelativeSource Self}}" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>

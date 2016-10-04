@@ -17,6 +17,8 @@
     <Style TargetType="{x:Type controls:VisibilityToggleButton}" BasedOn="{StaticResource {x:Type controls:ToggleButtonBase}}">
         <Setter Property="CheckedBackground" Value="Transparent" />
         <Setter Property="InvertedForeground" Value="{StaticResource BackgroundBrushSelected}" />
+        <Setter Property="CheckedForeground" Value="{StaticResource ForegroundBrushSelected}" />
+        <Setter Property="HoveredAndCheckedForeground" Value="{StaticResource ForegroundBrushSelectedAndHovered}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:VisibilityToggleButton}">

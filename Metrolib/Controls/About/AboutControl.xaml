@@ -14,7 +14,6 @@
                 <ControlTemplate TargetType="{x:Type local:AboutControl}">
                     <Grid>
                         <Rectangle x:Name="PART_BackgroundRect"
-                                   Opacity="0"
                                    Fill="#40000000" />
 
                         <Grid x:Name="PART_MainGrid"
@@ -28,7 +27,8 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <local:ExpanderToggleButton Margin="4" Height="28" Width="28"
-                                                            VerticalAlignment="Center" />
+                                                            VerticalAlignment="Center"
+                                                            IsChecked="{Binding IsOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
                                 <local:FlatTextBlock Text="About" FontSize="{StaticResource TextSizeH1}"
                                                      VerticalAlignment="Center" />
                             </StackPanel>
@@ -42,8 +42,15 @@
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsOpen" Value="False">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
                         <Trigger Property="IsOpen" Value="True">
-                            <Setter Property="Visibility" Value="Visible" />
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
@@ -55,9 +62,7 @@
                                                 <CubicEase EasingMode="EaseOut" />
                                             </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>
-
-                                        <DoubleAnimation Storyboard.TargetName="PART_BackgroundRect"
-                                                         Storyboard.TargetProperty="Opacity"
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
                                                          From="0"
                                                          To="1"
                                                          Duration="0:0:0.500">
@@ -65,19 +70,40 @@
                                                 <CubicEase EasingMode="EaseOut" />
                                             </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>
-
-                                        <DoubleAnimation Storyboard.TargetName="PART_MainGrid"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         From="0"
-                                                         To="1"
-                                                         Duration="0:0:0.500">
-                                            <DoubleAnimation.EasingFunction>
-                                                <CubicEase EasingMode="EaseOut" />
-                                            </DoubleAnimation.EasingFunction>
-                                        </DoubleAnimation>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}"
+                                                                    KeyTime="0:0:0" />
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard FillBehavior="HoldEnd">
+                                        <DoubleAnimation Storyboard.TargetProperty="HorizontalOffset"
+                                                         From="0"
+                                                         To="1"
+                                                         Duration="0:0:0.500">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseIn" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                         From="1"
+                                                         To="0"
+                                                         Duration="0:0:0.500">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+                                                                       BeginTime="0:0:0.500">
+                                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Hidden}"
+                                                                    KeyTime="0:0:0" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

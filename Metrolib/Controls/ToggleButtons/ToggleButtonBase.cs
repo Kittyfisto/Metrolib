@@ -26,6 +26,22 @@ namespace Metrolib.Controls
 			DependencyProperty.Register("NormalForeground", typeof (Brush), typeof (ToggleButtonBase),
 			                            new PropertyMetadata(default(Brush)));
 
+		public static readonly DependencyProperty HoveredForegroundProperty =
+			DependencyProperty.Register("HoveredForeground", typeof (Brush), typeof (ToggleButtonBase),
+			                            new PropertyMetadata(default(Brush)));
+
+		public static readonly DependencyProperty PressedForegroundProperty =
+			DependencyProperty.Register("PressedForeground", typeof (Brush), typeof (ToggleButtonBase),
+			                            new PropertyMetadata(default(Brush)));
+
+		public static readonly DependencyProperty CheckedForegroundProperty =
+			DependencyProperty.Register("CheckedForeground", typeof (Brush), typeof (ToggleButtonBase),
+			                            new PropertyMetadata(default(Brush)));
+
+		public static readonly DependencyProperty HoveredAndCheckedForegroundProperty =
+			DependencyProperty.Register("HoveredAndCheckedForeground", typeof (Brush), typeof (ToggleButtonBase),
+			                            new PropertyMetadata(default(Brush)));
+
 		public static readonly DependencyProperty HoveredBackgroundProperty =
 			DependencyProperty.Register("HoveredBackground", typeof (Brush), typeof (ToggleButtonBase),
 			                            new PropertyMetadata(default(Brush)));
@@ -54,8 +70,31 @@ namespace Metrolib.Controls
 			ContextMenuClosing += OnContextMenuClosing;
 		}
 
+		public Brush PressedForeground
+		{
+			get { return (Brush) GetValue(PressedForegroundProperty); }
+			set { SetValue(PressedForegroundProperty, value); }
+		}
+
+		public Brush HoveredAndCheckedForeground
+		{
+			get { return (Brush) GetValue(HoveredAndCheckedForegroundProperty); }
+			set { SetValue(HoveredAndCheckedForegroundProperty, value); }
+		}
+
+		public Brush CheckedForeground
+		{
+			get { return (Brush) GetValue(CheckedForegroundProperty); }
+			set { SetValue(CheckedForegroundProperty, value); }
+		}
+
+		public Brush HoveredForeground
+		{
+			get { return (Brush) GetValue(HoveredForegroundProperty); }
+			set { SetValue(HoveredForegroundProperty, value); }
+		}
+
 		/// <summary>
-		/// 
 		/// </summary>
 		public Brush NormalForeground
 		{
