@@ -8,7 +8,6 @@
 
     <Style TargetType="{x:Type controls:FlatTabItem}">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{StaticResource TextBrushDefault}" />
         <Setter Property="Padding" Value="6" />
         <Setter Property="Template">
             <Setter.Value>
@@ -27,13 +26,11 @@
                                        Fill="{StaticResource BackgroundBrushSelectedAndHovered}"
                                        Opacity="0" />
                             <ContentPresenter ContentSource="Header"
-                                          Margin="{TemplateBinding Padding}" />
+                                              x:Name="PART_Header"
+                                              Margin="{TemplateBinding Padding}" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="{StaticResource ForegroundBrushHovered}" />
-                        </Trigger>
                         <Trigger Property="IsSelected" Value="False">
                             <Setter Property="BorderBrush" Value="{StaticResource BorderBrushHovered}" />
                             <Setter Property="BorderThickness" Value="1" />
