@@ -22,8 +22,11 @@
             <controls:FlatTabItem Header="Scrolling">
                 <sample:Scrolling />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="List" IsSelected="True">
+            <controls:FlatTabItem Header="List">
                 <sample:Lists />
+            </controls:FlatTabItem>
+            <controls:FlatTabItem Header="Tree" IsSelected="True">
+                <sample:Tree />
             </controls:FlatTabItem>
         </tab:FlatTabControl>
         

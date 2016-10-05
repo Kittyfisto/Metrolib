@@ -22,12 +22,12 @@ namespace Metrolib.Controls
 
 		protected override DependencyObject GetContainerForItemOverride()
 		{
-			return new FlatListItem();
+			return new FlatListViewItem();
 		}
 
 		protected override bool IsItemItsOwnContainerOverride(object item)
 		{
-			return item is FlatListItem;
+			return item is FlatListViewItem;
 		}
 	}
 }

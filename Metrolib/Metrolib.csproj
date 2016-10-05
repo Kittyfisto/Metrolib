@@ -53,7 +53,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\List\FlatListItem.xaml">
+    <Page Include="Controls\List\FlatListViewItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,6 +145,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\Tree\FlatTreeViewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Tree\FlatTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Converters\Converters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -169,7 +177,7 @@
     <Compile Include="Controls\AlertControl.cs" />
     <Compile Include="Controls\ContextMenu\FlatContextMenu.cs" />
     <Compile Include="Controls\ContextMenu\FlatMenuItem.cs" />
-    <Compile Include="Controls\List\FlatListItem.cs" />
+    <Compile Include="Controls\List\FlatListViewItem.cs" />
     <Compile Include="Controls\List\FlatListView.cs" />
     <Compile Include="Controls\Scroll\FlatScrollBar.cs" />
     <Compile Include="Controls\Scroll\FlatScrollViewer.cs" />
@@ -185,9 +193,13 @@
     <Compile Include="Controls\Properties.cs" />
     <Compile Include="Controls\ToggleButtons\VisibilityToggleButton.cs" />
     <Compile Include="Controls\TextBlocks\FlavourTextBlock.cs" />
+    <Compile Include="Controls\Tree\FlatTreeView.cs" />
+    <Compile Include="Controls\Tree\FlatTreeViewItem.cs" />
+    <Compile Include="Controls\Tree\LeftMarginMultiplierConverter.cs" />
     <Compile Include="Converters\BoolFalseToHiddenConverter.cs" />
     <Compile Include="Converters\CountConverter.cs" />
     <Compile Include="Converters\InvertBoolConverter.cs" />
+    <Compile Include="Converters\MultiplierConverter.cs" />
     <Compile Include="Converters\NegateConverter.cs" />
     <Compile Include="Converters\TimeSpanConverter.cs" />
     <Compile Include="Controls\ToggleButtons\EditToggleButton.cs" />

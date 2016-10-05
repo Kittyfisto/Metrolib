@@ -16,8 +16,11 @@
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Scroll/FlatScrollBar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Scroll/FlatScrollViewer.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/List/FlatListItem.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/List/FlatListViewItem.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/List/FlatListView.xaml" />
+
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Tree/FlatTreeViewItem.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Tree/FlatTreeView.xaml" />
 
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBlocks/FlatTextBlock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBlocks/FlavourTextBlock.xaml" />
