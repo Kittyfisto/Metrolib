@@ -53,6 +53,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\List\FlatListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\List\FlatListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Scroll\FlatScrollViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -161,6 +169,8 @@
     <Compile Include="Controls\AlertControl.cs" />
     <Compile Include="Controls\ContextMenu\FlatContextMenu.cs" />
     <Compile Include="Controls\ContextMenu\FlatMenuItem.cs" />
+    <Compile Include="Controls\List\FlatListItem.cs" />
+    <Compile Include="Controls\List\FlatListView.cs" />
     <Compile Include="Controls\Scroll\FlatScrollBar.cs" />
     <Compile Include="Controls\Scroll\FlatScrollViewer.cs" />
     <Compile Include="Controls\Tab\FlatTabControl.cs" />
