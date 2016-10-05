@@ -61,6 +61,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\OpenInNewHyperlink.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Scroll\FlatScrollViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -179,6 +183,7 @@
     <Compile Include="Controls\ContextMenu\FlatMenuItem.cs" />
     <Compile Include="Controls\List\FlatListViewItem.cs" />
     <Compile Include="Controls\List\FlatListView.cs" />
+    <Compile Include="Controls\OpenInNewHyperlink.cs" />
     <Compile Include="Controls\Scroll\FlatScrollBar.cs" />
     <Compile Include="Controls\Scroll\FlatScrollViewer.cs" />
     <Compile Include="Controls\Tab\FlatTabControl.cs" />

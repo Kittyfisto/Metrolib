@@ -6,6 +6,9 @@
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Converters/Converters.xaml" />
 
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/AlertControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/NotificationBadge.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/OpenInNewHyperlink.xaml" />
+
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ContextMenu/FlatContextMenu.xaml" />
 
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/About/AboutControl.xaml" />
@@ -27,13 +30,10 @@
         
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBoxes/FilterTextBox.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ContextMenu/FlatContextMenu.xaml" />
-        
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/AddButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/ExportButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/FlatButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/MoreButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/NotificationBadge.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/RemoveButton.xaml" />
 
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/EditToggleButton.xaml" />
