@@ -8,16 +8,29 @@ using System.Windows.Data;
 namespace Metrolib.Converters
 // ReSharper restore CheckNamespace
 {
+	/// <summary>
+	///     Converts false to <see cref="Visibility.Hidden" />, true to <see cref="Visibility.Visible" /> and anything else
+	///     to null.
+	/// </summary>
 	public sealed class BoolFalseToHiddenConverter
 		: IValueConverter
 	{
+		/// <summary>
+		///     Converts false to <see cref="Visibility.Hidden" />, true to <see cref="Visibility.Visible" /> and anything else
+		///     to null.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <param name="targetType"></param>
+		/// <param name="parameter"></param>
+		/// <param name="culture"></param>
+		/// <returns></returns>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			if (targetType != typeof (Visibility))
 				return null;
 
 			if (!(value is bool))
-				return false;
+				return null;
 
 			var val = (bool) value;
 			if (!val)
@@ -28,6 +41,14 @@ namespace Metrolib.Converters
 			return Visibility.Visible;
 		}
 
+		/// <summary>
+		///     Not implemented, returns null.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <param name="targetType"></param>
+		/// <param name="parameter"></param>
+		/// <param name="culture"></param>
+		/// <returns></returns>
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			return null;

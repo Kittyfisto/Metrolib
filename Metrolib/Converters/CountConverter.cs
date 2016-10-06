@@ -18,14 +18,34 @@ namespace Metrolib.Converters
 		private const int Million = 1000000;
 		private const int Thousand = 1000;
 
+		/// <summary>
+		///     Initializes this converter.
+		/// </summary>
 		public CountConverter()
 		{
 			HasPlural = true;
 		}
 
+		/// <summary>
+		///     The suffic that should be added to the final string.
+		/// </summary>
 		public string Suffix { get; set; }
+
+		/// <summary>
+		///     Whether or not a plural 's' should be added to the suffix when the remaining count
+		///     is not 1.
+		/// </summary>
 		public bool HasPlural { get; set; }
 
+		/// <summary>
+		///     Converts the given numeric value to readable text, omitting uninteresting decimals, e.g.
+		///     12.344.112 becomes 12M.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <param name="targetType"></param>
+		/// <param name="parameter"></param>
+		/// <param name="culture"></param>
+		/// <returns></returns>
 		[Pure]
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
@@ -41,6 +61,14 @@ namespace Metrolib.Converters
 			return Format(culture, count, count, "");
 		}
 
+		/// <summary>
+		///     No implemented, returns null.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <param name="targetType"></param>
+		/// <param name="parameter"></param>
+		/// <param name="culture"></param>
+		/// <returns></returns>
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			return null;

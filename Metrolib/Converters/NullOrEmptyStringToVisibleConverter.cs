@@ -11,6 +11,9 @@ namespace Metrolib.Converters
 	public class NullOrEmptyStringToVisibleConverter
 		: IValueConverter
 	{
+		/// <summary>
+		///     Converts an empty or null string to Visible, anything else to Collapsed.
+		/// </summary>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			var enumeration = value as string;
@@ -19,12 +22,20 @@ namespace Metrolib.Converters
 
 			return enumeration.Length == 0
 				       ? Visibility.Visible
-					   : Visibility.Collapsed;
+				       : Visibility.Collapsed;
 		}
 
+		/// <summary>
+		///     Not implemented, returns null.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <param name="targetType"></param>
+		/// <param name="parameter"></param>
+		/// <param name="culture"></param>
+		/// <returns></returns>
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			throw new NotImplementedException();
+			return null;
 		}
 	}
 }

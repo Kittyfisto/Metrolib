@@ -71,6 +71,12 @@ namespace Metrolib.Controls
 			get { return new MouseWheelGesture(ModifierKeys.Control) {Direction = WheelDirection.Up}; }
 		}
 
+		/// <summary>
+		///     Tests if the given input event matches this gesture.
+		/// </summary>
+		/// <param name="targetElement"></param>
+		/// <param name="inputEventArgs"></param>
+		/// <returns></returns>
 		public override bool Matches(object targetElement, InputEventArgs inputEventArgs)
 		{
 			if (!(inputEventArgs is MouseWheelEventArgs))

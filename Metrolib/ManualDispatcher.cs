@@ -5,21 +5,40 @@ using System.Windows.Threading;
 
 namespace Metrolib
 {
+	/// <summary>
+	///     An <see cref="IDispatcher" /> implementation that only ever executes it's pending invocations
+	///     when <see cref="InvokeAll" /> is called.
+	/// </summary>
+	/// <remarks>
+	///     Particularly usefull for unit tests.
+	/// </remarks>
 	public sealed class ManualDispatcher
 		: IDispatcher
 	{
 		private readonly SortedDictionary<DispatcherPriority, List<Action>> _pendingInvokes;
 
+		/// <summary>
+		///     Initializes this dispatcher.
+		/// </summary>
 		public ManualDispatcher()
 		{
 			_pendingInvokes = new SortedDictionary<DispatcherPriority, List<Action>>();
 		}
 
+		/// <summary>
+		///     Adds the given action to the list of actions to be executed later on.
+		/// </summary>
+		/// <param name="fn"></param>
 		public void BeginInvoke(Action fn)
 		{
 			BeginInvoke(fn, DispatcherPriority.Normal);
 		}
 
+		/// <summary>
+		///     Adds the given action to the list of actions to be executed later on.
+		/// </summary>
+		/// <param name="fn"></param>
+		/// <param name="priority"></param>
 		public void BeginInvoke(Action fn, DispatcherPriority priority)
 		{
 			lock (_pendingInvokes)
@@ -35,6 +54,9 @@ namespace Metrolib
 			}
 		}
 
+		/// <summary>
+		///     Executes all pending invocations and then clears the list of them.
+		/// </summary>
 		public void InvokeAll()
 		{
 			List<KeyValuePair<DispatcherPriority, List<Action>>> pendingInvokes;

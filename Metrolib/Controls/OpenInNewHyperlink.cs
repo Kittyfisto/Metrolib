@@ -17,10 +17,16 @@ namespace Metrolib.Controls
 	{
 		private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
+		/// <summary>
+		///     Definition of the <see cref="NavigateUri" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty NavigateUriProperty =
 			DependencyProperty.Register("NavigateUri", typeof (Uri), typeof (OpenInNewHyperlink),
 			                            new PropertyMetadata(default(Uri)));
 
+		/// <summary>
+		///     Definition of the <see cref="Text" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty TextProperty =
 			DependencyProperty.Register("Text", typeof (string), typeof (OpenInNewHyperlink),
 			                            new PropertyMetadata(default(string)));
@@ -30,6 +36,9 @@ namespace Metrolib.Controls
 			                                      new FrameworkPropertyMetadata(default(bool),
 			                                                                    FrameworkPropertyMetadataOptions.None));
 
+		/// <summary>
+		///     Definition of the <see cref="IsPressed" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty IsPressedProperty
 			= IsPressedPropertyKey.DependencyProperty;
 
@@ -39,48 +48,13 @@ namespace Metrolib.Controls
 			                                         new FrameworkPropertyMetadata(typeof (OpenInNewHyperlink)));
 		}
 
+		/// <summary>
+		///     Initializes this class.
+		/// </summary>
 		public OpenInNewHyperlink()
 		{
 			MouseLeftButtonDown += OnMouseLeftButtonDown;
 			MouseLeftButtonUp += OnMouseLeftButtonUp;
-		}
-
-		private void OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-		{
-			IsPressed = false;
-
-			if (IsMouseCaptured)
-			{
-				ReleaseMouseCapture();
-				OpenBrowser();
-				e.Handled = true;
-			}
-		}
-
-		private void OpenBrowser()
-		{
-			if (NavigateUri == null)
-			{
-				Log.DebugFormat("No NavigateUri set, can't open browser!");
-				return;
-			}
-
-			var uri = NavigateUri.ToString();
-
-			try
-			{
-				Process.Start(new ProcessStartInfo(uri));
-			}
-			catch (Exception e)
-			{
-				Log.ErrorFormat("Cauhgt unexpected exception: {0}", e);
-			}
-		}
-
-		private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
-		{
-			IsPressed = true;
-			CaptureMouse();
 		}
 
 		/// <summary>
@@ -108,6 +82,44 @@ namespace Metrolib.Controls
 		{
 			get { return (Uri) GetValue(NavigateUriProperty); }
 			set { SetValue(NavigateUriProperty, value); }
+		}
+
+		private void OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+		{
+			IsPressed = false;
+
+			if (IsMouseCaptured)
+			{
+				ReleaseMouseCapture();
+				OpenBrowser();
+				e.Handled = true;
+			}
+		}
+
+		private void OpenBrowser()
+		{
+			if (NavigateUri == null)
+			{
+				Log.DebugFormat("No NavigateUri set, can't open browser!");
+				return;
+			}
+
+			string uri = NavigateUri.ToString();
+
+			try
+			{
+				Process.Start(new ProcessStartInfo(uri));
+			}
+			catch (Exception e)
+			{
+				Log.ErrorFormat("Cauhgt unexpected exception: {0}", e);
+			}
+		}
+
+		private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
+		{
+			IsPressed = true;
+			CaptureMouse();
 		}
 	}
 }
