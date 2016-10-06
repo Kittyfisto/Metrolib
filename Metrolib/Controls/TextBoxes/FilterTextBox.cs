@@ -2,8 +2,13 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
+// ReSharper disable CheckNamespace
 namespace Metrolib.Controls
+// ReSharper restore CheckNamespace
 {
+	/// <summary>
+	///     A textbox meant to input queries used for filtering.
+	/// </summary>
 	public class FilterTextBox : Control
 	{
 		public static readonly DependencyProperty FilterTextProperty =

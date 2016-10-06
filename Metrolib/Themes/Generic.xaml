@@ -27,14 +27,19 @@
 
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBlocks/FlatTextBlock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBlocks/FlavourTextBlock.xaml" />
-        
+
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBoxes/WatermarkTextBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBoxes/FilterTextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBoxes/SearchTextBox.xaml" />
 
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/AddButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/ExportButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/FlatButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/MoreButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/NextButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/PreviousButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/RemoveButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/SearchButton.xaml" />
 
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/EditToggleButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/ExpanderToggleButton.xaml" />

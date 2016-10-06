@@ -62,6 +62,9 @@
     <Compile Include="TextBlocks.xaml.cs">
       <DependentUpon>TextBlocks.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TextBoxes.xaml.cs">
+      <DependentUpon>TextBoxes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ToggleButtons.xaml.cs">
       <DependentUpon>ToggleButtons.xaml</DependentUpon>
     </Compile>
@@ -103,6 +106,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TextBlocks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TextBoxes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -53,6 +53,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Buttons\NextButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Buttons\PreviousButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Buttons\SearchButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\List\FlatListViewItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -94,6 +106,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ContextMenu\FlatMenuItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TextBoxes\SearchTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TextBoxes\WatermarkTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,6 +199,9 @@
     <Compile Include="Controls\About\AboutControl.cs" />
     <Compile Include="Controls\Buttons\AddButton.cs" />
     <Compile Include="Controls\AlertControl.cs" />
+    <Compile Include="Controls\Buttons\NextButton.cs" />
+    <Compile Include="Controls\Buttons\PreviousButton.cs" />
+    <Compile Include="Controls\Buttons\SearchButton.cs" />
     <Compile Include="Controls\ContextMenu\FlatContextMenu.cs" />
     <Compile Include="Controls\ContextMenu\FlatMenuItem.cs" />
     <Compile Include="Controls\List\FlatListViewItem.cs" />
@@ -188,6 +211,9 @@
     <Compile Include="Controls\Scroll\FlatScrollViewer.cs" />
     <Compile Include="Controls\Tab\FlatTabControl.cs" />
     <Compile Include="Controls\Tab\FlatTabItem.cs" />
+    <Compile Include="Controls\TextBoxes\ISearch.cs" />
+    <Compile Include="Controls\TextBoxes\SearchTextBox.cs" />
+    <Compile Include="Controls\TextBoxes\WatermarkTextBox.cs" />
     <Compile Include="Controls\ToggleButtons\ToggleButtonBase.cs" />
     <Compile Include="Controls\ToggleButtons\ExpanderToggleButton.cs" />
     <Compile Include="Controls\Buttons\ExportButton.cs" />
@@ -203,6 +229,9 @@
     <Compile Include="Controls\Tree\LeftMarginMultiplierConverter.cs" />
     <Compile Include="Converters\BoolFalseToHiddenConverter.cs" />
     <Compile Include="Converters\CountConverter.cs" />
+    <Compile Include="Converters\IncrementByOneConverter.cs" />
+    <Compile Include="Converters\NonEmptyStringToVisibleConverter.cs" />
+    <Compile Include="Converters\NullOrEmptyStringToVisibleConverter.cs" />
     <Compile Include="Converters\InvertBoolConverter.cs" />
     <Compile Include="Converters\MultiplierConverter.cs" />
     <Compile Include="Converters\NegateConverter.cs" />
