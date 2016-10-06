@@ -211,7 +211,6 @@
     <Compile Include="Controls\Scroll\FlatScrollViewer.cs" />
     <Compile Include="Controls\Tab\FlatTabControl.cs" />
     <Compile Include="Controls\Tab\FlatTabItem.cs" />
-    <Compile Include="Controls\TextBoxes\ISearch.cs" />
     <Compile Include="Controls\TextBoxes\SearchTextBox.cs" />
     <Compile Include="Controls\TextBoxes\WatermarkTextBox.cs" />
     <Compile Include="Controls\ToggleButtons\ToggleButtonBase.cs" />

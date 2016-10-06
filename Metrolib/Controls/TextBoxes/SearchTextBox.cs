@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -45,33 +44,50 @@ namespace Metrolib.Controls
 			DependencyProperty.Register("StopSearchCommand", typeof (ICommand), typeof (SearchTextBox),
 			                            new PropertyMetadata(default(ICommand)));
 
+		private static readonly DependencyPropertyKey PreviousOccurenceCommandPropertyKey =
+			DependencyProperty.RegisterReadOnly("PreviousOccurenceCommand", typeof(ICommand), typeof(SearchTextBox),
+												new PropertyMetadata(default(ICommand)));
+
 		/// <summary>
 		///     Definition of the <see cref="PreviousOccurenceCommand" /> dependency property.
 		/// </summary>
-		public static readonly DependencyProperty PreviousOccurenceCommandProperty =
-			DependencyProperty.Register("PreviousOccurenceCommand", typeof (ICommand), typeof (SearchTextBox),
-			                            new PropertyMetadata(default(ICommand)));
+		public static readonly DependencyProperty PreviousOccurenceCommandProperty = PreviousOccurenceCommandPropertyKey.DependencyProperty;
+
+		private static readonly DependencyPropertyKey NextOccurenceCommandPropertyKey =
+			DependencyProperty.RegisterReadOnly("NextOccurenceCommand", typeof(ICommand), typeof(SearchTextBox),
+										new PropertyMetadata(default(ICommand)));
 
 		/// <summary>
 		///     Definition of the <see cref="NextOccurenceCommand" /> dependency property.
 		/// </summary>
-		public static readonly DependencyProperty NextOccurenceCommandProperty =
-			DependencyProperty.Register("NextOccurenceCommand", typeof (ICommand), typeof (SearchTextBox),
-			                            new PropertyMetadata(default(ICommand)));
+		public static readonly DependencyProperty NextOccurenceCommandProperty = NextOccurenceCommandPropertyKey.DependencyProperty;
 
 		/// <summary>
 		///     Definition of the <see cref="CurrentOccurenceIndex" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty CurrentOccurenceIndexProperty =
 			DependencyProperty.Register("CurrentOccurenceIndex", typeof (int), typeof (SearchTextBox),
-			                            new PropertyMetadata(default(int)));
+			                            new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
 		/// <summary>
 		///     Definition of the <see cref="OccurenceCount" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty OccurenceCountProperty =
 			DependencyProperty.Register("OccurenceCount", typeof (int), typeof (SearchTextBox),
-			                            new PropertyMetadata(default(int)));
+			                            new PropertyMetadata(0, OnOccurenceCountChanged));
+
+		private static void OnOccurenceCountChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+		{
+			((SearchTextBox) dependencyObject).OnOccurenceCountChanged((int) args.NewValue);
+		}
+
+		private void OnOccurenceCountChanged(int occurenceCount)
+		{
+			if (occurenceCount <= 0)
+			{
+				CurrentOccurenceIndex = 0;
+			}
+		}
 
 		private static readonly DependencyPropertyKey BeginStartSearchCommandPropertyKey
 			= DependencyProperty.RegisterReadOnly("BeginStartSearchCommand", typeof(ICommand), typeof(SearchTextBox),
@@ -108,7 +124,12 @@ namespace Metrolib.Controls
 		{
 			BeginStartSearchCommand = new DelegateCommand(StartSearch);
 			BeginStopSearchCommand = new DelegateCommand(StopSearch);
+			PreviousOccurenceCommand = new DelegateCommand(GotToPreviousOccurence);
+			NextOccurenceCommand = new DelegateCommand(GotToNextOccurence);
 			TextChanged += OnTextChanged;
+
+			CommandBindings.Add(new CommandBinding(new RoutedCommand { InputGestures = { new KeyGesture(Key.F3) } }, GotToNextOccurence));
+			CommandBindings.Add(new CommandBinding(new RoutedCommand { InputGestures = { new KeyGesture(Key.F3, ModifierKeys.Shift) } }, GotToPreviousOccurence));
 		}
 
 		/// <summary>
@@ -148,7 +169,7 @@ namespace Metrolib.Controls
 		public ICommand NextOccurenceCommand
 		{
 			get { return (ICommand) GetValue(NextOccurenceCommandProperty); }
-			set { SetValue(NextOccurenceCommandProperty, value); }
+			private set { SetValue(NextOccurenceCommandPropertyKey, value); }
 		}
 
 		/// <summary>
@@ -158,7 +179,7 @@ namespace Metrolib.Controls
 		public ICommand PreviousOccurenceCommand
 		{
 			get { return (ICommand) GetValue(PreviousOccurenceCommandProperty); }
-			set { SetValue(PreviousOccurenceCommandProperty, value); }
+			private set { SetValue(PreviousOccurenceCommandPropertyKey, value); }
 		}
 
 		/// <summary>
@@ -235,12 +256,32 @@ namespace Metrolib.Controls
 			}
 		}
 
+		private void GotToNextOccurence(object sender, ExecutedRoutedEventArgs e)
+		{
+			GotToNextOccurence();
+		}
+
+		private void GotToPreviousOccurence(object sender, ExecutedRoutedEventArgs e)
+		{
+			GotToPreviousOccurence();
+		}
+
 		private void GotToNextOccurence()
 		{
-			var command = NextOccurenceCommand;
-			if (command != null && command.CanExecute(null))
+			if (IsPerformingSearch && OccurenceCount > 0)
 			{
-				command.Execute(null);
+				CurrentOccurenceIndex = (CurrentOccurenceIndex + 1)%OccurenceCount;
+			}
+		}
+
+		private void GotToPreviousOccurence()
+		{
+			if (IsPerformingSearch && OccurenceCount > 0)
+			{
+				if (CurrentOccurenceIndex <= 0)
+					CurrentOccurenceIndex = OccurenceCount - 1;
+				else
+					CurrentOccurenceIndex = CurrentOccurenceIndex - 1;
 			}
 		}
 

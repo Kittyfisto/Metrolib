@@ -16,7 +16,7 @@
         <Setter Property="BorderBrush" Value="{StaticResource BorderBrushHovered}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Background" Value="White" />
-        <Setter Property="Padding" Value="4" />
+        <Setter Property="Padding" Value="0,4,4,4" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
@@ -93,7 +93,9 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <controls:SearchButton Command="{TemplateBinding BeginStartSearchCommand}" />
+                            <controls:SearchButton Command="{TemplateBinding BeginStartSearchCommand}"
+                                                   IsEnabled="{TemplateBinding IsEnabled}"
+                                                   Padding="4,0,0,0" />
 
                             <Grid Margin="{TemplateBinding Padding}"
                                   Grid.Column="1">
@@ -119,17 +121,22 @@
                                 <TextBlock VerticalAlignment="Center"
                                            Foreground="{StaticResource TextBrushUnimportant}"
                                            Visibility="{Binding IsPerformingSearch,RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalseToCollapsedConverter}}">
-                                    <Run Text="{Binding CurrentOccurenceIndex, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IncrementByOneConverter}}" />
+                                    <Run
+                                        Text="{Binding CurrentOccurenceIndex, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IncrementByOneConverter}}" />
                                     <Run Text="of" />
-                                    <Run Text="{Binding OccurenceCount, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <Run
+                                        Text="{Binding OccurenceCount, RelativeSource={RelativeSource TemplatedParent}}" />
                                 </TextBlock>
                                 <controls:PreviousButton Command="{TemplateBinding PreviousOccurenceCommand}"
+                                                         IsEnabled="{TemplateBinding IsEnabled}"
                                                          Padding="0"
                                                          Visibility="{Binding IsPerformingSearch,RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalseToCollapsedConverter}}" />
                                 <controls:NextButton Command="{TemplateBinding NextOccurenceCommand}"
+                                                     IsEnabled="{TemplateBinding IsEnabled}"
                                                      Padding="0"
                                                      Visibility="{Binding IsPerformingSearch,RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalseToCollapsedConverter}}" />
                                 <controls:RemoveButton Command="{TemplateBinding BeginStopSearchCommand}"
+                                                       IsEnabled="{TemplateBinding IsEnabled}"
                                                        Padding="0"
                                                        Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NonEmptyStringToVisibleConverter}}" />
                             </StackPanel>
