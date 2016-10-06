@@ -122,6 +122,11 @@ namespace Metrolib.Controls
 			HasFilterText = !string.IsNullOrEmpty(filterText);
 		}
 
+		/// <summary>
+		///     Invoked when an unhandled System.Windows.Input.Keyboard.KeyDown attached event reaches
+		///     this FilterTextBox.
+		/// </summary>
+		/// <param name="e"></param>
 		protected override void OnKeyDown(KeyEventArgs e)
 		{
 			if (e.Key == Key.Escape)
@@ -133,6 +138,9 @@ namespace Metrolib.Controls
 			base.OnKeyDown(e);
 		}
 
+		/// <summary>
+		///     Called when the template's tree is generated.
+		/// </summary>
 		public override void OnApplyTemplate()
 		{
 			base.OnApplyTemplate();

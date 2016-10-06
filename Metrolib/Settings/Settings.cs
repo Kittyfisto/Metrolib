@@ -11,12 +11,35 @@ namespace Metrolib.Settings
 	/// </summary>
 	public sealed class WindowSettings
 	{
+		/// <summary>
+		///     The height of the window.
+		/// </summary>
 		public double Height;
+
+		/// <summary>
+		///     The left coordinate of the window's position.
+		/// </summary>
 		public double Left;
-		public double Top;
-		public double Width;
+
+		/// <summary>
+		///     The state of the window (i.e. normal, minimized, maximized, etc...).
+		/// </summary>
 		public WindowState State;
 
+		/// <summary>
+		///     The top coordinate of the window's position.
+		/// </summary>
+		public double Top;
+
+		/// <summary>
+		///     The width of the window.
+		/// </summary>
+		public double Width;
+
+		/// <summary>
+		///     Restores the given window's values to the ones in this object.
+		/// </summary>
+		/// <param name="window"></param>
 		public void RestoreTo(Window window)
 		{
 			window.Left = Left;
@@ -26,6 +49,10 @@ namespace Metrolib.Settings
 			window.WindowState = State;
 		}
 
+		/// <summary>
+		///     Restores all values from the given xml reader.
+		/// </summary>
+		/// <param name="reader"></param>
 		public void Restore(XmlReader reader)
 		{
 			int count = reader.AttributeCount;
@@ -51,12 +78,16 @@ namespace Metrolib.Settings
 						break;
 
 					case "state":
-						State = (WindowState)Enum.Parse(typeof(WindowState), reader.Value);
+						State = (WindowState) Enum.Parse(typeof (WindowState), reader.Value);
 						break;
 				}
 			}
 		}
 
+		/// <summary>
+		///     Saves all values to the given xml writer.
+		/// </summary>
+		/// <param name="writer"></param>
 		public void Save(XmlWriter writer)
 		{
 			writer.WriteAttributeString("top", Top.ToString(CultureInfo.InvariantCulture));
@@ -66,6 +97,10 @@ namespace Metrolib.Settings
 			writer.WriteAttributeString("state", State.ToString());
 		}
 
+		/// <summary>
+		///     Fetches all values from the given window (to be saved to an xml file, for example).
+		/// </summary>
+		/// <param name="window"></param>
 		public void UpdateFrom(Window window)
 		{
 			Left = window.Left;

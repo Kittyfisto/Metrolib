@@ -79,6 +79,10 @@ namespace Metrolib.Controls
 			set { SetValue(HasLeftBorderProperty, value); }
 		}
 
+		/// <summary>
+		///     Invoked when an unhandled System.Windows.Input.Mouse.MouseDown attached event reaches this toggle button.
+		/// </summary>
+		/// <param name="e"></param>
 		protected override void OnMouseDown(MouseButtonEventArgs e)
 		{
 			e.Handled = true;
@@ -88,6 +92,10 @@ namespace Metrolib.Controls
 			base.OnMouseDown(e);
 		}
 
+		/// <summary>
+		///     Invoked when an unhandled System.Windows.Input.Mouse.MouseUp attached event reaches this toggle button.
+		/// </summary>
+		/// <param name="e"></param>
 		protected override void OnMouseUp(MouseButtonEventArgs e)
 		{
 			e.Handled = true;

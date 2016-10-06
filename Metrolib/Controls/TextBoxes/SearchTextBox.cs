@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 
 // ReSharper disable CheckNamespace
+
 namespace Metrolib.Controls
 // ReSharper restore CheckNamespace
 {
@@ -45,22 +46,24 @@ namespace Metrolib.Controls
 			                            new PropertyMetadata(default(ICommand)));
 
 		private static readonly DependencyPropertyKey PreviousOccurenceCommandPropertyKey =
-			DependencyProperty.RegisterReadOnly("PreviousOccurenceCommand", typeof(ICommand), typeof(SearchTextBox),
-												new PropertyMetadata(default(ICommand)));
+			DependencyProperty.RegisterReadOnly("PreviousOccurenceCommand", typeof (ICommand), typeof (SearchTextBox),
+			                                    new PropertyMetadata(default(ICommand)));
 
 		/// <summary>
 		///     Definition of the <see cref="PreviousOccurenceCommand" /> dependency property.
 		/// </summary>
-		public static readonly DependencyProperty PreviousOccurenceCommandProperty = PreviousOccurenceCommandPropertyKey.DependencyProperty;
+		public static readonly DependencyProperty PreviousOccurenceCommandProperty =
+			PreviousOccurenceCommandPropertyKey.DependencyProperty;
 
 		private static readonly DependencyPropertyKey NextOccurenceCommandPropertyKey =
-			DependencyProperty.RegisterReadOnly("NextOccurenceCommand", typeof(ICommand), typeof(SearchTextBox),
-										new PropertyMetadata(default(ICommand)));
+			DependencyProperty.RegisterReadOnly("NextOccurenceCommand", typeof (ICommand), typeof (SearchTextBox),
+			                                    new PropertyMetadata(default(ICommand)));
 
 		/// <summary>
 		///     Definition of the <see cref="NextOccurenceCommand" /> dependency property.
 		/// </summary>
-		public static readonly DependencyProperty NextOccurenceCommandProperty = NextOccurenceCommandPropertyKey.DependencyProperty;
+		public static readonly DependencyProperty NextOccurenceCommandProperty =
+			NextOccurenceCommandPropertyKey.DependencyProperty;
 
 		/// <summary>
 		///     Definition of the <see cref="CurrentOccurenceIndex" /> dependency property.
@@ -76,21 +79,8 @@ namespace Metrolib.Controls
 			DependencyProperty.Register("OccurenceCount", typeof (int), typeof (SearchTextBox),
 			                            new PropertyMetadata(0, OnOccurenceCountChanged));
 
-		private static void OnOccurenceCountChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
-		{
-			((SearchTextBox) dependencyObject).OnOccurenceCountChanged((int) args.NewValue);
-		}
-
-		private void OnOccurenceCountChanged(int occurenceCount)
-		{
-			if (occurenceCount <= 0)
-			{
-				CurrentOccurenceIndex = 0;
-			}
-		}
-
 		private static readonly DependencyPropertyKey BeginStartSearchCommandPropertyKey
-			= DependencyProperty.RegisterReadOnly("BeginStartSearchCommand", typeof(ICommand), typeof(SearchTextBox),
+			= DependencyProperty.RegisterReadOnly("BeginStartSearchCommand", typeof (ICommand), typeof (SearchTextBox),
 			                                      new FrameworkPropertyMetadata(default(ICommand),
 			                                                                    FrameworkPropertyMetadataOptions.None));
 
@@ -128,8 +118,11 @@ namespace Metrolib.Controls
 			NextOccurenceCommand = new DelegateCommand(GotToNextOccurence);
 			TextChanged += OnTextChanged;
 
-			CommandBindings.Add(new CommandBinding(new RoutedCommand { InputGestures = { new KeyGesture(Key.F3) } }, GotToNextOccurence));
-			CommandBindings.Add(new CommandBinding(new RoutedCommand { InputGestures = { new KeyGesture(Key.F3, ModifierKeys.Shift) } }, GotToPreviousOccurence));
+			CommandBindings.Add(new CommandBinding(new RoutedCommand {InputGestures = {new KeyGesture(Key.F3)}},
+			                                       GotToNextOccurence));
+			CommandBindings.Add(
+				new CommandBinding(new RoutedCommand {InputGestures = {new KeyGesture(Key.F3, ModifierKeys.Shift)}},
+				                   GotToPreviousOccurence));
 		}
 
 		/// <summary>
@@ -229,6 +222,24 @@ namespace Metrolib.Controls
 			set { SetValue(WatermarkProperty, value); }
 		}
 
+		private static void OnOccurenceCountChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+		{
+			((SearchTextBox) dependencyObject).OnOccurenceCountChanged((int) args.NewValue);
+		}
+
+		private void OnOccurenceCountChanged(int occurenceCount)
+		{
+			if (occurenceCount <= 0)
+			{
+				CurrentOccurenceIndex = 0;
+			}
+		}
+
+		/// <summary>
+		///     Invoked whenever an unhandled System.Windows.Input.Keyboard.KeyDown attached routed event reaches
+		///     this SearchTextBox.
+		/// </summary>
+		/// <param name="e"></param>
 		protected override void OnKeyDown(KeyEventArgs e)
 		{
 			if (e.Key == Key.Escape)

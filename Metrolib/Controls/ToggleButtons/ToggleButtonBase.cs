@@ -12,7 +12,7 @@ namespace Metrolib.Controls
 	///     Base class for toggle buttons of this library.
 	/// </summary>
 	/// <remarks>
-	///     When a <see cref="ButtonBase.ContextMenu" /> is attached to this button, it is automatically opened for as long as
+	///     When a <see cref="FrameworkElement.ContextMenu" /> is attached to this button, it is automatically opened for as long as
 	///     the button is checked. Similarly, when the contextmenu is closed, the button is automatically unchecked.
 	/// </remarks>
 	public class ToggleButtonBase

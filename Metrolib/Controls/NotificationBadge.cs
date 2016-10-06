@@ -3,6 +3,9 @@ using System.Windows.Controls;
 
 namespace Metrolib.Controls
 {
+	/// <summary>
+	///     TBD
+	/// </summary>
 	public class NotificationBadge : ContentControl
 	{
 		static NotificationBadge()

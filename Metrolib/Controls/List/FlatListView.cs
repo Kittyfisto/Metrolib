@@ -21,11 +21,20 @@ namespace Metrolib.Controls
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (FlatListView), new FrameworkPropertyMetadata(typeof (FlatListView)));
 		}
 
+		/// <summary>
+		///     Creates and returns a new Metrolib.Controls.FlatListViewItem container.
+		/// </summary>
+		/// <returns></returns>
 		protected override DependencyObject GetContainerForItemOverride()
 		{
 			return new FlatListViewItem();
 		}
 
+		/// <summary>
+		///     Determines whether an object is a Metrolib.Controls.FlatListViewItem.
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
 		protected override bool IsItemItsOwnContainerOverride(object item)
 		{
 			return item is FlatListViewItem;
