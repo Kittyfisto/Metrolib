@@ -12,6 +12,9 @@ namespace Metrolib.Controls
 	public class ExpanderToggleButton
 		: ToggleButton
 	{
+		/// <summary>
+		///     Definition of the <see cref="InvertedForeground" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty InvertedForegroundProperty =
 			DependencyProperty.Register("InvertedForeground", typeof (Brush), typeof (ExpanderToggleButton),
 			                            new PropertyMetadata(default(Brush)));

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
 // ReSharper disable CheckNamespace
@@ -8,35 +9,56 @@ namespace Metrolib.Controls
 // ReSharper restore CheckNamespace
 {
 	/// <summary>
-	///     The base class for any button offered by this library.
+	///     The base class for most buttons offered by this library.
 	/// </summary>
 	public class FlatButton
 		: Button
 	{
+		/// <summary>
+		///     Definition of the <see cref="InvertedForeground" /> property.
+		/// </summary>
 		public static readonly DependencyProperty InvertedForegroundProperty =
 			DependencyProperty.Register("InvertedForeground", typeof (Brush), typeof (FlatButton),
 			                            new PropertyMetadata(default(Brush)));
 
+		/// <summary>
+		///     Definition of the <see cref="NormalForeground" /> property.
+		/// </summary>
 		public static readonly DependencyProperty NormalForegroundProperty =
 			DependencyProperty.Register("NormalForeground", typeof (Brush), typeof (FlatButton),
 			                            new PropertyMetadata(default(Brush)));
 
+		/// <summary>
+		///     Definition of the <see cref="HoveredForeground" /> property.
+		/// </summary>
 		public static readonly DependencyProperty HoveredForegroundProperty =
 			DependencyProperty.Register("HoveredForeground", typeof (Brush), typeof (FlatButton),
 			                            new PropertyMetadata(default(Brush)));
 
+		/// <summary>
+		///     Definition of the <see cref="HoveredBackground" /> property.
+		/// </summary>
 		public static readonly DependencyProperty HoveredBackgroundProperty =
 			DependencyProperty.Register("HoveredBackground", typeof (Brush), typeof (FlatButton),
 			                            new PropertyMetadata(default(Brush)));
 
+		/// <summary>
+		///     Definition of the <see cref="PressedBackground" /> property.
+		/// </summary>
 		public static readonly DependencyProperty PressedBackgroundProperty =
 			DependencyProperty.Register("PressedBackground", typeof (Brush), typeof (FlatButton),
 			                            new PropertyMetadata(default(Brush)));
 
+		/// <summary>
+		///     Definition of the <see cref="BorderRadius" /> property.
+		/// </summary>
 		public static readonly DependencyProperty BorderRadiusProperty =
 			DependencyProperty.Register("BorderRadius", typeof (double), typeof (FlatButton),
 			                            new PropertyMetadata(default(double)));
 
+		/// <summary>
+		///     Definition of the <see cref="PressedForeground" /> property.
+		/// </summary>
 		public static readonly DependencyProperty PressedForegroundProperty =
 			DependencyProperty.Register("PressedForeground", typeof (Brush), typeof (FlatButton),
 			                            new PropertyMetadata(default(Brush)));
@@ -47,21 +69,20 @@ namespace Metrolib.Controls
 			                                         new FrameworkPropertyMetadata(typeof (FlatButton)));
 		}
 
+		/// <summary>
+		///     Initializes this button.
+		/// </summary>
 		public FlatButton()
 		{
 			Click += OnClick;
 		}
 
-		private void OnClick(object sender, RoutedEventArgs routedEventArgs)
-		{
-			var menu = ContextMenu;
-			if (menu != null)
-			{
-				menu.PlacementTarget = this;
-				menu.IsOpen = true;
-			}
-		}
-
+		/// <summary>
+		///     The foreground brush that is used when the control is not in any of the following states:
+		///     -<see cref="UIElement.IsMouseOver" />
+		///     -<see cref="ButtonBase.IsPressed" />
+		///     -<see cref="UIElement.IsEnabled" />
+		/// </summary>
 		public Brush NormalForeground
 		{
 			get { return (Brush) GetValue(NormalForegroundProperty); }
@@ -114,12 +135,22 @@ namespace Metrolib.Controls
 		}
 
 		/// <summary>
-		///     The foreground color, used when <see cref="IsInverted" /> is set to true.
+		///     The foreground color, used when <see cref="Properties.IsInvertedProperty" /> is set to true.
 		/// </summary>
 		public Brush InvertedForeground
 		{
 			get { return (Brush) GetValue(InvertedForegroundProperty); }
 			set { SetValue(InvertedForegroundProperty, value); }
+		}
+
+		private void OnClick(object sender, RoutedEventArgs routedEventArgs)
+		{
+			ContextMenu menu = ContextMenu;
+			if (menu != null)
+			{
+				menu.PlacementTarget = this;
+				menu.IsOpen = true;
+			}
 		}
 	}
 }

@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 
 // ReSharper disable CheckNamespace
+
 namespace Metrolib.Controls
 // ReSharper restore CheckNamespace
 {
@@ -11,6 +12,9 @@ namespace Metrolib.Controls
 	public sealed class WatermarkTextBox
 		: TextBox
 	{
+		/// <summary>
+		///     Definition of the <see cref="Watermark" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty WatermarkProperty =
 			DependencyProperty.Register("Watermark", typeof (string), typeof (WatermarkTextBox),
 			                            new PropertyMetadata(default(string)));
@@ -22,7 +26,7 @@ namespace Metrolib.Controls
 		}
 
 		/// <summary>
-		/// The watermark text that shall appear until <see cref="TextBox.Text"/> is no longer empty.
+		///     The watermark text that shall appear until <see cref="TextBox.Text" /> is no longer empty.
 		/// </summary>
 		public string Watermark
 		{

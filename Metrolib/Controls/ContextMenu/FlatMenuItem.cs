@@ -1,13 +1,12 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 // ReSharper disable CheckNamespace
+
 namespace Metrolib.Controls
 // ReSharper restore CheckNamespace
 {
 	/// <summary>
-	/// 
 	/// </summary>
 	public class FlatMenuItem
 		: MenuItem
@@ -16,9 +15,12 @@ namespace Metrolib.Controls
 
 		static FlatMenuItem()
 		{
-			DefaultStyleKeyProperty.OverrideMetadata(typeof(FlatMenuItem), new FrameworkPropertyMetadata(typeof(FlatMenuItem)));
+			DefaultStyleKeyProperty.OverrideMetadata(typeof (FlatMenuItem), new FrameworkPropertyMetadata(typeof (FlatMenuItem)));
 		}
 
+		/// <summary>
+		///     Called when the template's tree is generated.
+		/// </summary>
 		public override void OnApplyTemplate()
 		{
 			base.OnApplyTemplate();

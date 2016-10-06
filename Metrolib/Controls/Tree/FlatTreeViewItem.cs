@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 
 // ReSharper disable CheckNamespace
+
 namespace Metrolib.Controls
 // ReSharper restore CheckNamespace
 {
@@ -18,7 +19,8 @@ namespace Metrolib.Controls
 		}
 
 		/// <summary>
-		/// The depth of this item.
+		///     The depth of this item.
+		///     Items that are children of their <see cref="FlatTreeView" /> have a depth of 0.
 		/// </summary>
 		public int Depth
 		{

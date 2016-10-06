@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 
 // ReSharper disable CheckNamespace
+
 namespace Metrolib.Controls
 // ReSharper restore CheckNamespace
 {
@@ -11,14 +12,23 @@ namespace Metrolib.Controls
 	/// </summary>
 	public class FilterTextBox : Control
 	{
+		/// <summary>
+		///     Definition of the <see cref="FilterText" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty FilterTextProperty =
 			DependencyProperty.Register("FilterText", typeof (string), typeof (FilterTextBox),
 			                            new PropertyMetadata(null, OnFilterTextChanged));
 
+		/// <summary>
+		///     Definition of the <see cref="Watermark" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty WatermarkProperty =
 			DependencyProperty.Register("Watermark", typeof (string), typeof (FilterTextBox),
 			                            new PropertyMetadata(default(string)));
 
+		/// <summary>
+		///     Definition of the <see cref="IsValid" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty IsValidProperty =
 			DependencyProperty.Register("IsValid", typeof (bool), typeof (FilterTextBox), new PropertyMetadata(true));
 
@@ -27,6 +37,9 @@ namespace Metrolib.Controls
 			                                      new FrameworkPropertyMetadata(false,
 			                                                                    FrameworkPropertyMetadataOptions.None));
 
+		/// <summary>
+		///     Definition of the <see cref="HasFilterText" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty HasFilterTextProperty
 			= HasFilterTextPropertyKey.DependencyProperty;
 
@@ -39,34 +52,60 @@ namespace Metrolib.Controls
 			                                         new FrameworkPropertyMetadata(typeof (FilterTextBox)));
 		}
 
+		/// <summary>
+		///     Initializes this object.
+		/// </summary>
 		public FilterTextBox()
 		{
 			GotFocus += OnGotFocus;
 		}
 
+		/// <summary>
+		///     The button that appears to remove entered text.
+		/// </summary>
+		/// <remarks>
+		///     Is used for unit tests.
+		/// </remarks>
 		public Button RemoveFilterTextButton
 		{
 			get { return _removeFilterTextButton; }
 		}
 
+		/// <summary>
+		///     Whether or not any <see cref="FilterText" /> has been entered.
+		/// </summary>
 		public bool HasFilterText
 		{
 			get { return (bool) GetValue(HasFilterTextProperty); }
 			protected set { SetValue(HasFilterTextPropertyKey, value); }
 		}
 
+		/// <summary>
+		///     Whether or not the entered <see cref="FilterText" /> is valid.
+		/// </summary>
+		/// <remarks>
+		///     When it is not, then the background is colored red to let the user know.
+		///     Can be used when the user has to enter text in a specific format, for example
+		///     SQL or a regular expression.
+		/// </remarks>
 		public bool IsValid
 		{
 			get { return (bool) GetValue(IsValidProperty); }
 			set { SetValue(IsValidProperty, value); }
 		}
 
+		/// <summary>
+		///     The watermark text that shall be displayed when the user hasn't entered any <see cref="FilterText" /> (yet).
+		/// </summary>
 		public string Watermark
 		{
 			get { return (string) GetValue(WatermarkProperty); }
 			set { SetValue(WatermarkProperty, value); }
 		}
 
+		/// <summary>
+		///     The filter text input by the user.
+		/// </summary>
 		public string FilterText
 		{
 			get { return (string) GetValue(FilterTextProperty); }

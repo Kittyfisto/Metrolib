@@ -15,6 +15,5 @@ namespace Metrolib.Controls
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(FlatToggleButton),
 													 new FrameworkPropertyMetadata(typeof(FlatToggleButton)));
 		}
-
 	}
 }

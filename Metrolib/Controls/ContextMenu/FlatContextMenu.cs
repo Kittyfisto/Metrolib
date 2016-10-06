@@ -16,10 +16,16 @@ namespace Metrolib.Controls
 	public class FlatContextMenu
 		: ContextMenu
 	{
+		/// <summary>
+		///     Definition of the <see cref="IsFirstItemHovered" /> property.
+		/// </summary>
 		public static readonly DependencyProperty IsFirstItemHoveredProperty =
 			DependencyProperty.Register("IsFirstItemHovered", typeof (bool), typeof (FlatContextMenu),
 			                            new PropertyMetadata(default(bool)));
 
+		/// <summary>
+		///     Definition of the <see cref="AnchorAlignment" /> property.
+		/// </summary>
 		public static readonly DependencyProperty AnchorAlignmentProperty =
 			DependencyProperty.Register("AnchorAlignment", typeof (HorizontalAlignment), typeof (FlatContextMenu),
 			                            new PropertyMetadata(default(HorizontalAlignment)));
@@ -43,8 +49,8 @@ namespace Metrolib.Controls
 		}
 
 		/// <summary>
-		/// The horizontal alignment of the anchor.
-		/// Is set to <see cref="HorizontalAlignment.Left"/> by default.
+		///     The horizontal alignment of the anchor.
+		///     Is set to <see cref="HorizontalAlignment.Left" /> by default.
 		/// </summary>
 		public HorizontalAlignment AnchorAlignment
 		{

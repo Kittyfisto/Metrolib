@@ -13,6 +13,9 @@ namespace Metrolib.Controls
 	public class FlatTextBlock
 		: TextBlock
 	{
+		/// <summary>
+		///     Definition of the <see cref="InvertedForeground" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty InvertedForegroundProperty =
 			DependencyProperty.Register("InvertedForeground", typeof (Brush), typeof (FlatTextBlock),
 			                            new PropertyMetadata(default(Brush)));
@@ -23,6 +26,9 @@ namespace Metrolib.Controls
 			                                         new FrameworkPropertyMetadata(typeof (FlatTextBlock)));
 		}
 
+		/// <summary>
+		///     The foreground of this textblock when the <see cref="Properties.IsInvertedProperty" /> is set to true.
+		/// </summary>
 		public Brush InvertedForeground
 		{
 			get { return (Brush) GetValue(InvertedForegroundProperty); }

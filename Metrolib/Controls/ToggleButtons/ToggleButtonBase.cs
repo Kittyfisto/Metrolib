@@ -18,38 +18,65 @@ namespace Metrolib.Controls
 	public class ToggleButtonBase
 		: ToggleButton
 	{
+		/// <summary>
+		///     Definition of the <see cref="InvertedForeground" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty InvertedForegroundProperty =
 			DependencyProperty.Register("InvertedForeground", typeof (Brush), typeof (ToggleButtonBase),
 			                            new PropertyMetadata(default(Brush)));
 
+		/// <summary>
+		///     Definition of the <see cref="NormalForeground" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty NormalForegroundProperty =
 			DependencyProperty.Register("NormalForeground", typeof (Brush), typeof (ToggleButtonBase),
 			                            new PropertyMetadata(default(Brush)));
 
+		/// <summary>
+		///     Definition of the <see cref="HoveredForeground" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty HoveredForegroundProperty =
 			DependencyProperty.Register("HoveredForeground", typeof (Brush), typeof (ToggleButtonBase),
 			                            new PropertyMetadata(default(Brush)));
 
+		/// <summary>
+		///     Definition of the <see cref="PressedForeground" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty PressedForegroundProperty =
 			DependencyProperty.Register("PressedForeground", typeof (Brush), typeof (ToggleButtonBase),
 			                            new PropertyMetadata(default(Brush)));
 
+		/// <summary>
+		///     Definition of the <see cref="CheckedForeground" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty CheckedForegroundProperty =
 			DependencyProperty.Register("CheckedForeground", typeof (Brush), typeof (ToggleButtonBase),
 			                            new PropertyMetadata(default(Brush)));
 
+		/// <summary>
+		///     Definition of the <see cref="HoveredAndCheckedForeground" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty HoveredAndCheckedForegroundProperty =
 			DependencyProperty.Register("HoveredAndCheckedForeground", typeof (Brush), typeof (ToggleButtonBase),
 			                            new PropertyMetadata(default(Brush)));
 
+		/// <summary>
+		///     Definition of the <see cref="HoveredBackground" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty HoveredBackgroundProperty =
 			DependencyProperty.Register("HoveredBackground", typeof (Brush), typeof (ToggleButtonBase),
 			                            new PropertyMetadata(default(Brush)));
 
+		/// <summary>
+		///     Definition of the <see cref="PressedBackground" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty PressedBackgroundProperty =
 			DependencyProperty.Register("PressedBackground", typeof (Brush), typeof (ToggleButtonBase),
 			                            new PropertyMetadata(default(Brush)));
 
+		/// <summary>
+		///     Definition of the <see cref="CheckedBackground" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty CheckedBackgroundProperty =
 			DependencyProperty.Register("CheckedBackground", typeof (Brush), typeof (ToggleButtonBase),
 			                            new PropertyMetadata(default(Brush)));
@@ -70,24 +97,36 @@ namespace Metrolib.Controls
 			ContextMenuClosing += OnContextMenuClosing;
 		}
 
+		/// <summary>
+		///     The foreground of this button when it's pressed.
+		/// </summary>
 		public Brush PressedForeground
 		{
 			get { return (Brush) GetValue(PressedForegroundProperty); }
 			set { SetValue(PressedForegroundProperty, value); }
 		}
 
+		/// <summary>
+		///     The foreground of this button when it's both hovered and pressed.
+		/// </summary>
 		public Brush HoveredAndCheckedForeground
 		{
 			get { return (Brush) GetValue(HoveredAndCheckedForegroundProperty); }
 			set { SetValue(HoveredAndCheckedForegroundProperty, value); }
 		}
 
+		/// <summary>
+		///     The foreground of this button when it's checked.
+		/// </summary>
 		public Brush CheckedForeground
 		{
 			get { return (Brush) GetValue(CheckedForegroundProperty); }
 			set { SetValue(CheckedForegroundProperty, value); }
 		}
 
+		/// <summary>
+		///     The foreground of this button when it's hovered.
+		/// </summary>
 		public Brush HoveredForeground
 		{
 			get { return (Brush) GetValue(HoveredForegroundProperty); }
@@ -95,6 +134,7 @@ namespace Metrolib.Controls
 		}
 
 		/// <summary>
+		///     The button of this foreground when it's not checked, hovered, pressed or disabled.
 		/// </summary>
 		public Brush NormalForeground
 		{
