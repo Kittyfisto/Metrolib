@@ -14,6 +14,10 @@ namespace Metrolib.Controls
 	///     - offers a display of the number of matches
 	///     - offers buttons and shortcuts to advance to the next/previous location
 	/// </summary>
+	[TemplatePart(Name = "PART_MovePrevious", Type = typeof (Button))]
+	[TemplatePart(Name = "PART_MoveNext", Type = typeof (Button))]
+	[TemplatePart(Name = "PART_RemoveText", Type = typeof (Button))]
+	[TemplatePart(Name = "PART_StartSearch", Type = typeof (Button))]
 	public class SearchTextBox
 		: TextBox
 	{
@@ -45,26 +49,6 @@ namespace Metrolib.Controls
 			DependencyProperty.Register("StopSearchCommand", typeof (ICommand), typeof (SearchTextBox),
 			                            new PropertyMetadata(default(ICommand)));
 
-		private static readonly DependencyPropertyKey PreviousOccurenceCommandPropertyKey =
-			DependencyProperty.RegisterReadOnly("PreviousOccurenceCommand", typeof (ICommand), typeof (SearchTextBox),
-			                                    new PropertyMetadata(default(ICommand)));
-
-		/// <summary>
-		///     Definition of the <see cref="PreviousOccurenceCommand" /> dependency property.
-		/// </summary>
-		public static readonly DependencyProperty PreviousOccurenceCommandProperty =
-			PreviousOccurenceCommandPropertyKey.DependencyProperty;
-
-		private static readonly DependencyPropertyKey NextOccurenceCommandPropertyKey =
-			DependencyProperty.RegisterReadOnly("NextOccurenceCommand", typeof (ICommand), typeof (SearchTextBox),
-			                                    new PropertyMetadata(default(ICommand)));
-
-		/// <summary>
-		///     Definition of the <see cref="NextOccurenceCommand" /> dependency property.
-		/// </summary>
-		public static readonly DependencyProperty NextOccurenceCommandProperty =
-			NextOccurenceCommandPropertyKey.DependencyProperty;
-
 		/// <summary>
 		///     Definition of the <see cref="CurrentOccurenceIndex" /> dependency property.
 		/// </summary>
@@ -79,27 +63,17 @@ namespace Metrolib.Controls
 			DependencyProperty.Register("OccurenceCount", typeof (int), typeof (SearchTextBox),
 			                            new PropertyMetadata(0, OnOccurenceCountChanged));
 
-		private static readonly DependencyPropertyKey BeginStartSearchCommandPropertyKey
-			= DependencyProperty.RegisterReadOnly("BeginStartSearchCommand", typeof (ICommand), typeof (SearchTextBox),
-			                                      new FrameworkPropertyMetadata(default(ICommand),
-			                                                                    FrameworkPropertyMetadataOptions.None));
-
 		/// <summary>
-		///     Definition of the <see cref="BeginStartSearchCommand" /> dependency property.
+		///     Definition of the <see cref="RequiresExplicitSearchStart" /> dependency property.
 		/// </summary>
-		public static readonly DependencyProperty BeginStartSearchCommandProperty
-			= BeginStartSearchCommandPropertyKey.DependencyProperty;
+		public static readonly DependencyProperty RequiresExplicitSearchStartProperty =
+			DependencyProperty.Register("RequiresExplicitSearchStart", typeof (bool), typeof (SearchTextBox),
+			                            new PropertyMetadata(true));
 
-		private static readonly DependencyPropertyKey BeginStopSearchCommandPropertyKey
-			= DependencyProperty.RegisterReadOnly("BeginStopSearchCommand", typeof (ICommand), typeof (SearchTextBox),
-			                                      new FrameworkPropertyMetadata(default(ICommand),
-			                                                                    FrameworkPropertyMetadataOptions.None));
-
-		/// <summary>
-		///     Definition of the <see cref="BeginStopSearchCommand" /> dependency property.
-		/// </summary>
-		public static readonly DependencyProperty BeginStopSearchCommandProperty
-			= BeginStopSearchCommandPropertyKey.DependencyProperty;
+		private Button _moveNext;
+		private Button _movePrevious;
+		private Button _removeText;
+		private Button _startSearch;
 
 		static SearchTextBox()
 		{
@@ -112,10 +86,6 @@ namespace Metrolib.Controls
 		/// </summary>
 		public SearchTextBox()
 		{
-			BeginStartSearchCommand = new DelegateCommand(StartSearch);
-			BeginStopSearchCommand = new DelegateCommand(StopSearch);
-			PreviousOccurenceCommand = new DelegateCommand(GotToPreviousOccurence);
-			NextOccurenceCommand = new DelegateCommand(GotToNextOccurence);
 			TextChanged += OnTextChanged;
 
 			CommandBindings.Add(new CommandBinding(new RoutedCommand {InputGestures = {new KeyGesture(Key.F3)}},
@@ -123,6 +93,21 @@ namespace Metrolib.Controls
 			CommandBindings.Add(
 				new CommandBinding(new RoutedCommand {InputGestures = {new KeyGesture(Key.F3, ModifierKeys.Shift)}},
 				                   GotToPreviousOccurence));
+		}
+
+		/// <summary>
+		///     Whether or not the search must be started by the user explicitly by pressing enter or clicking the search button.
+		/// </summary>
+		/// <remarks>
+		///     When set to true, then the <see cref="StartSearchCommand" /> is executed when the user initiates the search.
+		///     When set to false then the <see cref="StartSearchCommand" /> and <see cref="StopSearchCommand" /> are never executed
+		///     and instead the search should be started once <see cref="TextBox.Text" /> is set to a non-empty value.
+		///     Is set to true by default.
+		/// </remarks>
+		public bool RequiresExplicitSearchStart
+		{
+			get { return (bool) GetValue(RequiresExplicitSearchStartProperty); }
+			set { SetValue(RequiresExplicitSearchStartProperty, value); }
 		}
 
 		/// <summary>
@@ -146,33 +131,11 @@ namespace Metrolib.Controls
 
 		/// <summary>
 		///     The index of the currently focused occurence of the search term in the data set.
-		///     When <see cref="PreviousOccurenceCommand" /> or <see cref="NextOccurenceCommand" /> are executed,
-		///     it is expected that this value is set to the next/previous value.
 		/// </summary>
 		public int CurrentOccurenceIndex
 		{
 			get { return (int) GetValue(CurrentOccurenceIndexProperty); }
 			set { SetValue(CurrentOccurenceIndexProperty, value); }
-		}
-
-		/// <summary>
-		///     The command that is executed when the user wants to jump to the next occurence
-		///     of the search term in the data set.
-		/// </summary>
-		public ICommand NextOccurenceCommand
-		{
-			get { return (ICommand) GetValue(NextOccurenceCommandProperty); }
-			private set { SetValue(NextOccurenceCommandPropertyKey, value); }
-		}
-
-		/// <summary>
-		///     The command that is executed when the user wants to jump to the previous occurence
-		///     of the search term in the data set.
-		/// </summary>
-		public ICommand PreviousOccurenceCommand
-		{
-			get { return (ICommand) GetValue(PreviousOccurenceCommandProperty); }
-			private set { SetValue(PreviousOccurenceCommandPropertyKey, value); }
 		}
 
 		/// <summary>
@@ -194,32 +157,36 @@ namespace Metrolib.Controls
 		}
 
 		/// <summary>
-		///     The command that is executed when the user hits enter or presses the search button.
-		///     Executes the <see cref="StartSearchCommand" /> internally.
-		/// </summary>
-		public ICommand BeginStartSearchCommand
-		{
-			get { return (ICommand) GetValue(BeginStartSearchCommandProperty); }
-			protected set { SetValue(BeginStartSearchCommandPropertyKey, value); }
-		}
-
-		/// <summary>
-		///     The command that is executed when the user hits escape or presses the remove button.
-		///     Executes the <see cref="StopSearchCommand" /> internally.
-		/// </summary>
-		public ICommand BeginStopSearchCommand
-		{
-			get { return (ICommand) GetValue(BeginStopSearchCommandProperty); }
-			protected set { SetValue(BeginStopSearchCommandPropertyKey, value); }
-		}
-
-		/// <summary>
 		///     The watermark that is displayed until <see cref="TextBox.Text" /> becomes non-empty.
 		/// </summary>
 		public string Watermark
 		{
 			get { return (string) GetValue(WatermarkProperty); }
 			set { SetValue(WatermarkProperty, value); }
+		}
+
+		/// <summary>
+		///     Is called when a control template is applied.
+		/// </summary>
+		public override void OnApplyTemplate()
+		{
+			base.OnApplyTemplate();
+
+			_movePrevious = (Button) GetTemplateChild("PART_MovePrevious");
+			if (_movePrevious != null)
+				_movePrevious.Command = new DelegateCommand(GotToPreviousOccurence);
+
+			_moveNext = (Button) GetTemplateChild("PART_MoveNext");
+			if (_moveNext != null)
+				_moveNext.Command = new DelegateCommand(GotToNextOccurence);
+
+			_removeText = (Button) GetTemplateChild("PART_RemoveText");
+			if (_removeText != null)
+				_removeText.Command = new DelegateCommand(StopSearch);
+
+			_startSearch = (Button) GetTemplateChild("PART_StartSearch");
+			if (_startSearch != null)
+				_startSearch.Command = new DelegateCommand(StartSearch);
 		}
 
 		private static void OnOccurenceCountChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)

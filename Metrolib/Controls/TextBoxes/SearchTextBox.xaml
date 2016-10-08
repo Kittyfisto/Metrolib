@@ -93,8 +93,9 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <controls:SearchButton Command="{TemplateBinding BeginStartSearchCommand}"
-                                                   IsEnabled="{TemplateBinding IsEnabled}"
+                            <controls:SearchButton IsEnabled="{TemplateBinding IsEnabled}"
+                                                   x:Name="PART_StartSearch"
+                                                   Visibility="{Binding RequiresExplicitSearchStart, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalseToCollapsedConverter}}"
                                                    Padding="4,0,0,0" />
 
                             <Grid Margin="{TemplateBinding Padding}"
@@ -127,16 +128,16 @@
                                     <Run
                                         Text="{Binding OccurenceCount, RelativeSource={RelativeSource TemplatedParent}}" />
                                 </TextBlock>
-                                <controls:PreviousButton Command="{TemplateBinding PreviousOccurenceCommand}"
-                                                         IsEnabled="{TemplateBinding IsEnabled}"
+                                <controls:PreviousButton IsEnabled="{TemplateBinding IsEnabled}"
+                                                         x:Name="PART_MovePrevious"
                                                          Padding="0"
                                                          Visibility="{Binding IsPerformingSearch,RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalseToCollapsedConverter}}" />
-                                <controls:NextButton Command="{TemplateBinding NextOccurenceCommand}"
-                                                     IsEnabled="{TemplateBinding IsEnabled}"
+                                <controls:NextButton IsEnabled="{TemplateBinding IsEnabled}"
+                                                     x:Name="PART_MoveNext"
                                                      Padding="0"
                                                      Visibility="{Binding IsPerformingSearch,RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalseToCollapsedConverter}}" />
-                                <controls:RemoveButton Command="{TemplateBinding BeginStopSearchCommand}"
-                                                       IsEnabled="{TemplateBinding IsEnabled}"
+                                <controls:RemoveButton IsEnabled="{TemplateBinding IsEnabled}"
+                                                       x:Name="PART_RemoveText"
                                                        Padding="0"
                                                        Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NonEmptyStringToVisibleConverter}}" />
                             </StackPanel>
