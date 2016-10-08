@@ -267,10 +267,13 @@ namespace Metrolib.Controls
 		{
 			IsPerformingSearch = true;
 
-			ICommand command = StartSearchCommand;
-			if (command != null && command.CanExecute(Text))
+			if (RequiresExplicitSearchStart)
 			{
-				command.Execute(Text);
+				ICommand command = StartSearchCommand;
+				if (command != null && command.CanExecute(Text))
+				{
+					command.Execute(Text);
+				}
 			}
 		}
 
@@ -294,10 +297,13 @@ namespace Metrolib.Controls
 				Application.Current.MainWindow.Focus();
 			}
 
-			ICommand command = StopSearchCommand;
-			if (command != null && command.CanExecute(null))
+			if (RequiresExplicitSearchStart)
 			{
-				command.Execute(null);
+				ICommand command = StopSearchCommand;
+				if (command != null && command.CanExecute(null))
+				{
+					command.Execute(null);
+				}
 			}
 
 			IsPerformingSearch = false;
