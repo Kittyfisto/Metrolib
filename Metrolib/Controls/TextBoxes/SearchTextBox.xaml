@@ -18,6 +18,7 @@
         <Setter Property="Background" Value="White" />
         <Setter Property="Padding" Value="0,4,4,4" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:SearchTextBox}">
@@ -96,6 +97,7 @@
                             <controls:SearchButton IsEnabled="{TemplateBinding IsEnabled}"
                                                    x:Name="PART_StartSearch"
                                                    Visibility="{Binding RequiresExplicitSearchStart, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalseToCollapsedConverter}}"
+                                                   IsTabStop="False"
                                                    Padding="4,0,0,0" />
 
                             <Grid Margin="{TemplateBinding Padding}"
@@ -131,14 +133,17 @@
                                 <controls:PreviousButton IsEnabled="{TemplateBinding IsEnabled}"
                                                          x:Name="PART_MovePrevious"
                                                          Padding="0"
+                                                         IsTabStop="False"
                                                          Visibility="{Binding IsPerformingSearch,RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalseToCollapsedConverter}}" />
                                 <controls:NextButton IsEnabled="{TemplateBinding IsEnabled}"
                                                      x:Name="PART_MoveNext"
                                                      Padding="0"
+                                                     IsTabStop="False"
                                                      Visibility="{Binding IsPerformingSearch,RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalseToCollapsedConverter}}" />
                                 <controls:RemoveButton IsEnabled="{TemplateBinding IsEnabled}"
                                                        x:Name="PART_RemoveText"
                                                        Padding="0"
+                                                       IsTabStop="False"
                                                        Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NonEmptyStringToVisibleConverter}}" />
                             </StackPanel>
                         </Grid>
