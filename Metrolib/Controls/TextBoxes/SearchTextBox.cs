@@ -316,6 +316,10 @@ namespace Metrolib.Controls
 			{
 				StopSearch(stealFocus: false);
 			}
+			else if (!RequiresExplicitSearchStart)
+			{
+				StartSearch();
+			}
 		}
 	}
 }
