@@ -182,7 +182,7 @@ namespace Metrolib.Controls
 
 			_removeText = (Button) GetTemplateChild("PART_RemoveText");
 			if (_removeText != null)
-				_removeText.Command = new DelegateCommand(StopSearch);
+				_removeText.Command = new DelegateCommand(StopSearchFromButton);
 
 			_startSearch = (Button) GetTemplateChild("PART_StartSearch");
 			if (_startSearch != null)
@@ -211,7 +211,7 @@ namespace Metrolib.Controls
 		{
 			if (e.Key == Key.Escape)
 			{
-				StopSearch();
+				StopSearch(stealFocus: true);
 				e.Handled = true;
 			}
 			else if (e.Key == Key.Enter)
@@ -277,19 +277,13 @@ namespace Metrolib.Controls
 			}
 		}
 
-		private void StopSearch()
+		private void StopSearchFromButton()
 		{
-			StopSearch(stealFocus: true);
+			StopSearch(stealFocus: false);
 		}
 
 		private void StopSearch(bool stealFocus)
 		{
-			if (!IsPerformingSearch)
-			{
-				Text = null;
-				return;
-			}
-
 			if (stealFocus)
 			{
 				DependencyObject scope = FocusManager.GetFocusScope(this);
@@ -297,12 +291,15 @@ namespace Metrolib.Controls
 				Application.Current.MainWindow.Focus();
 			}
 
-			if (RequiresExplicitSearchStart)
+			if (IsPerformingSearch)
 			{
-				ICommand command = StopSearchCommand;
-				if (command != null && command.CanExecute(null))
+				if (RequiresExplicitSearchStart)
 				{
-					command.Execute(null);
+					ICommand command = StopSearchCommand;
+					if (command != null && command.CanExecute(null))
+					{
+						command.Execute(null);
+					}
 				}
 			}
 
