@@ -95,6 +95,10 @@ namespace Metrolib.Controls
 		private void PasswordBoxOnPasswordChanged(object sender, RoutedEventArgs routedEventArgs)
 		{
 			UpdateWatermarkVisibility();
+
+			var fn = PasswordChanged;
+			if (fn != null)
+				fn(this, new RoutedEventArgs());
 		}
 
 		private void UpdateWatermarkVisibility()
