@@ -4,6 +4,7 @@
 
     <system:Double x:Key="TextSize">12</system:Double>
     <system:Double x:Key="TextSizeH1">32</system:Double>
+    <system:Double x:Key="TextSizeH2">28</system:Double>
 
     <!-- COLORS -->
 

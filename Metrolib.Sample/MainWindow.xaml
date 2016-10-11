@@ -18,7 +18,7 @@
             <controls:FlatTabItem Header="TextBlocks">
                 <sample:TextBlocks />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="TextBoxes" IsSelected="True">
+            <controls:FlatTabItem Header="TextBoxes">
                 <sample:TextBoxes />
             </controls:FlatTabItem>
             <controls:FlatTabItem Header="Buttons" >
@@ -35,6 +35,9 @@
             </controls:FlatTabItem>
             <controls:FlatTabItem Header="Tree">
                 <sample:Tree />
+            </controls:FlatTabItem>
+            <controls:FlatTabItem Header="GroupBox" IsSelected="True">
+                <sample:GroupBoxes />
             </controls:FlatTabItem>
         </tab:FlatTabControl>
         
