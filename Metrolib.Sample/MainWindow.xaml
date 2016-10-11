@@ -4,6 +4,11 @@
         xmlns:sample="clr-namespace:Metrolib.Sample" xmlns:controls="clr-namespace:Metrolib.Controls;assembly=Metrolib"
         xmlns:tab="clr-namespace:Metrolib.Controls.Tab;assembly=Metrolib"
         Title="MainWindow" Height="350" Width="800">
+    
+    <Window.Resources>
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Themes/Constants.xaml" />
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -48,7 +53,7 @@
             </FrameworkElement.ContextMenu>
         </controls:MoreButton>
         
-        <controls:AboutControl x:Name="About" Grid.ColumnSpan="2">
+        <controls:PageOverlay x:Name="About" Grid.ColumnSpan="2" Header="About">
             <tab:FlatTabControl>
                 <controls:FlatTabItem Header="Metrolib">
                     
@@ -65,6 +70,6 @@
                     </Style>
                 </tab:FlatTabControl.Resources>
             </tab:FlatTabControl>
-        </controls:AboutControl>
+        </controls:PageOverlay>
     </Grid>
 </Window>

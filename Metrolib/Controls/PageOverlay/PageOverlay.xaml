@@ -6,14 +6,21 @@
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Themes/Constants.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="{x:Type local:AboutControl}">
+    <Style TargetType="{x:Type local:PageOverlay}">
         <Setter Property="Background" Value="White" />
         <Setter Property="Visibility" Value="Hidden" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" FontSize="{StaticResource TextSizeH1}" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:AboutControl}">
+                <ControlTemplate TargetType="{x:Type local:PageOverlay}">
                     <Grid>
                         <Rectangle x:Name="PART_BackgroundRect"
                                    Fill="#40000000" />
@@ -31,8 +38,11 @@
                                 <local:ExpanderToggleButton Margin="4" Height="28" Width="28"
                                                             VerticalAlignment="Center"
                                                             IsChecked="{Binding IsOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
-                                <TextBlock Text="About" FontSize="{StaticResource TextSizeH1}"
-                                           VerticalAlignment="Center" />
+                                <ContentPresenter Content="{TemplateBinding Header}"
+                                                  ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                                  ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
+                                                  ContentStringFormat="{TemplateBinding HeaderStringFormat}"
+                                                  VerticalAlignment="Center" />
                             </StackPanel>
 
                             <ContentPresenter Content="{TemplateBinding Content}"

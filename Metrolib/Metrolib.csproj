@@ -49,7 +49,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\About\AboutControl.xaml">
+    <Page Include="Controls\PageOverlay\PageOverlay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,7 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractBootstrapper.cs" />
-    <Compile Include="Controls\About\AboutControl.cs" />
+    <Compile Include="Controls\PageOverlay\PageOverlay.cs" />
     <Compile Include="Controls\Buttons\AddButton.cs" />
     <Compile Include="Controls\AlertControl.cs" />
     <Compile Include="Controls\Buttons\NextButton.cs" />

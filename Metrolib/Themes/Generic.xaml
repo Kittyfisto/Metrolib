@@ -11,7 +11,7 @@
 
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ContextMenu/FlatContextMenu.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/About/AboutControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/PageOverlay/PageOverlay.xaml" />
 
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Tab/FlatTabControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Tab/FlatTabItem.xaml" />

@@ -3,7 +3,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 
 // ReSharper disable CheckNamespace
-
 namespace Metrolib.Controls
 // ReSharper restore CheckNamespace
 {
@@ -14,11 +13,11 @@ namespace Metrolib.Controls
 	///     - What dependencies does it use
 	///     - etc...
 	/// </summary>
-	public class AboutControl
-		: ContentControl
+	public class PageOverlay
+		: HeaderedContentControl
 	{
 		private static readonly DependencyPropertyKey ShowCommandPropertyKey
-			= DependencyProperty.RegisterReadOnly("ShowCommand", typeof (ICommand), typeof (AboutControl),
+			= DependencyProperty.RegisterReadOnly("ShowCommand", typeof (ICommand), typeof (PageOverlay),
 			                                      new FrameworkPropertyMetadata(default(ICommand),
 			                                                                    FrameworkPropertyMetadataOptions.None));
 
@@ -26,7 +25,7 @@ namespace Metrolib.Controls
 		///     Definition of the <see cref="IsOpen" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty IsOpenProperty =
-			DependencyProperty.Register("IsOpen", typeof (bool), typeof (AboutControl),
+			DependencyProperty.Register("IsOpen", typeof (bool), typeof (PageOverlay),
 			                            new PropertyMetadata(false, OnIsOpenChanged));
 
 		/// <summary>
@@ -39,11 +38,11 @@ namespace Metrolib.Controls
 		///     Definition of the <see cref="HorizontalOffset" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty HorizontalOffsetProperty =
-			DependencyProperty.Register("HorizontalOffset", typeof (double), typeof (AboutControl),
+			DependencyProperty.Register("HorizontalOffset", typeof (double), typeof (PageOverlay),
 			                            new PropertyMetadata(default(double), OnHorizontalOffsetChanged));
 
 		private static readonly DependencyPropertyKey ContentMarginPropertyKey
-			= DependencyProperty.RegisterReadOnly("ContentMargin", typeof (Thickness), typeof (AboutControl),
+			= DependencyProperty.RegisterReadOnly("ContentMargin", typeof (Thickness), typeof (PageOverlay),
 			                                      new FrameworkPropertyMetadata(default(Thickness),
 			                                                                    FrameworkPropertyMetadataOptions.None));
 
@@ -53,15 +52,15 @@ namespace Metrolib.Controls
 		public static readonly DependencyProperty ContentMarginProperty
 			= ContentMarginPropertyKey.DependencyProperty;
 
-		static AboutControl()
+		static PageOverlay()
 		{
-			DefaultStyleKeyProperty.OverrideMetadata(typeof (AboutControl), new FrameworkPropertyMetadata(typeof (AboutControl)));
+			DefaultStyleKeyProperty.OverrideMetadata(typeof (PageOverlay), new FrameworkPropertyMetadata(typeof (PageOverlay)));
 		}
 
 		/// <summary>
 		///     Initializes this object.
 		/// </summary>
-		public AboutControl()
+		public PageOverlay()
 		{
 			ShowCommand = new DelegateCommand(Show);
 		}
@@ -103,7 +102,7 @@ namespace Metrolib.Controls
 
 		private static void OnIsOpenChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
 		{
-			((AboutControl) dependencyObject).OnIsOpenChanged((bool) args.NewValue);
+			((PageOverlay) dependencyObject).OnIsOpenChanged((bool) args.NewValue);
 		}
 
 		private void OnIsOpenChanged(bool isOpen)
@@ -119,7 +118,7 @@ namespace Metrolib.Controls
 		private static void OnHorizontalOffsetChanged(DependencyObject dependencyObject,
 		                                              DependencyPropertyChangedEventArgs args)
 		{
-			((AboutControl) dependencyObject).OnHorizontalOffsetChanged((double) args.NewValue);
+			((PageOverlay) dependencyObject).OnHorizontalOffsetChanged((double) args.NewValue);
 		}
 
 		private void OnHorizontalOffsetChanged(double relativeHorizontalOffset)
