@@ -113,6 +113,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\TextBoxes\FlatPasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\TextBoxes\SearchTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -216,6 +220,7 @@
     <Compile Include="Controls\Scroll\FlatScrollViewer.cs" />
     <Compile Include="Controls\Tab\FlatTabControl.cs" />
     <Compile Include="Controls\Tab\FlatTabItem.cs" />
+    <Compile Include="Controls\TextBoxes\FlatPasswordBox.cs" />
     <Compile Include="Controls\TextBoxes\SearchTextBox.cs" />
     <Compile Include="Controls\TextBoxes\WatermarkTextBox.cs" />
     <Compile Include="Controls\ToggleButtons\ToggleButtonBase.cs" />

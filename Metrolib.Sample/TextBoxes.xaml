@@ -6,7 +6,7 @@
              xmlns:controls="clr-namespace:Metrolib.Controls;assembly=Metrolib"
              mc:Ignorable="d"
              x:Name="This"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -16,6 +16,8 @@
             <ColumnDefinition Width="200" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="8" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="8" />
             <RowDefinition Height="Auto" />
@@ -40,5 +42,9 @@
         <TextBlock Text="SearchTextBox" Grid.Row="6" VerticalAlignment="Center" />
         <controls:SearchTextBox Grid.Column="2" Grid.Row="6" Watermark="Titles, Names, Genres" OccurenceCount="10" CurrentOccurenceIndex="0" />
         <controls:SearchTextBox Grid.Column="4" Grid.Row="6" Watermark="Titles, Names, Genres" IsEnabled="False" />
+
+        <TextBlock Text="FlatPasswordBox" Grid.Row="8" VerticalAlignment="Center" />
+        <controls:FlatPasswordBox Grid.Column="2" Grid.Row="8" Watermark="Enter password" />
+        <controls:FlatPasswordBox Grid.Column="4" Grid.Row="8" Watermark="Enter password" Password="password" IsEnabled="False" />
     </Grid>
 </UserControl>

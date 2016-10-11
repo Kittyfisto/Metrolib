@@ -33,6 +33,7 @@
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBoxes/WatermarkTextBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBoxes/FilterTextBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBoxes/SearchTextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBoxes/FlatPasswordBox.xaml" />
 
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/AddButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/ExportButton.xaml" />
