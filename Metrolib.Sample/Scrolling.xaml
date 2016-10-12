@@ -21,8 +21,9 @@
         </controls:FlatScrollViewer>
         <controls:FlatScrollViewer Grid.Column="1"
                                    HorizontalScrollBarVisibility="Auto"
+                                   VerticalAlignment="Top"
                                    Width="200"
-                                   Height="200"
+                                   Height="30"
                                    Margin="0,8,8,8">
             <TextBlock TextWrapping="Wrap">
                 <TextBlock.Text>
