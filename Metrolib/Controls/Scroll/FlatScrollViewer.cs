@@ -13,10 +13,26 @@ namespace Metrolib.Controls
 	public class FlatScrollViewer
 		: ScrollViewer
 	{
+		/// <summary>
+		///     Definition of the <see cref="ScrollBarThickness" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty ScrollBarThicknessProperty =
+			DependencyProperty.Register("ScrollBarThickness", typeof (double), typeof (FlatScrollViewer),
+			                            new PropertyMetadata(default(double)));
+
 		static FlatScrollViewer()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (FlatScrollViewer),
 			                                         new FrameworkPropertyMetadata(typeof (FlatScrollViewer)));
+		}
+
+		/// <summary>
+		///     The thickness of the horizontal and vertical scrollbars.
+		/// </summary>
+		public double ScrollBarThickness
+		{
+			get { return (double) GetValue(ScrollBarThicknessProperty); }
+			set { SetValue(ScrollBarThicknessProperty, value); }
 		}
 	}
 }

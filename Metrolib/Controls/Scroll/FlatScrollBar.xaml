@@ -77,6 +77,7 @@
 
     <Style TargetType="{x:Type controls:FlatScrollBar}">
         <Setter Property="Foreground" Value="#33000000" />
+        <Setter Property="Thickness" Value="7" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:FlatScrollBar}">
@@ -100,7 +101,34 @@
                             </Track.DecreaseRepeatButton>
                         </Track>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <!-- Vertical -->
+                        <Trigger Property="Orientation" Value="Vertical">
+                            <Setter TargetName="PART_Track" Property="Width" Value="{Binding Thickness, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Trigger>
+                        <!--<MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Orientation" Value="Vertical" />
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Width" Value="{StaticResource HoveredThickness}" />
+                        </MultiTrigger>-->
 
+                        <!-- Horizontal -->
+                        <Trigger Property="Orientation" Value="Horizontal">
+                            <Setter TargetName="PART_Track" Property="Height" Value="{Binding Thickness, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Trigger>
+                        <!--<MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Orientation" Value="Horizontal" />
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Height" Value="{StaticResource HoveredThickness}" />
+                        </MultiTrigger>-->
+                        <Trigger Property="Orientation" Value="Horizontal">
+                            <Setter TargetName="PART_Track" Property="IsDirectionReversed" Value="False" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
