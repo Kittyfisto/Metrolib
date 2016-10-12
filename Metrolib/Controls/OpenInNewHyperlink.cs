@@ -37,6 +37,20 @@ namespace Metrolib.Controls
 			                                                                    FrameworkPropertyMetadataOptions.None));
 
 		/// <summary>
+		///     Definition of the <see cref="ProcessName" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty ProcessNameProperty =
+			DependencyProperty.Register("ProcessName", typeof (string), typeof (OpenInNewHyperlink),
+			                            new PropertyMetadata(default(string)));
+
+		/// <summary>
+		///     Definition of the <see cref="ProcessStartArguments" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty ProcessStartArgumentsProperty =
+			DependencyProperty.Register("ProcessStartArguments", typeof (string), typeof (OpenInNewHyperlink),
+			                            new PropertyMetadata(default(string)));
+
+		/// <summary>
 		///     Definition of the <see cref="IsPressed" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty IsPressedProperty
@@ -55,6 +69,24 @@ namespace Metrolib.Controls
 		{
 			MouseLeftButtonDown += OnMouseLeftButtonDown;
 			MouseLeftButtonUp += OnMouseLeftButtonUp;
+		}
+
+		/// <summary>
+		///     The process that shall be started via <see cref="Process.Start()" />.
+		/// </summary>
+		public string ProcessName
+		{
+			get { return (string) GetValue(ProcessNameProperty); }
+			set { SetValue(ProcessNameProperty, value); }
+		}
+
+		/// <summary>
+		///     The arguments that shall be passed to <see cref="Process.Start()" />.
+		/// </summary>
+		public string ProcessStartArguments
+		{
+			get { return (string) GetValue(ProcessStartArgumentsProperty); }
+			set { SetValue(ProcessStartArgumentsProperty, value); }
 		}
 
 		/// <summary>
@@ -91,24 +123,33 @@ namespace Metrolib.Controls
 			if (IsMouseCaptured)
 			{
 				ReleaseMouseCapture();
-				OpenBrowser();
+
+				var uri = NavigateUri;
+				var processName = ProcessName;
+				if (uri != null)
+				{
+					var args = new ProcessStartInfo(NavigateUri.ToString());
+					Start(args);
+				}
+				else if (processName != null)
+				{
+					var args = new ProcessStartInfo(processName, ProcessStartArguments);
+					Start(args);
+				}
+				else
+				{
+					Log.WarnFormat("Neither NavigateUri, nor ProcessName given, can't start process!");
+				}
+
 				e.Handled = true;
 			}
 		}
 
-		private void OpenBrowser()
+		private void Start(ProcessStartInfo info)
 		{
-			if (NavigateUri == null)
-			{
-				Log.DebugFormat("No NavigateUri set, can't open browser!");
-				return;
-			}
-
-			string uri = NavigateUri.ToString();
-
 			try
 			{
-				Process.Start(new ProcessStartInfo(uri));
+				Process.Start(info);
 			}
 			catch (Exception e)
 			{
