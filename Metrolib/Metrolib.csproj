@@ -49,6 +49,14 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\Buttons\MaximizeButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Buttons\MinimizeButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\GroupBox\FlatGroupBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -185,6 +193,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Windows\ChromelessWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Converters\Converters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -204,6 +216,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractBootstrapper.cs" />
+    <Compile Include="Controls\Buttons\MaximizeButton.cs" />
+    <Compile Include="Controls\Buttons\MinimizeButton.cs" />
     <Compile Include="Controls\GroupBox\FlatGroupBox.cs" />
     <Compile Include="Controls\PageOverlay\PageOverlay.cs" />
     <Compile Include="Controls\Buttons\AddButton.cs" />
@@ -236,7 +250,9 @@
     <Compile Include="Controls\Tree\FlatTreeView.cs" />
     <Compile Include="Controls\Tree\FlatTreeViewItem.cs" />
     <Compile Include="Controls\Tree\LeftMarginMultiplierConverter.cs" />
+    <Compile Include="Controls\Windows\ChromelessWindow.cs" />
     <Compile Include="Converters\BoolFalseToHiddenConverter.cs" />
+    <Compile Include="Converters\BoolTrueToHiddenConverter.cs" />
     <Compile Include="Converters\CountConverter.cs" />
     <Compile Include="Converters\IncrementByOneConverter.cs" />
     <Compile Include="Converters\NonEmptyStringToVisibleConverter.cs" />

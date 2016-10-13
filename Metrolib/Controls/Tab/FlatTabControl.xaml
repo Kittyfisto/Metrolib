@@ -8,6 +8,7 @@
 
     <Style TargetType="{x:Type controls:FlatTabControl}" BasedOn="{StaticResource {x:Type TabControl}}">
         <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="White" />
     </Style>
 
 </ResourceDictionary>

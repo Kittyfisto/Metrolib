@@ -38,6 +38,8 @@
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/AddButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/ExportButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/FlatButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/MaximizeButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/MinimizeButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/MoreButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/NextButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/PreviousButton.xaml" />
@@ -49,6 +51,8 @@
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/OneWayToggle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/ToggleButtonBase.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/VisibilityToggleButton.xaml" />
+        
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Windows/ChromelessWindow.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
