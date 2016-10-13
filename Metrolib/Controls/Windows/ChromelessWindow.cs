@@ -26,6 +26,9 @@ namespace Metrolib.Controls
 			                                         new FrameworkPropertyMetadata(typeof (ChromelessWindow)));
 		}
 
+		/// <summary>
+		///     Called when the template's tree is generated.
+		/// </summary>
 		public override void OnApplyTemplate()
 		{
 			base.OnApplyTemplate();

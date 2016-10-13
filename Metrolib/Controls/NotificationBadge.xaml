@@ -2,20 +2,33 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:Metrolib.Controls">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Themes/Constants.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
     <Style TargetType="{x:Type controls:NotificationBadge}">
+        <Setter Property="Background" Value="{StaticResource ForegroundBrushSelected}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Padding" Value="2" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:NotificationBadge}">
-                    <Border BorderBrush="White"
-                            BorderThickness="1"
-                            CornerRadius="2"
-                            Background="Red">
-                        <ContentPresenter
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            TextBlock.Foreground="White"
-                            Margin="4" />
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="2">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}" />
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="controls:Properties.IsInverted" Value="True">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="{StaticResource ForegroundBrushSelected}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

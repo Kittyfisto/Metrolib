@@ -133,6 +133,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ToggleButtons\EmailToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ToggleButtons\ToggleButtonBase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -237,6 +241,7 @@
     <Compile Include="Controls\TextBoxes\FlatPasswordBox.cs" />
     <Compile Include="Controls\TextBoxes\SearchTextBox.cs" />
     <Compile Include="Controls\TextBoxes\WatermarkTextBox.cs" />
+    <Compile Include="Controls\ToggleButtons\EmailToggleButton.cs" />
     <Compile Include="Controls\ToggleButtons\ToggleButtonBase.cs" />
     <Compile Include="Controls\ToggleButtons\ExpanderToggleButton.cs" />
     <Compile Include="Controls\Buttons\ExportButton.cs" />

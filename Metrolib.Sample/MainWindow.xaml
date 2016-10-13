@@ -29,13 +29,13 @@
             <controls:FlatTabItem Header="TextBlocks">
                 <sample:TextBlocks />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="TextBoxes" IsSelected="True">
+            <controls:FlatTabItem Header="TextBoxes">
                 <sample:TextBoxes />
             </controls:FlatTabItem>
             <controls:FlatTabItem Header="Buttons" >
                 <sample:Buttons />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="Toggle Buttons">
+            <controls:FlatTabItem Header="Toggle Buttons" IsSelected="True">
                 <sample:ToggleButtons />
             </controls:FlatTabItem>
             <controls:FlatTabItem Header="Scrolling">

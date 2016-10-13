@@ -47,6 +47,7 @@
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/SearchButton.xaml" />
 
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/EditToggleButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/EmailToggleButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/ExpanderToggleButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/OneWayToggle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/ToggleButtonBase.xaml" />

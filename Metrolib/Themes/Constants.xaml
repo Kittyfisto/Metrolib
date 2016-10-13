@@ -15,7 +15,7 @@
 
     <SolidColorBrush x:Key="TextBrushUnimportant" Color="#B7B7B7" />
     <SolidColorBrush x:Key="TextBrushUnimportantInverted" Color="#DAECF7" />
-    
+
     <SolidColorBrush x:Key="BackgroundBrushDefault" Color="White" />
     <SolidColorBrush x:Key="BackgroundBrushHovered" Color="#F2F2F2" />
     <SolidColorBrush x:Key="BackgroundBrushPressed" Color="#CCCCCC" />

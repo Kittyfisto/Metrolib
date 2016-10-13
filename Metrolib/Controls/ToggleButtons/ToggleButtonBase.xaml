@@ -29,6 +29,7 @@
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Background" Value="{Binding CheckedBackground, RelativeSource={RelativeSource Self}}" />
                 <Setter Property="Foreground" Value="{Binding CheckedForeground, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="controls:Properties.IsInverted" Value="True" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
