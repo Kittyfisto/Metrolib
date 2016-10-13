@@ -10,20 +10,101 @@ namespace Metrolib.Controls
 	///     Base class for a window without borders.
 	///     Styled to look like a window in Windows 10.
 	/// </summary>
-	[TemplatePart(Name = "PART_MinimizeWindow", Type = typeof(Button))]
-	[TemplatePart(Name = "PART_MaximizeWindow", Type = typeof(MaximizeButton))]
-	[TemplatePart(Name = "PART_CloseWindow", Type = typeof(Button))]
+	[TemplatePart(Name = "PART_MinimizeWindow", Type = typeof (Button))]
+	[TemplatePart(Name = "PART_MaximizeWindow", Type = typeof (MaximizeButton))]
+	[TemplatePart(Name = "PART_CloseWindow", Type = typeof (Button))]
 	public class ChromelessWindow
 		: Window
 	{
-		private Button _minimizeWindow;
-		private MaximizeButton _maximizeWindow;
+		/// <summary>
+		///     Definition of the <see cref="VerticalHeaderAlignment" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty VerticalHeaderAlignmentProperty =
+			DependencyProperty.Register("VerticalHeaderAlignment", typeof (VerticalAlignment), typeof (ChromelessWindow),
+			                            new PropertyMetadata(default(VerticalAlignment)));
+
+		/// <summary>
+		///     Definition of the <see cref="HorizontalHeaderAlignment" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty HorizontalHeaderAlignmentProperty =
+			DependencyProperty.Register("HorizontalHeaderAlignment", typeof (HorizontalAlignment), typeof (
+				                                                                                       ChromelessWindow),
+			                            new PropertyMetadata(default(HorizontalAlignment)));
+
+		/// <summary>
+		///     Definition of the <see cref="Header" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty HeaderProperty =
+			DependencyProperty.Register("Header", typeof (object), typeof (ChromelessWindow),
+			                            new PropertyMetadata(default(object)));
+
+		/// <summary>
+		///     Definition of the <see cref="HeaderTemplate" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty HeaderTemplateProperty =
+			DependencyProperty.Register("HeaderTemplate", typeof (DataTemplate), typeof (ChromelessWindow),
+			                            new PropertyMetadata(default(DataTemplate)));
+
+		/// <summary>
+		///     Definition of the <see cref="HeaderTemplateSelector" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty HeaderTemplateSelectorProperty =
+			DependencyProperty.Register("HeaderTemplateSelector", typeof (DataTemplateSelector),
+			                            typeof (ChromelessWindow), new PropertyMetadata(default(DataTemplateSelector)));
+
 		private Button _closeWindow;
+		private MaximizeButton _maximizeWindow;
+		private Button _minimizeWindow;
 
 		static ChromelessWindow()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (ChromelessWindow),
 			                                         new FrameworkPropertyMetadata(typeof (ChromelessWindow)));
+		}
+
+		/// <summary>
+		///     The vertical alignment of the content inside the title bar.
+		/// </summary>
+		public VerticalAlignment VerticalHeaderAlignment
+		{
+			get { return (VerticalAlignment) GetValue(VerticalHeaderAlignmentProperty); }
+			set { SetValue(VerticalHeaderAlignmentProperty, value); }
+		}
+
+		/// <summary>
+		///     The horizontal alignment of the content inside the title bar.
+		/// </summary>
+		public HorizontalAlignment HorizontalHeaderAlignment
+		{
+			get { return (HorizontalAlignment) GetValue(HorizontalHeaderAlignmentProperty); }
+			set { SetValue(HorizontalHeaderAlignmentProperty, value); }
+		}
+
+		/// <summary>
+		///     The template selector for the content inside the title bar.
+		/// </summary>
+		public DataTemplateSelector HeaderTemplateSelector
+		{
+			get { return (DataTemplateSelector) GetValue(HeaderTemplateSelectorProperty); }
+			set { SetValue(HeaderTemplateSelectorProperty, value); }
+		}
+
+		/// <summary>
+		///     The template for the content inside the title bar.
+		/// </summary>
+		public DataTemplate HeaderTemplate
+		{
+			get { return (DataTemplate) GetValue(HeaderTemplateProperty); }
+			set { SetValue(HeaderTemplateProperty, value); }
+		}
+
+		/// <summary>
+		///     Additional content inside the title bar.
+		/// </summary>
+		public object Header
+		{
+			get { return GetValue(HeaderProperty); }
+			set { SetValue(HeaderProperty, value); }
 		}
 
 		/// <summary>
@@ -35,13 +116,13 @@ namespace Metrolib.Controls
 
 			if (_minimizeWindow != null)
 				_minimizeWindow.Click -= MinimizeWindowOnClick;
-			_minimizeWindow = (Button)GetTemplateChild("PART_MinimizeWindow");
+			_minimizeWindow = (Button) GetTemplateChild("PART_MinimizeWindow");
 			if (_minimizeWindow != null)
 				_minimizeWindow.Click += MinimizeWindowOnClick;
 
 			if (_maximizeWindow != null)
 				_maximizeWindow.Click -= MaximizeWindowOnClick;
-			_maximizeWindow = (MaximizeButton)GetTemplateChild("PART_MaximizeWindow");
+			_maximizeWindow = (MaximizeButton) GetTemplateChild("PART_MaximizeWindow");
 			if (_maximizeWindow != null)
 			{
 				_maximizeWindow.Click += MaximizeWindowOnClick;
@@ -50,7 +131,7 @@ namespace Metrolib.Controls
 
 			if (_closeWindow != null)
 				_closeWindow.Click -= CloseWindowOnClick;
-			_closeWindow = (Button)GetTemplateChild("PART_CloseWindow");
+			_closeWindow = (Button) GetTemplateChild("PART_CloseWindow");
 			if (_closeWindow != null)
 				_closeWindow.Click += CloseWindowOnClick;
 		}

@@ -6,6 +6,8 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="DarkGray" />
         <Setter Property="Background" Value="White" />
+        <Setter Property="VerticalHeaderAlignment" Value="Stretch" />
+        <Setter Property="HorizontalHeaderAlignment" Value="Stretch" />
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
                 <WindowChrome
@@ -38,13 +40,21 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Image Source="{TemplateBinding Icon}"
-                                       Margin="4,4,0,4"/>
+                                       Margin="4,4,0,4" />
 
                                 <TextBlock Text="{TemplateBinding Title}"
                                            Grid.Column="1"
                                            Margin="4"
                                            FontSize="12"
                                            VerticalAlignment="Center" />
+
+                                <ContentPresenter Grid.Column="2"
+                                                  Content="{TemplateBinding Header}"
+                                                  ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                                  ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
+                                                  VerticalAlignment="{TemplateBinding VerticalHeaderAlignment}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalHeaderAlignment}"
+                                                  WindowChrome.IsHitTestVisibleInChrome="True" />
 
                                 <controls:MinimizeButton Grid.Column="3"
                                                          x:Name="PART_MinimizeWindow"
