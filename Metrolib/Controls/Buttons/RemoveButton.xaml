@@ -11,7 +11,7 @@
     </Geometry>
 
     <Style TargetType="{x:Type controls:RemoveButton}" BasedOn="{StaticResource {x:Type controls:FlatButton}}">
-        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
         <Setter Property="Padding" Value="4" />
         <Setter Property="HoveredForeground" Value="White" />
         <Setter Property="PressedForeground" Value="White" />

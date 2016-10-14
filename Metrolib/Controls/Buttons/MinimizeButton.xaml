@@ -13,10 +13,10 @@
     <Style TargetType="{x:Type controls:MinimizeButton}" BasedOn="{StaticResource {x:Type controls:FlatButton}}">
         <Setter Property="HoveredBackground" Value="{StaticResource BackgroundBrushHovered}" />
         <Setter Property="PressedBackground" Value="{StaticResource BackgroundBrushPressed}" />
-        <Setter Property="Foreground" Value="Black" />
-        <Setter Property="HoveredForeground" Value="Black" />
-        <Setter Property="PressedForeground" Value="Black" />
-        <Setter Property="Padding" Value="8" />
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+        <Setter Property="HoveredForeground" Value="{StaticResource ForegroundBrush}" />
+        <Setter Property="PressedForeground" Value="{StaticResource ForegroundBrush}" />
+        <Setter Property="Padding" Value="9" />
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>

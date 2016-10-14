@@ -6,7 +6,6 @@ using System.Windows.Input;
 using System.Windows.Threading;
 
 // ReSharper disable CheckNamespace
-
 namespace Metrolib.Controls
 // ReSharper restore CheckNamespace
 {
