@@ -24,7 +24,7 @@
                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                         Padding="{TemplateBinding Padding}"
-                        NormalForeground="{StaticResource TextBrushDefault}"
+                        NormalForeground="{StaticResource ForegroundBrush}"
                         HoveredForeground="White"
                         PressedForeground="White" />
                 </ControlTemplate>

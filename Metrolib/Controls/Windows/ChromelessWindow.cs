@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Shell;
 
 // ReSharper disable CheckNamespace
 
@@ -52,6 +53,13 @@ namespace Metrolib.Controls
 			DependencyProperty.Register("HeaderTemplateSelector", typeof (DataTemplateSelector),
 			                            typeof (ChromelessWindow), new PropertyMetadata(default(DataTemplateSelector)));
 
+		/// <summary>
+		///     Definition of the <see cref="TitleBarHeight" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty TitleBarHeightProperty =
+			DependencyProperty.Register("TitleBarHeight", typeof (double), typeof (ChromelessWindow),
+			                            new PropertyMetadata(default(double), OnTitleBarHeightChanged));
+
 		private Button _closeWindow;
 		private MaximizeButton _maximizeWindow;
 		private Button _minimizeWindow;
@@ -60,6 +68,16 @@ namespace Metrolib.Controls
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (ChromelessWindow),
 			                                         new FrameworkPropertyMetadata(typeof (ChromelessWindow)));
+		}
+
+		/// <summary>
+		///     The height of the title bar of this window.
+		///     Set to 32 by default.
+		/// </summary>
+		public double TitleBarHeight
+		{
+			get { return (double) GetValue(TitleBarHeightProperty); }
+			set { SetValue(TitleBarHeightProperty, value); }
 		}
 
 		/// <summary>
@@ -107,6 +125,18 @@ namespace Metrolib.Controls
 			set { SetValue(HeaderProperty, value); }
 		}
 
+		private static void OnTitleBarHeightChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+		{
+			((ChromelessWindow) dependencyObject).OnTitleBarHeightChanged((double) args.NewValue);
+		}
+
+		private void OnTitleBarHeightChanged(double height)
+		{
+			WindowChrome chrome = WindowChrome.GetWindowChrome(this);
+			if (chrome != null)
+				chrome.CaptionHeight = height;
+		}
+
 		/// <summary>
 		///     Called when the template's tree is generated.
 		/// </summary>
@@ -134,6 +164,8 @@ namespace Metrolib.Controls
 			_closeWindow = (Button) GetTemplateChild("PART_CloseWindow");
 			if (_closeWindow != null)
 				_closeWindow.Click += CloseWindowOnClick;
+
+			OnTitleBarHeightChanged(TitleBarHeight);
 		}
 
 		private void MinimizeWindowOnClick(object sender, RoutedEventArgs e)

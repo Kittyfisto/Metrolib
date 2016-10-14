@@ -8,10 +8,10 @@
 
     <!-- COLORS -->
 
-    <SolidColorBrush x:Key="TextBrushDefault" Color="Black" />
-    <SolidColorBrush x:Key="TextBrushInverted" Color="#FFFBFA" />
-    <SolidColorBrush x:Key="TextBrushDisabled" Color="#C9DAEB" />
-    <SolidColorBrush x:Key="TextBrushAccent" Color="#3998D6" />
+    <SolidColorBrush x:Key="ForegroundBrush" Color="#333333" />
+    <SolidColorBrush x:Key="ForegroundBrushInverted" Color="#FFFBFA" />
+    <SolidColorBrush x:Key="ForegroundBrushDisabled" Color="#C9DAEB" />
+    <SolidColorBrush x:Key="ForegroundBrushAccent" Color="#3998D6" />
 
     <SolidColorBrush x:Key="TextBrushUnimportant" Color="#B7B7B7" />
     <SolidColorBrush x:Key="TextBrushUnimportantInverted" Color="#DAECF7" />

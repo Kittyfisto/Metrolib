@@ -12,7 +12,7 @@
 
     <Style TargetType="{x:Type controls:OpenInNewHyperlink}">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{StaticResource TextBrushAccent}" />
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrushAccent}" />
         <Setter Property="ToolTip" Value="{Binding NavigateUri, RelativeSource={RelativeSource Self}}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -41,7 +41,7 @@
                             <Setter Property="Foreground" Value="{StaticResource ForegroundBrushPressed}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Foreground" Value="{StaticResource TextBrushDisabled}" />
+                            <Setter Property="Foreground" Value="{StaticResource ForegroundBrushDisabled}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

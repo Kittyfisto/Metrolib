@@ -73,7 +73,7 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="Background" Value="{StaticResource BackgroundBrushSelected}" />
                 <Setter Property="BorderBrush" Value="{StaticResource BorderBrushSelected}" />
-                <Setter Property="TextElement.Foreground" Value="{StaticResource TextBrushInverted}" />
+                <Setter Property="TextElement.Foreground" Value="{StaticResource ForegroundBrushInverted}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -84,7 +84,7 @@
                  to NOT change the background color any further when the user hovers with the mouse over said button. -->
                 <Setter Property="Background" Value="{StaticResource BackgroundBrushSelected}" />
                 <Setter Property="BorderBrush" Value="{StaticResource BorderBrushSelected}" />
-                <Setter Property="TextElement.Foreground" Value="{StaticResource TextBrushInverted}" />
+                <Setter Property="TextElement.Foreground" Value="{StaticResource ForegroundBrushInverted}" />
             </MultiTrigger>
         </Style.Triggers>
     </Style>

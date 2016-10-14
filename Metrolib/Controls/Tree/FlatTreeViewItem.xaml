@@ -76,7 +76,7 @@
                         </Trigger>
                         <!-- Foreground/Background when selected -->
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="PART_Header" Property="TextBlock.Foreground" Value="{StaticResource TextBrushInverted}" />
+                            <Setter TargetName="PART_Header" Property="TextBlock.Foreground" Value="{StaticResource ForegroundBrushInverted}" />
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>

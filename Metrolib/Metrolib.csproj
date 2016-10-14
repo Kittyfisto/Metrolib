@@ -121,6 +121,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\TextBlocks\FlatTextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\TextBoxes\FlatPasswordBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -158,10 +162,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ToggleButtons\FlatToggleButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\TextBlocks\FlatTextBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,6 +238,7 @@
     <Compile Include="Controls\Scroll\FlatScrollViewer.cs" />
     <Compile Include="Controls\Tab\FlatTabControl.cs" />
     <Compile Include="Controls\Tab\FlatTabItem.cs" />
+    <Compile Include="Controls\TextBlocks\FlatTextBlock.cs" />
     <Compile Include="Controls\TextBoxes\FlatPasswordBox.cs" />
     <Compile Include="Controls\TextBoxes\SearchTextBox.cs" />
     <Compile Include="Controls\TextBoxes\WatermarkTextBox.cs" />
@@ -247,7 +248,6 @@
     <Compile Include="Controls\Buttons\ExportButton.cs" />
     <Compile Include="Controls\ToggleButtons\FlatToggleButton.cs" />
     <Compile Include="Controls\Buttons\FlatButton.cs" />
-    <Compile Include="Controls\TextBlocks\FlatTextBlock.cs" />
     <Compile Include="Controls\Buttons\MoreButton.cs" />
     <Compile Include="Controls\Properties.cs" />
     <Compile Include="Controls\ToggleButtons\VisibilityToggleButton.cs" />

@@ -1,18 +1,24 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:Metrolib.Controls">
-
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Themes/Constants.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
     <Style TargetType="{x:Type controls:ChromelessWindow}">
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="DarkGray" />
         <Setter Property="Background" Value="White" />
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"></Setter>
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource ForegroundBrush}" />
         <Setter Property="VerticalHeaderAlignment" Value="Stretch" />
         <Setter Property="HorizontalHeaderAlignment" Value="Stretch" />
+        <Setter Property="TitleBarHeight" Value="32" />
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
                 <WindowChrome
                     ResizeBorderThickness="6"
-                    CaptionHeight="30"
                     CornerRadius="0"
                     GlassFrameThickness="0,0,0,1" />
             </Setter.Value>
@@ -29,7 +35,7 @@
                                 <RowDefinition />
                             </Grid.RowDefinitions>
 
-                            <Grid x:Name="PART_TitleBar" Height="30">
+                            <Grid x:Name="PART_TitleBar" Height="{TemplateBinding TitleBarHeight}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />

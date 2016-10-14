@@ -1,38 +1,41 @@
 ﻿<controls:ChromelessWindow x:Class="Metrolib.Sample.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:sample="clr-namespace:Metrolib.Sample" xmlns:controls="clr-namespace:Metrolib.Controls;assembly=Metrolib"
-        xmlns:tab="clr-namespace:Metrolib.Controls.Tab;assembly=Metrolib"
-        Title="Metrolib Sample" Height="350" Width="800">
-    
+                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:sample="clr-namespace:Metrolib.Sample"
+                           xmlns:controls="clr-namespace:Metrolib.Controls;assembly=Metrolib"
+                           xmlns:tab="clr-namespace:Metrolib.Controls.Tab;assembly=Metrolib"
+                           Title="Metrolib Sample"
+                           Height="350" Width="800">
+
     <Window.Icon>
         <DrawingImage>
             <DrawingImage.Drawing>
-                <GeometryDrawing Geometry="M3,12V6.75L9,5.43V11.91L3,12M20,3V11.75L10,11.9V5.21L20,3M3,13L9,13.09V19.9L3,18.75V13M20,13.25V22L10,20.09V13.1L20,13.25Z">
+                <GeometryDrawing
+                    Geometry="M3,12V6.75L9,5.43V11.91L3,12M20,3V11.75L10,11.9V5.21L20,3M3,13L9,13.09V19.9L3,18.75V13M20,13.25V22L10,20.09V13.1L20,13.25Z">
                     <GeometryDrawing.Brush>Gray</GeometryDrawing.Brush>
                 </GeometryDrawing>
             </DrawingImage.Drawing>
-            
+
         </DrawingImage>
     </Window.Icon>
-    
+
     <Window.Resources>
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Themes/Constants.xaml" />
     </Window.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <tab:FlatTabControl  Margin="8,0,8,8">
+        <tab:FlatTabControl Margin="8,0,8,8">
             <controls:FlatTabItem Header="TextBlocks">
                 <sample:TextBlocks />
             </controls:FlatTabItem>
             <controls:FlatTabItem Header="TextBoxes">
                 <sample:TextBoxes />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="Buttons" >
+            <controls:FlatTabItem Header="Buttons">
                 <sample:Buttons />
             </controls:FlatTabItem>
             <controls:FlatTabItem Header="Toggle Buttons" IsSelected="True">
@@ -51,7 +54,7 @@
                 <sample:GroupBoxes />
             </controls:FlatTabItem>
         </tab:FlatTabControl>
-        
+
         <controls:MoreButton VerticalAlignment="Top"
                              HorizontalAlignment="Right"
                              Grid.Column="1"
@@ -62,15 +65,16 @@
                                           AnchorAlignment="Right"
                                           VerticalOffset="-10"
                                           HorizontalOffset="-99">
-                    <controls:FlatMenuItem Header="About Metrolib..." Command="{Binding ShowCommand, Source={x:Reference About}}" />
+                    <controls:FlatMenuItem Header="About Metrolib..."
+                                           Command="{Binding ShowCommand, Source={x:Reference About}}" />
                 </controls:FlatContextMenu>
             </FrameworkElement.ContextMenu>
         </controls:MoreButton>
-        
+
         <controls:PageOverlay x:Name="About" Grid.ColumnSpan="2" Header="About">
             <tab:FlatTabControl>
                 <controls:FlatTabItem Header="Metrolib">
-                    
+
                 </controls:FlatTabItem>
                 <controls:FlatTabItem Header="Licenses">
 

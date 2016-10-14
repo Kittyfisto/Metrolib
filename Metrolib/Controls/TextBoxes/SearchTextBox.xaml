@@ -103,7 +103,7 @@
                             <Grid Margin="{TemplateBinding Padding}"
                                   Grid.Column="1">
                                 <TextBlock Text="{TemplateBinding Watermark}"
-                                           Foreground="{StaticResource TextBrushDisabled}"
+                                           Foreground="{StaticResource ForegroundBrushDisabled}"
                                            Margin="6,0,6,0"
                                            VerticalAlignment="Center"
                                            HorizontalAlignment="Left"
@@ -153,10 +153,10 @@
                             <Setter Property="BorderBrush" Value="{StaticResource BorderBrushPressed}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Foreground" Value="{StaticResource TextBrushDisabled}" />
+                            <Setter Property="Foreground" Value="{StaticResource ForegroundBrushDisabled}" />
                         </Trigger>
                         <Trigger Property="IsReadOnly" Value="True">
-                            <Setter Property="Foreground" Value="{StaticResource TextBrushDisabled}" />
+                            <Setter Property="Foreground" Value="{StaticResource ForegroundBrushDisabled}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
