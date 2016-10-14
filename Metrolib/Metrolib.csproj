@@ -57,6 +57,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ContextMenu\MenuItemContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\GroupBox\FlatGroupBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -222,6 +226,7 @@
     <Compile Include="AbstractBootstrapper.cs" />
     <Compile Include="Controls\Buttons\MaximizeButton.cs" />
     <Compile Include="Controls\Buttons\MinimizeButton.cs" />
+    <Compile Include="Controls\ContextMenu\MenuItemContentControl.cs" />
     <Compile Include="Controls\GroupBox\FlatGroupBox.cs" />
     <Compile Include="Controls\PageOverlay\PageOverlay.cs" />
     <Compile Include="Controls\Buttons\AddButton.cs" />

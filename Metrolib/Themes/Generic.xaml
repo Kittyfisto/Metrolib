@@ -10,6 +10,8 @@
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/OpenInNewHyperlink.xaml" />
 
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ContextMenu/FlatContextMenu.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ContextMenu/FlatMenuItem.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ContextMenu/MenuItemContentControl.xaml" />
 
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/PageOverlay/PageOverlay.xaml" />
 

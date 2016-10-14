@@ -71,7 +71,11 @@
                                     VerticalContentAlignment="Top"
                                     HorizontalContentAlignment="Right">
             <controls:EmailToggleButton.ContextMenu>
-                <controls:FlatContextMenu />
+                <controls:FlatContextMenu>
+                    <controls:MenuItemContentControl>
+                        <TextBlock Text="This is content hosted by MenuItemContentControl" />
+                    </controls:MenuItemContentControl>
+                </controls:FlatContextMenu>
             </controls:EmailToggleButton.ContextMenu>
             <controls:EmailToggleButton.Content>
                 <controls:NotificationBadge>
