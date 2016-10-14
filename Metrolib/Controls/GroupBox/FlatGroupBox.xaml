@@ -8,7 +8,6 @@
 
     <Style TargetType="{x:Type local:FlatGroupBox}">
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Background" Value="White" />
         <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
         <Setter Property="Template">
             <Setter.Value>
