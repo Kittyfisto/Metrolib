@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Metrolib.Controls">
+                    xmlns:controls="clr-namespace:Metrolib.Controls"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Themes/Constants.xaml" />
@@ -17,23 +18,44 @@
     <EllipseGeometry x:Key="Circle" Center="12,12" RadiusX="12" RadiusY="12" />
 
     <Style TargetType="{x:Type controls:ExpanderToggleButton}">
-        <Setter Property="Foreground" Value="{StaticResource BorderBrushSelected}" />
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
         <Setter Property="InvertedForeground" Value="White" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="IconHeight" Value="{x:Static system:Double.NaN}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:ExpanderToggleButton}">
-                    <Grid>
-                        <Viewbox Margin="{TemplateBinding Padding}">
-                            <Canvas Width="24" Height="24">
-                                <!-- We have a separate hitbox because we want ONE defined hitbox for mouse/touch interaction -->
-                                <Path x:Name="PART_Hitbox" Fill="Transparent" Data="{StaticResource Circle}"/>
-                                <!-- The circle has an identical geometry than the hitbox, but it is only visible when hovered over -->
-                                <Path x:Name="PART_Circle" Fill="{TemplateBinding Background}" Visibility="Hidden" Data="{StaticResource Circle}"/>
-                                <!-- The actual chevron that shows the expanded state -->
-                                <Path x:Name="PART_Chevron" />
-                            </Canvas>
-                        </Viewbox>
-                    </Grid>
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Height="{TemplateBinding IconHeight}">
+                                <Canvas Width="24" Height="24">
+                                    <!-- We have a separate hitbox because we want ONE defined hitbox for mouse/touch interaction -->
+                                    <Path x:Name="PART_Hitbox" Fill="Transparent" Data="{StaticResource Circle}" />
+                                    <!-- The circle has an identical geometry than the hitbox, but it is only visible when hovered over -->
+                                    <Path x:Name="PART_Circle" Fill="{TemplateBinding Background}" Visibility="Hidden"
+                                          Data="{StaticResource Circle}" />
+                                    <!-- The actual chevron that shows the expanded state -->
+                                    <Path x:Name="PART_Chevron" />
+                                </Canvas>
+                            </Viewbox>
+                            <ContentPresenter Grid.Column="1"
+                                              Margin="{TemplateBinding Padding}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                        </Grid>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <!-- ChevronUp/Down depending on IsChecked -->
                         <Trigger Property="IsChecked" Value="True">
@@ -45,22 +67,33 @@
 
                         <!-- Chevron and Circle color based on IsSelected -->
                         <Trigger Property="controls:Properties.IsInverted" Value="True">
-                            <Setter Property="Fill" TargetName="PART_Chevron" Value="{Binding InvertedForeground,RelativeSource={RelativeSource TemplatedParent}}" />
-                            <Setter Property="Stroke" TargetName="PART_Circle" Value="{Binding InvertedForeground,RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter Property="Fill" TargetName="PART_Chevron"
+                                    Value="{Binding InvertedForeground,RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter Property="Stroke" TargetName="PART_Circle"
+                                    Value="{Binding InvertedForeground,RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
                         <Trigger Property="controls:Properties.IsInverted" Value="False">
-                            <Setter Property="Fill" TargetName="PART_Chevron" Value="{Binding Foreground,RelativeSource={RelativeSource TemplatedParent}}" />
-                            <Setter Property="Stroke" TargetName="PART_Circle" Value="{Binding Foreground,RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter Property="Fill" TargetName="PART_Chevron"
+                                    Value="{Binding Foreground,RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter Property="Stroke" TargetName="PART_Circle"
+                                    Value="{Binding Foreground,RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
 
                         <!-- Color of icon when disabled -->
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="PART_Chevron" Property="Fill" Value="{StaticResource BorderBrushDisabled}" />
+                            <Setter TargetName="PART_Chevron" Property="Fill"
+                                    Value="{StaticResource BorderBrushDisabled}" />
                         </Trigger>
-                        
+
                         <!-- The circle is only visible when the user hovers over it -->
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Visibility" TargetName="PART_Circle" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptured" Value="True">
+                            <Setter Property="Visibility" TargetName="PART_Circle" Value="Visible" />
+                            <Setter TargetName="PART_Circle" Property="Stroke"
+                                    Value="{StaticResource ForegroundBrushPressed}">
+                            </Setter>
                         </Trigger>
 
                     </ControlTemplate.Triggers>

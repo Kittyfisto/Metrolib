@@ -44,7 +44,7 @@
             <controls:FlatTabItem Header="Scrolling">
                 <sample:Scrolling />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="Items" IsSelected="True">
+            <controls:FlatTabItem Header="Items">
                 <sample:Items />
             </controls:FlatTabItem>
             <controls:FlatTabItem Header="List">
@@ -53,8 +53,8 @@
             <controls:FlatTabItem Header="Tree">
                 <sample:Tree />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="GroupBox">
-                <sample:GroupBoxes />
+            <controls:FlatTabItem Header="ContentControls" IsSelected="True">
+                <sample:ContentControls />
             </controls:FlatTabItem>
         </tab:FlatTabControl>
 
