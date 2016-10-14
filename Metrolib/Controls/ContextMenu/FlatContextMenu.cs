@@ -96,11 +96,15 @@ namespace Metrolib.Controls
 
 		private void TimerOnTick(object sender, EventArgs eventArgs)
 		{
-			FlatMenuItem first = FirstMenuItem();
+			var first = FirstMenuItem();
 			if (first != null)
 			{
 				first.MouseEnter += FirstOnMouseEnter;
 				first.MouseLeave += FirstOnMouseLeave;
+				_timer.Stop();
+			}
+			else if (Items.OfType<MenuItemContentControl>().Any())
+			{
 				_timer.Stop();
 			}
 		}
@@ -115,7 +119,7 @@ namespace Metrolib.Controls
 			IsFirstItemHovered = true;
 		}
 
-		private FlatMenuItem FirstMenuItem()
+		private FrameworkElement FirstMenuItem()
 		{
 			return Items.OfType<FlatMenuItem>().FirstOrDefault();
 		}
