@@ -31,7 +31,10 @@
                                                              Margin="{Binding BulletinMargin, RelativeSource={RelativeSource AncestorType=controls:BulletinItemsControl}}"
                                                              VerticalAlignment="Top"
                                                              Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=controls:BulletinItemsControl}}" />
-                                                    <ContentPresenter Content="{Binding}" Grid.Column="1" />
+                                                    <ContentPresenter Content="{Binding}"
+                                                                      ContentTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource AncestorType=controls:BulletinItemsControl}}"
+                                                                      ContentTemplateSelector="{Binding ItemTemplateSelector, RelativeSource={RelativeSource AncestorType=controls:BulletinItemsControl}}"
+                                                                      Grid.Column="1" />
                                                 </Grid>
                                             </DataTemplate>
                                         </Setter.Value>

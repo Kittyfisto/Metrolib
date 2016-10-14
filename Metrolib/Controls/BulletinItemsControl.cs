@@ -24,10 +24,42 @@ namespace Metrolib.Controls
 			DependencyProperty.Register("BulletinMargin", typeof (Thickness), typeof (BulletinItemsControl),
 			                            new PropertyMetadata(default(Thickness)));
 
+		/// <summary>
+		///     Definition of the <see cref="ItemTemplate" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty ItemTemplateProperty =
+			DependencyProperty.Register("ItemTemplate", typeof (DataTemplate), typeof (BulletinItemsControl),
+			                            new PropertyMetadata(default(DataTemplate)));
+
+		/// <summary>
+		///     Definition of the <see cref="ItemTemplateSelector" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty ItemTemplateSelectorProperty =
+			DependencyProperty.Register("ItemTemplateSelector", typeof (DataTemplateSelector), typeof (BulletinItemsControl),
+			                            new PropertyMetadata(default(DataTemplateSelector)));
+
 		static BulletinItemsControl()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (BulletinItemsControl),
 			                                         new FrameworkPropertyMetadata(typeof (BulletinItemsControl)));
+		}
+
+		/// <summary>
+		///     The template selector that is used to decide which template shall be used for each item of <see cref="ItemsSource" />.
+		/// </summary>
+		public DataTemplateSelector ItemTemplateSelector
+		{
+			get { return (DataTemplateSelector) GetValue(ItemTemplateSelectorProperty); }
+			set { SetValue(ItemTemplateSelectorProperty, value); }
+		}
+
+		/// <summary>
+		///     The template that is used to present each item of the <see cref="ItemsSource" />.
+		/// </summary>
+		public DataTemplate ItemTemplate
+		{
+			get { return (DataTemplate) GetValue(ItemTemplateProperty); }
+			set { SetValue(ItemTemplateProperty, value); }
 		}
 
 		/// <summary>
