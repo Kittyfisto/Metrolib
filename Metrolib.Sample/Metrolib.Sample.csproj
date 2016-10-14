@@ -56,6 +56,9 @@
     <Compile Include="GroupBoxes.xaml.cs">
       <DependentUpon>GroupBoxes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Items.xaml.cs">
+      <DependentUpon>Items.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Lists.xaml.cs">
       <DependentUpon>Lists.xaml</DependentUpon>
     </Compile>
@@ -83,6 +86,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GroupBoxes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -49,6 +49,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\BulletinItemsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Buttons\MaximizeButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -224,6 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractBootstrapper.cs" />
+    <Compile Include="Controls\BulletinItemsControl.cs" />
     <Compile Include="Controls\Buttons\MaximizeButton.cs" />
     <Compile Include="Controls\Buttons\MinimizeButton.cs" />
     <Compile Include="Controls\ContextMenu\MenuItemContentControl.cs" />
