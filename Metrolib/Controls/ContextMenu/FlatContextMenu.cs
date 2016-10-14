@@ -67,6 +67,25 @@ namespace Metrolib.Controls
 			set { SetValue(IsFirstItemHoveredProperty, value); }
 		}
 
+		/// <summary>
+		///     Creates and returns a new Metrolib.Controls.FlatMenuItem container.
+		/// </summary>
+		/// <returns></returns>
+		protected override DependencyObject GetContainerForItemOverride()
+		{
+			return new FlatMenuItem();
+		}
+
+		/// <summary>
+		///     Determines whether an object is a Metrolib.Controls.FlatMenuItem.
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		protected override bool IsItemItsOwnContainerOverride(object item)
+		{
+			return item is FlatMenuItem;
+		}
+
 		private void TimerOnTick(object sender, EventArgs eventArgs)
 		{
 			FlatMenuItem first = FirstMenuItem();
