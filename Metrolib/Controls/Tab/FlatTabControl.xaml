@@ -6,9 +6,37 @@
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Themes/Constants.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="{x:Type controls:FlatTabControl}" BasedOn="{StaticResource {x:Type TabControl}}">
+    <Style TargetType="{x:Type controls:FlatTabControl}">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="White" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:FlatTabControl}">
+                     <Border BorderThickness="{TemplateBinding BorderThickness}"
+                             BorderBrush="{TemplateBinding BorderBrush}"
+                             Background="{TemplateBinding Background}">
+                         <Grid>
+                             <Grid.RowDefinitions>
+                                 <RowDefinition Height="Auto" />
+                                 <RowDefinition />
+                             </Grid.RowDefinitions>
+                             
+                             <TabPanel x:Name="HeaderPanel"
+                                       IsItemsHost="True" />
+
+                             <ContentPresenter x:Name="PART_SelectedContentHost"
+                                               Grid.Row="1"
+                                               ContentSource="SelectedContent"
+                                               Margin="{TemplateBinding Padding}"
+                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                         </Grid>
+                     </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>
