@@ -25,6 +25,11 @@ namespace Metrolib
 			_pendingInvokes = new SortedDictionary<DispatcherPriority, List<Action>>();
 		}
 
+		public bool HasAccess
+		{
+			get { return false; }
+		}
+
 		/// <summary>
 		///     Adds the given action to the list of actions to be executed later on.
 		/// </summary>

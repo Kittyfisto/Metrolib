@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Threading;
 
 namespace Metrolib
@@ -19,6 +20,11 @@ namespace Metrolib
 		public UiDispatcher(Dispatcher dispatcher)
 		{
 			_dispatcher = dispatcher;
+		}
+
+		public bool HasAccess
+		{
+			get { return Thread.CurrentThread == _dispatcher.Thread; }
 		}
 
 		/// <summary>
