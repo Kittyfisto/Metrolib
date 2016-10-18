@@ -14,26 +14,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:FlatTabControl}">
-                     <Border BorderThickness="{TemplateBinding BorderThickness}"
-                             BorderBrush="{TemplateBinding BorderBrush}"
-                             Background="{TemplateBinding Background}">
-                         <Grid>
-                             <Grid.RowDefinitions>
-                                 <RowDefinition Height="Auto" />
-                                 <RowDefinition />
-                             </Grid.RowDefinitions>
-                             
-                             <TabPanel x:Name="HeaderPanel"
-                                       IsItemsHost="True" />
+                    <Border BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
 
-                             <ContentPresenter x:Name="PART_SelectedContentHost"
-                                               Grid.Row="1"
-                                               ContentSource="SelectedContent"
-                                               Margin="{TemplateBinding Padding}"
-                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                         </Grid>
-                     </Border>
+                            <TabPanel x:Name="HeaderPanel"
+                                      IsItemsHost="True"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+                            <ContentPresenter x:Name="PART_SelectedContentHost"
+                                              Grid.Row="1"
+                                              ContentSource="SelectedContent"
+                                              Margin="{TemplateBinding Padding}" />
+                        </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
