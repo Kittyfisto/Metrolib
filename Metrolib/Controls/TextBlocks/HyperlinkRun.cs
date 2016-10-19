@@ -129,11 +129,10 @@ namespace Metrolib.Controls.TextBlocks
 			if (IsMouseCaptured)
 			{
 				ReleaseMouseCapture();
-
-				Navigate();
-
-				e.Handled = true;
 			}
+
+			Navigate();
+			e.Handled = true;
 		}
 
 		private void OnTouchDown(object sender, TouchEventArgs e)

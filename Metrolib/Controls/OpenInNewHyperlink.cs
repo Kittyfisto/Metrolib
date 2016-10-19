@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using log4net;
 
 namespace Metrolib.Controls
 {
@@ -15,8 +12,6 @@ namespace Metrolib.Controls
 	public class OpenInNewHyperlink
 		: Control
 	{
-		private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
 		/// <summary>
 		///     Definition of the <see cref="NavigateUri" /> dependency property.
 		/// </summary>
@@ -63,15 +58,6 @@ namespace Metrolib.Controls
 		}
 
 		/// <summary>
-		///     Initializes this class.
-		/// </summary>
-		public OpenInNewHyperlink()
-		{
-			MouseLeftButtonDown += OnMouseLeftButtonDown;
-			MouseLeftButtonUp += OnMouseLeftButtonUp;
-		}
-
-		/// <summary>
 		///     The process that shall be started via <see cref="Process.Start()" />.
 		/// </summary>
 		public string ProcessName
@@ -114,53 +100,6 @@ namespace Metrolib.Controls
 		{
 			get { return (Uri) GetValue(NavigateUriProperty); }
 			set { SetValue(NavigateUriProperty, value); }
-		}
-
-		private void OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-		{
-			IsPressed = false;
-
-			if (IsMouseCaptured)
-			{
-				ReleaseMouseCapture();
-
-				var uri = NavigateUri;
-				var processName = ProcessName;
-				if (uri != null)
-				{
-					var args = new ProcessStartInfo(NavigateUri.ToString());
-					Start(args);
-				}
-				else if (processName != null)
-				{
-					var args = new ProcessStartInfo(processName, ProcessStartArguments);
-					Start(args);
-				}
-				else
-				{
-					Log.WarnFormat("Neither NavigateUri, nor ProcessName given, can't start process!");
-				}
-
-				e.Handled = true;
-			}
-		}
-
-		private void Start(ProcessStartInfo info)
-		{
-			try
-			{
-				Process.Start(info);
-			}
-			catch (Exception e)
-			{
-				Log.ErrorFormat("Cauhgt unexpected exception: {0}", e);
-			}
-		}
-
-		private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
-		{
-			IsPressed = true;
-			CaptureMouse();
 		}
 	}
 }

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:Metrolib.Controls;assembly=Metrolib"
+             xmlns:textBlocks="clr-namespace:Metrolib.Controls.TextBlocks;assembly=Metrolib"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -20,6 +21,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
             <RowDefinition Height="8" />
+            <RowDefinition Height="32" />
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
@@ -42,5 +44,12 @@
         <controls:OpenInNewHyperlink Grid.Column="2" Grid.Row="3" Text="google.com" NavigateUri="http://google.com" VerticalAlignment="Center" HorizontalAlignment="Center" />
         <controls:OpenInNewHyperlink Grid.Column="4" Grid.Row="3" Text="Notepad" ProcessName="Notepad.exe" VerticalAlignment="Center" HorizontalAlignment="Center" />
         <controls:OpenInNewHyperlink Grid.Column="6" Grid.Row="3" IsEnabled="False" Text="google.com" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        
+        <TextBlock Text="HyperlinkRun" Grid.Row="4" VerticalAlignment="Center" />
+        <TextBlock Grid.Column="2" Grid.Row="4">
+            <Run Text="Please" />
+            <textBlocks:HyperlinkRun Text="report" NavigateUri="http://google.com" />
+            <Run Text="a bug!" />
+        </TextBlock>
     </Grid>
 </UserControl>
