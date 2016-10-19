@@ -232,6 +232,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractBootstrapper.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Controls\BulletinItemsControl.cs" />
     <Compile Include="Controls\Buttons\MaximizeButton.cs" />
     <Compile Include="Controls\Buttons\MinimizeButton.cs" />
@@ -254,6 +255,7 @@
     <Compile Include="Controls\Tab\FlatTabControl.cs" />
     <Compile Include="Controls\Tab\FlatTabItem.cs" />
     <Compile Include="Controls\TextBlocks\FlatTextBlock.cs" />
+    <Compile Include="Controls\TextBlocks\HyperlinkRun.cs" />
     <Compile Include="Controls\TextBoxes\FlatPasswordBox.cs" />
     <Compile Include="Controls\TextBoxes\SearchTextBox.cs" />
     <Compile Include="Controls\TextBoxes\WatermarkTextBox.cs" />

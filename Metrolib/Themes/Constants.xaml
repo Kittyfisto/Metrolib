@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+                    xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:metrolib="clr-namespace:Metrolib">
 
     <system:Double x:Key="TextSize">12</system:Double>
     <system:Double x:Key="TextSizeH1">32</system:Double>
@@ -8,10 +8,10 @@
 
     <!-- COLORS -->
 
-    <SolidColorBrush x:Key="ForegroundBrush" Color="#333333" />
+    <SolidColorBrush x:Key="ForegroundBrush" Color="{x:Static metrolib:Constants.ForegroundColor}" />
     <SolidColorBrush x:Key="ForegroundBrushInverted" Color="#FFFBFA" />
-    <SolidColorBrush x:Key="ForegroundBrushDisabled" Color="#C9DAEB" />
-    <SolidColorBrush x:Key="ForegroundBrushAccent" Color="#3998D6" />
+    <SolidColorBrush x:Key="ForegroundBrushDisabled" Color="{x:Static metrolib:Constants.ForegroundColorDisabled}" />
+    <SolidColorBrush x:Key="ForegroundBrushAccent" Color="{x:Static metrolib:Constants.ForegroundColorAccent}" />
 
     <SolidColorBrush x:Key="TextBrushUnimportant" Color="#B7B7B7" />
     <SolidColorBrush x:Key="TextBrushUnimportantInverted" Color="#DAECF7" />
@@ -23,8 +23,8 @@
     <SolidColorBrush x:Key="BackgroundBrushSelectedAndHovered" Color="#348BC1" />
     <SolidColorBrush x:Key="BackgroundBrushSelectedUnfocused" Color="#E7E7E7" />
 
-    <SolidColorBrush x:Key="ForegroundBrushHovered" Color="#2061A1" />
-    <SolidColorBrush x:Key="ForegroundBrushPressed" Color="#0B4680" />
+    <SolidColorBrush x:Key="ForegroundBrushHovered" Color="{x:Static metrolib:Constants.ForegroundColorHovered}" />
+    <SolidColorBrush x:Key="ForegroundBrushPressed" Color="{x:Static metrolib:Constants.ForegroundColorPressed}" />
     <SolidColorBrush x:Key="ForegroundBrushSelected" Color="#3998D6" />
     <SolidColorBrush x:Key="ForegroundBrushSelectedAndHovered" Color="#3998D6" />
 
