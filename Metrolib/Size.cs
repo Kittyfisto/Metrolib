@@ -38,7 +38,7 @@ namespace Metrolib
 		/// </summary>
 		public static readonly Size OneGigabyte;
 
-		private readonly ulong _numBytes;
+		private readonly long _numBytes;
 
 		static Size()
 		{
@@ -49,7 +49,7 @@ namespace Metrolib
 			OneGigabyte = new Size(1024*1024*1024);
 		}
 
-		private Size(ulong numBytes)
+		private Size(long numBytes)
 		{
 			_numBytes = numBytes;
 		}
@@ -57,7 +57,7 @@ namespace Metrolib
 		/// <summary>
 		///     The total amount of bytes in this <see cref="Size" />.
 		/// </summary>
-		public ulong Bytes
+		public long Bytes
 		{
 			get { return _numBytes; }
 		}
@@ -205,6 +205,17 @@ namespace Metrolib
 		}
 
 		/// <summary>
+		///     Subtracts two sizes.
+		/// </summary>
+		/// <param name="lhs"></param>
+		/// <param name="rhs"></param>
+		/// <returns></returns>
+		public static Size operator -(Size lhs, Size rhs)
+		{
+			return new Size(lhs._numBytes - rhs._numBytes);
+		}
+
+		/// <summary>
 		/// Multiplies a size by an integer.
 		/// </summary>
 		/// <param name="lhs"></param>
@@ -212,7 +223,7 @@ namespace Metrolib
 		/// <returns></returns>
 		public static Size operator *(Size lhs, long rhs)
 		{
-			return FromBytes((long)lhs._numBytes*rhs);
+			return FromBytes(lhs._numBytes*rhs);
 		}
 
 		/// <summary>
@@ -223,7 +234,7 @@ namespace Metrolib
 		/// <returns></returns>
 		public static Size operator *(long lhs, Size rhs)
 		{
-			return FromBytes(lhs*(long) rhs._numBytes);
+			return FromBytes(lhs*rhs._numBytes);
 		}
 
 		/// <summary>
@@ -257,7 +268,7 @@ namespace Metrolib
 		[Pure]
 		public static Size FromBytes(long numBytes)
 		{
-			return new Size((ulong) numBytes);
+			return new Size(numBytes);
 		}
 
 		/// <summary>
