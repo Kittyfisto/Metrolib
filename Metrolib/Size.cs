@@ -5,7 +5,10 @@ namespace Metrolib
 {
 	/// <summary>
 	///     This structure is meant to hold an amount of information, similar to
-	///     <see cref="TimeSpan" /> holding an amount of time.
+	///     <see cref="TimeSpan" /> holding an amount of time. The smallest unit of information
+	///     that can be represented is a byte. All mathematical operations performed on this type
+	///     are performed on the byte level (for example division performs integer division of the number
+	///     of bytes of a Size value).
 	/// </summary>
 	/// <remarks>
 	///     Values can be created from <see cref="FromBytes" />, etc.. and the amount of
@@ -216,7 +219,7 @@ namespace Metrolib
 		}
 
 		/// <summary>
-		/// Multiplies a size by an integer.
+		///     Multiplies a size by an integer.
 		/// </summary>
 		/// <param name="lhs"></param>
 		/// <param name="rhs"></param>
@@ -227,7 +230,7 @@ namespace Metrolib
 		}
 
 		/// <summary>
-		/// Multiplies a size by an integer.
+		///     Multiplies a size by an integer.
 		/// </summary>
 		/// <param name="lhs"></param>
 		/// <param name="rhs"></param>
@@ -235,6 +238,17 @@ namespace Metrolib
 		public static Size operator *(long lhs, Size rhs)
 		{
 			return FromBytes(lhs*rhs._numBytes);
+		}
+
+		/// <summary>
+		///     Divides a size by an integer.
+		/// </summary>
+		/// <param name="lhs"></param>
+		/// <param name="rhs"></param>
+		/// <returns></returns>
+		public static Size operator /(Size lhs, long rhs)
+		{
+			return FromBytes(lhs._numBytes/rhs);
 		}
 
 		/// <summary>
@@ -279,7 +293,7 @@ namespace Metrolib
 		[Pure]
 		public static Size FromKilobytes(long numKilobytes)
 		{
-			return OneKilobyte * numKilobytes;
+			return OneKilobyte*numKilobytes;
 		}
 
 		/// <summary>
@@ -301,7 +315,7 @@ namespace Metrolib
 		[Pure]
 		public static Size FromGigabytes(long numGigabytes)
 		{
-			return OneGigabyte * numGigabytes;
+			return OneGigabyte*numGigabytes;
 		}
 	}
 }

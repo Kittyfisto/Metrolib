@@ -50,6 +50,12 @@ namespace Metrolib.Test
 		}
 
 		[Test]
+		public void TestDivide()
+		{
+			(Size.FromBytes(42)/10).Bytes.Should().Be(4);
+		}
+
+		[Test]
 		public void TestEquality()
 		{
 			Size.Zero.Should().Be(Size.Zero);
