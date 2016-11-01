@@ -63,6 +63,7 @@
     <Compile Include="InvertBoolConverterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchTextBoxTest.cs" />
+    <Compile Include="SizeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Metrolib\Metrolib.csproj">

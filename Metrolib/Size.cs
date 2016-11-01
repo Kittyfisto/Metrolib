@@ -205,6 +205,28 @@ namespace Metrolib
 		}
 
 		/// <summary>
+		/// Multiplies a size by an integer.
+		/// </summary>
+		/// <param name="lhs"></param>
+		/// <param name="rhs"></param>
+		/// <returns></returns>
+		public static Size operator *(Size lhs, long rhs)
+		{
+			return FromBytes((long)lhs._numBytes*rhs);
+		}
+
+		/// <summary>
+		/// Multiplies a size by an integer.
+		/// </summary>
+		/// <param name="lhs"></param>
+		/// <param name="rhs"></param>
+		/// <returns></returns>
+		public static Size operator *(long lhs, Size rhs)
+		{
+			return FromBytes(lhs*(long) rhs._numBytes);
+		}
+
+		/// <summary>
 		///     Converts this value to a user readable string.
 		///     Attempts to choose the most appropriate unit for the actual value.
 		/// </summary>
@@ -236,6 +258,39 @@ namespace Metrolib
 		public static Size FromBytes(long numBytes)
 		{
 			return new Size((ulong) numBytes);
+		}
+
+		/// <summary>
+		///     Creates a new <see cref="Size" /> that holds the given amount of kilobytes.
+		/// </summary>
+		/// <param name="numKilobytes"></param>
+		/// <returns></returns>
+		[Pure]
+		public static Size FromKilobytes(long numKilobytes)
+		{
+			return OneKilobyte * numKilobytes;
+		}
+
+		/// <summary>
+		///     Creates a new <see cref="Size" /> that holds the given amount of megabytes.
+		/// </summary>
+		/// <param name="numMegabytes"></param>
+		/// <returns></returns>
+		[Pure]
+		public static Size FromMegabytes(long numMegabytes)
+		{
+			return OneMegabyte*numMegabytes;
+		}
+
+		/// <summary>
+		///     Creates a new <see cref="Size" /> that holds the given amount of gigabytes.
+		/// </summary>
+		/// <param name="numGigabytes"></param>
+		/// <returns></returns>
+		[Pure]
+		public static Size FromGigabytes(long numGigabytes)
+		{
+			return OneGigabyte * numGigabytes;
 		}
 	}
 }
