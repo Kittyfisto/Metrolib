@@ -46,6 +46,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Image Source="{TemplateBinding Icon}"
+                                       RenderOptions.BitmapScalingMode="HighQuality"
                                        Margin="4,4,0,4" />
 
                                 <TextBlock Text="{TemplateBinding Title}"
