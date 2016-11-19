@@ -14,6 +14,12 @@ namespace Metrolib
 		public double Maximum;
 		public double Minimum;
 
+		public Range(double minMax)
+		{
+			Minimum = minMax;
+			Maximum = minMax;
+		}
+
 		public Range(double minValue, double maxValue)
 		{
 			Minimum = minValue;

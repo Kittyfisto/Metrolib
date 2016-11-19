@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -15,15 +16,39 @@ namespace Metrolib
 	public sealed class LineSeries
 		: INotifyPropertyChanged
 	{
+		private List<Point> _actualValues;
 		private int _count;
 		private Brush _fill;
+		private Pen _outline;
 		private IEnumerable<Point> _values;
+
 		private Range _xRange;
 		private Range _yRange;
-		private Pen _outline;
+
+		public LineSeries()
+		{
+			_outline = new Pen(Brushes.DodgerBlue, 2);
+		}
+
+		public int Count
+		{
+			get { return _count; }
+		}
+
+		public List<Point> ActualValues
+		{
+			get { return _actualValues; }
+			private set
+			{
+				if (value == _actualValues)
+					return;
+
+				_actualValues = value;
+				EmitPropertyChanged();
+			}
+		}
 
 		/// <summary>
-		/// 
 		/// </summary>
 		public Pen Outline
 		{
@@ -39,7 +64,6 @@ namespace Metrolib
 		}
 
 		/// <summary>
-		/// 
 		/// </summary>
 		public Brush Fill
 		{
@@ -63,7 +87,16 @@ namespace Metrolib
 				if (value == _values)
 					return;
 
+				var notify = _values as INotifyCollectionChanged;
+				if (notify != null)
+					notify.CollectionChanged -= OnValuesChanged;
+
 				_values = value;
+
+				notify = Values as INotifyCollectionChanged;
+				if (notify != null)
+					notify.CollectionChanged += OnValuesChanged;
+
 				EmitPropertyChanged();
 
 				UpdateRanges();
@@ -102,6 +135,11 @@ namespace Metrolib
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
+		private void OnValuesChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
+		{
+			UpdateRanges();
+		}
+
 		private void UpdateRanges()
 		{
 			_count = 0;
@@ -120,7 +158,7 @@ namespace Metrolib
 					++_count;
 				}
 
-				if (xRange.Maximum > xRange.Minimum)
+				if (xRange.Maximum >= xRange.Minimum)
 				{
 					XRange = xRange;
 					YRange = yRange;
@@ -131,37 +169,16 @@ namespace Metrolib
 					YRange = new Range();
 				}
 
+				ActualValues = new List<Point>(Values);
 				XRange = XRange;
 				YRange = YRange;
 			}
 			else
 			{
+				ActualValues = new List<Point>();
 				XRange = new Range();
 				YRange = new Range();
 			}
-		}
-
-		public List<Point> ProjectToView(double width, double height)
-		{
-			var ret = new List<Point>(_count);
-			if (Values != null)
-			{
-				foreach (Point point in Values)
-				{
-					Range xRange = XRange;
-					Range yRange = YRange;
-
-					double x = xRange.GetRelative(point.X);
-					double y = yRange.GetRelative(point.Y);
-
-					var view = new Point(
-						x*width,
-						height*(1 - y)
-						);
-					ret.Add(view);
-				}
-			}
-			return ret;
 		}
 
 		private void EmitPropertyChanged([CallerMemberName] string propertyName = null)

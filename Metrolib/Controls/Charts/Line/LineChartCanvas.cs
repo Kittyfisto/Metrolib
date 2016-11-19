@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -12,31 +13,16 @@ namespace Metrolib.Controls.Charts.Line
 		: Control
 	{
 		public static readonly DependencyProperty SeriesProperty =
-			DependencyProperty.Register("Series", typeof (LineSeries), typeof (LineChartCanvas), new PropertyMetadata(null, OnSeriesChanged));
+			DependencyProperty.Register("Series", typeof (LineSeries), typeof (LineChartCanvas),
+			                            new PropertyMetadata(null, OnSeriesChanged));
 
-		private static void OnSeriesChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
-		{
-			((LineChartCanvas) dependencyObject).OnSeriesChanged();
-		}
+		public static readonly DependencyProperty XRangeProperty =
+			DependencyProperty.Register("XRange", typeof (Range), typeof (LineChartCanvas),
+			                            new PropertyMetadata(default(Range), OnXRangeChanged));
 
-		private void OnSeriesChanged()
-		{
-			InvalidateVisual();
-		}
-
-		public LineSeries Series
-		{
-			get { return (LineSeries) GetValue(SeriesProperty); }
-			set { SetValue(SeriesProperty, value); }
-		}
-
-		public static readonly DependencyProperty FillProperty =
-			DependencyProperty.Register("Fill", typeof (Brush), typeof (LineChartCanvas),
-			                            new PropertyMetadata(Brushes.LightSkyBlue));
-
-		public static readonly DependencyProperty OutlineProperty =
-			DependencyProperty.Register("Outline", typeof (Pen), typeof (LineChartCanvas),
-			                            new PropertyMetadata(new Pen(Brushes.DodgerBlue, 2)));
+		public static readonly DependencyProperty YRangeProperty =
+			DependencyProperty.Register("YRange", typeof (Range), typeof (LineChartCanvas),
+			                            new PropertyMetadata(default(Range), OnYRangeChanged));
 
 		private readonly StreamGeometry _area;
 		private readonly StreamGeometry _outline;
@@ -53,34 +39,84 @@ namespace Metrolib.Controls.Charts.Line
 			_area = new StreamGeometry();
 		}
 
-		public Pen Outline
+		public Range YRange
 		{
-			get { return (Pen) GetValue(OutlineProperty); }
-			set { SetValue(OutlineProperty, value); }
+			get { return (Range) GetValue(YRangeProperty); }
+			set { SetValue(YRangeProperty, value); }
 		}
 
-		public Brush Fill
+		public Range XRange
 		{
-			get { return (Brush) GetValue(FillProperty); }
-			set { SetValue(FillProperty, value); }
+			get { return (Range) GetValue(XRangeProperty); }
+			set { SetValue(XRangeProperty, value); }
+		}
+
+		public LineSeries Series
+		{
+			get { return (LineSeries) GetValue(SeriesProperty); }
+			set { SetValue(SeriesProperty, value); }
+		}
+
+		private static void OnXRangeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			((LineChartCanvas) d).OnXRangeChanged();
+		}
+
+		private void OnXRangeChanged()
+		{
+			InvalidateVisual();
+		}
+
+		private static void OnYRangeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			((LineChartCanvas) d).OnYRangeChanged();
+		}
+
+		private void OnYRangeChanged()
+		{
+			InvalidateVisual();
+		}
+
+		private static void OnSeriesChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+		{
+			((LineChartCanvas) dependencyObject).OnSeriesChanged((LineSeries) args.OldValue, (LineSeries) args.NewValue);
+		}
+
+		private void OnSeriesChanged(LineSeries oldValue, LineSeries newValue)
+		{
+			if (oldValue != null)
+			{
+				oldValue.PropertyChanged -= OnLineSeriesPropertyChanged;
+			}
+			if (newValue != null)
+			{
+				newValue.PropertyChanged += OnLineSeriesPropertyChanged;
+			}
+
+			InvalidateVisual();
+		}
+
+		private void OnLineSeriesPropertyChanged(object sender, PropertyChangedEventArgs args)
+		{
+			InvalidateVisual();
 		}
 
 		protected override void OnRender(DrawingContext drawingContext)
 		{
 			if (Series != null)
 			{
-				List<Point> viewPoints = Series.ProjectToView(ActualWidth, ActualHeight);
+				List<Point> viewPoints = ProjectToView(Series.ActualValues, XRange, YRange, ActualWidth, ActualHeight);
 
-				if (Fill != null)
+				if (Series.Fill != null)
 				{
 					CreateArea(viewPoints);
-					drawingContext.DrawGeometry(Fill, null, _area);
+					drawingContext.DrawGeometry(Series.Fill, null, _area);
 				}
 
-				if (Outline != null)
+				if (Series.Outline != null)
 				{
 					CreateOutline(viewPoints);
-					drawingContext.DrawGeometry(null, Outline, _outline);
+					drawingContext.DrawGeometry(null, Series.Outline, _outline);
 				}
 			}
 		}
@@ -105,6 +141,23 @@ namespace Metrolib.Controls.Charts.Line
 					}
 				}
 			}
+		}
+
+		public static List<Point> ProjectToView(List<Point> values, Range xRange, Range yRange, double width, double height)
+		{
+			var ret = new List<Point>(values.Count);
+			foreach (Point point in values)
+			{
+				double x = xRange.GetRelative(point.X);
+				double y = yRange.GetRelative(point.Y);
+
+				var view = new Point(
+					x * width,
+					height * (1 - y)
+					);
+				ret.Add(view);
+			}
+			return ret;
 		}
 
 		private void CreateArea(List<Point> viewPoints)
