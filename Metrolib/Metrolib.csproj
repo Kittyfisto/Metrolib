@@ -61,6 +61,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Charts\AxisControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Charts\Line\LineChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ContextMenu\MenuItemContentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -236,6 +244,11 @@
     <Compile Include="Controls\BulletinItemsControl.cs" />
     <Compile Include="Controls\Buttons\MaximizeButton.cs" />
     <Compile Include="Controls\Buttons\MinimizeButton.cs" />
+    <Compile Include="Controls\Charts\AxisControl.cs" />
+    <Compile Include="Controls\Charts\Line\LineChartCanvas.cs" />
+    <Compile Include="Controls\Charts\Line\LineChart.cs" />
+    <Compile Include="Controls\Charts\Line\LineSeries.cs" />
+    <Compile Include="Controls\Charts\Range.cs" />
     <Compile Include="Controls\ContextMenu\MenuItemContentControl.cs" />
     <Compile Include="Controls\Expander\FlatExpander.cs" />
     <Compile Include="Controls\GroupBox\FlatGroupBox.cs" />

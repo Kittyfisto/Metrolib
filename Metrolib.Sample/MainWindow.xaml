@@ -29,7 +29,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <tab:FlatTabControl Margin="8,0,8,8">
-            <controls:FlatTabItem Header="TextBlocks" IsSelected="True">
+            <controls:FlatTabItem Header="TextBlocks">
                 <sample:TextBlocks />
             </controls:FlatTabItem>
             <controls:FlatTabItem Header="TextBoxes">
@@ -55,6 +55,9 @@
             </controls:FlatTabItem>
             <controls:FlatTabItem Header="ContentControls">
                 <sample:ContentControls />
+            </controls:FlatTabItem>
+            <controls:FlatTabItem Header="Charts" IsSelected="True">
+                <sample:Charts />
             </controls:FlatTabItem>
         </tab:FlatTabControl>
 

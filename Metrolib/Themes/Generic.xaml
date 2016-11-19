@@ -58,6 +58,9 @@
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/VisibilityToggleButton.xaml" />
         
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Windows/ChromelessWindow.xaml" />
+
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Charts/AxisControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Charts/Line/LineChart.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
