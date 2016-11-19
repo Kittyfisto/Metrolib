@@ -6,23 +6,28 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type metrolib:LineChart}">
-                    <Grid x:Name="PART_MainGrid">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid x:Name="PART_MainGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                        <charts:AxisControl Orientation="Vertical"
-                                            Range="{TemplateBinding XRange}" />
-                        <charts:AxisControl Orientation="Horizontal"
-                                            Range="{TemplateBinding YRange}"
-                                            Grid.Column="1"
-                                            Grid.Row="1" />
-                    </Grid>
+                            <charts:AxisControl Orientation="Vertical"
+                                                Range="{TemplateBinding XRange}"
+                                                Content="{TemplateBinding YAxisCaption}" />
+                            <charts:AxisControl Orientation="Horizontal"
+                                                Range="{TemplateBinding YRange}"
+                                                Content="{TemplateBinding XAxisCaption}"
+                                                Grid.Column="1"
+                                                Grid.Row="1" />
+                        </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

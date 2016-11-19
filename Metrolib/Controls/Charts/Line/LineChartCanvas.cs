@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,6 +27,7 @@ namespace Metrolib.Controls.Charts.Line
 
 		private readonly StreamGeometry _area;
 		private readonly StreamGeometry _outline;
+		private IEnumerable<Point> _values;
 
 		static LineChartCanvas()
 		{
@@ -93,10 +95,42 @@ namespace Metrolib.Controls.Charts.Line
 				newValue.PropertyChanged += OnLineSeriesPropertyChanged;
 			}
 
+			if (newValue != null)
+			{
+				_values = newValue.Values;
+			}
+			else
+			{
+				_values = null;
+			}
+
 			InvalidateVisual();
 		}
 
 		private void OnLineSeriesPropertyChanged(object sender, PropertyChangedEventArgs args)
+		{
+			switch (args.PropertyName)
+			{
+				case "Values":
+					OnValuesChanged(_values, Series.Values);
+					break;
+			}
+
+			InvalidateVisual();
+		}
+
+		private void OnValuesChanged(IEnumerable<Point> oldValue, IEnumerable<Point> newValue)
+		{
+			var notifiable = oldValue as INotifyCollectionChanged;
+			if (notifiable != null)
+				notifiable.CollectionChanged -= ValuesOnCollectionChanged;
+			notifiable = newValue as INotifyCollectionChanged;
+			if (notifiable != null)
+				notifiable.CollectionChanged += ValuesOnCollectionChanged;
+			_values = newValue;
+		}
+
+		private void ValuesOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			InvalidateVisual();
 		}
@@ -105,7 +139,7 @@ namespace Metrolib.Controls.Charts.Line
 		{
 			if (Series != null)
 			{
-				List<Point> viewPoints = ProjectToView(Series.ActualValues, XRange, YRange, ActualWidth, ActualHeight);
+				List<Point> viewPoints = ProjectToView(_values, Series.Count, XRange, YRange, ActualWidth, ActualHeight);
 
 				if (Series.Fill != null)
 				{
@@ -143,19 +177,22 @@ namespace Metrolib.Controls.Charts.Line
 			}
 		}
 
-		public static List<Point> ProjectToView(List<Point> values, Range xRange, Range yRange, double width, double height)
+		public static List<Point> ProjectToView(IEnumerable<Point> values, int count, Range xRange, Range yRange, double width, double height)
 		{
-			var ret = new List<Point>(values.Count);
-			foreach (Point point in values)
+			var ret = new List<Point>(count);
+			if (values != null)
 			{
-				double x = xRange.GetRelative(point.X);
-				double y = yRange.GetRelative(point.Y);
+				foreach (Point point in values)
+				{
+					double x = xRange.GetRelative(point.X);
+					double y = yRange.GetRelative(point.Y);
 
-				var view = new Point(
-					x * width,
-					height * (1 - y)
-					);
-				ret.Add(view);
+					var view = new Point(
+						x * width,
+						height * (1 - y)
+						);
+					ret.Add(view);
+				}
 			}
 			return ret;
 		}

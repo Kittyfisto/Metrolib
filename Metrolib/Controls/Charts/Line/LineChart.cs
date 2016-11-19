@@ -18,6 +18,8 @@ namespace Metrolib
 	public class LineChart
 		: Control
 	{
+		/// <summary>
+		/// </summary>
 		public static readonly DependencyProperty SeriesProperty =
 			DependencyProperty.Register("Series", typeof (IEnumerable<LineSeries>), typeof (LineChart),
 			                            new PropertyMetadata(null, OnSeriesChanged));
@@ -27,6 +29,8 @@ namespace Metrolib
 			                                      new FrameworkPropertyMetadata(default(Range),
 			                                                                    FrameworkPropertyMetadataOptions.None));
 
+		/// <summary>
+		/// </summary>
 		public static readonly DependencyProperty XRangeProperty
 			= XRangePropertyKey.DependencyProperty;
 
@@ -35,8 +39,18 @@ namespace Metrolib
 			                                      new FrameworkPropertyMetadata(default(Range),
 			                                                                    FrameworkPropertyMetadataOptions.None));
 
+		/// <summary>
+		/// </summary>
 		public static readonly DependencyProperty YRangeProperty
 			= YRangePropertyKey.DependencyProperty;
+
+		public static readonly DependencyProperty YAxisCaptionProperty =
+			DependencyProperty.Register("YAxisCaption", typeof (object), typeof (LineChart),
+										new PropertyMetadata(default(object)));
+
+		public static readonly DependencyProperty XAxisCaptionProperty =
+			DependencyProperty.Register("XAxisCaption", typeof(object), typeof(LineChart),
+										new PropertyMetadata(default(object)));
 
 		private readonly List<LineChartCanvas> _canvasses;
 		private Grid _grid;
@@ -46,23 +60,49 @@ namespace Metrolib
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (LineChart), new FrameworkPropertyMetadata(typeof (LineChart)));
 		}
 
+		/// <summary>
+		/// </summary>
 		public LineChart()
 		{
 			_canvasses = new List<LineChartCanvas>();
 		}
 
+		/// <summary>
+		///     Caption of the x-axis.
+		/// </summary>
+		public object XAxisCaption
+		{
+			get { return GetValue(XAxisCaptionProperty); }
+			set { SetValue(XAxisCaptionProperty, value); }
+		}
+
+		/// <summary>
+		///     Caption of the y-axis.
+		/// </summary>
+		public object YAxisCaption
+		{
+			get { return GetValue(YAxisCaptionProperty); }
+			set { SetValue(YAxisCaptionProperty, value); }
+		}
+
+		/// <summary>
+		/// </summary>
 		public Range YRange
 		{
 			get { return (Range) GetValue(YRangeProperty); }
 			protected set { SetValue(YRangePropertyKey, value); }
 		}
 
+		/// <summary>
+		/// </summary>
 		public Range XRange
 		{
 			get { return (Range) GetValue(XRangeProperty); }
 			protected set { SetValue(XRangePropertyKey, value); }
 		}
 
+		/// <summary>
+		/// </summary>
 		public IEnumerable<LineSeries> Series
 		{
 			get { return (IEnumerable<LineSeries>) GetValue(SeriesProperty); }

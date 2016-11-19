@@ -14,9 +14,8 @@ namespace Metrolib
 	/// <summary>
 	/// </summary>
 	public sealed class LineSeries
-		: INotifyPropertyChanged
+		: ILineSeries
 	{
-		private List<Point> _actualValues;
 		private int _count;
 		private Brush _fill;
 		private Pen _outline;
@@ -25,6 +24,8 @@ namespace Metrolib
 		private Range _xRange;
 		private Range _yRange;
 
+		/// <summary>
+		/// </summary>
 		public LineSeries()
 		{
 			_outline = new Pen(Brushes.DodgerBlue, 2);
@@ -35,17 +36,14 @@ namespace Metrolib
 			get { return _count; }
 		}
 
-		public List<Point> ActualValues
+		public object GetXValue(double value)
 		{
-			get { return _actualValues; }
-			private set
-			{
-				if (value == _actualValues)
-					return;
+			return value;
+		}
 
-				_actualValues = value;
-				EmitPropertyChanged();
-			}
+		public object GetYValue(double value)
+		{
+			return value;
 		}
 
 		/// <summary>
@@ -55,7 +53,7 @@ namespace Metrolib
 			get { return _outline; }
 			set
 			{
-				if (value == _outline)
+				if (ReferenceEquals(value, _outline))
 					return;
 
 				_outline = value;
@@ -70,8 +68,9 @@ namespace Metrolib
 			get { return _fill; }
 			set
 			{
-				if (value == _fill)
+				if (ReferenceEquals(value, _fill))
 					return;
+
 				_fill = value;
 				EmitPropertyChanged();
 			}
@@ -84,7 +83,7 @@ namespace Metrolib
 			get { return _values; }
 			set
 			{
-				if (value == _values)
+				if (ReferenceEquals(value, _values))
 					return;
 
 				var notify = _values as INotifyCollectionChanged;
@@ -133,6 +132,8 @@ namespace Metrolib
 			}
 		}
 
+		/// <summary>
+		/// </summary>
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		private void OnValuesChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
@@ -169,13 +170,11 @@ namespace Metrolib
 					YRange = new Range();
 				}
 
-				ActualValues = new List<Point>(Values);
 				XRange = XRange;
 				YRange = YRange;
 			}
 			else
 			{
-				ActualValues = new List<Point>();
 				XRange = new Range();
 				YRange = new Range();
 			}

@@ -8,8 +8,37 @@
                 <ControlTemplate TargetType="{x:Type charts:AxisControl}">
 
                     <Grid>
-                        <Rectangle x:Name="PART_Vertical" Width="1" Fill="Black" />
-                        <Rectangle x:Name="PART_Horizontal" Height="1" Fill="Black" />
+                        <Grid x:Name="PART_Vertical">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <ContentPresenter Content="{TemplateBinding Content}"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"
+                                              Grid.Row="1">
+                                <ContentPresenter.RenderTransform>
+                                    <RotateTransform CenterX="0.5" CenterY="0.5" Angle="-90" />
+                                </ContentPresenter.RenderTransform>
+                            </ContentPresenter>
+
+                            <Rectangle Grid.Column="1"
+                                       Width="1"
+                                       Fill="Black" />
+                        </Grid>
+                        <Grid x:Name="PART_Horizontal">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Rectangle Height="1" Fill="Black" />
+
+                            <ContentPresenter Content="{TemplateBinding Content}"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"
+                                              Grid.Row="1" />
+                        </Grid>
                     </Grid>
 
                     <ControlTemplate.Triggers>

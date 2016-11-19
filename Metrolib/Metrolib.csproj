@@ -245,6 +245,7 @@
     <Compile Include="Controls\Buttons\MaximizeButton.cs" />
     <Compile Include="Controls\Buttons\MinimizeButton.cs" />
     <Compile Include="Controls\Charts\AxisControl.cs" />
+    <Compile Include="Controls\Charts\Line\ILineSeries.cs" />
     <Compile Include="Controls\Charts\Line\LineChartCanvas.cs" />
     <Compile Include="Controls\Charts\Line\LineChart.cs" />
     <Compile Include="Controls\Charts\Line\LineSeries.cs" />

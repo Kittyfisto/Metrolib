@@ -4,7 +4,7 @@ using System.Windows.Controls;
 namespace Metrolib.Controls.Charts
 {
 	public class AxisControl
-		: Control
+		: ContentControl
 	{
 		public static readonly DependencyProperty OrientationProperty =
 			DependencyProperty.Register("Orientation", typeof (Orientation), typeof (AxisControl),

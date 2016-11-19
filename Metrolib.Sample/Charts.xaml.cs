@@ -18,8 +18,10 @@ namespace Metrolib.Sample
 		{
 			InitializeComponent();
 
-			_curve = new ObservableCollection<Point>(Enumerable.Range(0, 8).Select(x => new Point()));
+			_curve = new ObservableCollection<Point>(Enumerable.Range(0, 101).Select(x => new Point()));
 
+			PART_Chart.XAxisCaption = "Frequency";
+			PART_Chart.YAxisCaption = "dBm";
 			PART_Chart.Series = new[]
 				{
 					new LineSeries
@@ -35,12 +37,15 @@ namespace Metrolib.Sample
 									new Point(5, -1),
 									new Point(6, 0.25),
 									new Point(7, 0.3),
+									new Point(8, 1),
+									new Point(9, 1.3),
+									new Point(10, 1.3),
 								}
 						},
 					new LineSeries
 						{
 							Values = _curve,
-							Fill = null,
+							Fill = Brushes.LightSalmon,
 							Outline = new Pen(Brushes.OrangeRed, 2)
 						}
 				};
@@ -56,7 +61,8 @@ namespace Metrolib.Sample
 		{
 			for (int i = 0; i < _curve.Count; ++i)
 			{
-				_curve[i] = new Point(i, _random.NextDouble());
+				double y = Math.Cos(i/10.0) + _random.NextDouble() / 4;
+				_curve[i] = new Point(1.0*i/10, y);
 			}
 		}
 	}
