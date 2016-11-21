@@ -245,10 +245,14 @@
     <Compile Include="Controls\Buttons\MaximizeButton.cs" />
     <Compile Include="Controls\Buttons\MinimizeButton.cs" />
     <Compile Include="Controls\Charts\AxisControl.cs" />
+    <Compile Include="Controls\Charts\Line\Canvas\AbstractLineChartCanvas.cs" />
+    <Compile Include="Controls\Charts\Line\Canvas\AbstractLineSeriesCanvas.cs" />
     <Compile Include="Controls\Charts\Line\ILineSeries.cs" />
-    <Compile Include="Controls\Charts\Line\LineChartCanvas.cs" />
+    <Compile Include="Controls\Charts\Line\Canvas\LineChartCanvas.cs" />
     <Compile Include="Controls\Charts\Line\LineChart.cs" />
+    <Compile Include="Controls\Charts\Line\LineChartType.cs" />
     <Compile Include="Controls\Charts\Line\LineSeries.cs" />
+    <Compile Include="Controls\Charts\Line\Canvas\StackedLineChartCanvas.cs" />
     <Compile Include="Controls\Charts\Range.cs" />
     <Compile Include="Controls\ContextMenu\MenuItemContentControl.cs" />
     <Compile Include="Controls\Expander\FlatExpander.cs" />

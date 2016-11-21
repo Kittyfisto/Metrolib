@@ -19,10 +19,10 @@
                             </Grid.RowDefinitions>
 
                             <charts:AxisControl Orientation="Vertical"
-                                                Range="{TemplateBinding XRange}"
+                                                Range="{Binding Canvas.XRange, RelativeSource={RelativeSource TemplatedParent}}"
                                                 Content="{TemplateBinding YAxisCaption}" />
                             <charts:AxisControl Orientation="Horizontal"
-                                                Range="{TemplateBinding YRange}"
+                                                Range="{Binding Canvas.YRange, RelativeSource={RelativeSource TemplatedParent}}"
                                                 Content="{TemplateBinding XAxisCaption}"
                                                 Grid.Column="1"
                                                 Grid.Row="1" />

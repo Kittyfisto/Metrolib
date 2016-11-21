@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 
@@ -54,3 +55,4 @@ using System.Windows;
 
 [assembly: AssemblyVersion("0.1.44.0")]
 [assembly: AssemblyFileVersion("0.1.44.0")]
+[assembly:InternalsVisibleTo("Metrolib.Test")]
