@@ -14,26 +14,47 @@ namespace Metrolib
 		: INotifyPropertyChanged
 	{
 		/// <summary>
+		///     The amount of points in <see cref="Values" />.
 		/// </summary>
 		int Count { get; }
 
 		/// <summary>
+		///     The pen to draw the outline of this series with, if any.
 		/// </summary>
-		Pen Outline { get; set; }
+		Pen Outline { get; }
 
 		/// <summary>
+		///     The brush to fill the area under this series, if any.
 		/// </summary>
-		Brush Fill { get; set; }
+		Brush Fill { get; }
 
 		/// <summary>
+		///     The pen to draw the outline of the shape, representing individual data points.
 		/// </summary>
-		IEnumerable<Point> Values { get; set; }
+		Pen PointOutline { get; }
 
 		/// <summary>
+		///     The pen to fill the shape, representing individual data points.
+		/// </summary>
+		Brush PointFill { get; }
+
+		/// <summary>
+		///     The radius to draw the circle, representing individual data points.
+		/// </summary>
+		double PointRadius { get; }
+
+		/// <summary>
+		///     The values to display.
+		/// </summary>
+		IEnumerable<Point> Values { get; }
+
+		/// <summary>
+		///     The minimum and maximum x values in <see cref="Values" />.
 		/// </summary>
 		Range XRange { get; }
 
 		/// <summary>
+		///     The minimum and maximum y values in <see cref="Values" />.
 		/// </summary>
 		Range YRange { get; }
 

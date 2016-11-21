@@ -23,6 +23,9 @@ namespace Metrolib
 
 		private Range _xRange;
 		private Range _yRange;
+		private Pen _pointOutline;
+		private Brush _pointFill;
+		private double _pointRadius;
 
 		/// <summary>
 		/// </summary>
@@ -72,6 +75,45 @@ namespace Metrolib
 					return;
 
 				_fill = value;
+				EmitPropertyChanged();
+			}
+		}
+
+		public Pen PointOutline
+		{
+			get { return _pointOutline; }
+			set
+			{
+				if (ReferenceEquals(value, _pointOutline))
+					return;
+
+				_pointOutline = value;
+				EmitPropertyChanged();
+			}
+		}
+
+		public Brush PointFill
+		{
+			get { return _pointFill; }
+			set
+			{
+				if (ReferenceEquals(value, _pointFill))
+					return;
+
+				_pointFill = value;
+				EmitPropertyChanged();
+			}
+		}
+
+		public double PointRadius
+		{
+			get { return _pointRadius; }
+			set
+			{
+				if (value == _pointRadius)
+					return;
+
+				_pointRadius = value;
 				EmitPropertyChanged();
 			}
 		}

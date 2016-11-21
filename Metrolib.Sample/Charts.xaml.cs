@@ -26,6 +26,9 @@ namespace Metrolib.Sample
 				{
 					new LineSeries
 						{
+							PointRadius = 5,
+							PointFill = Brushes.DeepSkyBlue,
+
 							Fill = Brushes.LightSkyBlue,
 							Values = new List<Point>
 								{
@@ -46,13 +49,19 @@ namespace Metrolib.Sample
 						{
 							Values = _curve,
 							Fill = Brushes.LightSalmon,
-							Outline = new Pen(Brushes.OrangeRed, 2)
+							Outline = new Pen(Brushes.OrangeRed, 2),
+							
+							PointRadius = 5,
+							PointFill = Brushes.LightSalmon,
+							PointOutline = new Pen(Brushes.OrangeRed, 2)
 						}
 				};
 
 			_random = new Random();
-			_timer = new DispatcherTimer();
-			_timer.Interval = TimeSpan.FromMilliseconds(60);
+			_timer = new DispatcherTimer
+				{
+					Interval = TimeSpan.FromMilliseconds(60)
+				};
 			_timer.Tick += TimerOnTick;
 			_timer.Start();
 		}

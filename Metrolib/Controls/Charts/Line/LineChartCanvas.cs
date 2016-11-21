@@ -14,7 +14,7 @@ namespace Metrolib.Controls.Charts.Line
 		: Control
 	{
 		public static readonly DependencyProperty SeriesProperty =
-			DependencyProperty.Register("Series", typeof (LineSeries), typeof (LineChartCanvas),
+			DependencyProperty.Register("Series", typeof (ILineSeries), typeof (LineChartCanvas),
 			                            new PropertyMetadata(null, OnSeriesChanged));
 
 		public static readonly DependencyProperty XRangeProperty =
@@ -53,9 +53,9 @@ namespace Metrolib.Controls.Charts.Line
 			set { SetValue(XRangeProperty, value); }
 		}
 
-		public LineSeries Series
+		public ILineSeries Series
 		{
-			get { return (LineSeries) GetValue(SeriesProperty); }
+			get { return (ILineSeries) GetValue(SeriesProperty); }
 			set { SetValue(SeriesProperty, value); }
 		}
 
@@ -81,10 +81,10 @@ namespace Metrolib.Controls.Charts.Line
 
 		private static void OnSeriesChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
 		{
-			((LineChartCanvas) dependencyObject).OnSeriesChanged((LineSeries) args.OldValue, (LineSeries) args.NewValue);
+			((LineChartCanvas) dependencyObject).OnSeriesChanged((ILineSeries) args.OldValue, (ILineSeries) args.NewValue);
 		}
 
-		private void OnSeriesChanged(LineSeries oldValue, LineSeries newValue)
+		private void OnSeriesChanged(ILineSeries oldValue, ILineSeries newValue)
 		{
 			if (oldValue != null)
 			{
@@ -152,6 +152,23 @@ namespace Metrolib.Controls.Charts.Line
 					CreateOutline(viewPoints);
 					drawingContext.DrawGeometry(null, Series.Outline, _outline);
 				}
+
+				if (Series.PointRadius > 0 && (Series.PointFill != null || Series.PointOutline != null))
+				{
+					DrawPoints(drawingContext, viewPoints);
+				}
+			}
+		}
+
+		private void DrawPoints(DrawingContext drawingContext, IEnumerable<Point> viewPoints)
+		{
+			foreach (var point in viewPoints)
+			{
+				drawingContext.DrawEllipse(Series.PointFill,
+				                           Series.PointOutline,
+				                           point,
+				                           Series.PointRadius,
+				                           Series.PointRadius);
 			}
 		}
 

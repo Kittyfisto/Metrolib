@@ -21,7 +21,7 @@ namespace Metrolib
 		/// <summary>
 		/// </summary>
 		public static readonly DependencyProperty SeriesProperty =
-			DependencyProperty.Register("Series", typeof (IEnumerable<LineSeries>), typeof (LineChart),
+			DependencyProperty.Register("Series", typeof (IEnumerable<ILineSeries>), typeof (LineChart),
 			                            new PropertyMetadata(null, OnSeriesChanged));
 
 		private static readonly DependencyPropertyKey XRangePropertyKey
@@ -103,18 +103,18 @@ namespace Metrolib
 
 		/// <summary>
 		/// </summary>
-		public IEnumerable<LineSeries> Series
+		public IEnumerable<ILineSeries> Series
 		{
-			get { return (IEnumerable<LineSeries>) GetValue(SeriesProperty); }
+			get { return (IEnumerable<ILineSeries>) GetValue(SeriesProperty); }
 			set { SetValue(SeriesProperty, value); }
 		}
 
 		private static void OnSeriesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
-			((LineChart) d).OnSeriesChanged((IEnumerable<LineSeries>) e.OldValue, (IEnumerable<LineSeries>) e.NewValue);
+			((LineChart) d).OnSeriesChanged((IEnumerable<ILineSeries>) e.OldValue, (IEnumerable<ILineSeries>) e.NewValue);
 		}
 
-		private void OnSeriesChanged(IEnumerable<LineSeries> oldValue, IEnumerable<LineSeries> newValue)
+		private void OnSeriesChanged(IEnumerable<ILineSeries> oldValue, IEnumerable<ILineSeries> newValue)
 		{
 			var notifiable = oldValue as INotifyCollectionChanged;
 			if (notifiable != null)
@@ -123,7 +123,7 @@ namespace Metrolib
 			}
 			if (oldValue != null)
 			{
-				foreach (LineSeries series in oldValue)
+				foreach (ILineSeries series in oldValue)
 				{
 					series.PropertyChanged -= SeriesOnPropertyChanged;
 				}
@@ -136,7 +136,7 @@ namespace Metrolib
 			}
 			if (newValue != null)
 			{
-				foreach (LineSeries series in newValue)
+				foreach (ILineSeries series in newValue)
 				{
 					series.PropertyChanged += SeriesOnPropertyChanged;
 				}
@@ -146,7 +146,7 @@ namespace Metrolib
 
 			if (newValue != null)
 			{
-				foreach (LineSeries series in newValue)
+				foreach (ILineSeries series in newValue)
 				{
 					AddCanvas(series);
 				}
@@ -174,14 +174,14 @@ namespace Metrolib
 			switch (args.Action)
 			{
 				case NotifyCollectionChangedAction.Add:
-					foreach (LineSeries series in args.NewItems)
+					foreach (ILineSeries series in args.NewItems)
 					{
 						series.PropertyChanged -= SeriesOnPropertyChanged;
 						AddCanvas(series);
 					}
 					break;
 				case NotifyCollectionChangedAction.Remove:
-					foreach (LineSeries series in args.OldItems)
+					foreach (ILineSeries series in args.OldItems)
 					{
 						series.PropertyChanged += SeriesOnPropertyChanged;
 						RemoveCanvas(series);
@@ -197,18 +197,22 @@ namespace Metrolib
 
 		private void Clear()
 		{
-			foreach (LineChartCanvas canvas in _canvasses)
+			if (_grid != null)
 			{
-				_grid.Children.Remove(canvas);
+				foreach (LineChartCanvas canvas in _canvasses)
+				{
+					_grid.Children.Remove(canvas);
+				}
 			}
 			_canvasses.Clear();
 		}
 
-		private void AddCanvas(LineSeries series)
+		private void AddCanvas(ILineSeries series)
 		{
 			var canvas = new LineChartCanvas
 				{
 					Series = series,
+					ClipToBounds = true
 				};
 
 			BindingOperations.SetBinding(canvas, LineChartCanvas.XRangeProperty, new Binding("XRange")
@@ -228,12 +232,15 @@ namespace Metrolib
 			}
 		}
 
-		private void RemoveCanvas(LineSeries series)
+		private void RemoveCanvas(ILineSeries series)
 		{
 			LineChartCanvas canvas = _canvasses.FirstOrDefault(x => ReferenceEquals(x.Series, series));
 			if (canvas != null)
 			{
-				_grid.Children.Remove(canvas);
+				if (_grid != null)
+				{
+					_grid.Children.Remove(canvas);
+				}
 				_canvasses.Remove(canvas);
 			}
 		}
@@ -253,7 +260,7 @@ namespace Metrolib
 		{
 			if (Series != null)
 			{
-				IEnumerator<LineSeries> it = Series.GetEnumerator();
+				IEnumerator<ILineSeries> it = Series.GetEnumerator();
 				if (it.MoveNext())
 				{
 					Range xRange = it.Current.XRange;
