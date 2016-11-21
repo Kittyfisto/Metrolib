@@ -18,9 +18,9 @@
                                               VerticalAlignment="Center"
                                               HorizontalAlignment="Center"
                                               Grid.Row="1">
-                                <ContentPresenter.RenderTransform>
+                                <ContentPresenter.LayoutTransform>
                                     <RotateTransform CenterX="0.5" CenterY="0.5" Angle="-90" />
-                                </ContentPresenter.RenderTransform>
+                                </ContentPresenter.LayoutTransform>
                             </ContentPresenter>
 
                             <Rectangle Grid.Column="1"
