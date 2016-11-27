@@ -8,7 +8,17 @@
              d:DesignHeight="300" d:DesignWidth="300"
              x:Name="This">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Type: " />
+            <RadioButton Content="Normal " x:Name="Normal" Checked="OnNormalChecked" />
+            <RadioButton Content="Stacked " x:Name="Stacked" Checked="OnStackedChecked" />
+        </StackPanel>
         <metrolib:LineChart Margin="8"
+                            Grid.Row="1"
                             x:Name="PART_Chart">
             
         </metrolib:LineChart>

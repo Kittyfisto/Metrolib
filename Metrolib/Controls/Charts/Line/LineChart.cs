@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using log4net;
 
 // ReSharper disable CheckNamespace
 
@@ -12,12 +14,14 @@ namespace Metrolib
 	public class LineChart
 		: Control
 	{
+		private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
 		/// <summary>
 		///     Definition of the <see cref="ChartType" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty ChartTypeProperty =
 			DependencyProperty.Register("ChartType", typeof (LineChartType), typeof (LineChart),
-			                            new PropertyMetadata(default(LineChartType)));
+			                            new PropertyMetadata(default(LineChartType), OnChartTypeChanged));
 
 		/// <summary>
 		/// </summary>
@@ -114,6 +118,61 @@ namespace Metrolib
 			set { SetValue(SeriesProperty, value); }
 		}
 
+		private static void OnChartTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			((LineChart) d).OnChartTypeChanged((LineChartType) e.NewValue);
+		}
+
+		private void OnChartTypeChanged(LineChartType type)
+		{
+			if (Canvas != null)
+			{
+				// We're about to no longer use this canvas.
+				// Thus we HAVE to force it remove itself from all events
+				// of the series collection (and its values) or otherweise
+				// we're gonna have a leak..
+				Canvas.Series = null;
+				RemoveCanvas(Canvas);
+			}
+
+			Canvas = CreateCanvas(type);
+
+			if (Canvas != null)
+			{
+				Grid.SetColumn(Canvas, 1);
+				Canvas.Series = Series;
+				AddCanvas(Canvas);
+			}
+		}
+
+		private void AddCanvas(AbstractLineChartCanvas canvas)
+		{
+			if (_grid != null)
+			{
+				_grid.Children.Add(canvas);
+			}
+		}
+
+		private void RemoveCanvas(AbstractLineChartCanvas canvas)
+		{
+			if (_grid != null)
+				_grid.Children.Remove(canvas);
+		}
+
+		private static AbstractLineChartCanvas CreateCanvas(LineChartType type)
+		{
+			switch (type)
+			{
+				case LineChartType.Normal:
+					return new LineChartCanvas();
+				case LineChartType.Stacked:
+					return new StackedLineChartCanvas();
+				default:
+					Log.WarnFormat("Unexpected line chart type: {0}", type);
+					return null;
+			}
+		}
+
 		private static void OnSeriesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			((LineChart) d).OnSeriesChanged((IEnumerable<ILineSeries>) e.NewValue);
@@ -128,15 +187,9 @@ namespace Metrolib
 		{
 			base.OnApplyTemplate();
 
-			if (_grid != null)
-			{
-				_grid.Children.Remove(Canvas);
-			}
+			RemoveCanvas(Canvas);
 			_grid = (Grid) GetTemplateChild("PART_MainGrid");
-			if (_grid != null)
-			{
-				_grid.Children.Add(Canvas);
-			}
+			AddCanvas(Canvas);
 		}
 	}
 }

@@ -31,15 +31,15 @@ namespace Metrolib
 				_outline = new StreamGeometry();
 			}
 
-			public override void OnRender(DrawingContext drawingContext, Range xRange, Range yRange, double width, double height)
+			public override void OnRender(DrawingContext drawingContext)
 			{
 				if (Series != null)
 				{
-					List<Point> viewPoints = ProjectToView(Values, Series.Count, xRange, yRange, width, height);
+					List<Point> viewPoints = ProjectToView(Values, Series.Count);
 
 					if (Series.Fill != null)
 					{
-						CreateArea(viewPoints, height);
+						CreateArea(viewPoints, Height);
 						drawingContext.DrawGeometry(Series.Fill, null, _area);
 					}
 
@@ -88,26 +88,6 @@ namespace Metrolib
 						}
 					}
 				}
-			}
-
-			private static List<Point> ProjectToView(IEnumerable<Point> values, int count, Range xRange, Range yRange, double width, double height)
-			{
-				var ret = new List<Point>(count);
-				if (values != null)
-				{
-					foreach (Point point in values)
-					{
-						double x = xRange.GetRelative(point.X);
-						double y = yRange.GetRelative(point.Y);
-
-						var view = new Point(
-							x * width,
-							height * (1 - y)
-							);
-						ret.Add(view);
-					}
-				}
-				return ret;
 			}
 
 			private void CreateArea(List<Point> viewPoints, double height)

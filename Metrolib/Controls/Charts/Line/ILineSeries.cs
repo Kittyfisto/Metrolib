@@ -46,6 +46,10 @@ namespace Metrolib
 		/// <summary>
 		///     The values to display.
 		/// </summary>
+		/// <remarks>
+		///     Values are assumed to be ordered ascending by their <see cref="Point.X" /> value.
+		///     If this is not the case then the wrong data might be displayed.
+		/// </remarks>
 		IEnumerable<Point> Values { get; }
 
 		/// <summary>

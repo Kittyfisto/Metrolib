@@ -30,6 +30,12 @@ namespace Metrolib.Sample
 							PointFill = Brushes.DeepSkyBlue,
 
 							Fill = Brushes.LightSkyBlue,
+							/*Values = new List<Point>
+								{
+									new Point(0, 0),
+									new Point(1, 1),
+									new Point(2, 0),
+								}*/
 							Values = new List<Point>
 								{
 									new Point(0, 0),
@@ -47,13 +53,28 @@ namespace Metrolib.Sample
 						},
 					new LineSeries
 						{
-							Values = _curve,
 							Fill = Brushes.LightSalmon,
 							Outline = new Pen(Brushes.OrangeRed, 2),
 							
 							PointRadius = 5,
 							PointFill = Brushes.LightSalmon,
-							PointOutline = new Pen(Brushes.OrangeRed, 2)
+							PointOutline = new Pen(Brushes.OrangeRed, 2),
+							
+							//Values = _curve,
+							Values = new List<Point>
+								{
+									new Point(0, 1),
+									new Point(1, 1),
+									new Point(2, 1),
+									new Point(3, 1),
+									new Point(4, 1),
+									new Point(5, 1),
+									new Point(6, 1),
+									new Point(7, 1),
+									new Point(8, 1),
+									new Point(9, 1),
+									new Point(10, 1),
+								}
 						}
 				};
 
@@ -64,15 +85,27 @@ namespace Metrolib.Sample
 				};
 			_timer.Tick += TimerOnTick;
 			_timer.Start();
+
+			Normal.IsChecked = true;
 		}
 
 		private void TimerOnTick(object sender, EventArgs eventArgs)
 		{
-			for (int i = 0; i < _curve.Count; ++i)
+			/*for (int i = 0; i < _curve.Count; ++i)
 			{
 				double y = Math.Cos(i/10.0) + _random.NextDouble() / 4;
 				_curve[i] = new Point(1.0*i/10, y);
-			}
+			}*/
+		}
+
+		private void OnNormalChecked(object sender, RoutedEventArgs e)
+		{
+			PART_Chart.ChartType = LineChartType.Normal;
+		}
+
+		private void OnStackedChecked(object sender, RoutedEventArgs e)
+		{
+			PART_Chart.ChartType = LineChartType.Stacked;
 		}
 	}
 }

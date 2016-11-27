@@ -44,7 +44,7 @@ namespace Metrolib
 			DependencyProperty.Register("YRange", typeof (Range), typeof (AbstractLineChartCanvas),
 			                            new PropertyMetadata(default(Range)));
 
-		private readonly List<AbstractLineSeriesCanvas> _seriesCanvas;
+		private readonly List<AbstractLineSeriesCanvas> _seriesCanvasses;
 		private readonly Stopwatch _stopwatch;
 		private readonly DispatcherTimer _timer;
 
@@ -54,7 +54,7 @@ namespace Metrolib
 		protected AbstractLineChartCanvas()
 		{
 			_stopwatch = new Stopwatch();
-			_seriesCanvas = new List<AbstractLineSeriesCanvas>();
+			_seriesCanvasses = new List<AbstractLineSeriesCanvas>();
 			_timer = new DispatcherTimer
 				{
 					Interval = TimeSpan.FromMilliseconds(66)
@@ -62,6 +62,7 @@ namespace Metrolib
 			_timer.Tick += TimerOnTick;
 			Loaded += OnLoaded;
 			Unloaded += OnUnloaded;
+			SizeChanged += OnSizeChanged;
 
 			// We draw stuff by hand and thus we must enable clipping to ensure
 			// that we don't draw outside of our client area.
@@ -94,10 +95,16 @@ namespace Metrolib
 			get { return _series; }
 			set
 			{
-				if (value == _series)
+				if (ReferenceEquals(value, _series))
 					return;
 
 				ClearSeries();
+				if (_series != null)
+				{
+					var notifiable = _series as INotifyCollectionChanged;
+					if (notifiable != null)
+						notifiable.CollectionChanged -= SeriesOnCollectionChanged;
+				}
 
 				_series = value;
 
@@ -109,6 +116,11 @@ namespace Metrolib
 					AddSeries(0, _series);
 				}
 			}
+		}
+
+		protected IEnumerable<AbstractLineSeriesCanvas> SeriesCanvasses
+		{
+			get { return _seriesCanvasses; }
 		}
 
 		protected void SetDirty()
@@ -145,15 +157,28 @@ namespace Metrolib
 			}
 		}
 
-		internal void Update()
+		internal virtual void Update()
 		{
+			UpdateRanges();
+
 			bool redraw = _isDirty;
-			foreach (AbstractLineSeriesCanvas canvas in _seriesCanvas)
+			foreach (AbstractLineSeriesCanvas canvas in _seriesCanvasses)
 			{
+				canvas.XRange = XRange;
+				canvas.YRange = YRange;
+
 				if (canvas.Update())
 					redraw = true;
 			}
 
+			if (redraw)
+			{
+				InvalidateVisual();
+			}
+		}
+
+		private void UpdateRanges()
+		{
 			if (Series != null)
 			{
 				IEnumerator<ILineSeries> it = Series.GetEnumerator();
@@ -185,10 +210,14 @@ namespace Metrolib
 				XRange = new Range();
 				YRange = new Range();
 			}
+		}
 
-			if (redraw)
+		private void OnSizeChanged(object sender, SizeChangedEventArgs args)
+		{
+			foreach (AbstractLineSeriesCanvas canvas in _seriesCanvasses)
 			{
-				InvalidateVisual();
+				canvas.Width = args.NewSize.Width;
+				canvas.Height = args.NewSize.Height;
 			}
 		}
 
@@ -196,19 +225,29 @@ namespace Metrolib
 		{
 			base.OnRender(drawingContext);
 
-			foreach (AbstractLineSeriesCanvas canvas in _seriesCanvas)
+			foreach (AbstractLineSeriesCanvas canvas in _seriesCanvasses)
 			{
-				canvas.OnRender(drawingContext, XRange, YRange, ActualWidth, ActualHeight);
+				canvas.OnRender(drawingContext);
 			}
 		}
 
 		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
 		{
+			// TODO: We should connect to events here in case Series is non-null.
+			//       Also, we should NOT connect to events when the series is changed
+			//       while this control is not loaded.
 			_timer.Start();
 		}
 
 		private void OnUnloaded(object sender, RoutedEventArgs e)
 		{
+			// We definately should disconnect from events from viewmodels when we're
+			// unloaded because these models might live longer than this control (because
+			// it might be dynamically added / removed from the visual tree).
+			var notifiable = _series as INotifyCollectionChanged;
+			if (notifiable != null)
+				notifiable.CollectionChanged -= SeriesOnCollectionChanged;
+
 			_timer.Stop();
 		}
 
@@ -226,7 +265,10 @@ namespace Metrolib
 
 		private void AddSeries(int index, ILineSeries series)
 		{
-			_seriesCanvas.Insert(index, CreateCanvas(series));
+			AbstractLineSeriesCanvas canvas = CreateCanvas(series);
+			canvas.Width = ActualWidth;
+			canvas.Height = ActualHeight;
+			_seriesCanvasses.Insert(index, canvas);
 		}
 
 		private void RemoveSeries(IEnumerable<ILineSeries> series)
@@ -239,10 +281,10 @@ namespace Metrolib
 
 		private void RemoveSeries(ILineSeries series)
 		{
-			AbstractLineSeriesCanvas canvas = _seriesCanvas.FirstOrDefault(x => x.Series == series);
+			AbstractLineSeriesCanvas canvas = _seriesCanvasses.FirstOrDefault(x => x.Series == series);
 			if (canvas != null)
 			{
-				_seriesCanvas.Remove(canvas);
+				_seriesCanvasses.Remove(canvas);
 			}
 		}
 
@@ -250,15 +292,11 @@ namespace Metrolib
 		{
 			if (_series != null)
 			{
-				var notifiable = _series as INotifyCollectionChanged;
-				if (notifiable != null)
-					notifiable.CollectionChanged -= SeriesOnCollectionChanged;
-
-				foreach (AbstractLineSeriesCanvas canvas in _seriesCanvas)
+				foreach (AbstractLineSeriesCanvas canvas in _seriesCanvasses)
 				{
 					canvas.Dispose();
 				}
-				_seriesCanvas.Clear();
+				_seriesCanvasses.Clear();
 			}
 		}
 
