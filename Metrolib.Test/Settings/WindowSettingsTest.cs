@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using FluentAssertions;
-using Metrolib.Settings;
 using NUnit.Framework;
 
 namespace Metrolib.Test.Settings

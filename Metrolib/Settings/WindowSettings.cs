@@ -1,10 +1,12 @@
-﻿using System;
+using System;
 using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Windows;
 using System.Xml;
 
-namespace Metrolib.Settings
+// ReSharper disable CheckNamespace
+namespace Metrolib
+// ReSharper restore CheckNamespace
 {
 	/// <summary>
 	///     Represents the configuration of a window.

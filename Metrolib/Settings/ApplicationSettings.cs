@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using System.Xml;
 using log4net;
 
-namespace Metrolib.Settings
+// ReSharper disable CheckNamespace
+namespace Metrolib
+// ReSharper restore CheckNamespace
 {
 	/// <summary>
 	///     Represents all settings an application wants to store.

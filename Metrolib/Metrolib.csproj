@@ -333,9 +333,9 @@
     <Compile Include="Controls\TextBoxes\FilterTextBox.cs" />
     <Compile Include="Controls\Buttons\RemoveButton.cs" />
     <Compile Include="Settings\ApplicationSettings.cs" />
-    <Compile Include="Settings\WindowSettings.cs" />
     <Compile Include="Size.cs" />
     <Compile Include="UiDispatcher.cs" />
+    <Compile Include="Settings\WindowSettings.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
