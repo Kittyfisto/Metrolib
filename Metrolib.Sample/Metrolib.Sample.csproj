@@ -49,10 +49,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AvengerViewModel.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Charts.xaml.cs">
       <DependentUpon>Charts.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChartsViewModel.cs" />
     <Compile Include="ContentControls.xaml.cs">
       <DependentUpon>ContentControls.xaml</DependentUpon>
     </Compile>
@@ -168,6 +170,12 @@
       <Project>{8BDC066F-3253-49EF-8096-3DFB4E032D4B}</Project>
       <Name>Metrolib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\CaptainAmerica.png" />
+    <Resource Include="Resources\Hulk.png" />
+    <Resource Include="Resources\IronMan.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

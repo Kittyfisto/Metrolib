@@ -16,6 +16,8 @@ namespace Metrolib.Sample
 
 		public Charts()
 		{
+			DataContext = new ChartsViewModel();
+
 			InitializeComponent();
 
 			_curve = new ObservableCollection<Point>(Enumerable.Range(0, 101).Select(x => new Point()));

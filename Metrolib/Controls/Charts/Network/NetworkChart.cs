@@ -1,6 +1,9 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
-namespace Metrolib.Controls.Charts.Network
+// ReSharper disable CheckNamespace
+namespace Metrolib
+// ReSharper restore CheckNamespace
 {
 	/// <summary>
 	/// 
@@ -8,5 +11,14 @@ namespace Metrolib.Controls.Charts.Network
 	public sealed class NetworkChart
 		: ItemsControl
 	{
+		static NetworkChart()
+		{
+			DefaultStyleKeyProperty.OverrideMetadata(typeof(NetworkChart), new FrameworkPropertyMetadata(typeof(NetworkChart)));
+		}
+
+		protected override DependencyObject GetContainerForItemOverride()
+		{
+			return base.GetContainerForItemOverride();
+		}
 	}
 }
