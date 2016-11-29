@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 // ReSharper disable CheckNamespace
 
@@ -14,9 +15,26 @@ namespace Metrolib.Controls
 	public class FlatTreeView
 		: TreeView
 	{
+		/// <summary>
+		///     Definition of the <see cref="IsExpandable" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty IsExpandableProperty =
+			DependencyProperty.Register("IsExpandable", typeof (bool), typeof (FlatTreeView), new PropertyMetadata(true));
+
 		static FlatTreeView()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (FlatTreeView), new FrameworkPropertyMetadata(typeof (FlatTreeView)));
+		}
+
+		/// <summary>
+		///     Whether or not items in this tree can be expanded.
+		///     If they can be, then a clickable arrow appears next to each item's content.
+		///     If not, then this arrow is hidden.
+		/// </summary>
+		public bool IsExpandable
+		{
+			get { return (bool) GetValue(IsExpandableProperty); }
+			set { SetValue(IsExpandableProperty, value); }
 		}
 
 		/// <summary>
@@ -25,7 +43,13 @@ namespace Metrolib.Controls
 		/// <returns></returns>
 		protected override DependencyObject GetContainerForItemOverride()
 		{
-			return new FlatTreeViewItem();
+			var item = new FlatTreeViewItem();
+			var binding = new Binding("IsExpandable")
+				{
+					Source = this
+				};
+			BindingOperations.SetBinding(item, FlatTreeViewItem.IsExpandableProperty, binding);
+			return item;
 		}
 
 		/// <summary>

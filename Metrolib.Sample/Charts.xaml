@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:metrolib="clr-namespace:Metrolib;assembly=Metrolib"
+             xmlns:network="clr-namespace:Metrolib.Controls.Charts.Network;assembly=Metrolib"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              x:Name="This">
@@ -17,10 +18,22 @@
             <RadioButton Content="Normal " x:Name="Normal" Checked="OnNormalChecked" />
             <RadioButton Content="Stacked " x:Name="Stacked" Checked="OnStackedChecked" />
         </StackPanel>
-        <metrolib:LineChart Margin="8"
-                            Grid.Row="1"
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <metrolib:LineChart Margin="8"
                             x:Name="PART_Chart">
-            
-        </metrolib:LineChart>
+
+            </metrolib:LineChart>
+            <network:NetworkChart Grid.Column="1">
+                <network:NetworkChart.ItemTemplate>
+                    <DataTemplate>
+                        
+                    </DataTemplate>
+                </network:NetworkChart.ItemTemplate>
+            </network:NetworkChart>
+        </Grid>
     </Grid>
 </UserControl>

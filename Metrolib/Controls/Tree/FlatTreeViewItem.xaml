@@ -1,12 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Metrolib.Controls">
+                    xmlns:controls="clr-namespace:Metrolib.Controls"
+                    xmlns:converters="clr-namespace:Metrolib.Converters">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Themes/Constants.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <controls:LeftMarginMultiplierConverter x:Key="LeftMarginMultiplierConverter" Multiplier="12" />
+    <converters:BoolFalseToCollapsedConverter x:Key="BoolFalseToCollapsedConverter" />
 
     <Style TargetType="{x:Type controls:FlatTreeViewItem}">
         <Setter Property="IsExpanded" Value="True" />
@@ -37,16 +39,34 @@
                             <Rectangle x:Name="PART_SelectedHoveredRect"
                                        Fill="{StaticResource BackgroundBrushSelectedAndHovered}"
                                        Opacity="0" />
-                            <Grid Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource LeftMarginMultiplierConverter}}">
-                                <ContentPresenter x:Name="PART_Header"
-                                              ContentSource="Header"
-                                              Margin="{TemplateBinding Padding}" />
+                            <Grid x:Name="PART_Header"
+                                  Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource LeftMarginMultiplierConverter}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <controls:ExpanderToggleButton x:Name="PART_Expander"
+                                                               Padding="0"
+                                                               IconHeight="20"
+                                                               IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
+
+                                <ContentPresenter Grid.Column="1"
+                                                  ContentSource="Header"
+                                                  Margin="{TemplateBinding Padding}" />
                             </Grid>
                         </Grid>
                         <ItemsPresenter x:Name="ItemsHost"
+                                        Visibility="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalseToCollapsedConverter}}"
                                         Grid.Row="1" />
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="HasItems" Value="False">
+                            <Setter TargetName="PART_Expander" Property="Visibility" Value="Hidden" />
+                        </Trigger>
+                        <Trigger Property="IsExpandable" Value="False">
+                            <Setter TargetName="PART_Expander" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="controls:Properties.IsInverted" Value="True" />
                         </Trigger>
@@ -76,7 +96,8 @@
                         </Trigger>
                         <!-- Foreground/Background when selected -->
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="PART_Header" Property="TextBlock.Foreground" Value="{StaticResource ForegroundBrushInverted}" />
+                            <Setter TargetName="PART_Header" Property="TextBlock.Foreground"
+                                    Value="{StaticResource ForegroundBrushInverted}" />
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>

@@ -27,7 +27,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:ExpanderToggleButton}">
-                    <Border Background="{TemplateBinding Background}"
+                    <Border Margin="{TemplateBinding Margin}"
+                            Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid>

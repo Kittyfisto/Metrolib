@@ -61,6 +61,8 @@
 
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Charts/AxisControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Charts/Line/LineChart.xaml" />
+
+        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Charts/Network/NetworkTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
