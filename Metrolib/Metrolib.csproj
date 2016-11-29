@@ -332,7 +332,8 @@
     <Compile Include="Converters\BoolTrueToCollapsedConverter.cs" />
     <Compile Include="Controls\TextBoxes\FilterTextBox.cs" />
     <Compile Include="Controls\Buttons\RemoveButton.cs" />
-    <Compile Include="Settings\Settings.cs" />
+    <Compile Include="Settings\ApplicationSettings.cs" />
+    <Compile Include="Settings\WindowSettings.cs" />
     <Compile Include="Size.cs" />
     <Compile Include="UiDispatcher.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

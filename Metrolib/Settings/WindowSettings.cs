@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Windows;
 using System.Xml;
@@ -10,6 +11,7 @@ namespace Metrolib.Settings
 	///     Currently only preserves a window's position + dimension, but may be expanded in the future.
 	/// </summary>
 	public sealed class WindowSettings
+		: ICloneable
 	{
 		/// <summary>
 		///     The height of the window.
@@ -35,6 +37,11 @@ namespace Metrolib.Settings
 		///     The width of the window.
 		/// </summary>
 		public double Width;
+
+		object ICloneable.Clone()
+		{
+			return Clone();
+		}
 
 		/// <summary>
 		///     Restores the given window's values to the ones in this object.
@@ -108,6 +115,23 @@ namespace Metrolib.Settings
 			Width = window.Width;
 			Height = window.Height;
 			State = window.WindowState;
+		}
+
+		/// <summary>
+		///     Returns a clone.
+		/// </summary>
+		/// <returns></returns>
+		[Pure]
+		public WindowSettings Clone()
+		{
+			return new WindowSettings
+				{
+					Left = Left,
+					Top = Top,
+					Width = Width,
+					Height = Height,
+					State = State,
+				};
 		}
 	}
 }
