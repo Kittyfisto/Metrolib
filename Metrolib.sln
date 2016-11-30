@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C32FCBBE-2066-4B41-B19A-9D7106792A18}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
+		Metrolib\Metrolib.nuspec = Metrolib\Metrolib.nuspec
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{ACB0B72D-184C-4E3E-8D41-8560A0D25901}"

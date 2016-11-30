@@ -1,9 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
 using System.Xml;
-using log4net;
 
 // ReSharper disable CheckNamespace
 namespace Metrolib
@@ -16,8 +14,6 @@ namespace Metrolib
 	public class ApplicationSettings
 		: ICloneable
 	{
-		private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
 		/// <summary>
 		///     The settings of the main window of the application (position, dimensions, etc...)
 		/// </summary>
@@ -118,8 +114,6 @@ namespace Metrolib
 				}
 
 				string directory = Path.GetDirectoryName(fileName);
-
-				Log.DebugFormat("Saving to directory '{0}'", directory);
 
 				if (!Directory.Exists(directory))
 					Directory.CreateDirectory(directory);

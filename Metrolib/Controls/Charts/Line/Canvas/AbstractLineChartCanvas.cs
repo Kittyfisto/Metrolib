@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
-using log4net;
 
 // ReSharper disable CheckNamespace
 
@@ -21,8 +19,6 @@ namespace Metrolib
 	public abstract class AbstractLineChartCanvas
 		: Control
 	{
-		private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
 		/// <summary>
 		///     The minimum time we try to run our updates in.
 		///     We will however reduce this in integer increments in case our update method takes too long (so
@@ -146,23 +142,11 @@ namespace Metrolib
 			}
 			catch (Exception e)
 			{
-				Log.ErrorFormat("Caught unexpected exception: {0}", e);
+				
 			}
 			finally
 			{
 				_stopwatch.Stop();
-			}
-
-			if (Log.IsDebugEnabled)
-			{
-				Log.DebugFormat("Updating line chart took {0}ms", _stopwatch.ElapsedMilliseconds);
-			}
-
-			if (_stopwatch.Elapsed > MinimumUpdateDelta)
-			{
-				Log.WarnFormat(
-					"Updating line chart took longer than {0}ms, if this happens frequently, please reduce the amount of data displayed or contact the author on github",
-					MinimumUpdateDelta);
 			}
 		}
 

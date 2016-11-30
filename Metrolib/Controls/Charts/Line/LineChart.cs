@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using log4net;
 
 // ReSharper disable CheckNamespace
-
 namespace Metrolib
 // ReSharper restore CheckNamespace
 {
@@ -14,8 +11,6 @@ namespace Metrolib
 	public class LineChart
 		: Control
 	{
-		private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
 		/// <summary>
 		///     Definition of the <see cref="ChartType" /> dependency property.
 		/// </summary>
@@ -168,7 +163,6 @@ namespace Metrolib
 				case LineChartType.Stacked:
 					return new StackedLineChartCanvas();
 				default:
-					Log.WarnFormat("Unexpected line chart type: {0}", type);
 					return null;
 			}
 		}

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
-using log4net;
 
 namespace Metrolib.Controls.TextBlocks
 {
@@ -21,8 +19,6 @@ namespace Metrolib.Controls.TextBlocks
 	public class HyperlinkRun
 		: Run
 	{
-		private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
 		/// <summary>
 		///     Definition of the <see cref="NavigateUri" /> dependency property.
 		/// </summary>
@@ -179,7 +175,7 @@ namespace Metrolib.Controls.TextBlocks
 			}
 			else
 			{
-				Log.WarnFormat("Neither NavigateUri, nor ProcessName given, can't start process!");
+				
 			}
 		}
 
@@ -191,7 +187,7 @@ namespace Metrolib.Controls.TextBlocks
 			}
 			catch (Exception e)
 			{
-				Log.ErrorFormat("Cauhgt unexpected exception: {0}", e);
+				
 			}
 		}
 

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Reflection;
 using System.Windows.Input;
-using log4net;
 
 namespace Metrolib
 {
@@ -88,9 +86,6 @@ namespace Metrolib
 	/// </summary>
 	public class DelegateCommand<T> : ICommand where T : class
 	{
-		private static readonly ILog Log =
-			LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
 		private readonly Func<T, bool> _canExecute;
 		private readonly Action<T> _execute;
 
@@ -148,10 +143,6 @@ namespace Metrolib
 		private T GetParameter(object parameter)
 		{
 			var castedParameter = parameter as T;
-			if (parameter != castedParameter)
-			{
-				Log.WarnFormat("Unable to cast '{0}' to {1}", parameter, typeof (T).FullName);
-			}
 			return castedParameter;
 		}
 
