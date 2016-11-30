@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:metrolib="clr-namespace:Metrolib;assembly=Metrolib"
              xmlns:sample="clr-namespace:Metrolib.Sample"
+             xmlns:network="clr-namespace:Metrolib.Controls.Charts.Network;assembly=Metrolib"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              x:Name="This">
@@ -27,8 +28,10 @@
                                 x:Name="PART_Chart">
 
             </metrolib:LineChart>
-            <metrolib:NetworkChart Grid.Column="1" ItemsSource="{Binding Avengers}">
-                <metrolib:NetworkChart.ItemTemplate>
+            <network:NetworkChart Grid.Column="1"
+                                  Nodes="{Binding Avengers}"
+                                  Edges="{Binding Dislikes}">
+                <network:NetworkChart.NodeTemplate>
                     <DataTemplate DataType="{x:Type sample:AvengerViewModel}">
                         <Border BorderBrush="Black"
                                 BorderThickness="1">
@@ -42,8 +45,8 @@
                             </StackPanel>
                         </Border>
                     </DataTemplate>
-                </metrolib:NetworkChart.ItemTemplate>
-            </metrolib:NetworkChart>
+                </network:NetworkChart.NodeTemplate>
+            </network:NetworkChart>
         </Grid>
     </Grid>
 </UserControl>

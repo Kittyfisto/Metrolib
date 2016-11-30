@@ -257,8 +257,14 @@
     <Compile Include="Controls\Charts\Line\LineChartType.cs" />
     <Compile Include="Controls\Charts\Line\LineSeries.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\StackedLineChartCanvas.cs" />
+    <Compile Include="Controls\Charts\Network\Direction.cs" />
+    <Compile Include="Controls\Charts\Network\Edge.cs" />
+    <Compile Include="Controls\Charts\Network\Layout\ForceDirectedLayoutAlgorithm.cs" />
+    <Compile Include="Controls\Charts\Network\IEdge.cs" />
+    <Compile Include="Controls\Charts\Network\Layout\INodeLayoutAlgorithm.cs" />
     <Compile Include="Controls\Charts\Network\NetworkChart.cs" />
     <Compile Include="Controls\Charts\Network\NetworkPanel.cs" />
+    <Compile Include="Controls\Charts\Network\Node.cs" />
     <Compile Include="Controls\Charts\Range.cs" />
     <Compile Include="Controls\ContextMenu\MenuItemContentControl.cs" />
     <Compile Include="Controls\Expander\FlatExpander.cs" />

@@ -2,14 +2,15 @@
 using System.Windows;
 using System.Windows.Controls;
 
-// ReSharper disable CheckNamespace
-
-namespace Metrolib
-// ReSharper restore CheckNamespace
+namespace Metrolib.Controls.Charts.Network
 {
 	internal sealed class NetworkPanel
 		: Panel
 	{
+		public NetworkPanel()
+		{
+		}
+
 		/// <summary>
 		///     Determine required size.
 		/// </summary>
