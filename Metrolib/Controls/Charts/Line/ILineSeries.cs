@@ -34,7 +34,7 @@ namespace Metrolib
 		Pen PointOutline { get; }
 
 		/// <summary>
-		///     The pen to fill the shape, representing individual data points.
+		///     The brush to fill the shape, representing individual data points.
 		/// </summary>
 		Brush PointFill { get; }
 
@@ -63,12 +63,16 @@ namespace Metrolib
 		Range YRange { get; }
 
 		/// <summary>
+		///     Returns the value that should be displayed instead of the given numerical value.
+		///     Is used to annotate axes and popups / tooltips.
 		/// </summary>
 		/// <param name="value"></param>
 		/// <returns></returns>
 		object GetXValue(double value);
 
 		/// <summary>
+		///     Returns the value that should be displayed instead of the given numerical value.
+		///     Is used to annotate axes and popups / tooltips.
 		/// </summary>
 		/// <param name="value"></param>
 		/// <returns></returns>

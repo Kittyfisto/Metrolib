@@ -51,6 +51,9 @@ namespace Metrolib
 		private bool _isDirty;
 		private IEnumerable<ILineSeries> _series;
 
+		/// <summary>
+		///     Initializes this canvas.
+		/// </summary>
 		protected AbstractLineChartCanvas()
 		{
 			_stopwatch = new Stopwatch();
@@ -118,11 +121,17 @@ namespace Metrolib
 			}
 		}
 
+		/// <summary>
+		///     The list of canvasses, one per <see cref="Series" />.
+		/// </summary>
 		protected IEnumerable<AbstractLineSeriesCanvas> SeriesCanvasses
 		{
 			get { return _seriesCanvasses; }
 		}
 
+		/// <summary>
+		///     Marks this canvas as dirty so it actually does some work the next time <see cref="Update" /> is called.
+		/// </summary>
 		protected void SetDirty()
 		{
 			_isDirty = true;
@@ -221,6 +230,10 @@ namespace Metrolib
 			}
 		}
 
+		/// <summary>
+		///     Is called to render the contents of this canvas.
+		/// </summary>
+		/// <param name="drawingContext"></param>
 		protected override void OnRender(DrawingContext drawingContext)
 		{
 			base.OnRender(drawingContext);
@@ -251,6 +264,11 @@ namespace Metrolib
 			_timer.Stop();
 		}
 
+		/// <summary>
+		///     Creates a canvas responsible for drawing the given series only.
+		/// </summary>
+		/// <param name="series"></param>
+		/// <returns></returns>
 		protected abstract AbstractLineSeriesCanvas CreateCanvas(ILineSeries series);
 
 		private void AddSeries(int startingIndex, IEnumerable<ILineSeries> series)

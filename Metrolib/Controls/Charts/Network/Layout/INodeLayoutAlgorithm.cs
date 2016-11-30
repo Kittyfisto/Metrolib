@@ -7,7 +7,7 @@ namespace Metrolib.Controls.Charts.Network.Layout
 	internal interface INodeLayoutAlgorithm
 		: IDisposable
 	{
-		void Update(List<Node> nodes);
+		void Update(TimeSpan dt, List<Node> nodes);
 
 		void AddNodes(IEnumerable nodes);
 		void RemoveNodes(IEnumerable nodes);

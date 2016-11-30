@@ -17,7 +17,7 @@ namespace Metrolib
 	{
 		internal void Arrange(List<Node> nodes)
 		{
-			int n = 0;
+			
 		}
 
 		/// <summary>

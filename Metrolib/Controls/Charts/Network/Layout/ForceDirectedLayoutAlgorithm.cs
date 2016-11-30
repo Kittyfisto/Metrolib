@@ -30,16 +30,12 @@ namespace Metrolib.Controls.Charts.Network.Layout
 		{
 		}
 
-		public void Update()
+		public void Update(TimeSpan dt, List<Node> nodes)
 		{
-			double dt = TimeSpan.FromMilliseconds(60).TotalSeconds;
 			Repulse();
 			Attract();
-			UpdatePositions(dt);
-		}
+			UpdatePositions(dt.TotalSeconds);
 
-		public void Update(List<Node> nodes)
-		{
 			nodes.Clear();
 			foreach (var node in _nodes.Values)
 			{

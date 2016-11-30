@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -44,6 +45,7 @@ namespace Metrolib.Controls.Charts.Network
 			                            new PropertyMetadata(null, OnNodesChanged));
 
 		private readonly DispatcherTimer _timer;
+		private Stopwatch _stopwatch;
 		private INodeLayoutAlgorithm _algorithm;
 		private List<Node> _nodeBuffer;
 		private NetworkPanel _panel;
@@ -58,6 +60,7 @@ namespace Metrolib.Controls.Charts.Network
 		/// </summary>
 		public NetworkChart()
 		{
+			_stopwatch = new Stopwatch();
 			_timer = new DispatcherTimer(TimeSpan.FromMilliseconds(60), DispatcherPriority.Normal, Update, Dispatcher);
 			Loaded += OnLoaded;
 			Unloaded += OnUnloaded;
@@ -92,13 +95,23 @@ namespace Metrolib.Controls.Charts.Network
 
 		private void Update(object sender, EventArgs e)
 		{
+			var dt = _stopwatch.Elapsed;
+			Update(dt);
+			_stopwatch.Restart();
+		}
+
+		internal void Update(TimeSpan dt)
+		{
 			if (_algorithm != null && _panel != null)
 			{
-				_algorithm.Update(_nodeBuffer);
+				_algorithm.Update(dt, _nodeBuffer);
 				_panel.Arrange(_nodeBuffer);
 			}
 		}
 
+		/// <summary>
+		///     Called when the template's tree is generated.
+		/// </summary>
 		public override void OnApplyTemplate()
 		{
 			base.OnApplyTemplate();

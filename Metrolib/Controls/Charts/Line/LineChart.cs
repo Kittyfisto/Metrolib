@@ -183,6 +183,9 @@ namespace Metrolib
 			Canvas.Series = newValue;
 		}
 
+		/// <summary>
+		///     Called when the template's tree is generated.
+		/// </summary>
 		public override void OnApplyTemplate()
 		{
 			base.OnApplyTemplate();

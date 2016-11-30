@@ -19,16 +19,20 @@ namespace Metrolib
 		: IDisposable
 	{
 		private readonly ILineSeries _lineSeries;
+		private double _height;
 
 		private bool _isDirty;
+		private bool _isValuesDirty;
 		private INotifyCollectionChanged _observableValues;
 		private Point[] _values;
+		private double _width;
 		private Range _xRange;
 		private Range _yRange;
-		private double _width;
-		private double _height;
-		private bool _isValuesDirty;
 
+		/// <summary>
+		///     Initializes this canvas.
+		/// </summary>
+		/// <param name="lineSeries"></param>
 		protected AbstractLineSeriesCanvas(ILineSeries lineSeries)
 		{
 			_lineSeries = lineSeries;
@@ -39,7 +43,7 @@ namespace Metrolib
 		}
 
 		/// <summary>
-		/// The values this canvas should display.
+		///     The values this canvas should display.
 		/// </summary>
 		protected IEnumerable<Point> Values
 		{
@@ -110,21 +114,38 @@ namespace Metrolib
 			}
 		}
 
-		protected void MakeDirty()
-		{
-			_isDirty = true;
-		}
-
+		/// <summary>
+		///     The series this canvas is responsible for drawing.
+		/// </summary>
 		public ILineSeries Series
 		{
 			get { return _lineSeries; }
 		}
 
+		/// <summary>
+		///     Disposes of this canvas.
+		/// </summary>
 		public void Dispose()
 		{
 			_lineSeries.PropertyChanged -= LineSeriesOnPropertyChanged;
 		}
 
+		/// <summary>
+		///     Marks this canvas as dirty so the next call to <see cref="Update" />
+		///     actually does something instead of early exiting.
+		/// </summary>
+		protected void MakeDirty()
+		{
+			_isDirty = true;
+		}
+
+		/// <summary>
+		///     Projects the given values into view-space, taking into account the range
+		///     this canvas should actually display, as well as the dimensions of this canvas.
+		/// </summary>
+		/// <param name="values"></param>
+		/// <param name="count"></param>
+		/// <returns></returns>
 		[Pure]
 		protected List<Point> ProjectToView(IEnumerable<Point> values, int count)
 		{
@@ -137,8 +158,8 @@ namespace Metrolib
 					double y = _yRange.GetRelative(point.Y);
 
 					var view = new Point(
-						x * _width,
-						_height * (1 - y)
+						x*_width,
+						_height*(1 - y)
 						);
 					ret.Add(view);
 				}

@@ -19,13 +19,13 @@ namespace Metrolib
 		private int _count;
 		private Brush _fill;
 		private Pen _outline;
+		private Brush _pointFill;
+		private Pen _pointOutline;
+		private double _pointRadius;
 		private IEnumerable<Point> _values;
 
 		private Range _xRange;
 		private Range _yRange;
-		private Pen _pointOutline;
-		private Brush _pointFill;
-		private double _pointRadius;
 
 		/// <summary>
 		/// </summary>
@@ -34,22 +34,38 @@ namespace Metrolib
 			_outline = new Pen(Brushes.DodgerBlue, 2);
 		}
 
+		/// <summary>
+		///     The amount of points in <see cref="Values" />.
+		/// </summary>
 		public int Count
 		{
 			get { return _count; }
 		}
 
+		/// <summary>
+		///     Returns the value that should be displayed instead of the given numerical value.
+		///     Is used to annotate axes and popups / tooltips.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
 		public object GetXValue(double value)
 		{
 			return value;
 		}
 
+		/// <summary>
+		///     Returns the value that should be displayed instead of the given numerical value.
+		///     Is used to annotate axes and popups / tooltips.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
 		public object GetYValue(double value)
 		{
 			return value;
 		}
 
 		/// <summary>
+		///     The pen to draw the outline of this series with, if any.
 		/// </summary>
 		public Pen Outline
 		{
@@ -65,6 +81,7 @@ namespace Metrolib
 		}
 
 		/// <summary>
+		///     The brush to fill the area under this series, if any.
 		/// </summary>
 		public Brush Fill
 		{
@@ -79,6 +96,9 @@ namespace Metrolib
 			}
 		}
 
+		/// <summary>
+		///     The pen to draw the outline of the shape, representing individual data points.
+		/// </summary>
 		public Pen PointOutline
 		{
 			get { return _pointOutline; }
@@ -92,6 +112,9 @@ namespace Metrolib
 			}
 		}
 
+		/// <summary>
+		///     The brush to fill the shape, representing individual data points.
+		/// </summary>
 		public Brush PointFill
 		{
 			get { return _pointFill; }
@@ -105,6 +128,9 @@ namespace Metrolib
 			}
 		}
 
+		/// <summary>
+		///     The radius to draw the circle, representing individual data points.
+		/// </summary>
 		public double PointRadius
 		{
 			get { return _pointRadius; }
@@ -119,7 +145,12 @@ namespace Metrolib
 		}
 
 		/// <summary>
+		///     The values to display.
 		/// </summary>
+		/// <remarks>
+		///     Values are assumed to be ordered ascending by their <see cref="Point.X" /> value.
+		///     If this is not the case then the wrong data might be displayed.
+		/// </remarks>
 		public IEnumerable<Point> Values
 		{
 			get { return _values; }
@@ -145,6 +176,7 @@ namespace Metrolib
 		}
 
 		/// <summary>
+		///     The minimum and maximum x values in <see cref="Values" />.
 		/// </summary>
 		public Range XRange
 		{
@@ -160,6 +192,7 @@ namespace Metrolib
 		}
 
 		/// <summary>
+		///     The minimum and maximum y values in <see cref="Values" />.
 		/// </summary>
 		public Range YRange
 		{
