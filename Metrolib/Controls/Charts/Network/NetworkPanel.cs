@@ -1,14 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using Metrolib.Controls.Charts.Network.Layout;
 
-namespace Metrolib.Controls.Charts.Network
+// ReSharper disable CheckNamespace
+
+namespace Metrolib
+// ReSharper restore CheckNamespace
 {
-	internal sealed class NetworkPanel
+	/// <summary>
+	///     Responsible for applying the result of the layouting algorithm to the actual controls.
+	/// </summary>
+	public sealed class NetworkPanel
 		: Panel
 	{
-		public NetworkPanel()
+		internal void Arrange(List<Node> nodes)
 		{
+			int n = 0;
 		}
 
 		/// <summary>

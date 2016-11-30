@@ -17,11 +17,13 @@ namespace Metrolib.Controls.Charts.Network.Layout
 	{
 		private readonly List<IEdge> _edges;
 		private readonly Dictionary<object, Node> _nodes;
+		private readonly Random _rng;
 
 		public ForceDirectedLayoutAlgorithm()
 		{
 			_nodes = new Dictionary<object, Node>();
 			_edges = new List<IEdge>();
+			_rng = new Random(42);
 		}
 
 		public void Dispose()
@@ -34,6 +36,15 @@ namespace Metrolib.Controls.Charts.Network.Layout
 			Repulse();
 			Attract();
 			UpdatePositions(dt);
+		}
+
+		public void Update(List<Node> nodes)
+		{
+			nodes.Clear();
+			foreach (var node in _nodes.Values)
+			{
+				nodes.Add(node);
+			}
 		}
 
 		public void AddNodes(IEnumerable nodes)
@@ -109,6 +120,16 @@ namespace Metrolib.Controls.Charts.Network.Layout
 
 						node1.Force -= df;
 						node2.Force += df;
+					}
+					else
+					{
+						// Let's nudge 'em apart
+						var df = new Vector(_rng.NextDouble(), _rng.NextDouble());
+						df.Normalize();
+						df *= 10;
+
+						node1.Force += df;
+						node2.Force -= df;
 					}
 				}
 			}

@@ -18,6 +18,7 @@ namespace Metrolib.Controls.Charts.Network
 	///     Each item in <see cref="Nodes" /> represents a node and each item
 	///     in <see cref="Edges" /> represents an edge between exactly two nodes.
 	/// </summary>
+	[TemplatePart(Name = "PART_Panel", Type = typeof (NetworkPanel))]
 	public sealed class NetworkChart
 		: Control
 	{
@@ -33,17 +34,19 @@ namespace Metrolib.Controls.Charts.Network
 		/// </summary>
 		public static readonly DependencyProperty EdgesProperty =
 			DependencyProperty.Register("Edges", typeof (IEnumerable<IEdge>), typeof (NetworkChart),
-			                            new PropertyMetadata(null, OnEdgeSourceChanged));
+			                            new PropertyMetadata(null, OnEdgesChanged));
 
 		/// <summary>
 		///     /// Definition of the <see cref="Nodes" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty NodesProperty =
 			DependencyProperty.Register("Nodes", typeof (IEnumerable), typeof (NetworkChart),
-			                            new PropertyMetadata(default(IEnumerable)));
+			                            new PropertyMetadata(null, OnNodesChanged));
 
-		private INodeLayoutAlgorithm _algorithm;
 		private readonly DispatcherTimer _timer;
+		private INodeLayoutAlgorithm _algorithm;
+		private List<Node> _nodeBuffer;
+		private NetworkPanel _panel;
 
 		static NetworkChart()
 		{
@@ -58,14 +61,6 @@ namespace Metrolib.Controls.Charts.Network
 			_timer = new DispatcherTimer(TimeSpan.FromMilliseconds(60), DispatcherPriority.Normal, Update, Dispatcher);
 			Loaded += OnLoaded;
 			Unloaded += OnUnloaded;
-		}
-
-		private void Update(object sender, EventArgs e)
-		{
-			if (_algorithm != null)
-			{
-				_algorithm.Update();
-			}
 		}
 
 		/// <summary>
@@ -95,11 +90,28 @@ namespace Metrolib.Controls.Charts.Network
 			set { SetValue(EdgesProperty, value); }
 		}
 
+		private void Update(object sender, EventArgs e)
+		{
+			if (_algorithm != null && _panel != null)
+			{
+				_algorithm.Update(_nodeBuffer);
+				_panel.Arrange(_nodeBuffer);
+			}
+		}
+
+		public override void OnApplyTemplate()
+		{
+			base.OnApplyTemplate();
+
+			_panel = GetTemplateChild("PART_Panel") as NetworkPanel;
+		}
+
 		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
 		{
 			_algorithm = new ForceDirectedLayoutAlgorithm();
 			_algorithm.AddNodes(Nodes);
 			_algorithm.AddEdges(Edges);
+			_nodeBuffer = new List<Node>();
 			_timer.Start();
 		}
 
@@ -109,13 +121,61 @@ namespace Metrolib.Controls.Charts.Network
 			_algorithm.Dispose();
 		}
 
-		private static void OnEdgeSourceChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+		private static void OnNodesChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
 		{
-			((NetworkChart) dependencyObject).OnEdgeSourceChanged((IEnumerable<IEdge>) args.OldValue,
-			                                                      (IEnumerable<IEdge>) args.NewValue);
+			((NetworkChart) dependencyObject).OnNodesChanged((IEnumerable) args.OldValue, (IEnumerable) args.NewValue);
 		}
 
-		private void OnEdgeSourceChanged(IEnumerable<IEdge> oldEdges, IEnumerable<IEdge> newEdges)
+		private void OnNodesChanged(IEnumerable oldValue, IEnumerable newValue)
+		{
+			var notifiable = oldValue as INotifyCollectionChanged;
+			if (notifiable != null)
+			{
+				notifiable.CollectionChanged -= NodesOnCollectionChanged;
+			}
+			notifiable = newValue as INotifyCollectionChanged;
+			if (notifiable != null)
+			{
+				notifiable.CollectionChanged += NodesOnCollectionChanged;
+			}
+		}
+
+		private void NodesOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
+		{
+			switch (args.Action)
+			{
+				case NotifyCollectionChangedAction.Add:
+					_algorithm.AddNodes(args.NewItems.Cast<object>());
+					break;
+
+				case NotifyCollectionChangedAction.Move:
+					// We probably don't need to do anything as we don't
+					// deal with indices.
+					break;
+
+				case NotifyCollectionChangedAction.Remove:
+					_algorithm.RemoveNodes(args.OldItems.Cast<object>());
+					break;
+
+				case NotifyCollectionChangedAction.Replace:
+					_algorithm.RemoveNodes(args.OldItems.Cast<object>());
+					_algorithm.AddNodes(args.NewItems.Cast<object>());
+					break;
+
+				case NotifyCollectionChangedAction.Reset:
+					_algorithm.ClearNodes();
+					_algorithm.AddNodes(args.NewItems.Cast<object>());
+					break;
+			}
+		}
+
+		private static void OnEdgesChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+		{
+			((NetworkChart) dependencyObject).OnEdgesChanged((IEnumerable<IEdge>) args.OldValue,
+			                                                 (IEnumerable<IEdge>) args.NewValue);
+		}
+
+		private void OnEdgesChanged(IEnumerable<IEdge> oldEdges, IEnumerable<IEdge> newEdges)
 		{
 			var notifiable = oldEdges as INotifyCollectionChanged;
 			if (notifiable != null)

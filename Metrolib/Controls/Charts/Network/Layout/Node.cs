@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Metrolib.Controls.Charts.Network
+namespace Metrolib.Controls.Charts.Network.Layout
 {
 	/// <summary>
 	///     A node as used by the internal layout algorithms.
