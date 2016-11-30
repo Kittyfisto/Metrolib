@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Metrolib.Controls.Charts.Network.Layout
@@ -9,8 +8,8 @@ namespace Metrolib.Controls.Charts.Network.Layout
 	{
 		void Update(TimeSpan dt, List<Node> nodes);
 
-		void AddNodes(IEnumerable nodes);
-		void RemoveNodes(IEnumerable nodes);
+		void AddNode(object node);
+		void RemoveNode(object node);
 		void ClearNodes();
 
 		void AddEdges(IEnumerable<IEdge> edges);

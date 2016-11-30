@@ -6,5 +6,10 @@ namespace Metrolib.Sample
 	{
 		public string Name { get; set; }
 		public Uri Portrait { get; set; }
+
+		public override string ToString()
+		{
+			return Name;
+		}
 	}
 }

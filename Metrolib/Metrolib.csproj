@@ -259,7 +259,6 @@
     <Compile Include="Controls\Charts\Network\IEdge.cs" />
     <Compile Include="Controls\Charts\Network\Layout\INodeLayoutAlgorithm.cs" />
     <Compile Include="Controls\Charts\Network\NetworkChart.cs" />
-    <Compile Include="Controls\Charts\Network\NetworkPanel.cs" />
     <Compile Include="Controls\Charts\Network\Layout\Node.cs" />
     <Compile Include="Controls\Charts\Range.cs" />
     <Compile Include="Controls\ContextMenu\MenuItemContentControl.cs" />

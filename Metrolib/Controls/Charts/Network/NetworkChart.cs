@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Threading;
 using Metrolib.Controls.Charts.Network.Layout;
 
@@ -19,9 +20,8 @@ namespace Metrolib.Controls.Charts.Network
 	///     Each item in <see cref="Nodes" /> represents a node and each item
 	///     in <see cref="Edges" /> represents an edge between exactly two nodes.
 	/// </summary>
-	[TemplatePart(Name = "PART_Panel", Type = typeof (NetworkPanel))]
 	public sealed class NetworkChart
-		: Control
+		: Canvas
 	{
 		/// <summary>
 		///     Definition of the <see cref="NodeTemplate" /> dependency property.
@@ -45,10 +45,11 @@ namespace Metrolib.Controls.Charts.Network
 			                            new PropertyMetadata(null, OnNodesChanged));
 
 		private readonly DispatcherTimer _timer;
-		private Stopwatch _stopwatch;
+		private readonly Stopwatch _stopwatch;
+		private readonly Dictionary<object, ContentPresenter> _items;
 		private INodeLayoutAlgorithm _algorithm;
 		private List<Node> _nodeBuffer;
-		private NetworkPanel _panel;
+		private bool _isLoaded;
 
 		static NetworkChart()
 		{
@@ -61,6 +62,7 @@ namespace Metrolib.Controls.Charts.Network
 		public NetworkChart()
 		{
 			_stopwatch = new Stopwatch();
+			_items = new Dictionary<object, ContentPresenter>();
 			_timer = new DispatcherTimer(TimeSpan.FromMilliseconds(60), DispatcherPriority.Normal, Update, Dispatcher);
 			Loaded += OnLoaded;
 			Unloaded += OnUnloaded;
@@ -93,6 +95,56 @@ namespace Metrolib.Controls.Charts.Network
 			set { SetValue(EdgesProperty, value); }
 		}
 
+		#region Arrange
+
+		private void Arrange()
+		{
+			InvalidateArrange();
+		}
+
+		/// <summary>
+		///     Determine required size.
+		/// </summary>
+		/// <param name="availableSize"></param>
+		/// <returns></returns>
+		protected override System.Windows.Size MeasureOverride(System.Windows.Size availableSize)
+		{
+			var maxSize = new System.Windows.Size();
+
+			foreach (UIElement child in InternalChildren)
+			{
+				child.Measure(availableSize);
+
+				maxSize.Height = Math.Max(child.DesiredSize.Height, maxSize.Height);
+				maxSize.Width = Math.Max(child.DesiredSize.Width, maxSize.Width);
+			}
+
+			return maxSize;
+		}
+
+		/// <summary>
+		///     Position and resize all children.
+		/// </summary>
+		/// <param name="finalSize"></param>
+		/// <returns></returns>
+		protected override System.Windows.Size ArrangeOverride(System.Windows.Size finalSize)
+		{
+			if (_nodeBuffer != null)
+			{
+				foreach (var node in _nodeBuffer)
+				{
+					ContentPresenter item;
+					if (_items.TryGetValue(node.DataContext, out item))
+					{
+						item.Arrange(new Rect(node.Position, item.DesiredSize));
+					}
+				}
+			}
+			return finalSize;
+		}
+
+		#endregion
+
 		private void Update(object sender, EventArgs e)
 		{
 			var dt = _stopwatch.Elapsed;
@@ -102,27 +154,18 @@ namespace Metrolib.Controls.Charts.Network
 
 		internal void Update(TimeSpan dt)
 		{
-			if (_algorithm != null && _panel != null)
+			if (_algorithm != null)
 			{
 				_algorithm.Update(dt, _nodeBuffer);
-				_panel.Arrange(_nodeBuffer);
+				Arrange();
 			}
-		}
-
-		/// <summary>
-		///     Called when the template's tree is generated.
-		/// </summary>
-		public override void OnApplyTemplate()
-		{
-			base.OnApplyTemplate();
-
-			_panel = GetTemplateChild("PART_Panel") as NetworkPanel;
 		}
 
 		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
 		{
+			_isLoaded = true;
 			_algorithm = new ForceDirectedLayoutAlgorithm();
-			_algorithm.AddNodes(Nodes);
+			AddNodes(Nodes);
 			_algorithm.AddEdges(Edges);
 			_nodeBuffer = new List<Node>();
 			_timer.Start();
@@ -132,6 +175,7 @@ namespace Metrolib.Controls.Charts.Network
 		{
 			_timer.Stop();
 			_algorithm.Dispose();
+			_isLoaded = false;
 		}
 
 		private static void OnNodesChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
@@ -141,11 +185,18 @@ namespace Metrolib.Controls.Charts.Network
 
 		private void OnNodesChanged(IEnumerable oldValue, IEnumerable newValue)
 		{
+			if (!_isLoaded)
+				return;
+
 			var notifiable = oldValue as INotifyCollectionChanged;
 			if (notifiable != null)
 			{
 				notifiable.CollectionChanged -= NodesOnCollectionChanged;
 			}
+
+			ClearNodes();
+			AddNodes(newValue);
+
 			notifiable = newValue as INotifyCollectionChanged;
 			if (notifiable != null)
 			{
@@ -158,7 +209,7 @@ namespace Metrolib.Controls.Charts.Network
 			switch (args.Action)
 			{
 				case NotifyCollectionChangedAction.Add:
-					_algorithm.AddNodes(args.NewItems.Cast<object>());
+					AddNodes(args.NewItems);
 					break;
 
 				case NotifyCollectionChangedAction.Move:
@@ -167,18 +218,69 @@ namespace Metrolib.Controls.Charts.Network
 					break;
 
 				case NotifyCollectionChangedAction.Remove:
-					_algorithm.RemoveNodes(args.OldItems.Cast<object>());
+					RemoveNodes(args.OldItems);
 					break;
 
 				case NotifyCollectionChangedAction.Replace:
-					_algorithm.RemoveNodes(args.OldItems.Cast<object>());
-					_algorithm.AddNodes(args.NewItems.Cast<object>());
+					RemoveNodes(args.OldItems);
+					AddNodes(args.NewItems);
 					break;
 
 				case NotifyCollectionChangedAction.Reset:
-					_algorithm.ClearNodes();
-					_algorithm.AddNodes(args.NewItems.Cast<object>());
+					ClearNodes();
+					AddNodes(args.NewItems);
 					break;
+			}
+		}
+
+		private void AddNodes(IEnumerable nodes)
+		{
+			if (nodes == null)
+				return;
+
+			foreach (var node in nodes)
+			{
+				if (node != null)
+				{
+					_algorithm.AddNode(node);
+					var item = new ContentPresenter
+						{
+							Content = node
+						};
+					var binding = new Binding("NodeTemplate")
+						{
+							Source = this
+						};
+					BindingOperations.SetBinding(item, ContentPresenter.ContentTemplateProperty, binding);
+
+					_items.Add(node, item);
+					Children.Add(item);
+				}
+			}
+		}
+
+		private void ClearNodes()
+		{
+			RemoveNodes(_items.Keys.ToList());
+		}
+
+		private void RemoveNodes(IEnumerable nodes)
+		{
+			if (nodes == null)
+				return;
+
+			foreach (var node in nodes)
+			{
+				if (node != null)
+				{
+					_algorithm.RemoveNode(node);
+					ContentPresenter item;
+					if (_items.TryGetValue(node, out item))
+					{
+						_items.Remove(node);
+						Children.Remove(item);
+					}
+				}
 			}
 		}
 

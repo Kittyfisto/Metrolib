@@ -32,6 +32,9 @@ namespace Metrolib.Controls.Charts.Network.Layout
 
 		public void Update(TimeSpan dt, List<Node> nodes)
 		{
+			if (dt <= TimeSpan.Zero)
+				return;
+
 			Repulse();
 			Attract();
 			UpdatePositions(dt.TotalSeconds);
@@ -189,7 +192,7 @@ namespace Metrolib.Controls.Charts.Network.Layout
 			}
 		}
 
-		private void AddNode(object node)
+		public void AddNode(object node)
 		{
 			if (node == null)
 				return;
@@ -197,7 +200,7 @@ namespace Metrolib.Controls.Charts.Network.Layout
 			_nodes.Add(node, new Node(node));
 		}
 
-		private void RemoveNode(object node)
+		public void RemoveNode(object node)
 		{
 			if (node == null)
 				return;
