@@ -8,10 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
 
-// ReSharper disable CheckNamespace
-
-namespace Metrolib
-// ReSharper restore CheckNamespace
+namespace Metrolib.Controls.Charts.Line.Canvas
 {
 	/// <summary>
 	///     Responsible for drawing one or more <see cref="ILineSeries" />.
@@ -126,6 +123,14 @@ namespace Metrolib
 		}
 
 		/// <summary>
+		///     Whether or not this canvas is dirty and must be updated and rendered.
+		/// </summary>
+		public bool IsDirty
+		{
+			get { return _isDirty; }
+		}
+
+		/// <summary>
 		///     Marks this canvas as dirty so it actually does some work the next time <see cref="Update" /> is called.
 		/// </summary>
 		protected void SetDirty()
@@ -142,7 +147,6 @@ namespace Metrolib
 			}
 			catch (Exception e)
 			{
-				
 			}
 			finally
 			{
@@ -150,12 +154,15 @@ namespace Metrolib
 			}
 		}
 
+		/// <summary>
+		///     Is called to prepare the canvas for rendering.
+		/// </summary>
 		public virtual void Update()
 		{
-			UpdateRanges();
+			CalculateCombinedRanges();
 
-			bool redraw = _isDirty;
-			foreach (AbstractLineSeriesCanvas canvas in _seriesCanvasses)
+			bool redraw = IsDirty;
+			foreach (AbstractLineSeriesCanvas canvas in SeriesCanvasses)
 			{
 				canvas.XRange = XRange;
 				canvas.YRange = YRange;
@@ -170,40 +177,10 @@ namespace Metrolib
 			}
 		}
 
-		private void UpdateRanges()
-		{
-			if (Series != null)
-			{
-				IEnumerator<ILineSeries> it = Series.GetEnumerator();
-				if (it.MoveNext())
-				{
-					Range xRange = it.Current.XRange;
-					Range yRange = it.Current.YRange;
-
-					while (it.MoveNext())
-					{
-						xRange.Minimum = Math.Min(xRange.Minimum, it.Current.XRange.Minimum);
-						xRange.Maximum = Math.Max(xRange.Maximum, it.Current.XRange.Maximum);
-
-						yRange.Minimum = Math.Min(yRange.Minimum, it.Current.YRange.Minimum);
-						yRange.Maximum = Math.Max(yRange.Maximum, it.Current.YRange.Maximum);
-					}
-
-					XRange = xRange;
-					YRange = yRange;
-				}
-				else
-				{
-					XRange = new Range();
-					YRange = new Range();
-				}
-			}
-			else
-			{
-				XRange = new Range();
-				YRange = new Range();
-			}
-		}
+		/// <summary>
+		///     Is called to determine the range of all series.
+		/// </summary>
+		protected abstract void CalculateCombinedRanges();
 
 		private void OnSizeChanged(object sender, SizeChangedEventArgs args)
 		{

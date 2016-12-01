@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using Metrolib.Controls.Charts.Line.Canvas;
+using Metrolib.Controls.Charts.Line.Canvas.Line;
+using Metrolib.Controls.Charts.Line.Canvas.Stacked;
 
 // ReSharper disable CheckNamespace
 namespace Metrolib

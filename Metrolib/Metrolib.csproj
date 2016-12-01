@@ -247,12 +247,14 @@
     <Compile Include="Controls\Charts\AxisControl.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\AbstractLineChartCanvas.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\AbstractLineSeriesCanvas.cs" />
+    <Compile Include="Controls\Charts\Line\Canvas\Line\LineSeriesCanvas.cs" />
+    <Compile Include="Controls\Charts\Line\Canvas\Stacked\StackedLineSeriesCanvas.cs" />
     <Compile Include="Controls\Charts\Line\ILineSeries.cs" />
-    <Compile Include="Controls\Charts\Line\Canvas\LineChartCanvas.cs" />
+    <Compile Include="Controls\Charts\Line\Canvas\Line\LineChartCanvas.cs" />
     <Compile Include="Controls\Charts\Line\LineChart.cs" />
     <Compile Include="Controls\Charts\Line\LineChartType.cs" />
     <Compile Include="Controls\Charts\Line\LineSeries.cs" />
-    <Compile Include="Controls\Charts\Line\Canvas\StackedLineChartCanvas.cs" />
+    <Compile Include="Controls\Charts\Line\Canvas\Stacked\StackedLineChartCanvas.cs" />
     <Compile Include="Controls\Charts\Network\NodePosition.cs" />
     <Compile Include="Controls\Charts\Network\Direction.cs" />
     <Compile Include="Controls\Charts\Network\Edge.cs" />

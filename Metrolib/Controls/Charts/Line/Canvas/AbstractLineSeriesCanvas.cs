@@ -7,10 +7,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 
-// ReSharper disable CheckNamespace
-
-namespace Metrolib
-// ReSharper restore CheckNamespace
+namespace Metrolib.Controls.Charts.Line.Canvas
 {
 	/// <summary>
 	///     Responsible for drawing an individual <see cref="ILineSeries" />.

@@ -24,6 +24,10 @@ namespace Metrolib.Controls.Charts.Network
 		/// <returns></returns>
 		public abstract INodeLayoutAlgorithm CreateAlgorithm();
 
+		/// <summary>
+		///     Fires the <see cref="PropertyChanged" /> event.
+		/// </summary>
+		/// <param name="propertyName"></param>
 		protected virtual void EmitPropertyChanged([CallerMemberName] string propertyName = null)
 		{
 			PropertyChangedEventHandler handler = PropertyChanged;
