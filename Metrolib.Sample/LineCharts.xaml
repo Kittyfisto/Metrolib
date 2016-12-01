@@ -4,25 +4,34 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:metrolib="clr-namespace:Metrolib;assembly=Metrolib"
-             xmlns:sample="clr-namespace:Metrolib.Sample"
-             xmlns:network="clr-namespace:Metrolib.Controls.Charts.Network;assembly=Metrolib"
+             xmlns:canvas="clr-namespace:Metrolib.Controls.Charts.Line.Canvas;assembly=Metrolib"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              x:Name="This">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Type: " />
-            <RadioButton Content="Normal " x:Name="Normal" Checked="OnNormalChecked" />
-            <RadioButton Content="Stacked " x:Name="Stacked" Checked="OnStackedChecked" />
+    <Grid Margin="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Type: " />
+                <RadioButton Content="Normal " x:Name="Normal" Checked="OnNormalChecked" />
+                <RadioButton Content="Stacked " x:Name="Stacked" Checked="OnStackedChecked" />
+            </StackPanel>
+            <CheckBox Content="YAxis.ShowLines" />
+            <CheckBox Content="XAxis.ShowLines" />
+            <CheckBox Content="YAxis.ShowTicks" />
+            <CheckBox Content="XAxis.ShowTicks" />
         </StackPanel>
-        <metrolib:LineChart Margin="8"
-                                Grid.Row="1"
-                                x:Name="PART_Chart">
-
+        <metrolib:LineChart Grid.Column="1"
+                            x:Name="PART_Chart">
+            <metrolib:LineChart.XAxis>
+                   <canvas:Axis Caption="Year" />
+            </metrolib:LineChart.XAxis>
+            <metrolib:LineChart.YAxis>
+                <canvas:Axis Caption="Size" />
+            </metrolib:LineChart.YAxis>
         </metrolib:LineChart>
     </Grid>
 </UserControl>

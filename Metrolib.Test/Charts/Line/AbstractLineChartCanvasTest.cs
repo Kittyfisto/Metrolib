@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using FluentAssertions;
 using Metrolib.Controls.Charts.Line.Canvas;
 using Moq;
@@ -78,6 +79,29 @@ namespace Metrolib.Test.Charts.Line
 			serieses.Add(series.Object);
 			canvas.Series.Should().Equal(new object[] {series.Object});
 			canvas.SeriesCanvasses.Count().Should().Be(1);
+		}
+
+		[Test]
+		[STAThread]
+		public void TestXAxisTicks()
+		{
+			var canvas = Create();
+			canvas.Series = new[]
+				{
+					new LineSeries
+						{
+							Values = new[]
+								{
+									new Point(1, -2),
+									new Point(2, 4)
+								}
+						}
+				};
+
+			canvas.Arrange(new Rect(0, 0, 1024, 768));
+
+			canvas.Update();
+			canvas.XRange.Should().Be(new Range(1, 2));
 		}
 	}
 }

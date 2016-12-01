@@ -16,6 +16,8 @@ namespace Metrolib.Controls.Charts.Line.Canvas
 		: IDisposable
 	{
 		private readonly ILineSeries _lineSeries;
+		private Range _displayedXRange;
+		private Range _displayedYRange;
 		private double _height;
 
 		private bool _isDirty;
@@ -23,8 +25,6 @@ namespace Metrolib.Controls.Charts.Line.Canvas
 		private INotifyCollectionChanged _observableValues;
 		private Point[] _values;
 		private double _width;
-		private Range _xRange;
-		private Range _yRange;
 
 		/// <summary>
 		///     Initializes this canvas.
@@ -48,17 +48,27 @@ namespace Metrolib.Controls.Charts.Line.Canvas
 		}
 
 		/// <summary>
+		///     The final range of x-values represented by this canvas.
+		/// </summary>
+		public abstract Range XRange { get; }
+
+		/// <summary>
+		///     The final range of y-values represented by this canvas.
+		/// </summary>
+		public abstract Range YRange { get; }
+
+		/// <summary>
 		///     The range of x-values that shall be displayed by this canvas.
 		/// </summary>
-		public Range XRange
+		public Range DisplayedXRange
 		{
-			get { return _xRange; }
+			get { return _displayedXRange; }
 			set
 			{
-				if (value == _xRange)
+				if (value == _displayedXRange)
 					return;
 
-				_xRange = value;
+				_displayedXRange = value;
 				MakeDirty();
 			}
 		}
@@ -66,15 +76,15 @@ namespace Metrolib.Controls.Charts.Line.Canvas
 		/// <summary>
 		///     The range of y-values that shall be displayed by this canvas.
 		/// </summary>
-		public Range YRange
+		public Range DisplayedYRange
 		{
-			get { return _yRange; }
+			get { return _displayedYRange; }
 			set
 			{
-				if (value == _yRange)
+				if (value == _displayedYRange)
 					return;
 
-				_yRange = value;
+				_displayedYRange = value;
 				MakeDirty();
 			}
 		}
@@ -151,8 +161,8 @@ namespace Metrolib.Controls.Charts.Line.Canvas
 			{
 				foreach (Point point in values)
 				{
-					double x = _xRange.GetRelative(point.X);
-					double y = _yRange.GetRelative(point.Y);
+					double x = _displayedXRange.GetRelative(point.X);
+					double y = _displayedYRange.GetRelative(point.Y);
 
 					var view = new Point(
 						x*_width,

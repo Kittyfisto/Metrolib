@@ -178,6 +178,16 @@ namespace Metrolib.Controls.Charts.Line.Canvas.Stacked
 			return y;
 		}
 
+		public override Range XRange
+		{
+			get { return Series.XRange; }
+		}
+
+		public override Range YRange
+		{
+			get { return _stackedYRange; }
+		}
+
 		/// <summary>
 		/// Is called to actually draw the series.
 		/// </summary>

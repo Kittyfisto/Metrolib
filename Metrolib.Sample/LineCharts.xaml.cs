@@ -20,8 +20,6 @@ namespace Metrolib.Sample
 
 			_curve = new ObservableCollection<Point>(Enumerable.Range(0, 101).Select(x => new Point()));
 
-			PART_Chart.XAxisCaption = "Frequency";
-			PART_Chart.YAxisCaption = "dBm";
 			PART_Chart.Series = new[]
 				{
 					new LineSeries

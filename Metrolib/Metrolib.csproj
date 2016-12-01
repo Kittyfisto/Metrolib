@@ -247,6 +247,7 @@
     <Compile Include="Controls\Charts\AxisControl.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\AbstractLineChartCanvas.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\AbstractLineSeriesCanvas.cs" />
+    <Compile Include="Controls\Charts\Line\Canvas\Axis.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\Line\LineSeriesCanvas.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\Stacked\StackedLineSeriesCanvas.cs" />
     <Compile Include="Controls\Charts\Line\ILineSeries.cs" />

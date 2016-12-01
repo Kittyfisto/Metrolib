@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
 using FluentAssertions;
 using Metrolib.Controls.Charts.Line.Canvas;
@@ -23,11 +22,8 @@ namespace Metrolib.Test.Charts.Line
 		public void TestLineSeries1()
 		{
 			var canvas = Create();
-			var series = new Mock<ILineSeries>();
-			series.Setup(x => x.XRange).Returns(new Range(1, 2));
-			series.Setup(x => x.YRange).Returns(new Range(3, 4));
 
-			canvas.Series = new[] {series.Object};
+			canvas.Series = new[] {new LineSeries {Values = new[] {new Point(1, 3), new Point(2, 4)}}};
 
 			canvas.Update();
 			canvas.XRange.Should().Be(new Range(1, 2));

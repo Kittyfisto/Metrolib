@@ -20,10 +20,10 @@
 
                             <charts:AxisControl Orientation="Vertical"
                                                 Range="{Binding Canvas.XRange, RelativeSource={RelativeSource TemplatedParent}}"
-                                                Content="{TemplateBinding YAxisCaption}" />
+                                                Content="{Binding YAxis.Caption, RelativeSource={RelativeSource TemplatedParent}}" />
                             <charts:AxisControl Orientation="Horizontal"
                                                 Range="{Binding Canvas.YRange, RelativeSource={RelativeSource TemplatedParent}}"
-                                                Content="{TemplateBinding XAxisCaption}"
+                                                Content="{Binding XAxis.Caption, RelativeSource={RelativeSource TemplatedParent}}"
                                                 Grid.Column="1"
                                                 Grid.Row="1" />
                         </Grid>

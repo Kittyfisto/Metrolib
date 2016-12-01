@@ -6,6 +6,7 @@ using Metrolib.Controls.Charts.Line.Canvas.Line;
 using Metrolib.Controls.Charts.Line.Canvas.Stacked;
 
 // ReSharper disable CheckNamespace
+
 namespace Metrolib
 // ReSharper restore CheckNamespace
 {
@@ -28,18 +29,16 @@ namespace Metrolib
 			                            new PropertyMetadata(null, OnSeriesChanged));
 
 		/// <summary>
-		///     Definition of the <see cref="YAxisCaption" /> dependency property.
+		///     Definition of the <see cref="XAxis" /> dependency property.
 		/// </summary>
-		public static readonly DependencyProperty YAxisCaptionProperty =
-			DependencyProperty.Register("YAxisCaption", typeof (object), typeof (LineChart),
-			                            new PropertyMetadata(default(object)));
+		public static readonly DependencyProperty XAxisProperty =
+			DependencyProperty.Register("XAxis", typeof (Axis), typeof (LineChart), new PropertyMetadata(default(Axis)));
 
 		/// <summary>
-		///     Definition of the <see cref="XAxisCaption" /> dependency property.
+		///     Definition of the <see cref="YAxis" /> dependency property.
 		/// </summary>
-		public static readonly DependencyProperty XAxisCaptionProperty =
-			DependencyProperty.Register("XAxisCaption", typeof (object), typeof (LineChart),
-			                            new PropertyMetadata(default(object)));
+		public static readonly DependencyProperty YAxisProperty =
+			DependencyProperty.Register("YAxis", typeof (Axis), typeof (LineChart), new PropertyMetadata(default(Axis)));
 
 		private static readonly DependencyPropertyKey CanvasPropertyKey
 			= DependencyProperty.RegisterReadOnly("Canvas", typeof (AbstractLineChartCanvas), typeof (LineChart),
@@ -72,6 +71,24 @@ namespace Metrolib
 		}
 
 		/// <summary>
+		///     Definition of the y-axis.
+		/// </summary>
+		public Axis YAxis
+		{
+			get { return (Axis) GetValue(YAxisProperty); }
+			set { SetValue(YAxisProperty, value); }
+		}
+
+		/// <summary>
+		///     Definition of the x-axis.
+		/// </summary>
+		public Axis XAxis
+		{
+			get { return (Axis) GetValue(XAxisProperty); }
+			set { SetValue(XAxisProperty, value); }
+		}
+
+		/// <summary>
 		///     Defines how the <see cref="Series" /> should be displayed.
 		/// </summary>
 		public LineChartType ChartType
@@ -88,24 +105,6 @@ namespace Metrolib
 		{
 			get { return (AbstractLineChartCanvas) GetValue(CanvasProperty); }
 			protected set { SetValue(CanvasPropertyKey, value); }
-		}
-
-		/// <summary>
-		///     Caption of the x-axis.
-		/// </summary>
-		public object XAxisCaption
-		{
-			get { return GetValue(XAxisCaptionProperty); }
-			set { SetValue(XAxisCaptionProperty, value); }
-		}
-
-		/// <summary>
-		///     Caption of the y-axis.
-		/// </summary>
-		public object YAxisCaption
-		{
-			get { return GetValue(YAxisCaptionProperty); }
-			set { SetValue(YAxisCaptionProperty, value); }
 		}
 
 		/// <summary>

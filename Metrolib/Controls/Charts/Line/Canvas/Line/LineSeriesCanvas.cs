@@ -24,6 +24,16 @@ namespace Metrolib.Controls.Charts.Line.Canvas.Line
 			_outline = new StreamGeometry();
 		}
 
+		public override Range XRange
+		{
+			get { return Series.XRange; }
+		}
+
+		public override Range YRange
+		{
+			get { return Series.YRange; }
+		}
+
 		/// <summary>
 		///     Is called to actually draw the series.
 		/// </summary>

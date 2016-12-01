@@ -164,8 +164,8 @@ namespace Metrolib.Controls.Charts.Line.Canvas
 			bool redraw = IsDirty;
 			foreach (AbstractLineSeriesCanvas canvas in SeriesCanvasses)
 			{
-				canvas.XRange = XRange;
-				canvas.YRange = YRange;
+				canvas.DisplayedXRange = XRange;
+				canvas.DisplayedYRange = YRange;
 
 				if (canvas.Update())
 					redraw = true;
@@ -180,7 +180,40 @@ namespace Metrolib.Controls.Charts.Line.Canvas
 		/// <summary>
 		///     Is called to determine the range of all series.
 		/// </summary>
-		protected abstract void CalculateCombinedRanges();
+		private void CalculateCombinedRanges()
+		{
+			if (Series != null)
+			{
+				IEnumerator<AbstractLineSeriesCanvas> it = SeriesCanvasses.GetEnumerator();
+				if (it.MoveNext())
+				{
+					Range xRange = it.Current.XRange;
+					Range yRange = it.Current.YRange;
+
+					while (it.MoveNext())
+					{
+						xRange.Minimum = Math.Min(xRange.Minimum, it.Current.XRange.Minimum);
+						xRange.Maximum = Math.Max(xRange.Maximum, it.Current.XRange.Maximum);
+
+						yRange.Minimum = Math.Min(yRange.Minimum, it.Current.YRange.Minimum);
+						yRange.Maximum = Math.Max(yRange.Maximum, it.Current.YRange.Maximum);
+					}
+
+					XRange = xRange;
+					YRange = yRange;
+				}
+				else
+				{
+					XRange = new Range();
+					YRange = new Range();
+				}
+			}
+			else
+			{
+				XRange = new Range();
+				YRange = new Range();
+			}
+		}
 
 		private void OnSizeChanged(object sender, SizeChangedEventArgs args)
 		{
