@@ -27,10 +27,10 @@
         <metrolib:LineChart Grid.Column="1"
                             x:Name="PART_Chart">
             <metrolib:LineChart.XAxis>
-                   <canvas:Axis Caption="Year" />
+                   <metrolib:Axis Caption="Year" />
             </metrolib:LineChart.XAxis>
             <metrolib:LineChart.YAxis>
-                <canvas:Axis Caption="Size" />
+                <metrolib:Axis Caption="Size" />
             </metrolib:LineChart.YAxis>
         </metrolib:LineChart>
     </Grid>

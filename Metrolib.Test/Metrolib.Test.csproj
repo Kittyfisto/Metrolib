@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Charts\Line\AbstractLineChartCanvasTest.cs" />
+    <Compile Include="Charts\Line\AxisTest.cs" />
     <Compile Include="Charts\Line\LineChartCanvasTest.cs" />
     <Compile Include="Charts\Line\LineChartTest.cs" />
     <Compile Include="Charts\Line\LineSeriesTest.cs" />

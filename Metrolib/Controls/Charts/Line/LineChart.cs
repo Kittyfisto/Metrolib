@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Threading;
 using Metrolib.Controls.Charts.Line.Canvas;
 using Metrolib.Controls.Charts.Line.Canvas.Line;
 using Metrolib.Controls.Charts.Line.Canvas.Stacked;
 
 // ReSharper disable CheckNamespace
-
 namespace Metrolib
 // ReSharper restore CheckNamespace
 {
@@ -52,6 +55,8 @@ namespace Metrolib
 			= CanvasPropertyKey.DependencyProperty;
 
 		private Grid _grid;
+		private readonly Stopwatch _stopwatch;
+		private readonly DispatcherTimer _timer;
 
 		static LineChart()
 		{
@@ -63,11 +68,45 @@ namespace Metrolib
 		/// </summary>
 		public LineChart()
 		{
-			Canvas = new LineChartCanvas
-				{
-					Series = Series
-				};
+			_stopwatch = new Stopwatch();
+			_timer = new DispatcherTimer
+			{
+				Interval = TimeSpan.FromMilliseconds(66)
+			};
+			_timer.Tick += TimerOnTick;
+
+			Canvas = CreateCanvas(LineChartType.Normal);
 			Grid.SetColumn(Canvas, 1);
+
+			Loaded += OnLoaded;
+			Unloaded += OnUnloaded;
+		}
+
+		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+		{
+			_timer.Start();
+		}
+
+		private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
+		{
+			_timer.Stop();
+		}
+
+		private void TimerOnTick(object sender, EventArgs eventArgs)
+		{
+			_stopwatch.Restart();
+			try
+			{
+				if (Canvas != null)
+					Canvas.Update();
+			}
+			catch (Exception e)
+			{
+			}
+			finally
+			{
+				_stopwatch.Stop();
+			}
 		}
 
 		/// <summary>
@@ -156,17 +195,25 @@ namespace Metrolib
 				_grid.Children.Remove(canvas);
 		}
 
-		private static AbstractLineChartCanvas CreateCanvas(LineChartType type)
+		private AbstractLineChartCanvas CreateCanvas(LineChartType type)
 		{
+			AbstractLineChartCanvas canvas;
 			switch (type)
 			{
 				case LineChartType.Normal:
-					return new LineChartCanvas();
+					canvas = new LineChartCanvas();
+					break;
 				case LineChartType.Stacked:
-					return new StackedLineChartCanvas();
+					canvas = new StackedLineChartCanvas();
+					break;
+
 				default:
 					return null;
 			}
+
+			BindingOperations.SetBinding(canvas, AbstractLineChartCanvas.XAxisProperty, new Binding("XAxis") { Source = this });
+			BindingOperations.SetBinding(canvas, AbstractLineChartCanvas.YAxisProperty, new Binding("YAxis") { Source = this });
+			return canvas;
 		}
 
 		private static void OnSeriesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Threading;
 
 namespace Metrolib.Controls.Charts.Line.Canvas
 {
@@ -24,6 +22,18 @@ namespace Metrolib.Controls.Charts.Line.Canvas
 		public static TimeSpan MinimumUpdateDelta = TimeSpan.FromMilliseconds(1/60.0);
 
 		/// <summary>
+		///     Definition of the <see cref="XAxis" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty XAxisProperty =
+			DependencyProperty.Register("XAxis", typeof(Axis), typeof(AbstractLineChartCanvas), new PropertyMetadata(default(Axis)));
+
+		/// <summary>
+		///     Definition of the <see cref="YAxis" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty YAxisProperty =
+			DependencyProperty.Register("YAxis", typeof(Axis), typeof(AbstractLineChartCanvas), new PropertyMetadata(default(Axis)));
+
+		/// <summary>
 		///     Definition of the <see cref="XRange" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty XRangeProperty =
@@ -38,8 +48,6 @@ namespace Metrolib.Controls.Charts.Line.Canvas
 			                            new PropertyMetadata(default(Range)));
 
 		private readonly List<AbstractLineSeriesCanvas> _seriesCanvasses;
-		private readonly Stopwatch _stopwatch;
-		private readonly DispatcherTimer _timer;
 
 		private bool _isDirty;
 		private IEnumerable<ILineSeries> _series;
@@ -49,13 +57,7 @@ namespace Metrolib.Controls.Charts.Line.Canvas
 		/// </summary>
 		protected AbstractLineChartCanvas()
 		{
-			_stopwatch = new Stopwatch();
 			_seriesCanvasses = new List<AbstractLineSeriesCanvas>();
-			_timer = new DispatcherTimer
-				{
-					Interval = TimeSpan.FromMilliseconds(66)
-				};
-			_timer.Tick += TimerOnTick;
 			Loaded += OnLoaded;
 			Unloaded += OnUnloaded;
 			SizeChanged += OnSizeChanged;
@@ -63,6 +65,22 @@ namespace Metrolib.Controls.Charts.Line.Canvas
 			// We draw stuff by hand and thus we must enable clipping to ensure
 			// that we don't draw outside of our client area.
 			ClipToBounds = true;
+		}
+
+		/// <summary>
+		/// </summary>
+		public Axis YAxis
+		{
+			get { return (Axis)GetValue(YAxisProperty); }
+			set { SetValue(YAxisProperty, value); }
+		}
+
+		/// <summary>
+		/// </summary>
+		public Axis XAxis
+		{
+			get { return (Axis)GetValue(XAxisProperty); }
+			set { SetValue(XAxisProperty, value); }
 		}
 
 		/// <summary>
@@ -136,22 +154,6 @@ namespace Metrolib.Controls.Charts.Line.Canvas
 		protected void SetDirty()
 		{
 			_isDirty = true;
-		}
-
-		private void TimerOnTick(object sender, EventArgs eventArgs)
-		{
-			_stopwatch.Restart();
-			try
-			{
-				Update();
-			}
-			catch (Exception e)
-			{
-			}
-			finally
-			{
-				_stopwatch.Stop();
-			}
 		}
 
 		/// <summary>
@@ -236,6 +238,26 @@ namespace Metrolib.Controls.Charts.Line.Canvas
 			{
 				canvas.OnRender(drawingContext);
 			}
+
+			if (XAxis != null && XAxis.LinePen != null)
+			{
+				foreach (var value in XAxis.GetLines(XRange, ActualWidth))
+				{
+					var from = new Point(value, 0);
+					var to = new Point(value, ActualHeight);
+					drawingContext.DrawLine(XAxis.LinePen, from, to);
+				}
+			}
+
+			if (YAxis != null && YAxis.LinePen != null)
+			{
+				foreach (var value in YAxis.GetLines(YRange, ActualHeight))
+				{
+					var from = new Point(0, ActualHeight - value);
+					var to = new Point(ActualWidth, ActualHeight - value);
+					drawingContext.DrawLine(YAxis.LinePen, from, to);
+				}
+			}
 		}
 
 		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
@@ -243,7 +265,6 @@ namespace Metrolib.Controls.Charts.Line.Canvas
 			// TODO: We should connect to events here in case Series is non-null.
 			//       Also, we should NOT connect to events when the series is changed
 			//       while this control is not loaded.
-			_timer.Start();
 		}
 
 		private void OnUnloaded(object sender, RoutedEventArgs e)
@@ -254,8 +275,6 @@ namespace Metrolib.Controls.Charts.Line.Canvas
 			var notifiable = _series as INotifyCollectionChanged;
 			if (notifiable != null)
 				notifiable.CollectionChanged -= SeriesOnCollectionChanged;
-
-			_timer.Stop();
 		}
 
 		/// <summary>
