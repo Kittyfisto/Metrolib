@@ -45,7 +45,7 @@ namespace Metrolib.Test.Charts.Network
 			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
 
 			var node = new object();
-			new Action(() => chart.Nodes = new[] { node }).ShouldNotThrow();
+			chart.Nodes = new[] { node };
 			chart.Children.Count.Should().Be(1, "because children should have been created since the control is loaded now");
 		}
 
@@ -55,11 +55,27 @@ namespace Metrolib.Test.Charts.Network
 		{
 			var chart = new NetworkChart();
 			var node = new object();
-			new Action(() => chart.Nodes = new[] { node }).ShouldNotThrow();
+			chart.Nodes = new[] { node };
 			chart.Children.Should().BeEmpty("because children should only be created and added when the control is loaded");
 
 			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
 			chart.Children.Count.Should().Be(1, "because children should have been created since the control is loaded now");
+		}
+
+		[Test]
+		[STAThread]
+		public void TestLoad1()
+		{
+			var chart = new NetworkChart();
+			var node = new object();
+			chart.Nodes = new[] {node};
+			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+			chart.Children.Count.Should().Be(1);
+
+			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
+
+			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+			chart.Children.Count.Should().Be(1);
 		}
 	}
 }

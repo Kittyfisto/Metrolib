@@ -31,6 +31,9 @@
             <network:NetworkChart Grid.Column="1"
                                   Nodes="{Binding Avengers}"
                                   Edges="{Binding Dislikes}">
+                <network:NetworkChart.Layout>
+                    <network:ForceDirectedLayout />
+                </network:NetworkChart.Layout>
                 <network:NetworkChart.NodeTemplate>
                     <DataTemplate DataType="{x:Type sample:AvengerViewModel}">
                         <Border BorderBrush="Black"

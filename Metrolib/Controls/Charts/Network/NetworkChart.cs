@@ -8,7 +8,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Threading;
-using Metrolib.Controls.Charts.Network.Layout;
 
 // ReSharper disable CheckNamespace
 
@@ -38,18 +37,50 @@ namespace Metrolib.Controls.Charts.Network
 			                            new PropertyMetadata(null, OnEdgesChanged));
 
 		/// <summary>
-		///     /// Definition of the <see cref="Nodes" /> dependency property.
+		///     Definition of the <see cref="Nodes" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty NodesProperty =
 			DependencyProperty.Register("Nodes", typeof (IEnumerable), typeof (NetworkChart),
 			                            new PropertyMetadata(null, OnNodesChanged));
 
-		private readonly DispatcherTimer _timer;
-		private readonly Stopwatch _stopwatch;
+		/// <summary>
+		///     Definition of the <see cref="Layout" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty LayoutProperty =
+			DependencyProperty.Register("Layout", typeof (Layout), typeof (NetworkChart),
+			                            new PropertyMetadata(null, OnLayoutChanged));
+
+		private static void OnLayoutChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			((NetworkChart) d).OnLayoutChanged((Layout) e.NewValue);
+		}
+
+		private void OnLayoutChanged(Layout newValue)
+		{
+			if (_algorithm != null)
+			{
+				_algorithm.Dispose();
+				_algorithm = null;
+			}
+
+			if (_isLoaded)
+			{
+				CreateLayoutAlgorithm(newValue);
+			}
+		}
+
+		private void CreateLayoutAlgorithm(Layout layout)
+		{
+			var actualLayout = layout ?? new ForceDirectedLayout();
+			_algorithm = actualLayout.CreateAlgorithm();
+		}
+
 		private readonly Dictionary<object, ContentPresenter> _items;
+		private readonly Stopwatch _stopwatch;
+		private readonly DispatcherTimer _timer;
 		private INodeLayoutAlgorithm _algorithm;
-		private List<Node> _nodeBuffer;
 		private bool _isLoaded;
+		private List<NodePosition> _nodeBuffer;
 
 		static NetworkChart()
 		{
@@ -66,6 +97,15 @@ namespace Metrolib.Controls.Charts.Network
 			_timer = new DispatcherTimer(TimeSpan.FromMilliseconds(60), DispatcherPriority.Normal, Update, Dispatcher);
 			Loaded += OnLoaded;
 			Unloaded += OnUnloaded;
+		}
+
+		/// <summary>
+		///     Defines the layout
+		/// </summary>
+		public Layout Layout
+		{
+			get { return (Layout) GetValue(LayoutProperty); }
+			set { SetValue(LayoutProperty, value); }
 		}
 
 		/// <summary>
@@ -97,11 +137,6 @@ namespace Metrolib.Controls.Charts.Network
 
 		#region Arrange
 
-		private void Arrange()
-		{
-			InvalidateArrange();
-		}
-
 		/// <summary>
 		///     Determine required size.
 		/// </summary>
@@ -131,12 +166,38 @@ namespace Metrolib.Controls.Charts.Network
 		{
 			if (_nodeBuffer != null)
 			{
-				foreach (var node in _nodeBuffer)
+				double minX = double.MaxValue;
+				double maxX = double.MinValue;
+				double minY = double.MaxValue;
+				double maxY = double.MinValue;
+
+				for (int i = 0; i < _nodeBuffer.Count; ++i)
 				{
-					ContentPresenter item;
-					if (_items.TryGetValue(node.DataContext, out item))
+					minX = Math.Min(minX, _nodeBuffer[i].Position.X);
+					maxX = Math.Max(maxX, _nodeBuffer[i].Position.X);
+
+					minY = Math.Min(minY, _nodeBuffer[i].Position.Y);
+					maxY = Math.Max(maxY, _nodeBuffer[i].Position.Y);
+				}
+
+				double width = maxX - minX;
+				double height = maxY - minY;
+
+				if (width >= 0 && height >= 0)
+				{
+					var graphRect = new Rect(minX, minY, maxX - minX, maxY - minY);
+					var rect = new Rect(0, 0, ActualWidth, ActualHeight);
+					//var offset = rect.TopLeft - graphRect.TopLeft;
+					var offset = new Vector(100, 100);
+
+					foreach (NodePosition node in _nodeBuffer)
 					{
-						item.Arrange(new Rect(node.Position, item.DesiredSize));
+						ContentPresenter item;
+						if (_items.TryGetValue(node.Node, out item))
+						{
+							var position = node.Position + offset;
+							item.Arrange(new Rect(position, item.DesiredSize));
+						}
 					}
 				}
 			}
@@ -147,7 +208,7 @@ namespace Metrolib.Controls.Charts.Network
 
 		private void Update(object sender, EventArgs e)
 		{
-			var dt = _stopwatch.Elapsed;
+			TimeSpan dt = _stopwatch.Elapsed;
 			Update(dt);
 			_stopwatch.Restart();
 		}
@@ -156,23 +217,23 @@ namespace Metrolib.Controls.Charts.Network
 		{
 			if (_algorithm != null)
 			{
-				_algorithm.Update(dt, _nodeBuffer);
-				Arrange();
+				_nodeBuffer = _algorithm.Update(dt);
+				InvalidateArrange();
 			}
 		}
 
 		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
 		{
 			_isLoaded = true;
-			_algorithm = new ForceDirectedLayoutAlgorithm();
+			CreateLayoutAlgorithm(Layout);
 			AddNodes(Nodes);
 			_algorithm.AddEdges(Edges);
-			_nodeBuffer = new List<Node>();
 			_timer.Start();
 		}
 
 		private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
 		{
+			ClearNodes();
 			_timer.Stop();
 			_algorithm.Dispose();
 			_isLoaded = false;
@@ -238,7 +299,7 @@ namespace Metrolib.Controls.Charts.Network
 			if (nodes == null)
 				return;
 
-			foreach (var node in nodes)
+			foreach (object node in nodes)
 			{
 				if (node != null)
 				{
@@ -269,7 +330,7 @@ namespace Metrolib.Controls.Charts.Network
 			if (nodes == null)
 				return;
 
-			foreach (var node in nodes)
+			foreach (object node in nodes)
 			{
 				if (node != null)
 				{
