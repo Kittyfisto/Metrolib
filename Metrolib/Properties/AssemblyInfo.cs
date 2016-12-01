@@ -55,4 +55,3 @@ using System.Windows;
 
 [assembly: AssemblyVersion("0.1.44.0")]
 [assembly: AssemblyFileVersion("0.1.44.0")]
-[assembly:InternalsVisibleTo("Metrolib.Test")]
