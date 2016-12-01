@@ -58,8 +58,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Charts\Line\AbstractLineChartCanvasTest.cs" />
+    <Compile Include="Charts\Line\LineChartCanvasTest.cs" />
     <Compile Include="Charts\Line\LineChartTest.cs" />
     <Compile Include="Charts\Line\LineSeriesTest.cs" />
+    <Compile Include="Charts\Line\StackedLineChartCanvasTest.cs" />
     <Compile Include="Charts\Network\NetworkChartTest.cs" />
     <Compile Include="DelegateCommandTest.cs" />
     <Compile Include="FilterTextBoxTest.cs" />

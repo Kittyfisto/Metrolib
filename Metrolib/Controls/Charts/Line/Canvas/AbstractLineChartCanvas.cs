@@ -117,7 +117,7 @@ namespace Metrolib.Controls.Charts.Line.Canvas
 		/// <summary>
 		///     The list of canvasses, one per <see cref="Series" />.
 		/// </summary>
-		protected IEnumerable<AbstractLineSeriesCanvas> SeriesCanvasses
+		public IEnumerable<AbstractLineSeriesCanvas> SeriesCanvasses
 		{
 			get { return _seriesCanvasses; }
 		}
