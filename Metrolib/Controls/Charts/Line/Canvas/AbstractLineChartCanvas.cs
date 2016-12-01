@@ -150,7 +150,7 @@ namespace Metrolib
 			}
 		}
 
-		internal virtual void Update()
+		public virtual void Update()
 		{
 			UpdateRanges();
 
