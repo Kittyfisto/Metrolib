@@ -199,7 +199,7 @@ namespace Metrolib
 			}
 		}
 
-		internal override void Update()
+		public override void Update()
 		{
 			LineSeriesCanvas previous = null;
 			foreach (LineSeriesCanvas series in SeriesCanvasses)
