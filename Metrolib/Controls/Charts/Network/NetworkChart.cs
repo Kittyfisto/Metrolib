@@ -224,6 +224,11 @@ namespace Metrolib.Controls.Charts.Network
 
 		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
 		{
+			// I don't really understand why Loaded can be fired without Unloaded in between.
+			// Is FlatTabControl to blame?
+			if (_isLoaded)
+				return;
+
 			_isLoaded = true;
 			CreateLayoutAlgorithm(Layout);
 			AddNodes(Nodes);

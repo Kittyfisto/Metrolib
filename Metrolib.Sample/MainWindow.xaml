@@ -56,8 +56,11 @@
             <controls:FlatTabItem Header="ContentControls">
                 <sample:ContentControls />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="Charts" IsSelected="True">
-                <sample:Charts />
+            <controls:FlatTabItem Header="Line Charts" IsSelected="True">
+                <sample:LineCharts />
+            </controls:FlatTabItem>
+            <controls:FlatTabItem Header="Network Charts" IsSelected="True">
+                <sample:NetworkCharts />
             </controls:FlatTabItem>
         </tab:FlatTabControl>
 

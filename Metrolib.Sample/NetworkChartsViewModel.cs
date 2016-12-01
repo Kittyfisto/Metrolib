@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Metrolib.Sample
 {
-	public sealed class ChartsViewModel
+	public sealed class NetworkChartsViewModel
 	{
 		private readonly List<AvengerViewModel> _avengers;
 		private readonly List<Edge<AvengerViewModel>> _dislikes;
 
-		public ChartsViewModel()
+		public NetworkChartsViewModel()
 		{
 			_avengers = new List<AvengerViewModel>
 				{

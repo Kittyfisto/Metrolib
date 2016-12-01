@@ -64,6 +64,7 @@ namespace Metrolib.Test.Charts.Network
 
 		[Test]
 		[STAThread]
+		[Description("Verifies that the chart can be loaded / unloaded multiple times")]
 		public void TestLoad1()
 		{
 			var chart = new NetworkChart();
@@ -75,6 +76,21 @@ namespace Metrolib.Test.Charts.Network
 			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
 
 			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+			chart.Children.Count.Should().Be(1);
+		}
+
+		[Test]
+		[STAThread]
+		[Description("Verifies that the chart tollerates the Loaded event to be fired twice in succession")]
+		public void TestLoad2()
+		{
+			var chart = new NetworkChart();
+			var node = new object();
+			chart.Nodes = new[] { node };
+			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+			chart.Children.Count.Should().Be(1);
+
+			new Action(() => chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent))).ShouldNotThrow();
 			chart.Children.Count.Should().Be(1);
 		}
 	}

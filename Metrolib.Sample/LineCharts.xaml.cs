@@ -8,16 +8,14 @@ using System.Windows.Threading;
 
 namespace Metrolib.Sample
 {
-	public partial class Charts
+	public partial class LineCharts
 	{
 		private readonly ObservableCollection<Point> _curve;
 		private readonly DispatcherTimer _timer;
 		private readonly Random _random;
 
-		public Charts()
+		public LineCharts()
 		{
-			DataContext = new ChartsViewModel();
-
 			InitializeComponent();
 
 			_curve = new ObservableCollection<Point>(Enumerable.Range(0, 101).Select(x => new Point()));
