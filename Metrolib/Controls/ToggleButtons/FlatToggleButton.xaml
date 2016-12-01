@@ -3,7 +3,7 @@
                     xmlns:controls="clr-namespace:Metrolib.Controls">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/ToggleButtonBase.xaml" />
+        <ResourceDictionary Source="ToggleButtonBase.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type controls:FlatToggleButton}" BasedOn="{StaticResource {x:Type controls:ToggleButtonBase}}">

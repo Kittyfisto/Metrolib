@@ -4,7 +4,7 @@
                     xmlns:converters="clr-namespace:Metrolib.Converters">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Themes/Constants.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Themes/Constants.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <controls:LeftMarginMultiplierConverter x:Key="LeftMarginMultiplierConverter" Multiplier="12" />

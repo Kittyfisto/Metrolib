@@ -4,7 +4,7 @@
                     xmlns:local="clr-namespace:Metrolib.Controls">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/FlatToggleButton.xaml" />
+        <ResourceDictionary Source="FlatToggleButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <converters:BoolFalseToCollapsedConverter x:Key="BoolFalse2CollapsedConverter" />

@@ -3,8 +3,8 @@
                     xmlns:local="clr-namespace:Metrolib.Controls">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Themes/Constants.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ContextMenu/FlatMenuItem.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Themes/Constants.xaml" />
+        <ResourceDictionary Source="FlatMenuItem.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Geometry x:Key="Arrow">

@@ -3,66 +3,66 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Converters/Converters.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Converters/Converters.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/AlertControl.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/BulletinItemsControl.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/NotificationBadge.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/OpenInNewHyperlink.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/AlertControl.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/BulletinItemsControl.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/NotificationBadge.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/OpenInNewHyperlink.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ContextMenu/FlatContextMenu.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ContextMenu/FlatMenuItem.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ContextMenu/MenuItemContentControl.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/ContextMenu/FlatContextMenu.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/ContextMenu/FlatMenuItem.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/ContextMenu/MenuItemContentControl.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/PageOverlay/PageOverlay.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/PageOverlay/PageOverlay.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Expander/FlatExpander.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/GroupBox/FlatGroupBox.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Expander/FlatExpander.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/GroupBox/FlatGroupBox.xaml" />
         
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Tab/FlatTabControl.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Tab/FlatTabItem.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Tab/FlatTabControl.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Tab/FlatTabItem.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Scroll/FlatScrollBar.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Scroll/FlatScrollViewer.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Scroll/FlatScrollBar.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Scroll/FlatScrollViewer.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/List/FlatListViewItem.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/List/FlatListView.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/List/FlatListViewItem.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/List/FlatListView.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Tree/FlatTreeViewItem.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Tree/FlatTreeView.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Tree/FlatTreeViewItem.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Tree/FlatTreeView.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBlocks/FlatTextBlock.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBlocks/FlavourTextBlock.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/TextBlocks/FlatTextBlock.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/TextBlocks/FlavourTextBlock.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBoxes/WatermarkTextBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBoxes/FilterTextBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBoxes/SearchTextBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/TextBoxes/FlatPasswordBox.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/TextBoxes/WatermarkTextBox.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/TextBoxes/FilterTextBox.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/TextBoxes/SearchTextBox.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/TextBoxes/FlatPasswordBox.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/AddButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/ExportButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/FlatButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/MaximizeButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/MinimizeButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/MoreButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/NextButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/PreviousButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/RemoveButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/SearchButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/AddButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/ExportButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/FlatButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/MaximizeButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/MinimizeButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/MoreButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/NextButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/PreviousButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/RemoveButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/SearchButton.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/EditToggleButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/EmailToggleButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/ExpanderToggleButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/OneWayToggle.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/ToggleButtonBase.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/VisibilityToggleButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/EditToggleButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/EmailToggleButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/ExpanderToggleButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/OneWayToggle.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/ToggleButtonBase.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/VisibilityToggleButton.xaml" />
         
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Windows/ChromelessWindow.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Windows/ChromelessWindow.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Charts/AxisControl.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Charts/Line/LineChart.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Charts/AxisControl.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Charts/Line/LineChart.xaml" />
 
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Charts/Network/NetworkTemplate.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Charts/Network/NetworkTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

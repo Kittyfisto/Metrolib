@@ -4,7 +4,7 @@
                     xmlns:converters="clr-namespace:Metrolib.Converters">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Controls/Buttons/FlatButton.xaml" />
+        <ResourceDictionary Source="FlatButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <converters:BoolFalseToHiddenConverter x:Key="BoolFalseToHiddenConverter" />

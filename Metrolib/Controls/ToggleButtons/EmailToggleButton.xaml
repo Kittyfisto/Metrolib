@@ -4,7 +4,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
-            Source="pack://application:,,,/Metrolib;component/Controls/ToggleButtons/ToggleButtonBase.xaml" />
+            Source="ToggleButtonBase.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Geometry x:Key="Email">

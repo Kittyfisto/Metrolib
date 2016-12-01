@@ -3,7 +3,7 @@
                     xmlns:controls="clr-namespace:Metrolib.Controls">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Metrolib;component/Themes/Constants.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Themes/Constants.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type controls:FlatTabItem}">
