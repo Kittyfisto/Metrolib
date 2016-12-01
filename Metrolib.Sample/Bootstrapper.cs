@@ -47,7 +47,7 @@ namespace Metrolib.Sample
 			{
 				settings.Save(ApplicationSettingsFileName);
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				
 			}

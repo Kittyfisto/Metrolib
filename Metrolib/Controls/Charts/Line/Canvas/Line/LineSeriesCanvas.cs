@@ -24,11 +24,17 @@ namespace Metrolib.Controls.Charts.Line.Canvas.Line
 			_outline = new StreamGeometry();
 		}
 
+		/// <summary>
+		///     The final range of x-values represented by this canvas.
+		/// </summary>
 		public override Range XRange
 		{
 			get { return Series.XRange; }
 		}
 
+		/// <summary>
+		///     The final range of y-values represented by this canvas.
+		/// </summary>
 		public override Range YRange
 		{
 			get { return Series.YRange; }

@@ -57,6 +57,9 @@ namespace Metrolib.Controls.Charts.Network
 			}
 		}
 
+		/// <summary>
+		///     Creates a new algorithm that realizes the layout described by this class.
+		/// </summary>
 		public override INodeLayoutAlgorithm CreateAlgorithm()
 		{
 			return new ForceDirectedLayoutAlgorithm(this);

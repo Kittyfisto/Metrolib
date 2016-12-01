@@ -63,6 +63,26 @@ namespace Metrolib.Controls.Charts.Line.Canvas.Stacked
 		}
 
 		/// <summary>
+		///     The final range of x-values represented by this canvas.
+		/// </summary>
+		public override Range XRange
+		{
+			get { return Series.XRange; }
+		}
+
+		/// <summary>
+		///     The final range of y-values represented by this canvas.
+		/// </summary>
+		/// <remarks>
+		///     Differs from <see cref="ILineSeries.YRange" /> because this is the range
+		///     of the stacked series (i.e. the sum of all previous series).
+		/// </remarks>
+		public override Range YRange
+		{
+			get { return _stackedYRange; }
+		}
+
+		/// <summary>
 		///     Recalculates <see cref="StackedValues" />.
 		/// </summary>
 		public void StackWithPrevious()
@@ -178,18 +198,8 @@ namespace Metrolib.Controls.Charts.Line.Canvas.Stacked
 			return y;
 		}
 
-		public override Range XRange
-		{
-			get { return Series.XRange; }
-		}
-
-		public override Range YRange
-		{
-			get { return _stackedYRange; }
-		}
-
 		/// <summary>
-		/// Is called to actually draw the series.
+		///     Is called to actually draw the series.
 		/// </summary>
 		/// <param name="drawingContext"></param>
 		public override void OnRender(DrawingContext drawingContext)

@@ -100,7 +100,7 @@ namespace Metrolib
 				if (Canvas != null)
 					Canvas.Update();
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 			}
 			finally

@@ -149,10 +149,6 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 					double s = Math.Sqrt(maxDisplacementSquared/displacementSquared);
 					dp *= s;
 				}
-				else
-				{
-					int n = 0;
-				}
 
 				node.Position += dp;
 			}

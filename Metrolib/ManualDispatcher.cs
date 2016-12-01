@@ -25,6 +25,9 @@ namespace Metrolib
 			_pendingInvokes = new SortedDictionary<DispatcherPriority, List<Action>>();
 		}
 
+		/// <summary>
+		///     Whether or not the calling thread has access to the resource guarded by this dispatcher.
+		/// </summary>
 		public bool HasAccess
 		{
 			get { return false; }

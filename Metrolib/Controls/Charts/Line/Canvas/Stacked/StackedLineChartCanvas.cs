@@ -22,6 +22,11 @@
 			base.Update();
 		}
 
+		/// <summary>
+		///     Creates a canvas responsible for drawing the given series only.
+		/// </summary>
+		/// <param name="series"></param>
+		/// <returns></returns>
 		protected override AbstractLineSeriesCanvas CreateCanvas(ILineSeries series)
 		{
 			return new StackedLineSeriesCanvas(series);

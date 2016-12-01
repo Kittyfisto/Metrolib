@@ -22,6 +22,9 @@ namespace Metrolib
 			_dispatcher = dispatcher;
 		}
 
+		/// <summary>
+		///     Whether or not the calling thread has access to the resource guarded by this dispatcher.
+		/// </summary>
 		public bool HasAccess
 		{
 			get { return Thread.CurrentThread == _dispatcher.Thread; }

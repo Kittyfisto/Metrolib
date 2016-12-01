@@ -185,7 +185,7 @@ namespace Metrolib.Controls.TextBlocks
 			{
 				Process.Start(info);
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				
 			}

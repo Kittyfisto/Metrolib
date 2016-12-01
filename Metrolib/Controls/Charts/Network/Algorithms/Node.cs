@@ -9,7 +9,6 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 	{
 		public readonly object DataContext;
 		public Vector Force;
-		public Vector Velocity;
 		public Point Position;
 
 		public override string ToString()
