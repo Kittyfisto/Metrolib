@@ -285,6 +285,7 @@
     <Compile Include="Controls\List\FlatListViewItem.cs" />
     <Compile Include="Controls\List\FlatListView.cs" />
     <Compile Include="Controls\OpenInNewHyperlink.cs" />
+    <Compile Include="Controls\Panel\GridPanel.cs" />
     <Compile Include="Controls\Scroll\FlatScrollBar.cs" />
     <Compile Include="Controls\Scroll\FlatScrollViewer.cs" />
     <Compile Include="Controls\Tab\FlatTabControl.cs" />

@@ -53,6 +53,9 @@
             <controls:FlatTabItem Header="Tree">
                 <sample:Tree />
             </controls:FlatTabItem>
+            <controls:FlatTabItem Header="Panels">
+                <sample:Panels />
+            </controls:FlatTabItem>
             <controls:FlatTabItem Header="ContentControls">
                 <sample:ContentControls />
             </controls:FlatTabItem>

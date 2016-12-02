@@ -67,6 +67,9 @@
     <Compile Include="NetworkCharts.xaml.cs">
       <DependentUpon>NetworkCharts.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Panels.xaml.cs">
+      <DependentUpon>Panels.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Scrolling.xaml.cs">
       <DependentUpon>Scrolling.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NetworkCharts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
