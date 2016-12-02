@@ -3,6 +3,9 @@ using System.Windows;
 
 namespace Metrolib
 {
+	/// <summary>
+	///     Collects extension methods to the <see cref="Random" /> class.
+	/// </summary>
 	public static class RandomExtensions
 	{
 		/// <summary>

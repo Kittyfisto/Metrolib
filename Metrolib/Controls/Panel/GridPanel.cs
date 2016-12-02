@@ -29,7 +29,11 @@ namespace Metrolib
 			set { SetValue(OrientationProperty, value); }
 		}
 
-		// Make the panel as big as the biggest element
+		/// <summary>
+		///     Measures the children of a System.Windows.Controls.Grid in anticipation of arranging them during the System.Windows.Controls.Grid.ArrangeOverride(System.Windows.Size) pass.
+		/// </summary>
+		/// <param name="availableSize"></param>
+		/// <returns></returns>
 		protected override System.Windows.Size MeasureOverride(System.Windows.Size availableSize)
 		{
 			if (Children.Count > 0)
@@ -52,7 +56,11 @@ namespace Metrolib
 			return availableSize;
 		}
 
-		// Arrange the child elements to their final position
+		/// <summary>
+		///     Arranges the content of a System.Windows.Controls.Grid element.
+		/// </summary>
+		/// <param name="finalSize"></param>
+		/// <returns></returns>
 		protected override System.Windows.Size ArrangeOverride(System.Windows.Size finalSize)
 		{
 			if (Children.Count > 0)

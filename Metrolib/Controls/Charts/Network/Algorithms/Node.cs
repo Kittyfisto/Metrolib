@@ -1,4 +1,4 @@
-﻿using System.Windows;
+﻿using Metrolib.Physics;
 
 namespace Metrolib.Controls.Charts.Network.Algorithms
 {
@@ -7,19 +7,21 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 	/// </summary>
 	internal sealed class Node
 	{
+		/// <summary>
+		///     The node in question.
+		/// </summary>
 		public readonly object DataContext;
-		public Vector Force;
-		public Vector Velocity;
-		public Point Position;
+		public readonly Body Body;
 
 		public override string ToString()
 		{
-			return string.Format("{0}: {1}", DataContext, Position);
+			return string.Format("{0}: {1}", DataContext, Body);
 		}
 
 		public Node(object dataContext)
 		{
 			DataContext = dataContext;
+			Body = new Body();
 		}
 	}
 }

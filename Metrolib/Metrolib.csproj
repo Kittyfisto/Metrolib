@@ -261,7 +261,10 @@
     <Compile Include="Controls\Charts\Line\LineChartType.cs" />
     <Compile Include="Controls\Charts\Line\LineSeries.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\Stacked\StackedLineChartCanvas.cs" />
-    <Compile Include="Controls\Charts\Network\Algorithms\Spring.cs" />
+    <Compile Include="Physics\Attractor.cs" />
+    <Compile Include="Physics\Body.cs" />
+    <Compile Include="Physics\EulerIntegrator.cs" />
+    <Compile Include="Physics\Spring.cs" />
     <Compile Include="Controls\Charts\Network\NodePosition.cs" />
     <Compile Include="Controls\Charts\Network\Direction.cs" />
     <Compile Include="Controls\Charts\Network\Edge.cs" />

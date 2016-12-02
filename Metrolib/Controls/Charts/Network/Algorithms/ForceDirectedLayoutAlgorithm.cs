@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Windows;
+using System.Linq;
+using Metrolib.Physics;
 
 namespace Metrolib.Controls.Charts.Network.Algorithms
 {
@@ -20,6 +21,14 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 		private readonly Dictionary<object, Node> _nodesByDataContext;
 		private readonly Random _rng;
 
+		#region Simulation
+
+		private readonly EulerIntegrator _integrator;
+		private readonly Attractor _attractor;
+		private readonly Spring _spring;
+
+		#endregion
+
 		public ForceDirectedLayoutAlgorithm(ForceDirectedLayout layout)
 		{
 			if (layout == null)
@@ -29,6 +38,10 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 			_nodesByDataContext = new Dictionary<object, Node>();
 			_edges = new List<IEdge>();
 			_rng = new Random(42);
+
+			_integrator = new EulerIntegrator();
+			_attractor = new Attractor();
+			_spring = new Spring(_rng);
 		}
 
 		public void Dispose()
@@ -40,17 +53,10 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 			if (elapsed <= TimeSpan.Zero)
 				return new List<NodePosition>();
 
-			const double k_r = 6;
 			double dt = Math.Min(0.06, elapsed.TotalSeconds);
-			//double l = _layout.L;
-			double l = 100;
-			double r = _layout.R;
-			//var k_s = k_r/(r*l*l*l);
-			const double k_s = 1;
-			const double d = 0.7;
 
-			//Repulse(k_r);
-			Attract(l, k_s, d);
+			Repulse();
+			Attract();
 			UpdatePositions(dt);
 
 			var nodes = new List<NodePosition>(_nodesByDataContext.Count);
@@ -59,14 +65,16 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 				nodes.Add(new NodePosition
 					{
 						Node = node.DataContext,
-						Position = node.Position
+						Position = node.Body.Position
 					});
 			}
 			return nodes;
 		}
 
-		private void Repulse(double k_r)
+		private void Repulse()
 		{
+			_attractor.Force = _layout.Repulsiveness;
+
 			foreach (Node node1 in _nodesByDataContext.Values)
 			{
 				foreach (Node node2 in _nodesByDataContext.Values)
@@ -74,35 +82,17 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 					if (ReferenceEquals(node1, node2))
 						continue;
 
-					Vector delta = node2.Position - node1.Position;
-					double distance = delta.Length;
-					if (Math.Abs(distance) >= 1)
-					{
-						double distanceSquared = distance*distance;
-						double force = k_r / distanceSquared;
-						var df = force * delta / distance;
-
-						node1.Force -= df;
-						node2.Force += df;
-						break;
-					}
-					else
-					{
-						// Let's nudge 'em apart
-						var df = new Vector(_rng.NextDouble(), _rng.NextDouble());
-						df.Normalize();
-						df *= 10;
-
-						node1.Force -= df;
-						node2.Force += df;
-					}
+					_attractor.ApplyForces(node2.Body, node1.Body);
 				}
 			}
 		}
 
-		private void Attract(double l, double k_s, double d)
+		private void Attract()
 		{
-			var spring = new Spring(_rng, k_s, l, d);
+			_spring.Length = _layout.Distance;
+			_spring.Stiffness = _layout.SpringStiffness;
+			_spring.Dampening = _layout.SpringDampening;
+
 			foreach (IEdge edge in _edges)
 			{
 				Node node1 = GetNode(edge.Node1);
@@ -112,29 +102,13 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 				if (node2 == null)
 					continue;
 
-				var velocity = node1.Velocity - node2.Velocity;
-				var force = spring.GetForce(node1.Position,
-				                            node2.Position,
-				                            velocity);
-				node1.Force += force;
-				node2.Force -= force;
+				_spring.ApplyForces(node1.Body, node2.Body);
 			}
 		}
 
 		private void UpdatePositions(double dt)
 		{
-			const double maxDisplacementSquared = 500;
-
-			foreach (Node node in _nodesByDataContext.Values)
-			{
-				Vector dv = node.Force*dt;
-				node.Velocity += dv;
-				Vector dp = node.Velocity * dt;
-				node.Position += dp;
-
-				node.Velocity *= 0.97;
-				node.Force *= 0.8;
-			}
+			_integrator.Update(_nodesByDataContext.Values.Select(x => x.Body), dt);
 		}
 
 		public void AddNodes(IEnumerable nodes)
