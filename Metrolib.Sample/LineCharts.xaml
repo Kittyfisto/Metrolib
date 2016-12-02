@@ -19,18 +19,18 @@
                 <RadioButton Content="Normal " x:Name="Normal" Checked="OnNormalChecked" />
                 <RadioButton Content="Stacked " x:Name="Stacked" Checked="OnStackedChecked" />
             </StackPanel>
-            <CheckBox Content="YAxis.ShowLines" />
-            <CheckBox Content="XAxis.ShowLines" />
-            <CheckBox Content="YAxis.ShowTicks" />
-            <CheckBox Content="XAxis.ShowTicks" />
+            <CheckBox Content="YAxisDefinition.ShowLines" />
+            <CheckBox Content="XAxisDefinition.ShowLines" />
+            <CheckBox Content="YAxisDefinition.ShowTicks" />
+            <CheckBox Content="XAxisDefinition.ShowTicks" />
         </StackPanel>
         <metrolib:LineChart Grid.Column="1"
                             x:Name="PART_Chart">
             <metrolib:LineChart.XAxis>
-                   <metrolib:Axis Caption="Year" />
+                   <metrolib:AxisDefinition Caption="Year" />
             </metrolib:LineChart.XAxis>
             <metrolib:LineChart.YAxis>
-                <metrolib:Axis Caption="Size" />
+                <metrolib:AxisDefinition Caption="Size" />
             </metrolib:LineChart.YAxis>
         </metrolib:LineChart>
     </Grid>

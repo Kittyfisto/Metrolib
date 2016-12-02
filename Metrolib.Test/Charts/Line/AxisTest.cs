@@ -11,7 +11,7 @@ namespace Metrolib.Test.Charts.Line
 		[Test]
 		public void TestAxis()
 		{
-			var axis = new Axis();
+			var axis = new AxisDefinition();
 			axis.ShowLines.Should().BeTrue();
 			axis.ShowTicks.Should().BeTrue();
 			axis.Spacing.Should().Be(100);
@@ -24,7 +24,7 @@ namespace Metrolib.Test.Charts.Line
 		[Test]
 		public void TestSpacing()
 		{
-			var axis = new Axis();
+			var axis = new AxisDefinition();
 			var changes = new List<string>();
 			axis.PropertyChanged += (sender, args) => changes.Add(args.PropertyName);
 
@@ -43,7 +43,7 @@ namespace Metrolib.Test.Charts.Line
 		[Test]
 		public void TestCaption()
 		{
-			var axis = new Axis();
+			var axis = new AxisDefinition();
 			var changes = new List<string>();
 			axis.PropertyChanged += (sender, args) => changes.Add(args.PropertyName);
 
@@ -62,7 +62,7 @@ namespace Metrolib.Test.Charts.Line
 		[Test]
 		public void TestShowTicks()
 		{
-			var axis = new Axis();
+			var axis = new AxisDefinition();
 			var changes = new List<string>();
 			axis.PropertyChanged += (sender, args) => changes.Add(args.PropertyName);
 
@@ -81,7 +81,7 @@ namespace Metrolib.Test.Charts.Line
 		[Test]
 		public void TestShowLines()
 		{
-			var axis = new Axis();
+			var axis = new AxisDefinition();
 			var changes = new List<string>();
 			axis.PropertyChanged += (sender, args) => changes.Add(args.PropertyName);
 
@@ -100,7 +100,7 @@ namespace Metrolib.Test.Charts.Line
 		[Test]
 		public void TestLinePen()
 		{
-			var axis = new Axis();
+			var axis = new AxisDefinition();
 			var changes = new List<string>();
 			axis.PropertyChanged += (sender, args) => changes.Add(args.PropertyName);
 

@@ -251,15 +251,17 @@
     <Compile Include="Controls\Charts\AxisControl.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\AbstractLineChartCanvas.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\AbstractLineSeriesCanvas.cs" />
-    <Compile Include="Controls\Charts\Line\Canvas\Axis.cs" />
+    <Compile Include="Controls\Charts\Line\AxisDefinition.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\Line\LineSeriesCanvas.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\Stacked\StackedLineSeriesCanvas.cs" />
+    <Compile Include="Controls\Charts\Line\IAxisDefinition.cs" />
     <Compile Include="Controls\Charts\Line\ILineSeries.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\Line\LineChartCanvas.cs" />
     <Compile Include="Controls\Charts\Line\LineChart.cs" />
     <Compile Include="Controls\Charts\Line\LineChartType.cs" />
     <Compile Include="Controls\Charts\Line\LineSeries.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\Stacked\StackedLineChartCanvas.cs" />
+    <Compile Include="Controls\Charts\Network\Algorithms\Spring.cs" />
     <Compile Include="Controls\Charts\Network\NodePosition.cs" />
     <Compile Include="Controls\Charts\Network\Direction.cs" />
     <Compile Include="Controls\Charts\Network\Edge.cs" />
@@ -344,10 +346,12 @@
     <Compile Include="Converters\BoolTrueToCollapsedConverter.cs" />
     <Compile Include="Controls\TextBoxes\FilterTextBox.cs" />
     <Compile Include="Controls\Buttons\RemoveButton.cs" />
+    <Compile Include="RandomExtensions.cs" />
     <Compile Include="Settings\ApplicationSettings.cs" />
     <Compile Include="Size.cs" />
     <Compile Include="UiDispatcher.cs" />
     <Compile Include="Settings\WindowSettings.cs" />
+    <Compile Include="VectorExtensions.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

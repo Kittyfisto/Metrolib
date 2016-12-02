@@ -5,15 +5,14 @@ using System.Windows.Controls;
 using System.Windows.Media;
 
 // ReSharper disable CheckNamespace
-
 namespace Metrolib
 // ReSharper restore CheckNamespace
 {
 	/// <summary>
 	///     Describes the x- or y-axis of a <see cref="LineChart" />.
 	/// </summary>
-	public sealed class Axis
-		: INotifyPropertyChanged
+	public sealed class AxisDefinition
+		: IAxisDefinition
 	{
 		private object _caption;
 		private Pen _linePen;
@@ -24,7 +23,7 @@ namespace Metrolib
 		/// <summary>
 		///     Initializes this axis.
 		/// </summary>
-		public Axis()
+		public AxisDefinition()
 		{
 			_spacing = 100;
 			_showLines = true;

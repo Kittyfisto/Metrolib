@@ -22,17 +22,17 @@ namespace Metrolib.Sample
 							Name = "Iron Man",
 							Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/IronMan.png")
 						},
-					/*new AvengerViewModel
+					new AvengerViewModel
 						{
 							Name = "Hulk",
 							Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/Hulk.png")
-						}*/
+						}
 				};
 			_dislikes = new List<Edge<AvengerViewModel>>
 				{
 					Edge.Create(_avengers[0], _avengers[1]),
-					/*Edge.Create(_avengers[1], _avengers[2]),
-					Edge.Create(_avengers[2], _avengers[0]),*/
+					Edge.Create(_avengers[1], _avengers[2]),
+					Edge.Create(_avengers[2], _avengers[0]),
 				};
 		}
 

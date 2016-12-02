@@ -42,13 +42,15 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 
 			const double k_r = 6;
 			double dt = Math.Min(0.06, elapsed.TotalSeconds);
-			double l = _layout.L;
+			//double l = _layout.L;
+			double l = 100;
 			double r = _layout.R;
 			//var k_s = k_r/(r*l*l*l);
 			const double k_s = 1;
+			const double d = 0.7;
 
-			Repulse(k_r);
-			Attract(l, k_s);
+			//Repulse(k_r);
+			Attract(l, k_s, d);
 			UpdatePositions(dt);
 
 			var nodes = new List<NodePosition>(_nodesByDataContext.Count);
@@ -98,8 +100,9 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 			}
 		}
 
-		private void Attract(double l, double k_s)
+		private void Attract(double l, double k_s, double d)
 		{
+			var spring = new Spring(_rng, k_s, l, d);
 			foreach (IEdge edge in _edges)
 			{
 				Node node1 = GetNode(edge.Node1);
@@ -109,19 +112,12 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 				if (node2 == null)
 					continue;
 
-				var dx = node2.Position.X - node1.Position.X;
-				var dy = node2.Position.Y - node1.Position.Y;
-				double distance = Math.Sqrt(dx*dx + dy*dy);
-				if (Math.Abs(distance) >= 1)
-				{
-					double force = k_s* (distance - l);
-					double fx = force*dx/distance;
-					double fy = force*dy/distance;
-					node1.Force.X += fx;
-					node1.Force.Y += fy;
-					node2.Force.X -= fx;
-					node2.Force.Y -= fy;
-				}
+				var velocity = node1.Velocity - node2.Velocity;
+				var force = spring.GetForce(node1.Position,
+				                            node2.Position,
+				                            velocity);
+				node1.Force += force;
+				node2.Force -= force;
 			}
 		}
 
@@ -131,26 +127,13 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 
 			foreach (Node node in _nodesByDataContext.Values)
 			{
-				/*Vector dv = 0.5*node.Force*dt;
+				Vector dv = node.Force*dt;
 				node.Velocity += dv;
-				var length = node.Velocity.Length;
-				if (length > 10)
-				{
-					node.Velocity.Normalize();
-					node.Velocity *= 10;
-				}
-				Vector dp = node.Velocity * dt;*/
-
-				var dp = node.Force*dt;
-
-				double displacementSquared = dp.LengthSquared;
-				if (displacementSquared > maxDisplacementSquared)
-				{
-					double s = Math.Sqrt(maxDisplacementSquared/displacementSquared);
-					dp *= s;
-				}
-
+				Vector dp = node.Velocity * dt;
 				node.Position += dp;
+
+				node.Velocity *= 0.97;
+				node.Force *= 0.8;
 			}
 		}
 

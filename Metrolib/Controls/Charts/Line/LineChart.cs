@@ -35,13 +35,13 @@ namespace Metrolib
 		///     Definition of the <see cref="XAxis" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty XAxisProperty =
-			DependencyProperty.Register("XAxis", typeof (Axis), typeof (LineChart), new PropertyMetadata(default(Axis)));
+			DependencyProperty.Register("XAxis", typeof (AxisDefinition), typeof (LineChart), new PropertyMetadata(default(AxisDefinition)));
 
 		/// <summary>
 		///     Definition of the <see cref="YAxis" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty YAxisProperty =
-			DependencyProperty.Register("YAxis", typeof (Axis), typeof (LineChart), new PropertyMetadata(default(Axis)));
+			DependencyProperty.Register("YAxis", typeof (AxisDefinition), typeof (LineChart), new PropertyMetadata(default(AxisDefinition)));
 
 		private static readonly DependencyPropertyKey CanvasPropertyKey
 			= DependencyProperty.RegisterReadOnly("Canvas", typeof (AbstractLineChartCanvas), typeof (LineChart),
@@ -112,18 +112,18 @@ namespace Metrolib
 		/// <summary>
 		///     Definition of the y-axis.
 		/// </summary>
-		public Axis YAxis
+		public AxisDefinition YAxis
 		{
-			get { return (Axis) GetValue(YAxisProperty); }
+			get { return (AxisDefinition) GetValue(YAxisProperty); }
 			set { SetValue(YAxisProperty, value); }
 		}
 
 		/// <summary>
 		///     Definition of the x-axis.
 		/// </summary>
-		public Axis XAxis
+		public AxisDefinition XAxis
 		{
-			get { return (Axis) GetValue(XAxisProperty); }
+			get { return (AxisDefinition) GetValue(XAxisProperty); }
 			set { SetValue(XAxisProperty, value); }
 		}
 
