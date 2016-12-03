@@ -38,7 +38,7 @@ namespace Metrolib.Physics
 			double distance = d.Length;
 			if (Math.Abs(distance) > 0)
 			{
-				Vector force = Force / (distance * distance) * d / distance;
+				Vector force = Force / (distance) * d / distance;
 
 				b0.Force += force;
 				b1.Force -= force;

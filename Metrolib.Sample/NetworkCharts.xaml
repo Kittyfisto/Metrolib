@@ -6,10 +6,40 @@
              xmlns:network="clr-namespace:Metrolib.Controls.Charts.Network;assembly=Metrolib"
              xmlns:sample="clr-namespace:Metrolib.Sample"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance sample:NetworkChartsViewModel}">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Button Grid.ColumnSpan="2" Content="Reset" Command="{Binding ResetCommand}" />
+            <TextBlock Margin="8,8,0,0" Text="Repulsiveness" Grid.Row="1" />
+            <TextBlock Margin="8,8,0,0" Text="SpringStiffness" Grid.Row="2" />
+            <TextBlock Margin="8,8,0,0" Text="SpringDampening" Grid.Row="3" />
+            <TextBlock Margin="8,8,0,0" Text="Distance" Grid.Row="4" />
+            <TextBox Margin="8,8,8,0" Grid.Column="1" Grid.Row="1" Text="{Binding Layout.Repulsiveness, ElementName=Chart, Mode=TwoWay}" />
+            <TextBox Margin="8,8,8,0" Grid.Column="1" Grid.Row="2" Text="{Binding Layout.SpringStiffness, ElementName=Chart, Mode=TwoWay}" />
+            <TextBox Margin="8,8,8,0" Grid.Column="1" Grid.Row="3" Text="{Binding Layout.SpringDampening, ElementName=Chart, Mode=TwoWay}" />
+            <TextBox Margin="8,8,8,0" Grid.Column="1" Grid.Row="4" Text="{Binding Layout.Distance, ElementName=Chart, Mode=TwoWay}" />
+        </Grid>
         <network:NetworkChart Nodes="{Binding Avengers}"
-                              Edges="{Binding Dislikes}">
+                              Edges="{Binding Dislikes}"
+                              x:Name="Chart"
+                              Grid.Column="1">
             <network:NetworkChart.Layout>
                 <network:ForceDirectedLayout />
             </network:NetworkChart.Layout>

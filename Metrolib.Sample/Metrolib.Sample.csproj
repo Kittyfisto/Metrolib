@@ -185,7 +185,9 @@
       <Name>Metrolib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Thor.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\CaptainAmerica.png" />
     <Resource Include="Resources\Hulk.png" />
