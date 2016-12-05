@@ -283,6 +283,7 @@ namespace Metrolib.Controls.Charts.Network
 		private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
 		{
 			ClearNodes();
+			ClearEdges();
 			_timer.Stop();
 			_algorithm.Dispose();
 			_isLoaded = false;
@@ -403,11 +404,17 @@ namespace Metrolib.Controls.Charts.Network
 
 		private void OnEdgesChanged(IEnumerable<IEdge> oldEdges, IEnumerable<IEdge> newEdges)
 		{
+			if (!_isLoaded)
+				return;
+
 			var notifiable = oldEdges as INotifyCollectionChanged;
 			if (notifiable != null)
 			{
 				notifiable.CollectionChanged -= EdgesOnCollectionChanged;
 			}
+
+			ClearEdges();
+			AddEdges(newEdges);
 
 			notifiable = newEdges as INotifyCollectionChanged;
 			if (notifiable != null)
@@ -457,6 +464,7 @@ namespace Metrolib.Controls.Charts.Network
 					_algorithm.AddEdge(edge);
 					var item = new System.Windows.Shapes.Line
 						{
+							DataContext = edge,
 							StrokeThickness = 1,
 							Stroke = Brushes.Black
 						};
@@ -489,7 +497,7 @@ namespace Metrolib.Controls.Charts.Network
 
 		private void ClearEdges()
 		{
-			RemoveEdges(_edgesToItems.Values.ToList());
+			RemoveEdges(_edgesToItems.Keys.ToList());
 		}
 	}
 }

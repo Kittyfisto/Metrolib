@@ -151,7 +151,7 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 			if (edge == null)
 				return;
 
-			RemoveEdge(edge);
+			_edges.Remove(edge);
 		}
 
 		public void ClearEdges()

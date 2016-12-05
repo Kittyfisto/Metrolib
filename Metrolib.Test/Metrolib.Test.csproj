@@ -65,7 +65,7 @@
     <Compile Include="Charts\Line\LineSeriesTest.cs" />
     <Compile Include="Charts\Line\StackedLineChartCanvasTest.cs" />
     <Compile Include="Charts\Network\Algorithms\SpringTest.cs" />
-    <Compile Include="Charts\Network\NetworkChartTest.cs" />
+    <Compile Include="Charts\Network\NetworkViewTest.cs" />
     <Compile Include="DelegateCommandTest.cs" />
     <Compile Include="FilterTextBoxTest.cs" />
     <Compile Include="InvertBoolConverterTest.cs" />
