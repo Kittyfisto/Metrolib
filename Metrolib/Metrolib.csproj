@@ -69,7 +69,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Charts\Network\NetworkTemplate.xaml">
+    <Page Include="Controls\Charts\Network\NetworkView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Charts\Network\NetworkViewNodeItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -261,6 +265,9 @@
     <Compile Include="Controls\Charts\Line\LineChartType.cs" />
     <Compile Include="Controls\Charts\Line\LineSeries.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\Stacked\StackedLineChartCanvas.cs" />
+    <Compile Include="Controls\Charts\Network\NetworkViewNodeItem.cs" />
+    <Compile Include="Controls\Charts\Network\WidthHeightToRadiusConverter.cs" />
+    <Compile Include="Controls\Charts\Network\WidthHeightToSizeConverter.cs" />
     <Compile Include="Physics\Attractor.cs" />
     <Compile Include="Physics\Body.cs" />
     <Compile Include="Physics\EulerIntegrator.cs" />
@@ -273,7 +280,7 @@
     <Compile Include="Controls\Charts\Network\IEdge.cs" />
     <Compile Include="Controls\Charts\Network\Algorithms\INodeLayoutAlgorithm.cs" />
     <Compile Include="Controls\Charts\Network\Layout.cs" />
-    <Compile Include="Controls\Charts\Network\NetworkChart.cs" />
+    <Compile Include="Controls\Charts\Network\NetworkView.cs" />
     <Compile Include="Controls\Charts\Network\Algorithms\Node.cs" />
     <Compile Include="Controls\Charts\Range.cs" />
     <Compile Include="Controls\ContextMenu\MenuItemContentControl.cs" />

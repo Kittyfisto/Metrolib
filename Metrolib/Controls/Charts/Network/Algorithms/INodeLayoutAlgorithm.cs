@@ -40,13 +40,13 @@ namespace Metrolib
 		void ClearNodes();
 
 		/// <summary>
-		///     Adds the given list of edges to the graph.
+		///     Adds the given edge to the graph.
 		/// </summary>
 		/// <remarks>
 		///     Edges may point to nodes that have not been added (yet).
 		/// </remarks>
-		/// <param name="edges"></param>
-		void AddEdges(IEnumerable<IEdge> edges);
+		/// <param name="edge"></param>
+		void AddEdge(IEdge edge);
 
 		/// <summary>
 		///     Removes the given list of edges from the graph.
@@ -54,8 +54,8 @@ namespace Metrolib
 		/// <remarks>
 		///     Edges may point to nodes that have not been added (yet).
 		/// </remarks>
-		/// <param name="edges"></param>
-		void RemoveEdges(IEnumerable<IEdge> edges);
+		/// <param name="edge"></param>
+		void RemoveEdge(IEdge edge);
 
 		/// <summary>
 		///     Removes all edges from the graph.

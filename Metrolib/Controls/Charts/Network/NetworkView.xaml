@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:network="clr-namespace:Metrolib.Controls.Charts.Network">
 
-    <Style TargetType="{x:Type network:NetworkChart}">
+    <Style TargetType="{x:Type network:NetworkView}">
         <Setter Property="ClipToBounds" Value="True" />
     </Style>
 

@@ -36,28 +36,21 @@
             <TextBox Margin="8,8,8,0" Grid.Column="1" Grid.Row="3" Text="{Binding Layout.SpringDampening, ElementName=Chart, Mode=TwoWay}" />
             <TextBox Margin="8,8,8,0" Grid.Column="1" Grid.Row="4" Text="{Binding Layout.Distance, ElementName=Chart, Mode=TwoWay}" />
         </Grid>
-        <network:NetworkChart Nodes="{Binding Avengers}"
+        <network:NetworkView Nodes="{Binding Avengers}"
                               Edges="{Binding Dislikes}"
                               x:Name="Chart"
                               Grid.Column="1">
-            <network:NetworkChart.Layout>
+            <network:NetworkView.Layout>
                 <network:ForceDirectedLayout />
-            </network:NetworkChart.Layout>
-            <network:NetworkChart.NodeTemplate>
+            </network:NetworkView.Layout>
+            <network:NetworkView.NodeTemplate>
                 <DataTemplate DataType="{x:Type sample:AvengerViewModel}">
-                    <Border BorderBrush="Black"
-                            BorderThickness="1">
-                        <StackPanel Orientation="Vertical">
-                            <Image Source="{Binding Portrait}"
+                    <Image Source="{Binding Portrait}"
                                    Width="48"
                                    Height="48"
                                    RenderOptions.BitmapScalingMode="HighQuality" />
-                            <TextBlock Text="{Binding Name}"
-                                       TextWrapping="Wrap" />
-                        </StackPanel>
-                    </Border>
                 </DataTemplate>
-            </network:NetworkChart.NodeTemplate>
-        </network:NetworkChart>
+            </network:NetworkView.NodeTemplate>
+        </network:NetworkView>
     </Grid>
 </UserControl>

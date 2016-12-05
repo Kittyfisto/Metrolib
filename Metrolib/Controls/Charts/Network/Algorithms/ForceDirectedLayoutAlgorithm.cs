@@ -138,23 +138,20 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 			_nodesByDataContext.Clear();
 		}
 
-		public void AddEdges(IEnumerable<IEdge> edges)
+		public void AddEdge(IEdge edge)
 		{
-			if (edges == null)
+			if (edge == null)
 				return;
 
-			_edges.AddRange(edges);
+			_edges.Add(edge);
 		}
 
-		public void RemoveEdges(IEnumerable<IEdge> edges)
+		public void RemoveEdge(IEdge edge)
 		{
-			if (edges == null)
+			if (edge == null)
 				return;
 
-			foreach (IEdge edge in edges)
-			{
-				RemoveEdge(edge);
-			}
+			RemoveEdge(edge);
 		}
 
 		public void ClearEdges()
@@ -189,14 +186,6 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 				return;
 
 			_nodesByDataContext.Remove(node);
-		}
-
-		private void RemoveEdge(IEdge edge)
-		{
-			if (edge == null)
-				return;
-
-			_edges.Remove(edge);
 		}
 	}
 }

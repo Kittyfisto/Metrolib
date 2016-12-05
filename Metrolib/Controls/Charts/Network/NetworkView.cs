@@ -7,10 +7,10 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 // ReSharper disable CheckNamespace
-
 namespace Metrolib.Controls.Charts.Network
 // ReSharper restore CheckNamespace
 {
@@ -19,40 +19,50 @@ namespace Metrolib.Controls.Charts.Network
 	///     Each item in <see cref="Nodes" /> represents a node and each item
 	///     in <see cref="Edges" /> represents an edge between exactly two nodes.
 	/// </summary>
-	public sealed class NetworkChart
+	public sealed class NetworkView
 		: Canvas
 	{
+		/// <summary>
+		/// The <see cref="Panel.ZIndexProperty"/> value assigned to <see cref="NetworkViewNodeItem"/>.
+		/// </summary>
+		public const int NodeZIndex = 2;
+
+		/// <summary>
+		/// The <see cref="Panel.ZIndexProperty"/> value assigned to <see cref="System.Windows.Shapes.Line"/>.
+		/// </summary>
+		public const int EdgeZIndex = 1;
+
 		/// <summary>
 		///     Definition of the <see cref="NodeTemplate" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty NodeTemplateProperty =
-			DependencyProperty.Register("NodeTemplate", typeof (DataTemplate), typeof (NetworkChart),
+			DependencyProperty.Register("NodeTemplate", typeof (DataTemplate), typeof (NetworkView),
 			                            new PropertyMetadata(default(DataTemplate)));
 
 		/// <summary>
 		///     Definition of the <see cref="Edges" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty EdgesProperty =
-			DependencyProperty.Register("Edges", typeof (IEnumerable<IEdge>), typeof (NetworkChart),
+			DependencyProperty.Register("Edges", typeof (IEnumerable<IEdge>), typeof (NetworkView),
 			                            new PropertyMetadata(null, OnEdgesChanged));
 
 		/// <summary>
 		///     Definition of the <see cref="Nodes" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty NodesProperty =
-			DependencyProperty.Register("Nodes", typeof (IEnumerable), typeof (NetworkChart),
+			DependencyProperty.Register("Nodes", typeof (IEnumerable), typeof (NetworkView),
 			                            new PropertyMetadata(null, OnNodesChanged));
 
 		/// <summary>
 		///     Definition of the <see cref="Layout" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty LayoutProperty =
-			DependencyProperty.Register("Layout", typeof (Layout), typeof (NetworkChart),
+			DependencyProperty.Register("Layout", typeof (Layout), typeof (NetworkView),
 			                            new PropertyMetadata(null, OnLayoutChanged));
 
 		private static void OnLayoutChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
-			((NetworkChart) d).OnLayoutChanged((Layout) e.NewValue);
+			((NetworkView) d).OnLayoutChanged((Layout) e.NewValue);
 		}
 
 		private void OnLayoutChanged(Layout newValue)
@@ -75,25 +85,29 @@ namespace Metrolib.Controls.Charts.Network
 			_algorithm = actualLayout.CreateAlgorithm();
 		}
 
-		private readonly Dictionary<object, ContentPresenter> _items;
+		private readonly Dictionary<object, NetworkViewNodeItem> _nodesToItems;
+		private readonly Dictionary<IEdge, System.Windows.Shapes.Line> _edgesToItems;
 		private readonly Stopwatch _stopwatch;
 		private readonly DispatcherTimer _timer;
 		private INodeLayoutAlgorithm _algorithm;
 		private bool _isLoaded;
 		private List<NodePosition> _nodeBuffer;
 
-		static NetworkChart()
+		static NetworkView()
 		{
-			DefaultStyleKeyProperty.OverrideMetadata(typeof (NetworkChart), new FrameworkPropertyMetadata(typeof (NetworkChart)));
+			DefaultStyleKeyProperty.OverrideMetadata(typeof (NetworkView), new FrameworkPropertyMetadata(typeof (NetworkView)));
 		}
 
 		/// <summary>
-		///     Initializes this <see cref="NetworkChart" />.
+		///     Initializes this <see cref="NetworkView" />.
 		/// </summary>
-		public NetworkChart()
+		public NetworkView()
 		{
 			_stopwatch = new Stopwatch();
-			_items = new Dictionary<object, ContentPresenter>();
+
+			_nodesToItems = new Dictionary<object, NetworkViewNodeItem>();
+			_edgesToItems = new Dictionary<IEdge, System.Windows.Shapes.Line>();
+
 			_timer = new DispatcherTimer(TimeSpan.FromMilliseconds(60), DispatcherPriority.Normal, Update, Dispatcher);
 			Loaded += OnLoaded;
 			Unloaded += OnUnloaded;
@@ -164,6 +178,12 @@ namespace Metrolib.Controls.Charts.Network
 		/// <returns></returns>
 		protected override System.Windows.Size ArrangeOverride(System.Windows.Size finalSize)
 		{
+			var actualRect = new Rect(0, 0, ActualWidth, ActualHeight);
+			foreach (var line in _edgesToItems.Values)
+			{
+				line.Arrange(actualRect);
+			}
+
 			if (_nodeBuffer != null)
 			{
 				double minX = double.MaxValue;
@@ -192,11 +212,35 @@ namespace Metrolib.Controls.Charts.Network
 
 					foreach (NodePosition node in _nodeBuffer)
 					{
-						ContentPresenter item;
-						if (_items.TryGetValue(node.Node, out item))
+						var position = node.Position + offset;
+						Vector nodeOffset;
+
+						NetworkViewNodeItem item;
+						if (_nodesToItems.TryGetValue(node.Node, out item))
 						{
-							var position = node.Position + offset;
 							item.Arrange(new Rect(position, item.DesiredSize));
+							nodeOffset = new Vector(item.DesiredSize.Width/2, item.DesiredSize.Height/2);
+						}
+						else
+						{
+							nodeOffset = new Vector(0, 0);
+						}
+
+						foreach (var pair in _edgesToItems)
+						{
+							var edgePosition = position + nodeOffset;
+							var edge = pair.Key;
+							var line = pair.Value;
+							if (ReferenceEquals(edge.Node1, node.Node))
+							{
+								line.X1 = edgePosition.X;
+								line.Y1 = edgePosition.Y;
+							}
+							if (ReferenceEquals(edge.Node2, node.Node))
+							{
+								line.X2 = edgePosition.X;
+								line.Y2 = edgePosition.Y;
+							}
 						}
 					}
 				}
@@ -232,7 +276,7 @@ namespace Metrolib.Controls.Charts.Network
 			_isLoaded = true;
 			CreateLayoutAlgorithm(Layout);
 			AddNodes(Nodes);
-			_algorithm.AddEdges(Edges);
+			AddEdges(Edges);
 			_timer.Start();
 		}
 
@@ -246,7 +290,7 @@ namespace Metrolib.Controls.Charts.Network
 
 		private static void OnNodesChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
 		{
-			((NetworkChart) dependencyObject).OnNodesChanged((IEnumerable) args.OldValue, (IEnumerable) args.NewValue);
+			((NetworkView) dependencyObject).OnNodesChanged((IEnumerable) args.OldValue, (IEnumerable) args.NewValue);
 		}
 
 		private void OnNodesChanged(IEnumerable oldValue, IEnumerable newValue)
@@ -309,7 +353,7 @@ namespace Metrolib.Controls.Charts.Network
 				if (node != null)
 				{
 					_algorithm.AddNode(node);
-					var item = new ContentPresenter
+					var item = new NetworkViewNodeItem
 						{
 							Content = node
 						};
@@ -318,8 +362,9 @@ namespace Metrolib.Controls.Charts.Network
 							Source = this
 						};
 					BindingOperations.SetBinding(item, ContentPresenter.ContentTemplateProperty, binding);
+					SetZIndex(item, NodeZIndex);
 
-					_items.Add(node, item);
+					_nodesToItems.Add(node, item);
 					Children.Add(item);
 				}
 			}
@@ -327,7 +372,7 @@ namespace Metrolib.Controls.Charts.Network
 
 		private void ClearNodes()
 		{
-			RemoveNodes(_items.Keys.ToList());
+			RemoveNodes(_nodesToItems.Keys.ToList());
 		}
 
 		private void RemoveNodes(IEnumerable nodes)
@@ -340,10 +385,10 @@ namespace Metrolib.Controls.Charts.Network
 				if (node != null)
 				{
 					_algorithm.RemoveNode(node);
-					ContentPresenter item;
-					if (_items.TryGetValue(node, out item))
+					NetworkViewNodeItem item;
+					if (_nodesToItems.TryGetValue(node, out item))
 					{
-						_items.Remove(node);
+						_nodesToItems.Remove(node);
 						Children.Remove(item);
 					}
 				}
@@ -352,7 +397,7 @@ namespace Metrolib.Controls.Charts.Network
 
 		private static void OnEdgesChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
 		{
-			((NetworkChart) dependencyObject).OnEdgesChanged((IEnumerable<IEdge>) args.OldValue,
+			((NetworkView) dependencyObject).OnEdgesChanged((IEnumerable<IEdge>) args.OldValue,
 			                                                 (IEnumerable<IEdge>) args.NewValue);
 		}
 
@@ -376,7 +421,7 @@ namespace Metrolib.Controls.Charts.Network
 			switch (args.Action)
 			{
 				case NotifyCollectionChangedAction.Add:
-					_algorithm.AddEdges(args.NewItems.Cast<IEdge>());
+					AddEdges(args.NewItems);
 					break;
 
 				case NotifyCollectionChangedAction.Move:
@@ -385,19 +430,66 @@ namespace Metrolib.Controls.Charts.Network
 					break;
 
 				case NotifyCollectionChangedAction.Remove:
-					_algorithm.RemoveEdges(args.OldItems.Cast<IEdge>());
+					RemoveEdges(args.OldItems);
 					break;
 
 				case NotifyCollectionChangedAction.Replace:
-					_algorithm.RemoveEdges(args.OldItems.Cast<IEdge>());
-					_algorithm.AddEdges(args.NewItems.Cast<IEdge>());
+					RemoveEdges(args.OldItems);
+					AddEdges(args.NewItems);
 					break;
 
 				case NotifyCollectionChangedAction.Reset:
-					_algorithm.ClearEdges();
-					_algorithm.AddEdges(args.NewItems.Cast<IEdge>());
+					ClearEdges();
+					AddEdges(args.NewItems);
 					break;
 			}
+		}
+
+		private void AddEdges(IEnumerable newItems)
+		{
+			if (newItems == null)
+				return;
+
+			foreach (IEdge edge in newItems)
+			{
+				if (edge != null)
+				{
+					_algorithm.AddEdge(edge);
+					var item = new System.Windows.Shapes.Line
+						{
+							StrokeThickness = 1,
+							Stroke = Brushes.Black
+						};
+					SetZIndex(item, EdgeZIndex);
+					_edgesToItems.Add(edge, item);
+					Children.Add(item);
+				}
+			}
+		}
+
+		private void RemoveEdges(IEnumerable oldItems)
+		{
+			if (oldItems == null)
+				return;
+
+			foreach (IEdge edge in oldItems)
+			{
+				if (edge != null)
+				{
+					_algorithm.RemoveEdge(edge);
+					System.Windows.Shapes.Line item;
+					if (_edgesToItems.TryGetValue(edge, out item))
+					{
+						_edgesToItems.Remove(edge);
+						Children.Remove(item);
+					}
+				}
+			}
+		}
+
+		private void ClearEdges()
+		{
+			RemoveEdges(_edgesToItems.Values.ToList());
 		}
 	}
 }

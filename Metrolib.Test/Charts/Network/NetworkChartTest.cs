@@ -13,7 +13,7 @@ namespace Metrolib.Test.Charts.Network
 		[STAThread]
 		public void TestNodes1()
 		{
-			var chart = new NetworkChart();
+			var chart = new NetworkView();
 			new Action(() => chart.Nodes = null).ShouldNotThrow();
 			chart.Nodes.Should().BeNull();
 		}
@@ -22,7 +22,7 @@ namespace Metrolib.Test.Charts.Network
 		[STAThread]
 		public void TestNodes2()
 		{
-			var chart = new NetworkChart();
+			var chart = new NetworkView();
 			new Action(() => chart.Nodes = new object[0]).ShouldNotThrow();
 			chart.Nodes.Should().BeEmpty();
 		}
@@ -31,7 +31,7 @@ namespace Metrolib.Test.Charts.Network
 		[STAThread]
 		public void TestNodes3()
 		{
-			var chart = new NetworkChart();
+			var chart = new NetworkView();
 			var node = new object();
 			new Action(() => chart.Nodes = new []{node}).ShouldNotThrow();
 			chart.Nodes.Should().Equal(new[] {node});
@@ -41,7 +41,7 @@ namespace Metrolib.Test.Charts.Network
 		[STAThread]
 		public void TestNodes4()
 		{
-			var chart = new NetworkChart();
+			var chart = new NetworkView();
 			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
 
 			var node = new object();
@@ -53,7 +53,7 @@ namespace Metrolib.Test.Charts.Network
 		[STAThread]
 		public void TestNodes5()
 		{
-			var chart = new NetworkChart();
+			var chart = new NetworkView();
 			var node = new object();
 			chart.Nodes = new[] { node };
 			chart.Children.Should().BeEmpty("because children should only be created and added when the control is loaded");
@@ -67,7 +67,7 @@ namespace Metrolib.Test.Charts.Network
 		[Description("Verifies that the chart can be loaded / unloaded multiple times")]
 		public void TestLoad1()
 		{
-			var chart = new NetworkChart();
+			var chart = new NetworkView();
 			var node = new object();
 			chart.Nodes = new[] {node};
 			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
@@ -84,7 +84,7 @@ namespace Metrolib.Test.Charts.Network
 		[Description("Verifies that the chart tollerates the Loaded event to be fired twice in succession")]
 		public void TestLoad2()
 		{
-			var chart = new NetworkChart();
+			var chart = new NetworkView();
 			var node = new object();
 			chart.Nodes = new[] { node };
 			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
