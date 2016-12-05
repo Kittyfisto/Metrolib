@@ -73,7 +73,7 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 
 		private void Repulse()
 		{
-			_attractor.Force = _layout.Repulsiveness;
+			_attractor.Force = -_layout.Repulsiveness;
 
 			foreach (Node node1 in _nodesByDataContext.Values)
 			{
