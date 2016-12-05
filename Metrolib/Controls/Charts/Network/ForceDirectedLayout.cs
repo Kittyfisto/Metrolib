@@ -23,7 +23,7 @@ namespace Metrolib.Controls.Charts.Network
 		/// </summary>
 		public ForceDirectedLayout()
 		{
-			_repulsiveness = 10;
+			_repulsiveness = 1000;
 			_springStiffness = 5;
 			_springDampening = 2;
 			_distance = 100;

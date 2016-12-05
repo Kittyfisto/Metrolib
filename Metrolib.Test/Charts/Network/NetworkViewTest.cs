@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using FluentAssertions;
@@ -98,6 +99,42 @@ namespace Metrolib.Test.Charts.Network
 			var item = chart.Children.Cast<NetworkViewNodeItem>().FirstOrDefault();
 			item.Should().NotBeNull();
 			item.Content.Should().BeSameAs(node, "because the item should actually represent this node");
+		}
+
+		[Test]
+		[STAThread]
+		[Description("Verifies that a new item is created when a node is added to the list of nodes")]
+		public void TestAddNodes1()
+		{
+			var chart = new NetworkView();
+			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+
+			var nodes = new ObservableCollection<object>();
+			chart.Nodes = nodes;
+
+			var node = new object();
+			nodes.Add(node);
+			chart.Children.Count.Should().Be(1, "because the view should've reacted to the addition of a node");
+			var item = chart.Children.Cast<NetworkViewNodeItem>().First();
+			item.Should().NotBeNull();
+			item.Content.Should().BeSameAs(node);
+		}
+
+		[Test]
+		[STAThread]
+		[Description("Verifies that the item representing a node is removed when the node itself is removed")]
+		public void TestRemoveNodes1()
+		{
+			var chart = new NetworkView();
+			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+
+			var node = new object();
+			var nodes = new ObservableCollection<object> {node};
+			chart.Nodes = nodes;
+			chart.Children.Count.Should().Be(1, "because the view should've reacted to the addition of a node");
+
+			nodes.Remove(node);
+			chart.Children.Should().BeEmpty("because we've removed the only node and thus its representing item also should've been removed");
 		}
 
 		[Test]
