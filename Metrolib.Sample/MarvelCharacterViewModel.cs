@@ -2,7 +2,7 @@
 
 namespace Metrolib.Sample
 {
-	public sealed class AvengerViewModel
+	public sealed class MarvelCharacterViewModel
 	{
 		public string Name { get; set; }
 		public Uri Portrait { get; set; }

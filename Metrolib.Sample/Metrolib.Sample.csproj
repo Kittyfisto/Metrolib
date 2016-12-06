@@ -49,7 +49,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AvengerViewModel.cs" />
+    <Compile Include="MarvelCharacterViewModel.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="LineCharts.xaml.cs">
       <DependentUpon>LineCharts.xaml</DependentUpon>
@@ -192,6 +192,18 @@
     <Resource Include="Resources\CaptainAmerica.png" />
     <Resource Include="Resources\Hulk.png" />
     <Resource Include="Resources\IronMan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BlackWidow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\WinterSoldier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\NickFury.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ScarletWitch.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

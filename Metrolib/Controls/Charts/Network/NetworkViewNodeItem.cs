@@ -14,5 +14,8 @@ namespace Metrolib.Controls.Charts.Network
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (NetworkViewNodeItem),
 			                                         new FrameworkPropertyMetadata(typeof (NetworkViewNodeItem)));
 		}
+
+		public Point Position { get; set; }
+		public Point DisplayPosition { get; set; }
 	}
 }

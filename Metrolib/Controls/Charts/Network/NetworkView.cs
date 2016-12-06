@@ -151,6 +151,41 @@ namespace Metrolib.Controls.Charts.Network
 
 		#region Arrange
 
+		public Rect BoundingRectangle
+		{
+			get
+			{
+				var min = new Point(double.MaxValue, double.MaxValue);
+				var max = new Point(double.MinValue, double.MinValue);
+
+				foreach (var node in InternalChildren.OfType<NetworkViewNodeItem>())
+				{
+					var position = node.Position;
+					var desiredSize = node.DesiredSize;
+
+					if (double.IsNaN(position.X) || double.IsNaN(position.Y))
+					{
+						// This is a problem...
+					}
+					else
+					{
+						min.X = Math.Min(min.X, position.X);
+						min.Y = Math.Min(min.Y, position.Y);
+
+						max.X = Math.Max(max.X, position.X + desiredSize.Width);
+						max.Y = Math.Max(max.Y, position.Y + desiredSize.Height);
+					}
+				}
+
+				double width = max.X - min.X;
+				double height = max.Y - min.Y;
+				if (width >= 0 && height >= 0)
+					return new Rect(min, max);
+
+				return new Rect();
+			}
+		}
+
 		/// <summary>
 		///     Determine required size.
 		/// </summary>
@@ -158,17 +193,13 @@ namespace Metrolib.Controls.Charts.Network
 		/// <returns></returns>
 		protected override System.Windows.Size MeasureOverride(System.Windows.Size availableSize)
 		{
-			var maxSize = new System.Windows.Size();
-
 			foreach (UIElement child in InternalChildren)
 			{
 				child.Measure(availableSize);
-
-				maxSize.Height = Math.Max(child.DesiredSize.Height, maxSize.Height);
-				maxSize.Width = Math.Max(child.DesiredSize.Width, maxSize.Width);
 			}
 
-			return maxSize;
+			var rect = BoundingRectangle;
+			return rect.Size;
 		}
 
 		/// <summary>
@@ -186,61 +217,43 @@ namespace Metrolib.Controls.Charts.Network
 
 			if (_nodeBuffer != null)
 			{
-				double minX = double.MaxValue;
-				double maxX = double.MinValue;
-				double minY = double.MaxValue;
-				double maxY = double.MinValue;
+				var rect = BoundingRectangle;
+				var dataCenter = (Vector) rect.TopLeft + (Vector)rect.Size/2;
+				var center = (Vector) finalSize/2;
+				var offset = dataCenter - center;
 
-				for (int i = 0; i < _nodeBuffer.Count; ++i)
+				foreach (NodePosition node in _nodeBuffer)
 				{
-					minX = Math.Min(minX, _nodeBuffer[i].Position.X);
-					maxX = Math.Max(maxX, _nodeBuffer[i].Position.X);
+					var position = node.Position - offset;
+					Vector nodeOffset;
 
-					minY = Math.Min(minY, _nodeBuffer[i].Position.Y);
-					maxY = Math.Max(maxY, _nodeBuffer[i].Position.Y);
-				}
-
-				double width = maxX - minX;
-				double height = maxY - minY;
-
-				if (width >= 0 && height >= 0)
-				{
-					var graphRect = new Rect(minX, minY, maxX - minX, maxY - minY);
-					var rect = new Rect(0, 0, ActualWidth, ActualHeight);
-					//var offset = rect.TopLeft - graphRect.TopLeft;
-					var offset = new Vector(100, 100);
-
-					foreach (NodePosition node in _nodeBuffer)
+					NetworkViewNodeItem item;
+					if (_nodesToItems.TryGetValue(node.Node, out item))
 					{
-						var position = node.Position + offset;
-						Vector nodeOffset;
+						item.Arrange(new Rect(position, item.DesiredSize));
+						item.Position = node.Position;
+						item.DisplayPosition = position;
+						nodeOffset = new Vector(item.DesiredSize.Width / 2, item.DesiredSize.Height / 2);
+					}
+					else
+					{
+						nodeOffset = new Vector(0, 0);
+					}
 
-						NetworkViewNodeItem item;
-						if (_nodesToItems.TryGetValue(node.Node, out item))
+					foreach (var pair in _edgesToItems)
+					{
+						var edgePosition = position + nodeOffset;
+						var edge = pair.Key;
+						var line = pair.Value;
+						if (ReferenceEquals(edge.Node1, node.Node))
 						{
-							item.Arrange(new Rect(position, item.DesiredSize));
-							nodeOffset = new Vector(item.DesiredSize.Width/2, item.DesiredSize.Height/2);
+							line.X1 = edgePosition.X;
+							line.Y1 = edgePosition.Y;
 						}
-						else
+						if (ReferenceEquals(edge.Node2, node.Node))
 						{
-							nodeOffset = new Vector(0, 0);
-						}
-
-						foreach (var pair in _edgesToItems)
-						{
-							var edgePosition = position + nodeOffset;
-							var edge = pair.Key;
-							var line = pair.Value;
-							if (ReferenceEquals(edge.Node1, node.Node))
-							{
-								line.X1 = edgePosition.X;
-								line.Y1 = edgePosition.Y;
-							}
-							if (ReferenceEquals(edge.Node2, node.Node))
-							{
-								line.X2 = edgePosition.X;
-								line.Y2 = edgePosition.Y;
-							}
+							line.X2 = edgePosition.X;
+							line.Y2 = edgePosition.Y;
 						}
 					}
 				}

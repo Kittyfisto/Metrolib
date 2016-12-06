@@ -273,5 +273,16 @@ namespace Metrolib.Test.Charts.Network
 			new Action(() => chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent))).ShouldNotThrow();
 			chart.Children.Count.Should().Be(1);
 		}
+
+		[Test]
+		[STAThread]
+		[Description("")]
+		public void TestMeasure1()
+		{
+			var chart = new NetworkView();
+			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+			new Action(() => chart.Measure(new System.Windows.Size(double.MaxValue, double.MaxValue))).ShouldNotThrow();
+			chart.DesiredSize.Should().Be(new System.Windows.Size(), "because the chart doesn't have anything to display and thus consumes no area");
+		}
 	}
 }
