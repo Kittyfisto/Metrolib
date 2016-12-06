@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:network="clr-namespace:Metrolib.Controls.Charts.Network;assembly=Metrolib"
              xmlns:sample="clr-namespace:Metrolib.Sample"
              xmlns:controls="clr-namespace:Metrolib.Controls;assembly=Metrolib"
+             xmlns:metrolib="clr-namespace:Metrolib;assembly=Metrolib"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance sample:NetworkChartsViewModel}">
@@ -44,21 +44,22 @@
         <controls:FlatScrollViewer Grid.Column="1"
                                    VerticalScrollBarVisibility="Auto"
                                    HorizontalScrollBarVisibility="Auto">
-            <network:NetworkView Nodes="{Binding Avengers}"
+            <metrolib:NetworkView Nodes="{Binding Avengers}"
                                  Edges="{Binding Dislikes}"
                                  x:Name="Chart">
-                <network:NetworkView.Layout>
-                    <network:ForceDirectedLayout Repulsiveness="8000" />
-                </network:NetworkView.Layout>
-                <network:NetworkView.NodeTemplate>
+                <metrolib:NetworkView.Layout>
+                    <metrolib:ForceDirectedLayout Repulsiveness="8000" />
+                </metrolib:NetworkView.Layout>
+                <metrolib:NetworkView.NodeTemplate>
                     <DataTemplate DataType="{x:Type sample:MarvelCharacterViewModel}">
                         <Image Source="{Binding Portrait}"
                                Width="48"
                                Height="48"
-                               RenderOptions.BitmapScalingMode="HighQuality" />
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               ToolTip="{Binding Name}" />
                     </DataTemplate>
-                </network:NetworkView.NodeTemplate>
-            </network:NetworkView>
+                </metrolib:NetworkView.NodeTemplate>
+            </metrolib:NetworkView>
         </controls:FlatScrollViewer>
     </Grid>
 </UserControl>

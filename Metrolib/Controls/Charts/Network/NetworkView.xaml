@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:network="clr-namespace:Metrolib.Controls.Charts.Network">
+                    xmlns:metrolib="clr-namespace:Metrolib">
 
-    <Style TargetType="{x:Type network:NetworkView}">
+    <Style TargetType="{x:Type metrolib:NetworkView}">
         <Setter Property="ClipToBounds" Value="True" />
     </Style>
 

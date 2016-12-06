@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 // ReSharper disable CheckNamespace
 
@@ -13,14 +12,19 @@ namespace Metrolib
 		: IDisposable
 	{
 		/// <summary>
-		///     Updates the graph.
+		///     The current result of the algorithm.
+		/// </summary>
+		AlgorithmResult Result { get; }
+
+		/// <summary>
+		///     Updates the algorithm.
 		/// </summary>
 		/// <remarks>
 		///     Is *always* invoked from the UI thread.
 		///     This method should not block for longer than a few milliseconds or otherwise the UI might become stuck.
 		/// </remarks>
 		/// <param name="elapsed"></param>
-		List<NodePosition> Update(TimeSpan elapsed);
+		void Update(TimeSpan elapsed);
 
 		/// <summary>
 		///     Adds the given node to the list of nodes of the graph.

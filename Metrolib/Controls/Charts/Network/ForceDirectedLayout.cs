@@ -1,6 +1,8 @@
 ﻿using Metrolib.Controls.Charts.Network.Algorithms;
 
-namespace Metrolib.Controls.Charts.Network
+// ReSharper disable CheckNamespace
+namespace Metrolib
+// ReSharper restore CheckNamespace
 {
 	/// <summary>
 	///     Defines the parameters for the "force directed layout" algorithm.

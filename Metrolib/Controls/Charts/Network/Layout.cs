@@ -1,11 +1,17 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Metrolib.Controls.Charts.Network
+// ReSharper disable CheckNamespace
+namespace Metrolib
+// ReSharper restore CheckNamespace
 {
 	/// <summary>
 	///     Defines the algorithm and its parameters, used to layout the graph.
 	/// </summary>
+	/// <remarks>
+	/// <see cref="ForceDirectedLayout"/> for the default algorithm used to layout graphs.
+	/// Can be subclassed in order to allow the use of a custom algorithm.
+	/// </remarks>
 	public abstract class Layout
 		: INotifyPropertyChanged
 	{

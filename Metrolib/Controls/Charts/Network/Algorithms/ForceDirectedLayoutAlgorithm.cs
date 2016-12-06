@@ -16,16 +16,17 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 	internal sealed class ForceDirectedLayoutAlgorithm
 		: INodeLayoutAlgorithm
 	{
-		private readonly ForceDirectedLayout _layout;
 		private readonly List<IEdge> _edges;
+		private readonly ForceDirectedLayout _layout;
 		private readonly Dictionary<object, Node> _nodesByDataContext;
 		private readonly Random _rng;
 
 		#region Simulation
 
-		private readonly EulerIntegrator _integrator;
 		private readonly Attractor _attractor;
+		private readonly EulerIntegrator _integrator;
 		private readonly Spring _spring;
+		private AlgorithmResult _result;
 
 		#endregion
 
@@ -48,27 +49,74 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 		{
 		}
 
-		public List<NodePosition> Update(TimeSpan elapsed)
+		public AlgorithmResult Result
 		{
-			if (elapsed <= TimeSpan.Zero)
-				return new List<NodePosition>();
+			get { return _result; }
+		}
 
-			double dt = Math.Min(0.06, elapsed.TotalSeconds);
-
-			Repulse();
-			Attract();
-			UpdatePositions(dt);
-
-			var nodes = new List<NodePosition>(_nodesByDataContext.Count);
-			foreach (var node in _nodesByDataContext.Values)
+		public void Update(TimeSpan elapsed)
+		{
+			if (elapsed > TimeSpan.Zero)
 			{
-				nodes.Add(new NodePosition
-					{
-						Node = node.DataContext,
-						Position = node.Body.Position
-					});
+				double dt = Math.Min(0.06, elapsed.TotalSeconds);
+
+				Repulse();
+				Attract();
+				UpdatePositions(dt);
+
+				_result = AlgorithmResult.Create(_nodesByDataContext.Values.Select(CreateResult));
 			}
-			return nodes;
+		}
+
+		public void ClearNodes()
+		{
+			_nodesByDataContext.Clear();
+		}
+
+		public void AddEdge(IEdge edge)
+		{
+			if (edge == null)
+				return;
+
+			_edges.Add(edge);
+		}
+
+		public void RemoveEdge(IEdge edge)
+		{
+			if (edge == null)
+				return;
+
+			_edges.Remove(edge);
+		}
+
+		public void ClearEdges()
+		{
+			_edges.Clear();
+		}
+
+		public void AddNode(object node)
+		{
+			if (node == null)
+				return;
+
+			_nodesByDataContext.Add(node, new Node(node));
+		}
+
+		public void RemoveNode(object node)
+		{
+			if (node == null)
+				return;
+
+			_nodesByDataContext.Remove(node);
+		}
+
+		private NodePosition CreateResult(Node node)
+		{
+			return new NodePosition
+				{
+					Node = node.DataContext,
+					Position = node.Body.Position
+				};
 		}
 
 		private void Repulse()
@@ -133,32 +181,6 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 			}
 		}
 
-		public void ClearNodes()
-		{
-			_nodesByDataContext.Clear();
-		}
-
-		public void AddEdge(IEdge edge)
-		{
-			if (edge == null)
-				return;
-
-			_edges.Add(edge);
-		}
-
-		public void RemoveEdge(IEdge edge)
-		{
-			if (edge == null)
-				return;
-
-			_edges.Remove(edge);
-		}
-
-		public void ClearEdges()
-		{
-			_edges.Clear();
-		}
-
 		[Pure]
 		private Node GetNode(object dataContext)
 		{
@@ -170,22 +192,6 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 				return null;
 
 			return node;
-		}
-
-		public void AddNode(object node)
-		{
-			if (node == null)
-				return;
-
-			_nodesByDataContext.Add(node, new Node(node));
-		}
-
-		public void RemoveNode(object node)
-		{
-			if (node == null)
-				return;
-
-			_nodesByDataContext.Remove(node);
 		}
 	}
 }

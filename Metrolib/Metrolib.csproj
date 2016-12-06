@@ -265,6 +265,8 @@
     <Compile Include="Controls\Charts\Line\LineChartType.cs" />
     <Compile Include="Controls\Charts\Line\LineSeries.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\Stacked\StackedLineChartCanvas.cs" />
+    <Compile Include="Controls\Charts\Network\Algorithms\AlgorithmResult.cs" />
+    <Compile Include="Controls\Charts\Network\Algorithms\SolvingNodeLayoutAlgorithm.cs" />
     <Compile Include="Controls\Charts\Network\NetworkViewNodeItem.cs" />
     <Compile Include="Controls\Charts\Network\WidthHeightToRadiusConverter.cs" />
     <Compile Include="Controls\Charts\Network\WidthHeightToSizeConverter.cs" />

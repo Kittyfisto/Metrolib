@@ -55,6 +55,21 @@ namespace Metrolib.Sample
 				Name = "Scarlet Witch",
 				Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/ScarletWitch.png")
 			};
+			var falcon = new MarvelCharacterViewModel
+			{
+				Name = "Falcon",
+				Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/Falcon.png")
+			};
+			var sharonCarter = new MarvelCharacterViewModel
+			{
+				Name = "Sharon Carter",
+				Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/SharonCarter.png")
+			};
+			var vision = new MarvelCharacterViewModel
+			{
+				Name = "Vision",
+				Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/vision.png")
+			};
 			_avengers = new List<MarvelCharacterViewModel>
 				{
 					captainAmerica,
@@ -64,7 +79,10 @@ namespace Metrolib.Sample
 					blackWidow,
 					winterSoldier,
 					nickFury,
-					scarletWitch
+					scarletWitch,
+					falcon,
+					sharonCarter,
+					vision
 				};
 			_dislikes = new List<Edge<MarvelCharacterViewModel>>
 				{
@@ -75,10 +93,16 @@ namespace Metrolib.Sample
 					Edge.Create(hulk, blackWidow),
 					Edge.Create(thor, blackWidow),
 					Edge.Create(blackWidow, ironMan),
-					Edge.Create(ironMan, winterSoldier),
+					Edge.Create(captainAmerica, winterSoldier),
 					Edge.Create(captainAmerica, nickFury),
 					Edge.Create(nickFury, blackWidow),
 					Edge.Create(captainAmerica, scarletWitch),
+					Edge.Create(captainAmerica, falcon),
+					Edge.Create(falcon, blackWidow),
+					Edge.Create(sharonCarter, nickFury),
+					Edge.Create(sharonCarter, captainAmerica),
+					Edge.Create(vision, scarletWitch),
+					Edge.Create(vision, captainAmerica),
 				};
 
 			_resetCommand = new DelegateCommand(Reset);
