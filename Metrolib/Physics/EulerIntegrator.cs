@@ -10,6 +10,7 @@ namespace Metrolib.Physics
 	{
 		private readonly double _forceDampening;
 		private readonly double _velocityDampening;
+		private readonly double _maxForce;
 
 		/// <summary>
 		///     Initializes this integrator.
@@ -19,10 +20,12 @@ namespace Metrolib.Physics
 		/// </remarks>
 		/// <param name="velocityDampening"></param>
 		/// <param name="forceDampening"></param>
-		public EulerIntegrator(double velocityDampening = 0.97, double forceDampening = 0.8)
+		/// <param name="maxForce"></param>
+		public EulerIntegrator(double velocityDampening = 0.97, double forceDampening = 0.8, double maxForce = 100)
 		{
 			_velocityDampening = velocityDampening;
 			_forceDampening = forceDampening;
+			_maxForce = maxForce;
 		}
 
 		/// <summary>
@@ -45,6 +48,8 @@ namespace Metrolib.Physics
 		/// <param name="dt"></param>
 		public void Update(Body body, double dt)
 		{
+			body.Force = body.Force.Clamped(_maxForce);
+
 			Vector dv = body.Force*dt/body.Mass;
 			body.Velocity += dv;
 			Vector dp = body.Velocity*dt;
