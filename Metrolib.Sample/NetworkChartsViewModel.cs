@@ -9,9 +9,11 @@ namespace Metrolib.Sample
 	public sealed class NetworkChartsViewModel
 		: INotifyPropertyChanged
 	{
+		private readonly List<EdgeType> _edgeTypes;
 		private readonly ICommand _resetCommand;
 		private IEnumerable<MarvelCharacterViewModel> _avengers;
-		private List<Edge<MarvelCharacterViewModel>> _dislikes;
+		private EdgeType _selectedEdgeType;
+		private IEnumerable<IEdge> _selectedEdges;
 
 		public NetworkChartsViewModel()
 		{
@@ -41,35 +43,40 @@ namespace Metrolib.Sample
 					Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/BlackWidow.png")
 				};
 			var winterSoldier = new MarvelCharacterViewModel
-			{
-				Name = "Winter Soldier",
-				Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/WinterSoldier.png")
-			};
+				{
+					Name = "Winter Soldier",
+					Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/WinterSoldier.png")
+				};
 			var nickFury = new MarvelCharacterViewModel
 				{
 					Name = "Nick Fury",
 					Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/NickFury.png")
 				};
 			var scarletWitch = new MarvelCharacterViewModel
-			{
-				Name = "Scarlet Witch",
-				Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/ScarletWitch.png")
-			};
+				{
+					Name = "Scarlet Witch",
+					Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/ScarletWitch.png")
+				};
 			var falcon = new MarvelCharacterViewModel
-			{
-				Name = "Falcon",
-				Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/Falcon.png")
-			};
+				{
+					Name = "Falcon",
+					Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/Falcon.png")
+				};
 			var sharonCarter = new MarvelCharacterViewModel
-			{
-				Name = "Sharon Carter",
-				Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/SharonCarter.png")
-			};
+				{
+					Name = "Sharon Carter",
+					Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/SharonCarter.png")
+				};
 			var vision = new MarvelCharacterViewModel
-			{
-				Name = "Vision",
-				Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/vision.png")
-			};
+				{
+					Name = "Vision",
+					Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/vision.png")
+				};
+			var mariaHill = new MarvelCharacterViewModel
+				{
+					Name = "Maria Hill",
+					Portrait = new Uri("pack://application:,,,/Metrolib.Sample;component/Resources/MariaHill.png")
+				};
 			_avengers = new List<MarvelCharacterViewModel>
 				{
 					captainAmerica,
@@ -82,9 +89,11 @@ namespace Metrolib.Sample
 					scarletWitch,
 					falcon,
 					sharonCarter,
-					vision
+					vision,
+					mariaHill
 				};
-			_dislikes = new List<Edge<MarvelCharacterViewModel>>
+
+			var edges1 = new List<Edge<MarvelCharacterViewModel>>
 				{
 					Edge.Create(captainAmerica, ironMan),
 					Edge.Create(ironMan, hulk),
@@ -103,24 +112,118 @@ namespace Metrolib.Sample
 					Edge.Create(sharonCarter, captainAmerica),
 					Edge.Create(vision, scarletWitch),
 					Edge.Create(vision, captainAmerica),
+					Edge.Create(mariaHill, captainAmerica),
 				};
 
+			var edges2 = new List<Edge<MarvelCharacterViewModel>>
+				{
+					Edge.Create(captainAmerica, hulk),
+					Edge.Create(hulk, mariaHill),
+					Edge.Create(mariaHill, nickFury),
+					Edge.Create(scarletWitch, blackWidow),
+					Edge.Create(falcon, nickFury),
+					Edge.Create(vision, sharonCarter),
+					Edge.Create(thor, blackWidow),
+					Edge.Create(winterSoldier, captainAmerica),
+					Edge.Create(falcon, thor),
+					Edge.Create(ironMan, winterSoldier),
+					Edge.Create(vision, thor),
+					Edge.Create(sharonCarter, ironMan),
+					Edge.Create(scarletWitch, winterSoldier),
+				};
+
+			var edges3 = CreateCircleAround(captainAmerica, _avengers);
+
+			var edges4 = new List<Edge<MarvelCharacterViewModel>>
+				{
+					Edge.Create(captainAmerica, hulk),
+					Edge.Create(hulk, nickFury),
+					Edge.Create(nickFury, scarletWitch),
+					Edge.Create(scarletWitch, captainAmerica),
+					Edge.Create(nickFury, captainAmerica),
+					Edge.Create(hulk, scarletWitch),
+					
+					Edge.Create(hulk, blackWidow),
+					Edge.Create(blackWidow, sharonCarter),
+					Edge.Create(sharonCarter, captainAmerica),
+					Edge.Create(hulk, sharonCarter),
+					Edge.Create(blackWidow, captainAmerica),
+					
+					Edge.Create(blackWidow, vision),
+					Edge.Create(vision, mariaHill),
+					Edge.Create(mariaHill, sharonCarter),
+					Edge.Create(blackWidow, mariaHill),
+					Edge.Create(vision, sharonCarter),
+					
+					Edge.Create(vision, winterSoldier),
+					Edge.Create(winterSoldier, falcon),
+					Edge.Create(falcon, mariaHill),
+					Edge.Create(mariaHill, winterSoldier),
+					Edge.Create(vision, falcon),
+					
+					Edge.Create(winterSoldier, thor),
+					Edge.Create(thor, ironMan),
+					Edge.Create(ironMan, falcon),
+					Edge.Create(winterSoldier, ironMan),
+					Edge.Create(falcon, thor),
+				};
+
+			_edgeTypes = new List<EdgeType>
+				{
+					new EdgeType("Variant \"Coordination\" A", edges1),
+					new EdgeType("Variant \"Whatever\" B", edges2),
+					new EdgeType("Variant \"Assemble\" C", edges3),
+					new EdgeType("Variant \"Chain\" D", edges4)
+				};
+			SelectedEdgeType = _edgeTypes[0];
+
 			_resetCommand = new DelegateCommand(Reset);
+		}
+
+		private IEnumerable<IEdge> CreateCircleAround(MarvelCharacterViewModel center, IEnumerable<MarvelCharacterViewModel> avengers)
+		{
+			var ret = new List<IEdge>();
+			foreach (var avenger in avengers)
+			{
+				if (!Equals(center, avenger))
+					ret.Add(Edge.Create(center, avenger));
+			}
+			return ret;
+		}
+
+		public List<EdgeType> EdgeTypes
+		{
+			get { return _edgeTypes; }
+		}
+
+		public IEnumerable<IEdge> SelectedEdges
+		{
+			get { return _selectedEdges; }
+			private set
+			{
+				_selectedEdges = value;
+				EmitPropertyChanged();
+			}
+		}
+
+		public EdgeType SelectedEdgeType
+		{
+			get { return _selectedEdgeType; }
+			set
+			{
+				if (value == _selectedEdgeType)
+					return;
+
+				_selectedEdgeType = value;
+				EmitPropertyChanged();
+
+				SelectedEdges = value != null ? value.Edges : null;
+			}
 		}
 
 		public ICommand ResetCommand
 		{
 			get { return _resetCommand; }
-		}
-
-		public List<Edge<MarvelCharacterViewModel>> Dislikes
-		{
-			get { return _dislikes; }
-			set
-			{
-				_dislikes = value;
-				EmitPropertyChanged();
-			}
 		}
 
 		public IEnumerable<MarvelCharacterViewModel> Avengers
@@ -137,14 +240,14 @@ namespace Metrolib.Sample
 
 		private void Reset()
 		{
-			List<Edge<MarvelCharacterViewModel>> d = Dislikes;
-			IEnumerable<MarvelCharacterViewModel> a = Avengers;
+			var avengers = Avengers;
+			var edges = SelectedEdges;
 
-			Dislikes = null;
 			Avengers = null;
+			SelectedEdges = null;
 
-			Avengers = a;
-			Dislikes = d;
+			Avengers = avengers;
+			SelectedEdges = edges;
 		}
 
 		private void EmitPropertyChanged([CallerMemberName] string propertyName = null)

@@ -14,38 +14,61 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="200" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Button Grid.ColumnSpan="2" Content="Reset" Command="{Binding ResetCommand}" />
-            <TextBlock Margin="8,8,0,0" Text="Repulsiveness" Grid.Row="1" />
-            <TextBlock Margin="8,8,0,0" Text="SpringStiffness" Grid.Row="2" />
-            <TextBlock Margin="8,8,0,0" Text="SpringDampening" Grid.Row="3" />
-            <TextBlock Margin="8,8,0,0" Text="Distance" Grid.Row="4" />
-            <TextBox Margin="8,8,8,0" Grid.Column="1" Grid.Row="1"
+        <StackPanel>
+            <controls:FlatGroupBox Padding="8"
+                                   BorderBrush="#333333"
+                                   BorderThickness="0,0,0,1">
+                <controls:FlatGroupBox.Header>
+                    <TextBlock Text="Algorithm" FontSize="20" />
+                </controls:FlatGroupBox.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="200" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Button Grid.ColumnSpan="2" Content="Reset" Command="{Binding ResetCommand}" />
+                    <TextBlock Margin="8,8,0,0" Text="Repulsiveness" Grid.Row="1" />
+                    <TextBlock Margin="8,8,0,0" Text="SpringStiffness" Grid.Row="2" />
+                    <TextBlock Margin="8,8,0,0" Text="SpringDampening" Grid.Row="3" />
+                    <TextBlock Margin="8,8,0,0" Text="Distance" Grid.Row="4" />
+                    <TextBox Margin="8,8,8,0" Grid.Column="1" Grid.Row="1"
                      Text="{Binding Layout.Repulsiveness, ElementName=Chart, Mode=TwoWay}" />
-            <TextBox Margin="8,8,8,0" Grid.Column="1" Grid.Row="2"
+                    <TextBox Margin="8,8,8,0" Grid.Column="1" Grid.Row="2"
                      Text="{Binding Layout.SpringStiffness, ElementName=Chart, Mode=TwoWay}" />
-            <TextBox Margin="8,8,8,0" Grid.Column="1" Grid.Row="3"
+                    <TextBox Margin="8,8,8,0" Grid.Column="1" Grid.Row="3"
                      Text="{Binding Layout.SpringDampening, ElementName=Chart, Mode=TwoWay}" />
-            <TextBox Margin="8,8,8,0" Grid.Column="1" Grid.Row="4"
+                    <TextBox Margin="8,8,8,0" Grid.Column="1" Grid.Row="4"
                      Text="{Binding Layout.Distance, ElementName=Chart, Mode=TwoWay}" />
-        </Grid>
+                </Grid>
+            </controls:FlatGroupBox>
+            <controls:FlatGroupBox Padding="8">
+                <controls:FlatGroupBox.Header>
+                    <TextBlock Text="Edges" FontSize="20" />
+                </controls:FlatGroupBox.Header>
+                <controls:FlatListView ItemsSource="{Binding EdgeTypes}"
+                      SelectedItem="{Binding SelectedEdgeType, Mode=TwoWay}">
+                    <controls:FlatListView.ItemTemplate>
+                        <DataTemplate DataType="{x:Type sample:EdgeType}">
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </controls:FlatListView.ItemTemplate>
+                </controls:FlatListView>
+            </controls:FlatGroupBox>
+        </StackPanel>
         <controls:FlatScrollViewer Grid.Column="1"
                                    VerticalScrollBarVisibility="Auto"
-                                   HorizontalScrollBarVisibility="Auto">
+                                   HorizontalScrollBarVisibility="Auto"
+                                   BorderBrush="#333333"
+                                   BorderThickness="1,0,0,0">
             <metrolib:NetworkView Nodes="{Binding Avengers}"
-                                 Edges="{Binding Dislikes}"
+                                 Edges="{Binding SelectedEdges}"
                                  x:Name="Chart">
                 <metrolib:NetworkView.Layout>
                     <metrolib:ForceDirectedLayout Repulsiveness="8000" />

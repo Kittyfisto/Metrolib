@@ -12,7 +12,6 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 
 // ReSharper disable CheckNamespace
-
 namespace Metrolib
 // ReSharper restore CheckNamespace
 {

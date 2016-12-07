@@ -49,6 +49,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EdgeType.cs" />
     <Compile Include="MarvelCharacterViewModel.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="LineCharts.xaml.cs">
@@ -213,6 +214,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Vision.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MariaHill.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
