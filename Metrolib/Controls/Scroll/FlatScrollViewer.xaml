@@ -53,6 +53,14 @@
                     </Border>
 
                     <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Visibility" SourceName="PART_HorizontalScrollBar" Value="Visible" />
+                                <Condition Property="Visibility" SourceName="PART_VerticalScrollBar" Value="Visible" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_HorizontalScrollBar" Property="Margin" Value="-1,0,12,3" />
+                            <Setter TargetName="PART_VerticalScrollBar" Property="Margin" Value="0,-1,3,12" />
+                        </MultiTrigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
