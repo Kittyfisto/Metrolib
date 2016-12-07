@@ -75,6 +75,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScrollViewer\FlatScrollViewerStyleTest.cs" />
     <Compile Include="ScrollViewer\FlatScrollViewerTest.cs" />
+    <Compile Include="LocalTestAttribute.cs" />
     <Compile Include="SearchTextBoxTest.cs" />
     <Compile Include="Settings\ApplicationSettingsTest.cs" />
     <Compile Include="Settings\WindowSettingsTest.cs" />

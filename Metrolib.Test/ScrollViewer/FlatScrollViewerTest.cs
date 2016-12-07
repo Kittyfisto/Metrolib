@@ -6,6 +6,7 @@ using NUnit.Framework;
 
 namespace Metrolib.Test.ScrollViewer
 {
+	[LocalTest]
 	[TestFixture]
 	public sealed class FlatScrollViewerTest
 	{

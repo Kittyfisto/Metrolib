@@ -8,6 +8,7 @@ using NUnit.Framework;
 namespace Metrolib.Test.ScrollViewer
 {
 	[TestFixture]
+	[LocalTest]
 	public sealed class FlatScrollViewerStyleTest
 	{
 		[SetUp]
