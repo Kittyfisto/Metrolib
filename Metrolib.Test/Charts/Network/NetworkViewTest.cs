@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using FluentAssertions;
-using Metrolib.Controls.Charts.Network;
 using Moq;
 using NUnit.Framework;
 
@@ -28,7 +27,7 @@ namespace Metrolib.Test.Charts.Network
 		public void TestNodes2()
 		{
 			var chart = new NetworkView();
-			new Action(() => chart.Nodes = new object[0]).ShouldNotThrow();
+			new Action(() => chart.Nodes = new INode[0]).ShouldNotThrow();
 			chart.Nodes.Should().BeEmpty();
 		}
 
@@ -38,7 +37,7 @@ namespace Metrolib.Test.Charts.Network
 		public void TestNodes3()
 		{
 			var chart = new NetworkView();
-			var node = new object();
+			var node = new Mock<INode>().Object;
 			new Action(() => chart.Nodes = new []{node}).ShouldNotThrow();
 			chart.Nodes.Should().Equal(new[] {node});
 		}
@@ -51,7 +50,7 @@ namespace Metrolib.Test.Charts.Network
 			var chart = new NetworkView();
 			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
 
-			var node = new object();
+			var node = new Mock<INode>().Object;
 			chart.Nodes = new[] { node };
 			chart.Children.Count.Should().Be(1, "because children should have been created since the control is loaded now");
 		}
@@ -62,7 +61,7 @@ namespace Metrolib.Test.Charts.Network
 		public void TestNodes5()
 		{
 			var chart = new NetworkView();
-			var node = new object();
+			var node = new Mock<INode>().Object;
 			chart.Nodes = new[] { node };
 			chart.Children.Should().BeEmpty("because children should only be created and added when the control is loaded");
 
@@ -78,7 +77,7 @@ namespace Metrolib.Test.Charts.Network
 			var chart = new NetworkView();
 			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
 
-			var node = new object();
+			var node = new Mock<INode>().Object;
 			chart.Nodes = new[] { node };
 			chart.Children.Count.Should().Be(1, "because children should have been created since the control is loaded now");
 
@@ -94,7 +93,7 @@ namespace Metrolib.Test.Charts.Network
 			var chart = new NetworkView();
 			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
 
-			var node = new object();
+			var node = new Mock<INode>().Object;
 			chart.Nodes = new[] { node };
 			var item = chart.Children.Cast<NetworkViewNodeItem>().FirstOrDefault();
 			item.Should().NotBeNull();
@@ -109,10 +108,10 @@ namespace Metrolib.Test.Charts.Network
 			var chart = new NetworkView();
 			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
 
-			var nodes = new ObservableCollection<object>();
+			var nodes = new ObservableCollection<INode>();
 			chart.Nodes = nodes;
 
-			var node = new object();
+			var node = new Mock<INode>().Object;
 			nodes.Add(node);
 			chart.Children.Count.Should().Be(1, "because the view should've reacted to the addition of a node");
 			var item = chart.Children.Cast<NetworkViewNodeItem>().First();
@@ -128,8 +127,8 @@ namespace Metrolib.Test.Charts.Network
 			var chart = new NetworkView();
 			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
 
-			var node = new object();
-			var nodes = new ObservableCollection<object> {node};
+			var node = new Mock<INode>().Object;
+			var nodes = new ObservableCollection<INode> { node };
 			chart.Nodes = nodes;
 			chart.Children.Count.Should().Be(1, "because the view should've reacted to the addition of a node");
 
@@ -231,7 +230,7 @@ namespace Metrolib.Test.Charts.Network
 		public void TestLoad1()
 		{
 			var chart = new NetworkView();
-			var node = new object();
+			var node = new Mock<INode>().Object;
 			chart.Nodes = new[] {node};
 			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
 			chart.Children.Count.Should().Be(1);
@@ -265,7 +264,7 @@ namespace Metrolib.Test.Charts.Network
 		public void TestLoad3()
 		{
 			var chart = new NetworkView();
-			var node = new object();
+			var node = new Mock<INode>().Object;
 			chart.Nodes = new[] { node };
 			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
 			chart.Children.Count.Should().Be(1);

@@ -15,11 +15,11 @@ namespace Metrolib
 		/// <summary>
 		///     The first node of this edge.
 		/// </summary>
-		object Node1 { get; }
+		INode Node1 { get; }
 
 		/// <summary>
 		///     The second node of this edge.
 		/// </summary>
-		object Node2 { get; }
+		INode Node2 { get; }
 	}
 }

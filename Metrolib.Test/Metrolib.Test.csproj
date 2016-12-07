@@ -64,9 +64,11 @@
     <Compile Include="Charts\Line\LineChartTest.cs" />
     <Compile Include="Charts\Line\LineSeriesTest.cs" />
     <Compile Include="Charts\Line\StackedLineChartCanvasTest.cs" />
+    <Compile Include="Charts\Network\Algorithms\ForceDirectedLayoutAlgorithmTest.cs" />
     <Compile Include="Charts\Network\Algorithms\SolvingNodeLayoutAlgorithmTest.cs" />
     <Compile Include="Charts\Network\Algorithms\SpringTest.cs" />
     <Compile Include="Charts\Network\ForceDirectedLayoutTest.cs" />
+    <Compile Include="Charts\Network\NetworkViewNodeItemTest.cs" />
     <Compile Include="Charts\Network\NetworkViewTest.cs" />
     <Compile Include="DelegateCommandTest.cs" />
     <Compile Include="FilterTextBoxTest.cs" />

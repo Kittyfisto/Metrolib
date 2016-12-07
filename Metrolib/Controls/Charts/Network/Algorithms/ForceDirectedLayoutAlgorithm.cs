@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Windows;
 using Metrolib.Physics;
 
 namespace Metrolib.Controls.Charts.Network.Algorithms
@@ -13,12 +13,13 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 	/// <remarks>
 	///     http://profs.etsmtl.ca/mMcGuffin/research/2012-mcguffin-simpleNetVis/mcguffin-2012-simpleNetVis.pdf.
 	/// </remarks>
-	internal sealed class ForceDirectedLayoutAlgorithm
+	public sealed class ForceDirectedLayoutAlgorithm
 		: INodeLayoutAlgorithm
 	{
+		private readonly Dictionary<INode, Body> _bodiesByNode;
 		private readonly List<IEdge> _edges;
+		private readonly HashSet<INode> _frozenNodes;
 		private readonly ForceDirectedLayout _layout;
-		private readonly Dictionary<object, Node> _nodesByDataContext;
 		private readonly Random _rng;
 
 		#region Simulation
@@ -30,13 +31,18 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 
 		#endregion
 
+		/// <summary>
+		///     Initializes this object.
+		/// </summary>
+		/// <param name="layout"></param>
 		public ForceDirectedLayoutAlgorithm(ForceDirectedLayout layout)
 		{
 			if (layout == null)
 				throw new ArgumentNullException("layout");
 
 			_layout = layout;
-			_nodesByDataContext = new Dictionary<object, Node>();
+			_bodiesByNode = new Dictionary<INode, Body>();
+			_frozenNodes = new HashSet<INode>();
 			_edges = new List<IEdge>();
 			_rng = new Random(42);
 
@@ -45,15 +51,29 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 			_spring = new Spring(_rng);
 		}
 
+		/// <summary>
+		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+		/// </summary>
 		public void Dispose()
 		{
 		}
 
+		/// <summary>
+		///     The current result of the algorithm.
+		/// </summary>
 		public AlgorithmResult Result
 		{
 			get { return _result; }
 		}
 
+		/// <summary>
+		///     Updates the algorithm.
+		/// </summary>
+		/// <remarks>
+		///     Is *always* invoked from the UI thread.
+		///     This method should not block for longer than a few milliseconds or otherwise the UI might become stuck.
+		/// </remarks>
+		/// <param name="elapsed"></param>
 		public void Update(TimeSpan elapsed)
 		{
 			if (elapsed > TimeSpan.Zero)
@@ -64,15 +84,70 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 				Attract();
 				UpdatePositions(dt);
 
-				_result = AlgorithmResult.Create(_nodesByDataContext.Values.Select(CreateResult));
+				_result = AlgorithmResult.Create(_bodiesByNode.Select(CreateResult));
 			}
 		}
 
-		public void ClearNodes()
+		/// <summary>
+		///     Adds the given node to the list of nodes of the graph.
+		/// </summary>
+		/// <param name="node"></param>
+		public void AddNode(INode node)
 		{
-			_nodesByDataContext.Clear();
+			if (node == null)
+				return;
+
+			_bodiesByNode.Add(node, new Body());
 		}
 
+		/// <summary>
+		///     Removes the given node from the list of nodes of the graph.
+		/// </summary>
+		/// <param name="node"></param>
+		public void RemoveNode(INode node)
+		{
+			if (node == null)
+				return;
+
+			_bodiesByNode.Remove(node);
+		}
+
+		/// <summary>
+		///     Removes all nodes from the graph.
+		/// </summary>
+		public void ClearNodes()
+		{
+			_bodiesByNode.Clear();
+		}
+
+		/// <summary>
+		///     Freezes the given so that its position doesn't change until the node is unfrozen (<see cref="Unfreeze" />) again.
+		/// </summary>
+		/// <remarks>
+		///     Is invoked by the view when the user starts dragging nodes around.
+		/// </remarks>
+		/// <param name="node"></param>
+		public void Freeze(INode node)
+		{
+			_frozenNodes.Add(node);
+		}
+
+		/// <summary>
+		///     Unfreezes the given node so that its may change, if the algorithm deems it necessary, of-course.
+		/// </summary>
+		/// <param name="node"></param>
+		public void Unfreeze(INode node)
+		{
+			_frozenNodes.Remove(node);
+		}
+
+		/// <summary>
+		///     Adds the given edge to the graph.
+		/// </summary>
+		/// <remarks>
+		///     Edges may point to nodes that have not been added (yet).
+		/// </remarks>
+		/// <param name="edge"></param>
 		public void AddEdge(IEdge edge)
 		{
 			if (edge == null)
@@ -81,6 +156,13 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 			_edges.Add(edge);
 		}
 
+		/// <summary>
+		///     Removes the given list of edges from the graph.
+		/// </summary>
+		/// <remarks>
+		///     Edges may point to nodes that have not been added (yet).
+		/// </remarks>
+		/// <param name="edge"></param>
 		public void RemoveEdge(IEdge edge)
 		{
 			if (edge == null)
@@ -89,48 +171,31 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 			_edges.Remove(edge);
 		}
 
+		/// <summary>
+		///     Removes all edges from the graph.
+		/// </summary>
 		public void ClearEdges()
 		{
 			_edges.Clear();
 		}
 
-		public void AddNode(object node)
+		private KeyValuePair<INode, Point> CreateResult(KeyValuePair<INode, Body> pair)
 		{
-			if (node == null)
-				return;
-
-			_nodesByDataContext.Add(node, new Node(node));
-		}
-
-		public void RemoveNode(object node)
-		{
-			if (node == null)
-				return;
-
-			_nodesByDataContext.Remove(node);
-		}
-
-		private NodePosition CreateResult(Node node)
-		{
-			return new NodePosition
-				{
-					Node = node.DataContext,
-					Position = node.Body.Position
-				};
+			return new KeyValuePair<INode, Point>(pair.Key, pair.Value.Position);
 		}
 
 		private void Repulse()
 		{
 			_attractor.Force = -_layout.Repulsiveness;
 
-			foreach (Node node1 in _nodesByDataContext.Values)
+			foreach (Body node1 in _bodiesByNode.Values)
 			{
-				foreach (Node node2 in _nodesByDataContext.Values)
+				foreach (Body node2 in _bodiesByNode.Values)
 				{
 					if (ReferenceEquals(node1, node2))
 						continue;
 
-					_attractor.ApplyForces(node2.Body, node1.Body);
+					_attractor.ApplyForces(node2, node1);
 				}
 			}
 		}
@@ -143,55 +208,43 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 
 			foreach (IEdge edge in _edges)
 			{
-				Node node1 = GetNode(edge.Node1);
+				Body node1 = GetBody(edge.Node1);
 				if (node1 == null)
 					continue;
-				Node node2 = GetNode(edge.Node2);
+				Body node2 = GetBody(edge.Node2);
 				if (node2 == null)
 					continue;
 
-				_spring.ApplyForces(node1.Body, node2.Body);
+				_spring.ApplyForces(node1, node2);
 			}
 		}
 
 		private void UpdatePositions(double dt)
 		{
-			_integrator.Update(_nodesByDataContext.Values.Select(x => x.Body), dt);
-		}
-
-		public void AddNodes(IEnumerable nodes)
-		{
-			if (nodes == null)
-				return;
-
-			foreach (object node in nodes)
+			foreach (var node in _frozenNodes)
 			{
-				AddNode(node);
+				var body = GetBody(node);
+				if (body != null)
+				{
+					body.Velocity = new Vector(0, 0);
+					body.Force = new Vector(0, 0);
+				}
 			}
-		}
 
-		public void RemoveNodes(IEnumerable nodes)
-		{
-			if (nodes == null)
-				return;
-
-			foreach (object node in nodes)
-			{
-				RemoveNode(node);
-			}
+			_integrator.Update(_bodiesByNode.Values, dt);
 		}
 
 		[Pure]
-		private Node GetNode(object dataContext)
+		private Body GetBody(INode node)
 		{
-			if (dataContext == null)
+			if (node == null)
 				return null;
 
-			Node node;
-			if (!_nodesByDataContext.TryGetValue(dataContext, out node))
+			Body body;
+			if (!_bodiesByNode.TryGetValue(node, out body))
 				return null;
 
-			return node;
+			return body;
 		}
 	}
 }

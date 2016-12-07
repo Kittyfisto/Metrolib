@@ -68,7 +68,7 @@ namespace Metrolib
 		///     Adds the given node to the list of nodes of the graph.
 		/// </summary>
 		/// <param name="node"></param>
-		public void AddNode(object node)
+		public void AddNode(INode node)
 		{
 			_pendingActions.Enqueue(new AlgorithmAction(Type.Add | Type.Node, node));
 			StartNewTask();
@@ -78,7 +78,7 @@ namespace Metrolib
 		///     Removes the given node from the list of nodes of the graph.
 		/// </summary>
 		/// <param name="node"></param>
-		public void RemoveNode(object node)
+		public void RemoveNode(INode node)
 		{
 			_pendingActions.Enqueue(new AlgorithmAction(Type.Remove | Type.Node, node));
 			StartNewTask();
@@ -91,6 +91,27 @@ namespace Metrolib
 		{
 			_pendingActions.Enqueue(new AlgorithmAction(Type.Clear | Type.Node));
 			StartNewTask();
+		}
+
+		/// <summary>
+		///     Freezes the given so that its position doesn't change until the node is unfrozen (<see cref="Unfreeze" />) again.
+		/// </summary>
+		/// <remarks>
+		///     Is invoked by the view when the user starts dragging nodes around.
+		/// </remarks>
+		/// <param name="node"></param>
+		public void Freeze(INode node)
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		///     Unfreezes the given node so that its may change, if the algorithm deems it necessary, of-course.
+		/// </summary>
+		/// <param name="node"></param>
+		public void Unfreeze(INode node)
+		{
+			throw new NotImplementedException();
 		}
 
 		/// <summary>
@@ -223,11 +244,11 @@ namespace Metrolib
 			const double maximumDisplacementSquared = maximumDisplacement*maximumDisplacement;
 
 			// I define converging as every node moving within 0.1 units / tick.
-			for (int i = 0; i < current.Count; ++i)
+			foreach(var node in previous.Keys)
 			{
-				NodePosition previousNode = previous[i];
-				NodePosition currentNode = current[i];
-				Vector delta = previousNode.Position - currentNode.Position;
+				Point previousPosition = previous[node];
+				Point currentPosition = current[node];
+				Vector delta = previousPosition - currentPosition;
 				double squaredLength = delta.LengthSquared;
 				if (squaredLength > maximumDisplacementSquared)
 					return false;
@@ -239,7 +260,7 @@ namespace Metrolib
 		private struct AlgorithmAction
 		{
 			public readonly IEdge Edge;
-			public readonly object Node;
+			public readonly INode Node;
 			public readonly Type Type;
 
 			public AlgorithmAction(Type type)
@@ -256,7 +277,7 @@ namespace Metrolib
 				Node = null;
 			}
 
-			public AlgorithmAction(Type type, object node)
+			public AlgorithmAction(Type type, INode node)
 			{
 				Type = type;
 				Node = node;

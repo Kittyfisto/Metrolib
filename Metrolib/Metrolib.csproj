@@ -267,6 +267,7 @@
     <Compile Include="Controls\Charts\Line\Canvas\Stacked\StackedLineChartCanvas.cs" />
     <Compile Include="Controls\Charts\Network\Algorithms\AlgorithmResult.cs" />
     <Compile Include="Controls\Charts\Network\Algorithms\SolvingNodeLayoutAlgorithm.cs" />
+    <Compile Include="Controls\Charts\Network\INode.cs" />
     <Compile Include="Controls\Charts\Network\NetworkViewNodeItem.cs" />
     <Compile Include="Controls\Charts\Network\WidthHeightToRadiusConverter.cs" />
     <Compile Include="Controls\Charts\Network\WidthHeightToSizeConverter.cs" />
@@ -274,7 +275,6 @@
     <Compile Include="Physics\Body.cs" />
     <Compile Include="Physics\EulerIntegrator.cs" />
     <Compile Include="Physics\Spring.cs" />
-    <Compile Include="Controls\Charts\Network\NodePosition.cs" />
     <Compile Include="Controls\Charts\Network\Direction.cs" />
     <Compile Include="Controls\Charts\Network\Edge.cs" />
     <Compile Include="Controls\Charts\Network\Algorithms\ForceDirectedLayoutAlgorithm.cs" />
@@ -283,7 +283,6 @@
     <Compile Include="Controls\Charts\Network\Algorithms\INodeLayoutAlgorithm.cs" />
     <Compile Include="Controls\Charts\Network\Layout.cs" />
     <Compile Include="Controls\Charts\Network\NetworkView.cs" />
-    <Compile Include="Controls\Charts\Network\Algorithms\Node.cs" />
     <Compile Include="Controls\Charts\Range.cs" />
     <Compile Include="Controls\ContextMenu\MenuItemContentControl.cs" />
     <Compile Include="Controls\Expander\FlatExpander.cs" />

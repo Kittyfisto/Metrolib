@@ -28,8 +28,8 @@ namespace Metrolib.Controls
 			DependencyProperty.Register("MousePanningMode", typeof (PanningMode), typeof (FlatScrollViewer),
 			                            new PropertyMetadata(default(PanningMode)));
 
-		private bool _panning;
 		private Point _mousePanPosition;
+		private bool _panning;
 
 		static FlatScrollViewer()
 		{
@@ -55,6 +55,10 @@ namespace Metrolib.Controls
 			set { SetValue(ScrollBarThicknessProperty, value); }
 		}
 
+		/// <summary>
+		///     Invoked when an unhandled System.Windows.Input.Mouse.MouseDown attached event reaches an element in its route that is derived from this class. Implement this method to add class handling for this event.
+		/// </summary>
+		/// <param name="e"></param>
 		protected override void OnMouseDown(MouseButtonEventArgs e)
 		{
 			if (e.ChangedButton == MouseButton.Left && MousePanningMode == PanningMode.Both)
@@ -68,15 +72,19 @@ namespace Metrolib.Controls
 			}
 		}
 
+		/// <summary>
+		/// Invoked when an unhandled System.Windows.Input.Mouse.MouseMove attached event reaches an element in its route that is derived from this class. Implement this method to add class handling for this event.
+		/// </summary>
+		/// <param name="e"></param>
 		protected override void OnMouseMove(MouseEventArgs e)
 		{
 			if (_panning && MousePanningMode == PanningMode.Both)
 			{
-				var position = e.GetPosition(this);
-				var delta = _mousePanPosition - position;
+				Point position = e.GetPosition(this);
+				Vector delta = _mousePanPosition - position;
 
-				var x = HorizontalOffset + delta.X;
-				var y = VerticalOffset + delta.Y;
+				double x = HorizontalOffset + delta.X;
+				double y = VerticalOffset + delta.Y;
 
 				ScrollToHorizontalOffset(x);
 				ScrollToVerticalOffset(y);
@@ -89,6 +97,10 @@ namespace Metrolib.Controls
 			}
 		}
 
+		/// <summary>
+		/// Invoked when an unhandled System.Windows.Input.Mouse.MouseUp routed event reaches an element in its route that is derived from this class. Implement this method to add class handling for this event.
+		/// </summary>
+		/// <param name="e"></param>
 		protected override void OnMouseUp(MouseButtonEventArgs e)
 		{
 			if (_panning && MousePanningMode == PanningMode.Both)

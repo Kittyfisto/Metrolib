@@ -3,6 +3,7 @@
 namespace Metrolib.Sample
 {
 	public sealed class MarvelCharacterViewModel
+		: INode
 	{
 		public string Name { get; set; }
 		public Uri Portrait { get; set; }

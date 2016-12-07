@@ -16,9 +16,8 @@ namespace Metrolib
 // ReSharper restore CheckNamespace
 {
 	/// <summary>
-	///     A chart capable of displaying the relationships between nodes.
-	///     Each item in <see cref="Nodes" /> represents a node and each item
-	///     in <see cref="Edges" /> represents an edge between exactly two nodes.
+	///     A view capable of displaying a graph consisting of <see cref="INode" />s and <see cref="IEdge" />s.
+	///     Supports different <see cref="Layout" />s that control how the graph is presented.
 	/// </summary>
 	public sealed class NetworkView
 		: Canvas
@@ -51,7 +50,7 @@ namespace Metrolib
 		///     Definition of the <see cref="Nodes" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty NodesProperty =
-			DependencyProperty.Register("Nodes", typeof (IEnumerable), typeof (NetworkView),
+			DependencyProperty.Register("Nodes", typeof (IEnumerable<INode>), typeof (NetworkView),
 			                            new PropertyMetadata(null, OnNodesChanged));
 
 		/// <summary>
@@ -62,7 +61,7 @@ namespace Metrolib
 			                            new PropertyMetadata(null, OnLayoutChanged));
 
 		private readonly Dictionary<IEdge, Line> _edgesToItems;
-		private readonly Dictionary<object, NetworkViewNodeItem> _nodesToItems;
+		private readonly Dictionary<INode, NetworkViewNodeItem> _nodesToItems;
 		private readonly Stopwatch _stopwatch;
 		private readonly DispatcherTimer _timer;
 		private INodeLayoutAlgorithm _algorithm;
@@ -81,7 +80,7 @@ namespace Metrolib
 		{
 			_stopwatch = new Stopwatch();
 
-			_nodesToItems = new Dictionary<object, NetworkViewNodeItem>();
+			_nodesToItems = new Dictionary<INode, NetworkViewNodeItem>();
 			_edgesToItems = new Dictionary<IEdge, Line>();
 
 			_timer = new DispatcherTimer(TimeSpan.FromMilliseconds(60), DispatcherPriority.Normal, Update, Dispatcher);
@@ -110,9 +109,9 @@ namespace Metrolib
 		/// <summary>
 		///     The list of nodes being displayed by this chart.
 		/// </summary>
-		public IEnumerable Nodes
+		public IEnumerable<INode> Nodes
 		{
-			get { return (IEnumerable) GetValue(NodesProperty); }
+			get { return (IEnumerable<INode>) GetValue(NodesProperty); }
 			set { SetValue(NodesProperty, value); }
 		}
 
@@ -201,16 +200,16 @@ namespace Metrolib
 				Vector center = (Vector) finalSize/2;
 				Vector offset = dataCenter - center;
 
-				foreach (NodePosition node in _currentPositions)
+				foreach (var node in _currentPositions)
 				{
-					Point position = node.Position - offset;
+					Point position = node.Value - offset;
 					Vector nodeOffset;
 
 					NetworkViewNodeItem item;
-					if (_nodesToItems.TryGetValue(node.Node, out item))
+					if (_nodesToItems.TryGetValue(node.Key, out item))
 					{
 						item.Arrange(new Rect(position, item.DesiredSize));
-						item.Position = node.Position;
+						item.Position = node.Value;
 						item.DisplayPosition = position;
 						nodeOffset = new Vector(item.DesiredSize.Width/2, item.DesiredSize.Height/2);
 					}
@@ -224,12 +223,12 @@ namespace Metrolib
 						Point edgePosition = position + nodeOffset;
 						IEdge edge = pair.Key;
 						Line line = pair.Value;
-						if (ReferenceEquals(edge.Node1, node.Node))
+						if (ReferenceEquals(edge.Node1, node.Key))
 						{
 							line.X1 = edgePosition.X;
 							line.Y1 = edgePosition.Y;
 						}
-						if (ReferenceEquals(edge.Node2, node.Node))
+						if (ReferenceEquals(edge.Node2, node.Key))
 						{
 							line.X2 = edgePosition.X;
 							line.Y2 = edgePosition.Y;
@@ -309,10 +308,11 @@ namespace Metrolib
 
 		private static void OnNodesChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
 		{
-			((NetworkView) dependencyObject).OnNodesChanged((IEnumerable) args.OldValue, (IEnumerable) args.NewValue);
+			((NetworkView) dependencyObject).OnNodesChanged((IEnumerable<INode>) args.OldValue,
+			                                                (IEnumerable<INode>) args.NewValue);
 		}
 
-		private void OnNodesChanged(IEnumerable oldValue, IEnumerable newValue)
+		private void OnNodesChanged(IEnumerable<INode> oldValue, IEnumerable<INode> newValue)
 		{
 			if (!_isLoaded)
 				return;
@@ -338,7 +338,7 @@ namespace Metrolib
 			switch (args.Action)
 			{
 				case NotifyCollectionChangedAction.Add:
-					AddNodes(args.NewItems);
+					AddNodes(args.NewItems.Cast<INode>());
 					break;
 
 				case NotifyCollectionChangedAction.Move:
@@ -347,27 +347,27 @@ namespace Metrolib
 					break;
 
 				case NotifyCollectionChangedAction.Remove:
-					RemoveNodes(args.OldItems);
+					RemoveNodes(args.OldItems.Cast<INode>());
 					break;
 
 				case NotifyCollectionChangedAction.Replace:
-					RemoveNodes(args.OldItems);
-					AddNodes(args.NewItems);
+					RemoveNodes(args.OldItems.Cast<INode>());
+					AddNodes(args.NewItems.Cast<INode>());
 					break;
 
 				case NotifyCollectionChangedAction.Reset:
 					ClearNodes();
-					AddNodes(args.NewItems);
+					AddNodes(args.NewItems.Cast<INode>());
 					break;
 			}
 		}
 
-		private void AddNodes(IEnumerable nodes)
+		private void AddNodes(IEnumerable<INode> nodes)
 		{
 			if (nodes == null)
 				return;
 
-			foreach (object node in nodes)
+			foreach (INode node in nodes)
 			{
 				if (node != null)
 				{
@@ -394,12 +394,12 @@ namespace Metrolib
 			RemoveNodes(_nodesToItems.Keys.ToList());
 		}
 
-		private void RemoveNodes(IEnumerable nodes)
+		private void RemoveNodes(IEnumerable<INode> nodes)
 		{
 			if (nodes == null)
 				return;
 
-			foreach (object node in nodes)
+			foreach (INode node in nodes)
 			{
 				if (node != null)
 				{

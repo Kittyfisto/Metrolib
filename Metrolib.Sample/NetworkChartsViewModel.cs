@@ -93,7 +93,7 @@ namespace Metrolib.Sample
 					mariaHill
 				};
 
-			var edges1 = new List<Edge<MarvelCharacterViewModel>>
+			var edges1 = new List<IEdge>
 				{
 					Edge.Create(captainAmerica, ironMan),
 					Edge.Create(ironMan, hulk),
@@ -115,7 +115,7 @@ namespace Metrolib.Sample
 					Edge.Create(mariaHill, captainAmerica),
 				};
 
-			var edges2 = new List<Edge<MarvelCharacterViewModel>>
+			var edges2 = new List<IEdge>
 				{
 					Edge.Create(captainAmerica, hulk),
 					Edge.Create(hulk, mariaHill),
@@ -134,7 +134,7 @@ namespace Metrolib.Sample
 
 			var edges3 = CreateCircleAround(captainAmerica, _avengers);
 
-			var edges4 = new List<Edge<MarvelCharacterViewModel>>
+			var edges4 = new List<IEdge>
 				{
 					Edge.Create(captainAmerica, hulk),
 					Edge.Create(hulk, nickFury),

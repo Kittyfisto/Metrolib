@@ -8,6 +8,13 @@ namespace Metrolib
 	/// <summary>
 	///     Interface for the algorithm that actually determines the positions of nodes in the graph.
 	/// </summary>
+	/// <remarks>
+	///     An algorithm is required to present a <see cref="Result" /> that specifies the positions for each node.
+	///     Nodes without an assigned position are not presented by the view.
+	/// </remarks>
+	/// <remarks>
+	///     An algorithm cannot determine the layout of edges. If this is desired, open an issue on github ;)
+	/// </remarks>
 	public interface INodeLayoutAlgorithm
 		: IDisposable
 	{
@@ -30,18 +37,34 @@ namespace Metrolib
 		///     Adds the given node to the list of nodes of the graph.
 		/// </summary>
 		/// <param name="node"></param>
-		void AddNode(object node);
+		void AddNode(INode node);
 
 		/// <summary>
 		///     Removes the given node from the list of nodes of the graph.
 		/// </summary>
 		/// <param name="node"></param>
-		void RemoveNode(object node);
+		void RemoveNode(INode node);
 
 		/// <summary>
 		///     Removes all nodes from the graph.
 		/// </summary>
 		void ClearNodes();
+
+		/// <summary>
+		///     Freezes the given so that its position doesn't change until the node is unfrozen (<see cref="Unfreeze" />) again.
+		/// </summary>
+		/// <remarks>
+		///     Is invoked by the view when the user starts dragging nodes around.
+		/// </remarks>
+		/// <param name="node"></param>
+		void Freeze(INode node);
+
+		/// <summary>
+		///     Unfreezes the given node so that its may change, if the algorithm deems it necessary, of-course.
+		/// </summary>
+		/// <param name="node"></param>
+		void Unfreeze(INode node);
+
 
 		/// <summary>
 		///     Adds the given edge to the graph.

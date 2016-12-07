@@ -12,10 +12,26 @@ namespace Metrolib
 	public class NetworkViewNodeItem
 		: ContentControl
 	{
+		/// <summary>
+		///     Definition of the <see cref="IsSelected" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty IsSelectedProperty =
+			DependencyProperty.Register("IsSelected", typeof (bool), typeof (NetworkViewNodeItem),
+			                            new PropertyMetadata(default(bool)));
+
 		static NetworkViewNodeItem()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (NetworkViewNodeItem),
 			                                         new FrameworkPropertyMetadata(typeof (NetworkViewNodeItem)));
+		}
+
+		/// <summary>
+		///     Whether or not this item has been selected by the user.
+		/// </summary>
+		public bool IsSelected
+		{
+			get { return (bool) GetValue(IsSelectedProperty); }
+			set { SetValue(IsSelectedProperty, value); }
 		}
 
 		/// <summary>

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using FluentAssertions;
-using Metrolib.Controls.Charts.Network;
 using NUnit.Framework;
 
 namespace Metrolib.Test.Charts.Network
