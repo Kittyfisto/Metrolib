@@ -65,6 +65,8 @@
         <controls:FlatScrollViewer Grid.Column="1"
                                    VerticalScrollBarVisibility="Auto"
                                    HorizontalScrollBarVisibility="Auto"
+                                   PanningMode="Both"
+                                   MousePanningMode="Both"
                                    BorderBrush="#333333"
                                    BorderThickness="1,0,0,0">
             <metrolib:NetworkView Nodes="{Binding Avengers}"
