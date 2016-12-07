@@ -73,10 +73,13 @@
     <Compile Include="InvertBoolConverterTest.cs" />
     <Compile Include="Panel\GridPanelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScrollViewer\FlatScrollViewerStyleTest.cs" />
+    <Compile Include="ScrollViewer\FlatScrollViewerTest.cs" />
     <Compile Include="SearchTextBoxTest.cs" />
     <Compile Include="Settings\ApplicationSettingsTest.cs" />
     <Compile Include="Settings\WindowSettingsTest.cs" />
     <Compile Include="SizeTest.cs" />
+    <Compile Include="StyleHelper.cs" />
     <Compile Include="Tree\FlatTreeViewItemTest.cs" />
     <Compile Include="Tree\FlatTreeViewTest.cs" />
   </ItemGroup>
