@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 
 // ReSharper disable CheckNamespace
 
@@ -88,5 +89,12 @@ namespace Metrolib
 		///     Removes all edges from the graph.
 		/// </summary>
 		void ClearEdges();
+
+		/// <summary>
+		/// Overwrites the position assigned by this algorithm with the given one.
+		/// </summary>
+		/// <param name="node"></param>
+		/// <param name="position"></param>
+		void SetPosition(INode node, Point position);
 	}
 }

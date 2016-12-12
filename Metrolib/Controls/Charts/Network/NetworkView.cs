@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
@@ -68,6 +69,13 @@ namespace Metrolib
 		private AlgorithmResult _currentPositions;
 		private bool _isLoaded;
 
+		#region Dragging
+
+		private readonly List<NetworkViewNodeItem> _draggingNodes;
+		private NetworkViewNodeItem _mouseDraggingNode;
+
+		#endregion
+
 		static NetworkView()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (NetworkView), new FrameworkPropertyMetadata(typeof (NetworkView)));
@@ -82,6 +90,7 @@ namespace Metrolib
 
 			_nodesToItems = new Dictionary<INode, NetworkViewNodeItem>();
 			_edgesToItems = new Dictionary<IEdge, Line>();
+			_draggingNodes = new List<NetworkViewNodeItem>();
 
 			_timer = new DispatcherTimer(TimeSpan.FromMilliseconds(60), DispatcherPriority.Normal, Update, Dispatcher);
 			Loaded += OnLoaded;
@@ -164,6 +173,20 @@ namespace Metrolib
 			}
 		}
 
+		public Vector NodeOffset
+		{
+			get { return GetNodeOffset(new System.Windows.Size(ActualWidth, ActualHeight)); }
+		}
+
+		private Vector GetNodeOffset(System.Windows.Size size)
+		{
+			Rect rect = BoundingRectangle;
+			Vector dataCenter = (Vector)rect.TopLeft + (Vector)rect.Size / 2;
+			Vector center = (Vector)size / 2;
+			Vector offset = dataCenter - center;
+			return offset;
+		}
+
 		/// <summary>
 		///     Determine required size.
 		/// </summary>
@@ -195,10 +218,7 @@ namespace Metrolib
 
 			if (_currentPositions != null)
 			{
-				Rect rect = BoundingRectangle;
-				Vector dataCenter = (Vector) rect.TopLeft + (Vector) rect.Size/2;
-				Vector center = (Vector) finalSize/2;
-				Vector offset = dataCenter - center;
+				var offset = GetNodeOffset(finalSize);
 
 				foreach (var node in _currentPositions)
 				{
@@ -208,10 +228,18 @@ namespace Metrolib
 					NetworkViewNodeItem item;
 					if (_nodesToItems.TryGetValue(node.Key, out item))
 					{
-						item.Arrange(new Rect(position, item.DesiredSize));
-						item.Position = node.Value;
-						item.DisplayPosition = position;
-						nodeOffset = new Vector(item.DesiredSize.Width/2, item.DesiredSize.Height/2);
+						if (ReferenceEquals(item, _mouseDraggingNode))
+						{
+							_algorithm.SetPosition(node.Key, item.Position);
+						}
+						else
+						{
+							item.DisplayPosition = position;
+							item.Position = node.Value;
+						}
+
+						item.Arrange(new Rect(item.DisplayPosition, item.DesiredSize));
+						nodeOffset = new Vector(item.DesiredSize.Width / 2, item.DesiredSize.Height / 2);
 					}
 					else
 					{
@@ -220,7 +248,7 @@ namespace Metrolib
 
 					foreach (var pair in _edgesToItems)
 					{
-						Point edgePosition = position + nodeOffset;
+						Point edgePosition = item.DisplayPosition + nodeOffset;
 						IEdge edge = pair.Key;
 						Line line = pair.Value;
 						if (ReferenceEquals(edge.Node1, node.Key))
@@ -516,6 +544,55 @@ namespace Metrolib
 		private void ClearEdges()
 		{
 			RemoveEdges(_edgesToItems.Keys.ToList());
+		}
+
+		protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+		{
+			var result = VisualTreeHelper.HitTest(this, e.GetPosition(this));
+			var node = result.VisualHit.FindFirstAncestorOfType<NetworkViewNodeItem>();
+			if (node != null)
+			{
+				if (CaptureMouse())
+				{
+					_mouseDraggingNode = node;
+					_algorithm.Freeze(node.Content as INode);
+					e.Handled = true;
+				}
+			}
+			else
+			{
+				base.OnMouseLeftButtonDown(e);
+			}
+		}
+
+		protected override void OnMouseMove(MouseEventArgs e)
+		{
+			if (_mouseDraggingNode != null)
+			{
+				var position = e.GetPosition(this);
+				_mouseDraggingNode.DisplayPosition = position;
+				_mouseDraggingNode.Position = position - NodeOffset;
+
+				InvalidateVisual();
+
+				e.Handled = true;
+			}
+			else
+			{
+				base.OnMouseMove(e);
+			}
+		}
+
+		protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
+		{
+			if (_mouseDraggingNode != null)
+			{
+				_algorithm.Unfreeze(_mouseDraggingNode.Content as INode);
+				_mouseDraggingNode = null;
+				ReleaseMouseCapture();
+			}
+
+			base.OnMouseLeftButtonUp(e);
 		}
 	}
 }

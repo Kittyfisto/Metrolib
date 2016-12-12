@@ -17,7 +17,7 @@ namespace Metrolib
 		/// </summary>
 		public static readonly DependencyProperty IsSelectedProperty =
 			DependencyProperty.Register("IsSelected", typeof (bool), typeof (NetworkViewNodeItem),
-			                            new PropertyMetadata(default(bool)));
+			                            new PropertyMetadata(false));
 
 		static NetworkViewNodeItem()
 		{

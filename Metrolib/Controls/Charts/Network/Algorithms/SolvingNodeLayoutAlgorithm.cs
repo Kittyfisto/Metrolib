@@ -149,6 +149,11 @@ namespace Metrolib
 			StartNewTask();
 		}
 
+		public void SetPosition(INode node, Point position)
+		{
+			throw new NotImplementedException();
+		}
+
 		/// <summary>
 		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
 		/// </summary>

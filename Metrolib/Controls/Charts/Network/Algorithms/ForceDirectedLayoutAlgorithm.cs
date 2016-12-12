@@ -179,6 +179,15 @@ namespace Metrolib.Controls.Charts.Network.Algorithms
 			_edges.Clear();
 		}
 
+		public void SetPosition(INode node, Point position)
+		{
+			Body body;
+			if (_bodiesByNode.TryGetValue(node, out body))
+			{
+				body.Position = position;
+			}
+		}
+
 		private KeyValuePair<INode, Point> CreateResult(KeyValuePair<INode, Body> pair)
 		{
 			return new KeyValuePair<INode, Point>(pair.Key, pair.Value.Position);

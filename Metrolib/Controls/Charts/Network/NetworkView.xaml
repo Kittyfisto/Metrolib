@@ -4,6 +4,7 @@
 
     <Style TargetType="{x:Type metrolib:NetworkView}">
         <Setter Property="ClipToBounds" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
     </Style>
 
 </ResourceDictionary>
