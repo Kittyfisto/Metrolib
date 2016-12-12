@@ -320,15 +320,24 @@ namespace Metrolib
 
 			_isLoaded = true;
 			CreateLayoutAlgorithm(Layout);
+
+			AttachToNodes(Nodes);
 			AddNodes(Nodes);
+
+			AttachToEdges(Edges);
 			AddEdges(Edges);
+
 			_timer.Start();
 		}
 
 		private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
 		{
 			ClearNodes();
+			DetachFromNodes(Nodes);
+
 			ClearEdges();
+			DetachFromEdges(Edges);
+
 			_timer.Stop();
 			_algorithm.Dispose();
 			_isLoaded = false;
@@ -345,19 +354,29 @@ namespace Metrolib
 			if (!_isLoaded)
 				return;
 
-			var notifiable = oldValue as INotifyCollectionChanged;
-			if (notifiable != null)
-			{
-				notifiable.CollectionChanged -= NodesOnCollectionChanged;
-			}
+			DetachFromNodes(oldValue);
 
 			ClearNodes();
 			AddNodes(newValue);
 
-			notifiable = newValue as INotifyCollectionChanged;
+			AttachToNodes(newValue);
+		}
+
+		private void AttachToNodes(IEnumerable<INode> newValue)
+		{
+			var notifiable = newValue as INotifyCollectionChanged;
 			if (notifiable != null)
 			{
 				notifiable.CollectionChanged += NodesOnCollectionChanged;
+			}
+		}
+
+		private void DetachFromNodes(IEnumerable<INode> oldValue)
+		{
+			var notifiable = oldValue as INotifyCollectionChanged;
+			if (notifiable != null)
+			{
+				notifiable.CollectionChanged -= NodesOnCollectionChanged;
 			}
 		}
 
@@ -453,19 +472,29 @@ namespace Metrolib
 			if (!_isLoaded)
 				return;
 
-			var notifiable = oldEdges as INotifyCollectionChanged;
-			if (notifiable != null)
-			{
-				notifiable.CollectionChanged -= EdgesOnCollectionChanged;
-			}
+			DetachFromEdges(oldEdges);
 
 			ClearEdges();
 			AddEdges(newEdges);
 
-			notifiable = newEdges as INotifyCollectionChanged;
+			AttachToEdges(newEdges);
+		}
+
+		private void AttachToEdges(IEnumerable<IEdge> newEdges)
+		{
+			var notifiable = newEdges as INotifyCollectionChanged;
 			if (notifiable != null)
 			{
 				notifiable.CollectionChanged += EdgesOnCollectionChanged;
+			}
+		}
+
+		private void DetachFromEdges(IEnumerable<IEdge> oldEdges)
+		{
+			var notifiable = oldEdges as INotifyCollectionChanged;
+			if (notifiable != null)
+			{
+				notifiable.CollectionChanged -= EdgesOnCollectionChanged;
 			}
 		}
 
