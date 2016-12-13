@@ -70,6 +70,8 @@
     <Compile Include="Charts\Network\ForceDirectedLayoutTest.cs" />
     <Compile Include="Charts\Network\NetworkViewNodeItemTest.cs" />
     <Compile Include="Charts\Network\NetworkViewTest.cs" />
+    <Compile Include="Charts\Pie\PieChartSliceItemTest.cs" />
+    <Compile Include="Charts\Pie\PieChartTest.cs" />
     <Compile Include="DelegateCommandTest.cs" />
     <Compile Include="FilterTextBoxTest.cs" />
     <Compile Include="InvertBoolConverterTest.cs" />

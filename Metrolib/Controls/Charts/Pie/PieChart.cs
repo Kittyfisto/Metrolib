@@ -43,6 +43,12 @@ namespace Metrolib
 			DependencyProperty.Register("Outline", typeof (Pen), typeof (PieChart), new PropertyMetadata(default(Pen)));
 
 		/// <summary>
+		///     Definition of the <see cref="LabelMargin" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty LabelMarginProperty =
+			DependencyProperty.Register("LabelMargin", typeof (double), typeof (PieChart), new PropertyMetadata(8.0));
+
+		/// <summary>
 		///     Definition of the <see cref="SumOfSlices" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty SumOfSlicesProperty
@@ -73,7 +79,16 @@ namespace Metrolib
 		}
 
 		/// <summary>
-		///     The data template, if any, used to present a <see cref="IPieSlice.Title" />.
+		///     The margin between the pie chart's outline and the label that is placed next to each slice.
+		/// </summary>
+		public double LabelMargin
+		{
+			get { return (double) GetValue(LabelMarginProperty); }
+			set { SetValue(LabelMarginProperty, value); }
+		}
+
+		/// <summary>
+		///     The data template, if any, used to present a <see cref="IPieSlice.Label" />.
 		/// </summary>
 		public DataTemplate TitleTemplate
 		{
@@ -146,13 +161,13 @@ namespace Metrolib
 
 		private void ClearItems()
 		{
-			foreach (var item in _sliceItems.Values)
+			foreach (PieChartSliceItem item in _sliceItems.Values)
 			{
 				InternalChildren.Remove(item);
 			}
 			_sliceItems.Clear();
 
-			foreach (var item in _titleItems.Values)
+			foreach (PieChartTitleItem item in _titleItems.Values)
 			{
 				InternalChildren.Remove(item);
 			}
@@ -196,7 +211,7 @@ namespace Metrolib
 		{
 			var titleItem = new PieChartTitleItem
 				{
-					Content = slice.Title
+					Content = slice.Label
 				};
 			_titleItems.Add(slice, titleItem);
 			InternalChildren.Add(titleItem);
@@ -262,7 +277,7 @@ namespace Metrolib
 		}
 
 		/// <summary>
-		/// Arranges the content of a System.Windows.Controls.Canvas element.
+		///     Arranges the content of a System.Windows.Controls.Canvas element.
 		/// </summary>
 		/// <param name="arrangeSize"></param>
 		/// <returns></returns>
@@ -270,15 +285,15 @@ namespace Metrolib
 		{
 			if (_slices != null)
 			{
-				double radius = Math.Min(ActualWidth / 2, ActualHeight / 2);
+				double radius = Math.Min(ActualWidth/2, ActualHeight/2);
 				double startAngle = 0;
 
-				foreach (var slice in _slices)
+				foreach (IPieSlice slice in _slices)
 				{
-					var item = _sliceItems[slice];
+					PieChartSliceItem item = _sliceItems[slice];
 
-					double relativeValue = item.Slice.Value / SumOfSlices;
-					double openAngle = relativeValue * 2 * Math.PI;
+					double relativeValue = item.Slice.Value/SumOfSlices;
+					double openAngle = relativeValue*2*Math.PI;
 
 					item.StartAngle = startAngle;
 					item.OpenAngle = openAngle;
@@ -288,15 +303,40 @@ namespace Metrolib
 				}
 			}
 
-			var offset = new Vector(ActualWidth / 2, ActualHeight / 2);
+			var offset = new Vector(ActualWidth/2, ActualHeight/2);
 			foreach (var pair in _titleItems)
 			{
-				var slice = pair.Key;
-				var item = pair.Value;
-				var sliceItem = _sliceItems[slice];
+				IPieSlice slice = pair.Key;
+				PieChartTitleItem item = pair.Value;
+				PieChartSliceItem sliceItem = _sliceItems[slice];
+				System.Windows.Size desiredSize = item.DesiredSize;
 
-				var position = GetPoint(sliceItem.Radius, sliceItem.StartAngle + sliceItem.OpenAngle/2) + offset;
-				var rect = new Rect(position, item.DesiredSize);
+				double angle = sliceItem.StartAngle + sliceItem.OpenAngle/2;
+				Vector specificOffset;
+				switch (sliceItem.Direction)
+				{
+					case SliceDirection.TopRight:
+						specificOffset = new Vector(0, -desiredSize.Height);
+						break;
+
+					case SliceDirection.BottomRight:
+						specificOffset = new Vector(0, 0);
+						break;
+
+					case SliceDirection.BottomLeft:
+						specificOffset = new Vector(-desiredSize.Width, 0);
+						break;
+
+					default:
+						specificOffset = new Vector(-desiredSize.Width, -desiredSize.Height);
+						break;
+				}
+
+				Point position = GetPoint(sliceItem.Radius + LabelMargin, angle)
+				                 + offset
+				                 + specificOffset;
+
+				var rect = new Rect(position, desiredSize);
 				item.Arrange(rect);
 			}
 
@@ -304,7 +344,7 @@ namespace Metrolib
 		}
 
 		/// <summary>
-		/// Draws the content of a System.Windows.Media.DrawingContext object during the render pass of a System.Windows.Controls.Panel element.
+		///     Draws the content of a System.Windows.Media.DrawingContext object during the render pass of a System.Windows.Controls.Panel element.
 		/// </summary>
 		/// <param name="drawingContext"></param>
 		protected override void OnRender(DrawingContext drawingContext)
@@ -318,7 +358,7 @@ namespace Metrolib
 				drawingContext.PushTransform(new TranslateTransform(offset.X, offset.Y));
 				try
 				{
-					foreach (var item in _sliceItems.Values)
+					foreach (PieChartSliceItem item in _sliceItems.Values)
 					{
 						double startAngle = item.StartAngle;
 						double openAngle = item.OpenAngle;
@@ -330,12 +370,12 @@ namespace Metrolib
 							context.BeginFigure(center, true, true);
 							context.LineTo(GetPoint(radius, startAngle), isStroked, false);
 							context.ArcTo(GetPoint(radius, startAngle + openAngle),
-										  new System.Windows.Size(radius, radius),
-										  startAngle * 180 / Math.PI,
-										  openAngle > Math.PI,
-										  SweepDirection.Counterclockwise,
-										  isStroked,
-										  false);
+							              new System.Windows.Size(radius, radius),
+							              startAngle*180/Math.PI,
+							              openAngle > Math.PI,
+							              SweepDirection.Clockwise,
+							              isStroked,
+							              false);
 							context.LineTo(center, isStroked, false);
 						}
 
@@ -351,7 +391,7 @@ namespace Metrolib
 
 		private static Point GetPoint(double radius, double angle)
 		{
-			return new Point(Math.Sin(angle)*radius,
+			return new Point(-Math.Sin(angle)*radius,
 			                 Math.Cos(angle)*radius);
 		}
 	}

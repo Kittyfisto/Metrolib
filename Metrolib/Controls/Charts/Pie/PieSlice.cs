@@ -17,7 +17,7 @@ namespace Metrolib
 		private Brush _fill;
 		private Pen _outline;
 
-		private object _title;
+		private object _label;
 		private object _tooltip;
 		private double _value;
 
@@ -88,15 +88,15 @@ namespace Metrolib
 		/// <summary>
 		///     The title of this slice, if any.
 		/// </summary>
-		public object Title
+		public object Label
 		{
-			get { return _title; }
+			get { return _label; }
 			set
 			{
-				if (value == _title)
+				if (value == _label)
 					return;
 
-				_title = value;
+				_label = value;
 				EmitPropertyChanged();
 			}
 		}
@@ -115,6 +115,15 @@ namespace Metrolib
 				_tooltip = value;
 				EmitPropertyChanged();
 			}
+		}
+
+		/// <summary>
+		/// Returns a string that represents the current object.
+		/// </summary>
+		/// <returns></returns>
+		public override string ToString()
+		{
+			return string.Format("{0}: {1}", Label, Value);
 		}
 
 		private void EmitPropertyChanged([CallerMemberName] string propertyName = null)

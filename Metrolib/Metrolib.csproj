@@ -278,6 +278,7 @@
     <Compile Include="Controls\Charts\Pie\PieChartTitleItem.cs" />
     <Compile Include="Controls\Charts\Pie\PieSeries.cs" />
     <Compile Include="Controls\Charts\Pie\PieSlice.cs" />
+    <Compile Include="Controls\Charts\Pie\SliceDirection.cs" />
     <Compile Include="Physics\Attractor.cs" />
     <Compile Include="Physics\Body.cs" />
     <Compile Include="Physics\EulerIntegrator.cs" />

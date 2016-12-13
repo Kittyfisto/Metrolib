@@ -25,9 +25,9 @@ namespace Metrolib
 		double Value { get; }
 
 		/// <summary>
-		///     The title of this slice, if any.
+		///     The label of this slice, if any.
 		/// </summary>
-		object Title { get; }
+		object Label { get; }
 
 		/// <summary>
 		///     The tooltip of this slice, if any.
