@@ -20,6 +20,7 @@ namespace Metrolib
 		private object _label;
 		private object _tooltip;
 		private double _value;
+		private object _displayedValue;
 
 		/// <summary>
 		///     Initializes this slice.
@@ -81,6 +82,22 @@ namespace Metrolib
 					return;
 
 				_value = value;
+				EmitPropertyChanged();
+			}
+		}
+
+		/// <summary>
+		///     The value of this slice, as it shall be displayed.
+		/// </summary>
+		public object DisplayedValue
+		{
+			get { return _displayedValue; }
+			set
+			{
+				if (value == _displayedValue)
+					return;
+
+				_displayedValue = value;
 				EmitPropertyChanged();
 			}
 		}

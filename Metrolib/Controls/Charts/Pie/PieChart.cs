@@ -25,10 +25,17 @@ namespace Metrolib
 			                            new PropertyMetadata(null, OnSeriesChanged));
 
 		/// <summary>
-		///     Definition of the <see cref="TitleTemplate" />
+		///     Definition of the <see cref="ValueTemplate" /> dependency property.
 		/// </summary>
-		public static readonly DependencyProperty TitleTemplateProperty =
-			DependencyProperty.Register("TitleTemplate", typeof (DataTemplate), typeof (PieChart),
+		public static readonly DependencyProperty ValueTemplateProperty =
+			DependencyProperty.Register("ValueTemplate", typeof (DataTemplate), typeof (PieChart),
+			                            new PropertyMetadata(default(DataTemplate)));
+
+		/// <summary>
+		///     Definition of the <see cref="LabelTemplate" />
+		/// </summary>
+		public static readonly DependencyProperty LabelTemplateProperty =
+			DependencyProperty.Register("LabelTemplate", typeof (DataTemplate), typeof (PieChart),
 			                            new PropertyMetadata(default(DataTemplate)));
 
 		private static readonly DependencyPropertyKey SumOfSlicesPropertyKey
@@ -55,7 +62,8 @@ namespace Metrolib
 			= SumOfSlicesPropertyKey.DependencyProperty;
 
 		private readonly Dictionary<IPieSlice, PieChartSliceItem> _sliceItems;
-		private readonly Dictionary<IPieSlice, PieChartTitleItem> _titleItems;
+		private readonly Dictionary<IPieSlice, PieChartLabelItem> _titleItems;
+		private readonly Dictionary<IPieSlice, PieChartValueItem> _valueItems;
 
 		private bool _isLoaded;
 		private IEnumerable<IPieSlice> _slices;
@@ -71,11 +79,30 @@ namespace Metrolib
 		public PieChart()
 		{
 			_sliceItems = new Dictionary<IPieSlice, PieChartSliceItem>();
-			_titleItems = new Dictionary<IPieSlice, PieChartTitleItem>();
+			_titleItems = new Dictionary<IPieSlice, PieChartLabelItem>();
+			_valueItems = new Dictionary<IPieSlice, PieChartValueItem>();
 
 			Loaded += OnLoaded;
 			Unloaded += OnUnloaded;
 			SizeChanged += OnSizeChanged;
+		}
+
+		/// <summary>
+		///     The data template, if any, used to present a <see cref="IPieSlice.DisplayedValue" />.
+		/// </summary>
+		public DataTemplate ValueTemplate
+		{
+			get { return (DataTemplate) GetValue(ValueTemplateProperty); }
+			set { SetValue(ValueTemplateProperty, value); }
+		}
+
+		/// <summary>
+		///     The data template, if any, used to present a <see cref="IPieSlice.Label" />.
+		/// </summary>
+		public DataTemplate LabelTemplate
+		{
+			get { return (DataTemplate) GetValue(LabelTemplateProperty); }
+			set { SetValue(LabelTemplateProperty, value); }
 		}
 
 		/// <summary>
@@ -85,15 +112,6 @@ namespace Metrolib
 		{
 			get { return (double) GetValue(LabelMarginProperty); }
 			set { SetValue(LabelMarginProperty, value); }
-		}
-
-		/// <summary>
-		///     The data template, if any, used to present a <see cref="IPieSlice.Label" />.
-		/// </summary>
-		public DataTemplate TitleTemplate
-		{
-			get { return (DataTemplate) GetValue(TitleTemplateProperty); }
-			set { SetValue(TitleTemplateProperty, value); }
 		}
 
 		/// <summary>
@@ -167,7 +185,13 @@ namespace Metrolib
 			}
 			_sliceItems.Clear();
 
-			foreach (PieChartTitleItem item in _titleItems.Values)
+			foreach (var item in _valueItems.Values)
+			{
+				InternalChildren.Remove(item);
+			}
+			_valueItems.Clear();
+
+			foreach (PieChartLabelItem item in _titleItems.Values)
 			{
 				InternalChildren.Remove(item);
 			}
@@ -187,13 +211,15 @@ namespace Metrolib
 				SubscribeTo(series.Slices);
 				AddItems(series.Slices);
 				_slices = series.Slices;
-				SumOfSlices = _slices.Sum(x => x.Value);
 			}
 			else
 			{
 				_slices = null;
-				SumOfSlices = 0;
 			}
+
+			SumOfSlices = _slices != null
+				              ? _slices.Sum(x => x.Value)
+				              : 0;
 		}
 
 		private void AddItems(IEnumerable<IPieSlice> slices)
@@ -209,12 +235,21 @@ namespace Metrolib
 
 		private void OnSliceAdded(IPieSlice slice)
 		{
-			var titleItem = new PieChartTitleItem
+			var titleItem = new PieChartLabelItem
 				{
-					Content = slice.Label
+					Content = slice.Label,
+					ContentTemplate = LabelTemplate
 				};
 			_titleItems.Add(slice, titleItem);
 			InternalChildren.Add(titleItem);
+
+			var valueItem = new PieChartValueItem
+				{
+					Content = slice.DisplayedValue,
+					ContentTemplate = ValueTemplate
+				};
+			_valueItems.Add(slice, valueItem);
+			InternalChildren.Add(valueItem);
 
 			var sliceItem = new PieChartSliceItem
 				{
@@ -244,7 +279,10 @@ namespace Metrolib
 				notifiable.PropertyChanged -= SeriesOnPropertyChanged;
 			}
 
-			UnsubscribeFrom(series.Slices);
+			if (series != null)
+			{
+				UnsubscribeFrom(series.Slices);
+			}
 			ClearItems();
 		}
 
@@ -307,7 +345,7 @@ namespace Metrolib
 			foreach (var pair in _titleItems)
 			{
 				IPieSlice slice = pair.Key;
-				PieChartTitleItem item = pair.Value;
+				PieChartLabelItem item = pair.Value;
 				PieChartSliceItem sliceItem = _sliceItems[slice];
 				System.Windows.Size desiredSize = item.DesiredSize;
 
@@ -340,6 +378,24 @@ namespace Metrolib
 				item.Arrange(rect);
 			}
 
+			foreach (var pair in _valueItems)
+			{
+				IPieSlice slice = pair.Key;
+				PieChartValueItem item = pair.Value;
+				PieChartSliceItem sliceItem = _sliceItems[slice];
+				
+				System.Windows.Size desiredSize = item.DesiredSize;
+				double angle = sliceItem.StartAngle + sliceItem.OpenAngle/2;
+				var specificOffset = -(Vector) desiredSize/2;
+
+				Point position = GetPoint(sliceItem.Radius/1.5, angle)
+				                 + offset
+				                 + specificOffset;
+
+				var rect = new Rect(position, desiredSize);
+				item.Arrange(rect);
+			}
+
 			return arrangeSize;
 		}
 
@@ -358,12 +414,18 @@ namespace Metrolib
 				drawingContext.PushTransform(new TranslateTransform(offset.X, offset.Y));
 				try
 				{
+					var maxThickness = 0.0;
+
 					foreach (PieChartSliceItem item in _sliceItems.Values)
 					{
 						double startAngle = item.StartAngle;
 						double openAngle = item.OpenAngle;
 						var geometry = new StreamGeometry();
-						bool isStroked = item.Slice.Outline != null;
+						var pen = item.Slice.Outline;
+						bool isStroked = pen != null;
+
+						if (pen != null)
+							maxThickness = Math.Max(maxThickness, pen.Thickness);
 
 						using (StreamGeometryContext context = geometry.Open())
 						{
@@ -379,7 +441,16 @@ namespace Metrolib
 							context.LineTo(center, isStroked, false);
 						}
 
-						drawingContext.DrawGeometry(item.Slice.Fill, item.Slice.Outline, geometry);
+						drawingContext.DrawGeometry(item.Slice.Fill, pen, geometry);
+					}
+
+					if (Outline != null)
+					{
+						drawingContext.DrawEllipse(null,
+						                           Outline,
+						                           center,
+						                           radius + maxThickness,
+						                           radius + maxThickness);
 					}
 				}
 				finally
