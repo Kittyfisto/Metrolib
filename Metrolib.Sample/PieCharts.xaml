@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Metrolib.Sample.PieCharts"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:metrolib="clr-namespace:Metrolib;assembly=Metrolib"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="MY FAVOURITE BARS"
+                   Foreground="#333333"
+                   FontSize="20"
+                   HorizontalAlignment="Center"
+                   Margin="8" />
+        
+        <metrolib:PieChart Grid.Row="1">
+            <metrolib:PieChart.Series>
+                <metrolib:PieSeries>
+                    <metrolib:PieSeries.Slices>
+                        <metrolib:PieSlice Title="McCain's" Value="23" />
+                        <metrolib:PieSlice Title="McLaren's" Value="30" />
+                        <metrolib:PieSlice Title="White House Tavern" Value="12" />
+                        <metrolib:PieSlice Title="King Cola Bar" Value="3" />
+                        <metrolib:PieSlice Title="P &amp; C" Value="27" />
+                    </metrolib:PieSeries.Slices>
+                </metrolib:PieSeries>
+            </metrolib:PieChart.Series>
+        </metrolib:PieChart>
+    </Grid>
+</UserControl>

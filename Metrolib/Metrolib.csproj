@@ -271,6 +271,13 @@
     <Compile Include="Controls\Charts\Network\NetworkViewNodeItem.cs" />
     <Compile Include="Controls\Charts\Network\WidthHeightToRadiusConverter.cs" />
     <Compile Include="Controls\Charts\Network\WidthHeightToSizeConverter.cs" />
+    <Compile Include="Controls\Charts\Pie\IPieSeries.cs" />
+    <Compile Include="Controls\Charts\Pie\IPieSlice.cs" />
+    <Compile Include="Controls\Charts\Pie\PieChart.cs" />
+    <Compile Include="Controls\Charts\Pie\PieChartSliceItem.cs" />
+    <Compile Include="Controls\Charts\Pie\PieChartTitleItem.cs" />
+    <Compile Include="Controls\Charts\Pie\PieSeries.cs" />
+    <Compile Include="Controls\Charts\Pie\PieSlice.cs" />
     <Compile Include="Physics\Attractor.cs" />
     <Compile Include="Physics\Body.cs" />
     <Compile Include="Physics\EulerIntegrator.cs" />

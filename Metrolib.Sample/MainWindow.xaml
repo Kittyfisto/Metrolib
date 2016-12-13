@@ -62,7 +62,10 @@
             <controls:FlatTabItem Header="Line Charts">
                 <sample:LineCharts />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="Network Charts" IsSelected="True">
+            <controls:FlatTabItem Header="Pie Charts" IsSelected="True">
+                <sample:PieCharts />
+            </controls:FlatTabItem>
+            <controls:FlatTabItem Header="Network Charts">
                 <sample:NetworkCharts />
             </controls:FlatTabItem>
         </tab:FlatTabControl>
