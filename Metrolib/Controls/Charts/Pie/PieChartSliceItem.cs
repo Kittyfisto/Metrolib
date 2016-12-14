@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 using System.Windows;
+using System.Windows.Media;
 using Metrolib.Geometry;
 
 // ReSharper disable CheckNamespace
@@ -212,6 +213,31 @@ namespace Metrolib
 		{
 			Angle = newValue + OpenAngle/2;
 			Shape = DetermineBoundingShape(Center, newValue, OpenAngle, Radius);
+		}
+
+		protected override void OnRender(DrawingContext drawingContext)
+		{
+			var shape = Shape;
+			var geometry = new StreamGeometry();
+			var pen = Slice.Outline;
+			var brush = Slice.Fill;
+			bool isStroked = pen != null;
+
+			using (StreamGeometryContext context = geometry.Open())
+			{
+				context.BeginFigure(shape.Circle.Center, true, true);
+				context.LineTo(shape.StartPoint, isStroked, false);
+				context.ArcTo(shape.EndPoint,
+							  new System.Windows.Size(shape.Circle.Radius, shape.Circle.Radius),
+							  shape.StartAngle * 180 / Math.PI,
+							  shape.OpenAngle > Math.PI,
+							  SweepDirection.Clockwise,
+							  isStroked,
+							  false);
+				context.LineTo(shape.Circle.Center, isStroked, true);
+			}
+
+			drawingContext.DrawGeometry(brush, pen, geometry);
 		}
 
 		private void OnAngleChanged(double angle)

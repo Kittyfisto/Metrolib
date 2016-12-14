@@ -84,7 +84,7 @@ namespace Metrolib.Geometry
 		public Point GetPoint(double angle)
 		{
 			return new Point(-Math.Sin(angle)*Radius,
-			                 Math.Cos(angle)*Radius);
+			                 Math.Cos(angle)*Radius) + (Vector) Center;
 		}
 
 		/// <summary>

@@ -17,6 +17,10 @@ namespace Metrolib
 	public class PieChart
 		: Canvas
 	{
+		private const int SliceZIndex = 1;
+		private const int LabelZindex = 2;
+		private const int ValueZIndex = 3;
+
 		/// <summary>
 		///     Definition of the <see cref="Series" /> dependency property.
 		/// </summary>
@@ -236,19 +240,21 @@ namespace Metrolib
 
 		private void OnSliceAdded(IPieSlice slice)
 		{
-			var titleItem = new PieChartLabelItem
+			var labelItem = new PieChartLabelItem
 				{
 					Content = slice.Label,
 					ContentTemplate = LabelTemplate
 				};
-			_titleItems.Add(slice, titleItem);
-			InternalChildren.Add(titleItem);
+			SetZIndex(labelItem, LabelZindex);
+			_titleItems.Add(slice, labelItem);
+			InternalChildren.Add(labelItem);
 
 			var valueItem = new PieChartValueItem
 				{
 					Content = slice.DisplayedValue,
 					ContentTemplate = ValueTemplate
 				};
+			SetZIndex(valueItem, ValueZIndex);
 			_valueItems.Add(slice, valueItem);
 			InternalChildren.Add(valueItem);
 
@@ -256,6 +262,7 @@ namespace Metrolib
 				{
 					Slice = slice
 				};
+			SetZIndex(sliceItem, SliceZIndex);
 			_sliceItems.Add(slice, sliceItem);
 			InternalChildren.Add(sliceItem);
 		}
@@ -324,7 +331,7 @@ namespace Metrolib
 		/// <returns></returns>
 		protected override System.Windows.Size ArrangeOverride(System.Windows.Size arrangeSize)
 		{
-			var offset = new Vector(ActualWidth / 2, ActualHeight / 2);
+			var offset = new Vector(arrangeSize.Width / 2, arrangeSize.Height / 2);
 
 			if (_slices != null)
 			{
@@ -342,6 +349,7 @@ namespace Metrolib
 					item.StartAngle = startAngle;
 					item.OpenAngle = openAngle;
 					item.Radius = radius;
+					item.Arrange(new Rect(0, 0, arrangeSize.Width, arrangeSize.Height));
 
 					startAngle += openAngle;
 				}
@@ -420,56 +428,27 @@ namespace Metrolib
 		protected override void OnRender(DrawingContext drawingContext)
 		{
 			double radius = Math.Min(ActualWidth/2, ActualHeight/2);
-			var offset = new Vector(ActualWidth/2, ActualHeight/2);
-			var center = new Point(0, 0);
+			var center = new Point(ActualWidth / 2, ActualHeight / 2);
 
 			if (_slices != null)
 			{
-				drawingContext.PushTransform(new TranslateTransform(offset.X, offset.Y));
-				try
+				var maxThickness = 0.0;
+
+				foreach (PieChartSliceItem item in _sliceItems.Values)
 				{
-					var maxThickness = 0.0;
+					var pen = item.Slice.Outline;
 
-					foreach (PieChartSliceItem item in _sliceItems.Values)
-					{
-						double startAngle = item.StartAngle;
-						double openAngle = item.OpenAngle;
-						var geometry = new StreamGeometry();
-						var pen = item.Slice.Outline;
-						bool isStroked = pen != null;
-
-						if (pen != null)
-							maxThickness = Math.Max(maxThickness, pen.Thickness);
-
-						using (StreamGeometryContext context = geometry.Open())
-						{
-							context.BeginFigure(center, true, true);
-							context.LineTo(GetPoint(radius, startAngle), isStroked, false);
-							context.ArcTo(GetPoint(radius, startAngle + openAngle),
-							              new System.Windows.Size(radius, radius),
-							              startAngle*180/Math.PI,
-							              openAngle > Math.PI,
-							              SweepDirection.Clockwise,
-							              isStroked,
-							              false);
-							context.LineTo(center, isStroked, true);
-						}
-
-						drawingContext.DrawGeometry(item.Slice.Fill, pen, geometry);
-					}
-
-					if (Outline != null)
-					{
-						drawingContext.DrawEllipse(null,
-						                           Outline,
-						                           center,
-						                           radius + maxThickness,
-						                           radius + maxThickness);
-					}
+					if (pen != null)
+						maxThickness = Math.Max(maxThickness, pen.Thickness);
 				}
-				finally
+
+				if (Outline != null)
 				{
-					drawingContext.Pop();
+					drawingContext.DrawEllipse(null,
+											   Outline,
+											   center,
+											   radius + maxThickness,
+											   radius + maxThickness);
 				}
 			}
 		}

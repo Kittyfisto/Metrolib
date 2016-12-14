@@ -37,6 +37,11 @@ namespace Metrolib.Geometry
 			get { return Circle.GetPoint(EndAngle); }
 		}
 
+		public double OpenAngle
+		{
+			get { return EndAngle - StartAngle; }
+		}
+
 		/// <summary>
 		///     Returns a string that represents the current object.
 		/// </summary>

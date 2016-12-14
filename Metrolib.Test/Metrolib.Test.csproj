@@ -77,6 +77,7 @@
     <Compile Include="DelegateCommandTest.cs" />
     <Compile Include="FilterTextBoxTest.cs" />
     <Compile Include="Geometry\CircleSegmentTest.cs" />
+    <Compile Include="Geometry\CircleTest.cs" />
     <Compile Include="InvertBoolConverterTest.cs" />
     <Compile Include="Panel\GridPanelTest.cs" />
     <Compile Include="Geometry\TriangleTest.cs" />
