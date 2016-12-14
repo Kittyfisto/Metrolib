@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     
     <UserControl.Resources>
-        <Pen x:Key="SliceOutline" Thickness="1" Brush="White" />
+        <Pen x:Key="SliceOutline" Thickness="2" Brush="White" />
     </UserControl.Resources>
     
     <Grid>

@@ -160,6 +160,7 @@ namespace Metrolib
 		private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
 		{
 			UnsubscribeFrom(Series);
+			_slices = null;
 			_isLoaded = false;
 		}
 
@@ -325,7 +326,7 @@ namespace Metrolib
 		{
 			if (_slices != null)
 			{
-				double radius = Math.Min(ActualWidth/2, ActualHeight/2);
+				double radius = Math.Min(arrangeSize.Width/2, arrangeSize.Height/2);
 				double startAngle = 0;
 
 				foreach (IPieSlice slice in _slices)
