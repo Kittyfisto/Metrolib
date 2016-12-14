@@ -46,6 +46,14 @@ namespace Metrolib.Geometry
 		}
 
 		/// <summary>
+		/// 
+		/// </summary>
+		public double Angle
+		{
+			get { return StartAngle + OpenAngle/2; }
+		}
+
+		/// <summary>
 		///     Returns a string that represents the current object.
 		/// </summary>
 		/// <returns></returns>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -361,19 +362,9 @@ namespace Metrolib
 				IPieSlice slice = pair.Key;
 				PieChartValueItem item = pair.Value;
 				PieChartSliceItem sliceItem = _sliceItems[slice];
-
-				// TODO: Create solver that tries to place the label at various different 
-
 				System.Windows.Size desiredSize = item.DesiredSize;
-				Vector specificOffset = -(Vector) desiredSize/2;
 
-				Circle circle = sliceItem.Shape.Circle;
-				circle.Radius *= 0.75;
-				Point position = circle.GetPoint(sliceItem.Angle)
-				                 + specificOffset;
-
-				var rect = new Rect(position, desiredSize);
-
+				var rect = FindValuePosition(sliceItem.Shape, desiredSize);
 				if (sliceItem.Shape.Contains(rect))
 				{
 					item.Visibility = Visibility.Visible;
@@ -420,6 +411,59 @@ namespace Metrolib
 			}
 
 			return arrangeSize;
+		}
+
+		/// <summary>
+		/// Tries to find an optimal position for the <see cref="IPieSlice.DisplayedValue"/>
+		/// that is rendered inside a slice.
+		/// </summary>
+		/// <param name="shape"></param>
+		/// <param name="size"></param>
+		/// <returns></returns>
+		[Pure]
+		private static Rect FindValuePosition(CircleSegment shape, System.Windows.Size size)
+		{
+			Vector offset = -(Vector) size/2;
+			var angle = shape.Angle;
+
+			int numMaxIterations = Math.Max(1, (int) Math.Log(shape.Circle.Radius, 2));
+			double minimum = 0.5;
+			double maximum = 1;
+			double current = minimum;
+			double fittinRadius = current;
+			bool fits = false;
+
+			for (int i = 0; i < numMaxIterations; ++i)
+			{
+				var rect = FindRectangle(shape.Circle, current, angle, offset, size);
+
+				if (shape.Contains(rect))
+				{
+					maximum = current;
+					fittinRadius = current;
+					fits = true;
+				}
+				else
+				{
+					minimum = current;
+					fits = false;
+				}
+
+				if (maximum == minimum)
+					break;
+
+				current = minimum + (maximum - minimum)/2;
+			}
+
+			return FindRectangle(shape.Circle, fittinRadius, angle, offset, size);
+		}
+
+		private static Rect FindRectangle(Circle circle, double relativeRadius, double angle, Vector offset, System.Windows.Size size)
+		{
+			circle.Radius *= relativeRadius;
+			var position = circle.GetPoint(angle) + offset;
+			var rect = new Rect(position, size);
+			return rect;
 		}
 	}
 }
