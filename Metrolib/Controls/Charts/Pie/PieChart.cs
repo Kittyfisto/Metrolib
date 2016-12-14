@@ -324,6 +324,8 @@ namespace Metrolib
 		/// <returns></returns>
 		protected override System.Windows.Size ArrangeOverride(System.Windows.Size arrangeSize)
 		{
+			var offset = new Vector(ActualWidth / 2, ActualHeight / 2);
+
 			if (_slices != null)
 			{
 				double radius = Math.Min(arrangeSize.Width/2, arrangeSize.Height/2);
@@ -336,6 +338,7 @@ namespace Metrolib
 					double relativeValue = item.Slice.Value/SumOfSlices;
 					double openAngle = relativeValue*2*Math.PI;
 
+					item.Center = (Point) offset;
 					item.StartAngle = startAngle;
 					item.OpenAngle = openAngle;
 					item.Radius = radius;
@@ -344,7 +347,6 @@ namespace Metrolib
 				}
 			}
 
-			var offset = new Vector(ActualWidth/2, ActualHeight/2);
 			foreach (var pair in _titleItems)
 			{
 				IPieSlice slice = pair.Key;
@@ -386,7 +388,7 @@ namespace Metrolib
 				IPieSlice slice = pair.Key;
 				PieChartValueItem item = pair.Value;
 				PieChartSliceItem sliceItem = _sliceItems[slice];
-				
+
 				System.Windows.Size desiredSize = item.DesiredSize;
 				double angle = sliceItem.StartAngle + sliceItem.OpenAngle/2;
 				var specificOffset = -(Vector) desiredSize/2;
@@ -396,7 +398,16 @@ namespace Metrolib
 				                 + specificOffset;
 
 				var rect = new Rect(position, desiredSize);
-				item.Arrange(rect);
+
+				/*if (sliceItem.Shape.Contains(rect))
+				{*/
+					item.Visibility = Visibility.Visible;
+					item.Arrange(rect);
+				/*}
+				else
+				{
+					item.Visibility = Visibility.Collapsed;
+				}*/
 			}
 
 			return arrangeSize;
@@ -441,7 +452,7 @@ namespace Metrolib
 							              SweepDirection.Clockwise,
 							              isStroked,
 							              false);
-							context.LineTo(center, isStroked, false);
+							context.LineTo(center, isStroked, true);
 						}
 
 						drawingContext.DrawGeometry(item.Slice.Fill, pen, geometry);

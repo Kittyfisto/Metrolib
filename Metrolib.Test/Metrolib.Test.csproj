@@ -76,8 +76,10 @@
     <Compile Include="Charts\Pie\PieChartValueItemTest.cs" />
     <Compile Include="DelegateCommandTest.cs" />
     <Compile Include="FilterTextBoxTest.cs" />
+    <Compile Include="Geometry\CircleSegmentTest.cs" />
     <Compile Include="InvertBoolConverterTest.cs" />
     <Compile Include="Panel\GridPanelTest.cs" />
+    <Compile Include="Geometry\TriangleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScrollViewer\FlatScrollViewerStyleTest.cs" />
     <Compile Include="ScrollViewer\FlatScrollViewerTest.cs" />
@@ -99,6 +101,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Physics\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

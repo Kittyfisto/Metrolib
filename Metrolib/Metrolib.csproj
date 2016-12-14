@@ -282,6 +282,8 @@
     <Compile Include="Controls\Charts\Pie\SliceDirection.cs" />
     <Compile Include="Physics\Attractor.cs" />
     <Compile Include="Physics\Body.cs" />
+    <Compile Include="Geometry\Circle.cs" />
+    <Compile Include="Geometry\CircleSegment.cs" />
     <Compile Include="Physics\EulerIntegrator.cs" />
     <Compile Include="Physics\Spring.cs" />
     <Compile Include="Controls\Charts\Network\Direction.cs" />
@@ -349,6 +351,7 @@
     <Compile Include="DependencyObjectExtensions.cs" />
     <Compile Include="IDispatcher.cs" />
     <Compile Include="ManualDispatcher.cs" />
+    <Compile Include="Geometry\Triangle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

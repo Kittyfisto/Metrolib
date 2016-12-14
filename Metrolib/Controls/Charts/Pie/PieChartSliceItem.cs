@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Windows;
+using Metrolib.Geometry;
 
 // ReSharper disable CheckNamespace
 
@@ -18,6 +20,25 @@ namespace Metrolib
 		public static readonly DependencyProperty StartAngleProperty =
 			DependencyProperty.Register("StartAngle", typeof (double), typeof (PieChartSliceItem),
 			                            new PropertyMetadata(0.0, OnStartAngleChanged));
+
+		/// <summary>
+		///     Definition of the <see cref="Center" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty CenterProperty =
+			DependencyProperty.Register("Center", typeof (Point), typeof (PieChartSliceItem),
+			                            new PropertyMetadata(default(Point), OnCenterChanged));
+
+		private static readonly DependencyPropertyKey AnglePropertyKey
+			= DependencyProperty.RegisterReadOnly("Angle", typeof (double), typeof (PieChartSliceItem),
+			                                      new FrameworkPropertyMetadata(default(double),
+			                                                                    FrameworkPropertyMetadataOptions.None,
+			                                                                    OnAngleChanged));
+
+		/// <summary>
+		///     Definition of the <see cref="Angle" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty AngleProperty
+			= AnglePropertyKey.DependencyProperty;
 
 		/// <summary>
 		///     Definition of the <see cref="Direction" /> dependency property.
@@ -45,7 +66,46 @@ namespace Metrolib
 		/// </summary>
 		public static readonly DependencyProperty RadiusProperty =
 			DependencyProperty.Register("Radius", typeof (double), typeof (PieChartSliceItem),
-			                            new PropertyMetadata(default(double)));
+			                            new PropertyMetadata(0.0, OnRadiusChanged));
+
+		private static readonly DependencyPropertyKey ShapePropertyKey
+			= DependencyProperty.RegisterReadOnly("Shape", typeof (CircleSegment), typeof (PieChartSliceItem),
+			                                      new FrameworkPropertyMetadata(default(CircleSegment),
+			                                                                    FrameworkPropertyMetadataOptions.None));
+
+		/// <summary>
+		///     Definition of the <see cref="Shape" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty ShapeProperty
+			= ShapePropertyKey.DependencyProperty;
+
+		/// <summary>
+		///     The center of the circle.
+		/// </summary>
+		public Point Center
+		{
+			get { return (Point) GetValue(CenterProperty); }
+			set { SetValue(CenterProperty, value); }
+		}
+
+		/// <summary>
+		///     The bounding shape that approximates the slice's drawn area and is used to determine the
+		///     placement of labels.
+		/// </summary>
+		public CircleSegment Shape
+		{
+			get { return (CircleSegment) GetValue(ShapeProperty); }
+			protected set { SetValue(ShapePropertyKey, value); }
+		}
+
+		/// <summary>
+		///     The angle halfway between <see cref="StartAngle" /> and <see cref="StartAngle" />+<see cref="OpenAngle" />.
+		/// </summary>
+		public double Angle
+		{
+			get { return (double) GetValue(AngleProperty); }
+			protected set { SetValue(AnglePropertyKey, value); }
+		}
 
 		/// <summary>
 		///     The direction the slice is pointing at, from the center of the pie chart.
@@ -92,6 +152,46 @@ namespace Metrolib
 			set { SetValue(StartAngleProperty, value); }
 		}
 
+		private static void OnCenterChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			((PieChartSliceItem) d).OnCenterChanged((Point) e.NewValue);
+		}
+
+		private void OnCenterChanged(Point newValue)
+		{
+			Shape = DetermineBoundingShape(newValue, StartAngle, OpenAngle, Radius);
+		}
+
+		private static void OnRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			((PieChartSliceItem) d).OnRadiusChanged((double) e.NewValue);
+		}
+
+		private void OnRadiusChanged(double newValue)
+		{
+			Shape = DetermineBoundingShape(Center, StartAngle, OpenAngle, newValue);
+		}
+
+		[Pure]
+		private static CircleSegment DetermineBoundingShape(Point center, double startAngle, double openAngle, double radius)
+		{
+			return new CircleSegment
+				{
+					Circle = new Circle
+						{
+							Center = center,
+							Radius = radius
+						},
+					StartAngle = startAngle,
+					EndAngle = startAngle + openAngle
+				};
+		}
+
+		private static void OnAngleChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+		{
+			((PieChartSliceItem) dependencyObject).OnAngleChanged((double) args.NewValue);
+		}
+
 		private static void OnOpenAngleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			((PieChartSliceItem) d).OnOpenAngleChanged((double) e.NewValue);
@@ -99,7 +199,8 @@ namespace Metrolib
 
 		private void OnOpenAngleChanged(double newValue)
 		{
-			Direction = CalculateDirection(StartAngle, newValue);
+			Angle = StartAngle + newValue/2;
+			Shape = DetermineBoundingShape(Center, StartAngle, newValue, Radius);
 		}
 
 		private static void OnStartAngleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -109,26 +210,28 @@ namespace Metrolib
 
 		private void OnStartAngleChanged(double newValue)
 		{
-			Direction = CalculateDirection(newValue, OpenAngle);
+			Angle = newValue + OpenAngle/2;
+			Shape = DetermineBoundingShape(Center, newValue, OpenAngle, Radius);
 		}
 
-		private static SliceDirection CalculateDirection(double startAngle, double openAngle)
+		private void OnAngleChanged(double angle)
 		{
-			double angle = startAngle + openAngle/2;
-
 			if (angle >= 0 && angle < Math.PI/2)
 			{
-				return SliceDirection.BottomLeft;
+				Direction = SliceDirection.BottomLeft;
 			}
-			if (angle >= Math.PI/2 && angle < Math.PI)
+			else if (angle >= Math.PI/2 && angle < Math.PI)
 			{
-				return SliceDirection.TopLeft;
+				Direction = SliceDirection.TopLeft;
 			}
-			if (angle >= Math.PI && angle < Math.PI*1.5)
+			else if (angle >= Math.PI && angle < Math.PI*1.5)
 			{
-				return SliceDirection.TopRight;
+				Direction = SliceDirection.TopRight;
 			}
-			return SliceDirection.BottomRight;
+			else
+			{
+				Direction = SliceDirection.BottomRight;
+			}
 		}
 	}
 }
