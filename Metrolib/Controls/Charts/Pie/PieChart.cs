@@ -265,8 +265,10 @@ namespace Metrolib
 			{
 				case "Slices":
 					UnsubscribeFrom(_slices);
+					ClearItems();
 					SubscribeTo(Series.Slices);
 					_slices = Series.Slices;
+					AddItems(_slices);
 					break;
 			}
 		}

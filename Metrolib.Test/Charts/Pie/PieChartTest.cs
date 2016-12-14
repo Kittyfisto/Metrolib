@@ -18,6 +18,8 @@ namespace Metrolib.Test.Charts.Pie
 			var chart = new PieChart();
 			chart.Series.Should().BeNull();
 			chart.LabelTemplate.Should().BeNull();
+			chart.ValueTemplate.Should().BeNull();
+			chart.Outline.Should().BeNull();
 			chart.SumOfSlices.Should().Be(0);
 		}
 
@@ -93,6 +95,43 @@ namespace Metrolib.Test.Charts.Pie
 			var item = chart.Children.OfType<PieChartValueItem>().FirstOrDefault();
 			item.Should().NotBeNull();
 			item.ContentTemplate.Should().BeSameAs(template, "because the chart is supposed to forward the ValueTemplate to the ContentPresenter that presents DisplayValue");
+		}
+
+		[Test]
+		[STAThread]
+		[Description("Verifies that the chart listens to changes of the Slices property")]
+		public void TestPieSeries6()
+		{
+			var template = new DataTemplate();
+			var chart = new PieChart { ValueTemplate = template };
+			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+
+			var series = new PieSeries();
+			series.Slices.Add(new PieSlice());
+			chart.Series = series;
+			var item = chart.Children.OfType<PieChartValueItem>().FirstOrDefault();
+			item.Should().NotBeNull();
+
+			series.Slices = null;
+			chart.Children.Should().BeEmpty();
+		}
+
+		[Test]
+		[STAThread]
+		[Description("Verifies that the chart listens to changes of the Slices property")]
+		public void TestPieSeries7()
+		{
+			var template = new DataTemplate();
+			var chart = new PieChart { ValueTemplate = template };
+			chart.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+
+			var series = new PieSeries();
+			chart.Series = series;
+			chart.Children.Should().BeEmpty();
+
+			series.Slices = new List<IPieSlice> { new PieSlice() };
+			var item = chart.Children.OfType<PieChartValueItem>().FirstOrDefault();
+			item.Should().NotBeNull("because we've exchanched the empty list of slices with one that offers one slice");
 		}
 	}
 }
