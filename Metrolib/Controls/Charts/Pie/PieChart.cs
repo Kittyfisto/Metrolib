@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Metrolib.Geometry;
 
 // ReSharper disable CheckNamespace
 
@@ -190,7 +191,7 @@ namespace Metrolib
 			}
 			_sliceItems.Clear();
 
-			foreach (var item in _valueItems.Values)
+			foreach (PieChartValueItem item in _valueItems.Values)
 			{
 				InternalChildren.Remove(item);
 			}
@@ -331,7 +332,7 @@ namespace Metrolib
 		/// <returns></returns>
 		protected override System.Windows.Size ArrangeOverride(System.Windows.Size arrangeSize)
 		{
-			var offset = new Vector(arrangeSize.Width / 2, arrangeSize.Height / 2);
+			var offset = new Vector(arrangeSize.Width/2, arrangeSize.Height/2);
 
 			if (_slices != null)
 			{
@@ -355,6 +356,35 @@ namespace Metrolib
 				}
 			}
 
+			foreach (var pair in _valueItems)
+			{
+				IPieSlice slice = pair.Key;
+				PieChartValueItem item = pair.Value;
+				PieChartSliceItem sliceItem = _sliceItems[slice];
+
+				// TODO: Create solver that tries to place the label at various different 
+
+				System.Windows.Size desiredSize = item.DesiredSize;
+				Vector specificOffset = -(Vector) desiredSize/2;
+
+				Circle circle = sliceItem.Shape.Circle;
+				circle.Radius *= 0.75;
+				Point position = circle.GetPoint(sliceItem.Angle)
+				                 + specificOffset;
+
+				var rect = new Rect(position, desiredSize);
+
+				if (sliceItem.Shape.Contains(rect))
+				{
+					item.Visibility = Visibility.Visible;
+					item.Arrange(rect);
+				}
+				else
+				{
+					item.Visibility = Visibility.Collapsed;
+				}
+			}
+
 			foreach (var pair in _titleItems)
 			{
 				IPieSlice slice = pair.Key;
@@ -362,7 +392,6 @@ namespace Metrolib
 				PieChartSliceItem sliceItem = _sliceItems[slice];
 				System.Windows.Size desiredSize = item.DesiredSize;
 
-				double angle = sliceItem.StartAngle + sliceItem.OpenAngle/2;
 				Vector specificOffset;
 				switch (sliceItem.Direction)
 				{
@@ -383,80 +412,14 @@ namespace Metrolib
 						break;
 				}
 
-				Point position = GetPoint(sliceItem.Radius + LabelMargin, angle)
-				                 + offset
-				                 + specificOffset;
-
+				Circle circle = sliceItem.Shape.Circle;
+				circle.Radius += LabelMargin;
+				Point position = circle.GetPoint(sliceItem.Angle) + specificOffset;
 				var rect = new Rect(position, desiredSize);
 				item.Arrange(rect);
 			}
 
-			foreach (var pair in _valueItems)
-			{
-				IPieSlice slice = pair.Key;
-				PieChartValueItem item = pair.Value;
-				PieChartSliceItem sliceItem = _sliceItems[slice];
-
-				System.Windows.Size desiredSize = item.DesiredSize;
-				double angle = sliceItem.StartAngle + sliceItem.OpenAngle/2;
-				var specificOffset = -(Vector) desiredSize/2;
-
-				Point position = GetPoint(sliceItem.Radius/1.5, angle)
-				                 + offset
-				                 + specificOffset;
-
-				var rect = new Rect(position, desiredSize);
-
-				/*if (sliceItem.Shape.Contains(rect))
-				{*/
-					item.Visibility = Visibility.Visible;
-					item.Arrange(rect);
-				/*}
-				else
-				{
-					item.Visibility = Visibility.Collapsed;
-				}*/
-			}
-
 			return arrangeSize;
-		}
-
-		/// <summary>
-		///     Draws the content of a System.Windows.Media.DrawingContext object during the render pass of a System.Windows.Controls.Panel element.
-		/// </summary>
-		/// <param name="drawingContext"></param>
-		protected override void OnRender(DrawingContext drawingContext)
-		{
-			double radius = Math.Min(ActualWidth/2, ActualHeight/2);
-			var center = new Point(ActualWidth / 2, ActualHeight / 2);
-
-			if (_slices != null)
-			{
-				var maxThickness = 0.0;
-
-				foreach (PieChartSliceItem item in _sliceItems.Values)
-				{
-					var pen = item.Slice.Outline;
-
-					if (pen != null)
-						maxThickness = Math.Max(maxThickness, pen.Thickness);
-				}
-
-				if (Outline != null)
-				{
-					drawingContext.DrawEllipse(null,
-											   Outline,
-											   center,
-											   radius + maxThickness,
-											   radius + maxThickness);
-				}
-			}
-		}
-
-		private static Point GetPoint(double radius, double angle)
-		{
-			return new Point(-Math.Sin(angle)*radius,
-			                 Math.Cos(angle)*radius);
 		}
 	}
 }

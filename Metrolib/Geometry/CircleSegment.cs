@@ -37,6 +37,9 @@ namespace Metrolib.Geometry
 			get { return Circle.GetPoint(EndAngle); }
 		}
 
+		/// <summary>
+		///     The arc length of the circle segment.
+		/// </summary>
 		public double OpenAngle
 		{
 			get { return EndAngle - StartAngle; }

@@ -69,5 +69,21 @@ namespace Metrolib.Test.Geometry
 			segment.Contains(new Rect(0, 0, 0, 0)).Should().BeTrue();
 			segment.Contains(new Rect(0, -1.1, 1, 1)).Should().BeTrue();
 		}
+
+		[Test]
+		public void TestContains3()
+		{
+			var segment = new CircleSegment
+			{
+				Circle =
+				{
+					Center = new Point(300, 300),
+					Radius = 200
+				},
+				StartAngle = 0,
+				EndAngle = Math.PI/2
+			};
+			segment.Contains(new Point(250, 350)).Should().BeTrue();
+		}
 	}
 }

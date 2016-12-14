@@ -215,12 +215,16 @@ namespace Metrolib
 			Shape = DetermineBoundingShape(Center, newValue, OpenAngle, Radius);
 		}
 
+		/// <summary>
+		///     Draws this slice of a pie chart.
+		/// </summary>
+		/// <param name="drawingContext"></param>
 		protected override void OnRender(DrawingContext drawingContext)
 		{
-			var shape = Shape;
+			CircleSegment shape = Shape;
 			var geometry = new StreamGeometry();
-			var pen = Slice.Outline;
-			var brush = Slice.Fill;
+			Pen pen = Slice.Outline;
+			Brush brush = Slice.Fill;
 			bool isStroked = pen != null;
 
 			using (StreamGeometryContext context = geometry.Open())
@@ -228,12 +232,12 @@ namespace Metrolib
 				context.BeginFigure(shape.Circle.Center, true, true);
 				context.LineTo(shape.StartPoint, isStroked, false);
 				context.ArcTo(shape.EndPoint,
-							  new System.Windows.Size(shape.Circle.Radius, shape.Circle.Radius),
-							  shape.StartAngle * 180 / Math.PI,
-							  shape.OpenAngle > Math.PI,
-							  SweepDirection.Clockwise,
-							  isStroked,
-							  false);
+				              new System.Windows.Size(shape.Circle.Radius, shape.Circle.Radius),
+				              shape.StartAngle*180/Math.PI,
+				              shape.OpenAngle > Math.PI,
+				              SweepDirection.Clockwise,
+				              isStroked,
+				              false);
 				context.LineTo(shape.Circle.Center, isStroked, true);
 			}
 
