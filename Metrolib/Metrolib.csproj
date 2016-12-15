@@ -117,6 +117,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ProgressBar\CircularProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Scroll\FlatScrollViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -280,6 +284,8 @@
     <Compile Include="Controls\Charts\Pie\PieSeries.cs" />
     <Compile Include="Controls\Charts\Pie\PieSlice.cs" />
     <Compile Include="Controls\Charts\Pie\SliceDirection.cs" />
+    <Compile Include="Controls\ProgressBar\CircularProgressBar.cs" />
+    <Compile Include="Converters\DoubleToThicknessConverter.cs" />
     <Compile Include="Physics\Attractor.cs" />
     <Compile Include="Physics\Body.cs" />
     <Compile Include="Geometry\Circle.cs" />

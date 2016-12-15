@@ -41,6 +41,9 @@
             <controls:FlatTabItem Header="Toggle Buttons">
                 <sample:ToggleButtons />
             </controls:FlatTabItem>
+            <controls:FlatTabItem Header="Progress Bars" IsSelected="True">
+                <sample:ProgressBars />
+            </controls:FlatTabItem>
             <controls:FlatTabItem Header="Scrolling">
                 <sample:Scrolling />
             </controls:FlatTabItem>
@@ -62,7 +65,7 @@
             <controls:FlatTabItem Header="Line Charts">
                 <sample:LineCharts />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="Pie Charts" IsSelected="True">
+            <controls:FlatTabItem Header="Pie Charts">
                 <sample:PieCharts />
             </controls:FlatTabItem>
             <controls:FlatTabItem Header="Network Charts">

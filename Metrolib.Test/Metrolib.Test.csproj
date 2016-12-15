@@ -81,6 +81,7 @@
     <Compile Include="InvertBoolConverterTest.cs" />
     <Compile Include="Panel\GridPanelTest.cs" />
     <Compile Include="Geometry\TriangleTest.cs" />
+    <Compile Include="ProgressBar\CircularProgressBarTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScrollViewer\FlatScrollViewerStyleTest.cs" />
     <Compile Include="ScrollViewer\FlatScrollViewerTest.cs" />

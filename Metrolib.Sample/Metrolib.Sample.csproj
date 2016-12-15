@@ -74,6 +74,9 @@
     <Compile Include="PieCharts.xaml.cs">
       <DependentUpon>PieCharts.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProgressBars.xaml.cs">
+      <DependentUpon>ProgressBars.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Scrolling.xaml.cs">
       <DependentUpon>Scrolling.xaml</DependentUpon>
     </Compile>
@@ -136,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PieCharts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProgressBars.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
