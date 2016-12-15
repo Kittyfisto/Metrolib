@@ -46,7 +46,7 @@ namespace Metrolib.Geometry
 		}
 
 		/// <summary>
-		/// 
+		///     The angle halfway between <see cref="StartAngle" /> and <see cref="EndAngle" />.
 		/// </summary>
 		public double Angle
 		{
@@ -70,6 +70,9 @@ namespace Metrolib.Geometry
 		[Pure]
 		public bool Contains(Point that)
 		{
+			if (OpenAngle <= 0)
+				return false;
+
 			double squaredDistance = (that - Circle.Center).LengthSquared;
 			if (squaredDistance > Circle.Radius*Circle.Radius)
 				return false;
@@ -99,11 +102,10 @@ namespace Metrolib.Geometry
 		/// <returns></returns>
 		public bool Contains(Rect that)
 		{
-			bool tl = Contains(that.TopLeft);
-			bool tr = Contains(that.TopRight);
-			bool br = Contains(that.BottomRight);
-			bool bl = Contains(that.BottomLeft);
-			return tl && tr && br && bl;
+			return Contains(that.TopLeft) &&
+			       Contains(that.TopRight) &&
+			       Contains(that.BottomRight) &&
+			       Contains(that.BottomLeft);
 		}
 	}
 }

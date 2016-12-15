@@ -85,5 +85,18 @@ namespace Metrolib.Test.Geometry
 			};
 			segment.Contains(new Point(250, 350)).Should().BeTrue();
 		}
+
+		[Test]
+		public void TestContains4()
+		{
+			var segment = new CircleSegment
+				{
+					Circle =
+						{
+							Radius = 1
+						},
+				};
+			segment.Contains(new Point(0.5, 0.5)).Should().BeFalse();
+		}
 	}
 }
