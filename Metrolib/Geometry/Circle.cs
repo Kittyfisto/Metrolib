@@ -20,6 +20,14 @@ namespace Metrolib.Geometry
 		public double Radius;
 
 		/// <summary>
+		///     The circumference of the circle.
+		/// </summary>
+		public double Circumference
+		{
+			get { return 2*Math.PI*Radius; }
+		}
+
+		/// <summary>
 		///     Indicates whether the current object is equal to another object of the same type.
 		/// </summary>
 		/// <param name="other"></param>

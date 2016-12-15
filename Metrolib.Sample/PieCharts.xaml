@@ -40,6 +40,7 @@
                         <metrolib:PieSlice Label="White House Tavern" Value="14" DisplayedValue="14%" Outline="{StaticResource SliceOutline}" />
                         <metrolib:PieSlice Label="King Cola Bar" Value="3" DisplayedValue="3%" Outline="{StaticResource SliceOutline}" />
                         <metrolib:PieSlice Label="P &amp; C" Value="27" DisplayedValue="27%" Outline="{StaticResource SliceOutline}" />
+                        <metrolib:PieSlice Label="Puzzles" Value="0" DisplayedValue="1%" Outline="{StaticResource SliceOutline}" />
                     </metrolib:PieSeries.Slices>
                 </metrolib:PieSeries>
             </metrolib:PieChart.Series>

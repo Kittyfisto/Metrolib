@@ -21,6 +21,7 @@ namespace Metrolib.Test.Charts.Pie
 			chart.ValueTemplate.Should().BeNull();
 			chart.Outline.Should().BeNull();
 			chart.SumOfSlices.Should().Be(0);
+			chart.MinimumArcLength.Should().Be(0);
 		}
 
 		[Test]

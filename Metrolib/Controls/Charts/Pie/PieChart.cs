@@ -62,6 +62,13 @@ namespace Metrolib
 			DependencyProperty.Register("LabelMargin", typeof (double), typeof (PieChart), new PropertyMetadata(8.0));
 
 		/// <summary>
+		///     Definition of the <see cref="MinimumArcLength" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty MinimumArcLengthProperty =
+			DependencyProperty.Register("MinimumArcLength", typeof (double), typeof (PieChart),
+			                            new PropertyMetadata(default(double)));
+
+		/// <summary>
 		///     Definition of the <see cref="SumOfSlices" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty SumOfSlicesProperty
@@ -91,6 +98,19 @@ namespace Metrolib
 			Loaded += OnLoaded;
 			Unloaded += OnUnloaded;
 			SizeChanged += OnSizeChanged;
+		}
+
+		/// <summary>
+		///     The minimum length of a slice as it is displayed.
+		/// </summary>
+		/// <remarks>
+		///     When set to a positive value greater 0, then slices that would otherwise not be shown (because they would occupy a miniscule amount
+		///     of space) will be.
+		/// </remarks>
+		public double MinimumArcLength
+		{
+			get { return (double) GetValue(MinimumArcLengthProperty); }
+			set { SetValue(MinimumArcLengthProperty, value); }
 		}
 
 		/// <summary>
@@ -339,13 +359,15 @@ namespace Metrolib
 			{
 				double radius = Math.Min(arrangeSize.Width/2, arrangeSize.Height/2);
 				double startAngle = 0;
+				var fullCircle = new Circle {Radius = radius};
+				double minimumArcAngle = MinimumArcLength/fullCircle.Circumference*2*Math.PI;
 
 				foreach (IPieSlice slice in _slices)
 				{
 					PieChartSliceItem item = _sliceItems[slice];
 
 					double relativeValue = item.Slice.Value/SumOfSlices;
-					double openAngle = relativeValue*2*Math.PI;
+					double openAngle = Math.Max(relativeValue*2*Math.PI, minimumArcAngle);
 
 					item.Center = (Point) offset;
 					item.StartAngle = startAngle;
@@ -364,7 +386,7 @@ namespace Metrolib
 				PieChartSliceItem sliceItem = _sliceItems[slice];
 				System.Windows.Size desiredSize = item.DesiredSize;
 
-				var rect = FindValuePosition(sliceItem.Shape, desiredSize);
+				Rect rect = FindValuePosition(sliceItem.Shape, desiredSize);
 				if (sliceItem.Shape.Contains(rect))
 				{
 					item.Visibility = Visibility.Visible;
@@ -414,8 +436,8 @@ namespace Metrolib
 		}
 
 		/// <summary>
-		/// Tries to find an optimal position for the <see cref="IPieSlice.DisplayedValue"/>
-		/// that is rendered inside a slice.
+		///     Tries to find an optimal position for the <see cref="IPieSlice.DisplayedValue" />
+		///     that is rendered inside a slice.
 		/// </summary>
 		/// <param name="shape"></param>
 		/// <param name="size"></param>
@@ -424,29 +446,26 @@ namespace Metrolib
 		private static Rect FindValuePosition(CircleSegment shape, System.Windows.Size size)
 		{
 			Vector offset = -(Vector) size/2;
-			var angle = shape.Angle;
+			double angle = shape.Angle;
 
 			int numMaxIterations = Math.Max(1, (int) Math.Log(shape.Circle.Radius, 2));
 			double minimum = 0.5;
 			double maximum = 1;
 			double current = minimum;
 			double fittinRadius = current;
-			bool fits = false;
 
 			for (int i = 0; i < numMaxIterations; ++i)
 			{
-				var rect = FindRectangle(shape.Circle, current, angle, offset, size);
+				Rect rect = FindRectangle(shape.Circle, current, angle, offset, size);
 
 				if (shape.Contains(rect))
 				{
 					maximum = current;
 					fittinRadius = current;
-					fits = true;
 				}
 				else
 				{
 					minimum = current;
-					fits = false;
 				}
 
 				if (maximum == minimum)
@@ -458,10 +477,11 @@ namespace Metrolib
 			return FindRectangle(shape.Circle, fittinRadius, angle, offset, size);
 		}
 
-		private static Rect FindRectangle(Circle circle, double relativeRadius, double angle, Vector offset, System.Windows.Size size)
+		private static Rect FindRectangle(Circle circle, double relativeRadius, double angle, Vector offset,
+		                                  System.Windows.Size size)
 		{
 			circle.Radius *= relativeRadius;
-			var position = circle.GetPoint(angle) + offset;
+			Point position = circle.GetPoint(angle) + offset;
 			var rect = new Rect(position, size);
 			return rect;
 		}
