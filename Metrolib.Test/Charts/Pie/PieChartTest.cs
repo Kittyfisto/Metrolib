@@ -22,6 +22,7 @@ namespace Metrolib.Test.Charts.Pie
 			chart.Outline.Should().BeNull();
 			chart.SumOfSlices.Should().Be(0);
 			chart.MinimumArcLength.Should().Be(0);
+			chart.ClipToBounds.Should().BeTrue();
 		}
 
 		[Test]

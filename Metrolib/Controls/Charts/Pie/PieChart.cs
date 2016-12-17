@@ -91,6 +91,8 @@ namespace Metrolib
 		/// </summary>
 		public PieChart()
 		{
+			ClipToBounds = true;
+
 			_sliceItems = new Dictionary<IPieSlice, PieChartSliceItem>();
 			_titleItems = new Dictionary<IPieSlice, PieChartLabelItem>();
 			_valueItems = new Dictionary<IPieSlice, PieChartValueItem>();
