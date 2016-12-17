@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Metrolib.Geometry;
 
 // ReSharper disable CheckNamespace
@@ -38,7 +40,25 @@ namespace Metrolib
 			DependencyProperty.Register("ContentTemplate", typeof (DataTemplate), typeof (CircularProgressBar),
 			                            new PropertyMetadata(default(DataTemplate)));
 
+		public static readonly DependencyProperty IndeterminateAngleProperty =
+			DependencyProperty.Register("IndeterminateAngle", typeof (double),
+			typeof (CircularProgressBar), new PropertyMetadata(0.0, OnIndeterminateAngleChanged));
+
+		private static void OnIndeterminateAngleChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+		{
+			((CircularProgressBar) dependencyObject).UpdateClip(); 
+		}
+
+		public double IndeterminateAngle
+		{
+			get { return (double) GetValue(IndeterminateAngleProperty); }
+			set { SetValue(IndeterminateAngleProperty, value); }
+		}
+
+		private readonly DispatcherTimer _timer;
+		private readonly Stopwatch _stopwatch;
 		private Ellipse _indicator;
+		private double _indeterminateAngle;
 
 		static CircularProgressBar()
 		{
@@ -96,7 +116,10 @@ namespace Metrolib
 
 		private void OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> args)
 		{
-			UpdateClip();
+			if (!IsIndeterminate)
+			{
+				UpdateClip();
+			}
 		}
 
 		private void UpdateClip()
@@ -113,10 +136,19 @@ namespace Metrolib
 							Center = center,
 							Radius = radius,
 						};
-					const double start = Math.PI;
-					double relativeValue = (Value - Minimum)/(Maximum - Minimum);
-					double angle = relativeValue*2*Math.PI;
-					//var angle = Math.PI/2;
+
+					double start, angle;
+					if (IsIndeterminate)
+					{
+						start = IndeterminateAngle;
+						angle = Math.PI/4;
+					}
+					else
+					{
+						start = Math.PI;
+						double relativeValue = (Value - Minimum) / (Maximum - Minimum);
+						angle = relativeValue * 2 * Math.PI;
+					}
 
 					dc.BeginFigure(center, true, true);
 					dc.LineTo(circle.GetPoint(start), true, true);
