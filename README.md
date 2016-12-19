@@ -6,6 +6,57 @@ This library contains a bunch of controls that help building a metro-like app fo
 
 https://www.nuget.org/packages/Metrolib
 
+# Controls
+
+This library ships several custom controls that re-style and enhance already existing controls.
+Most of these controls are similar (or even identical) to use than their WPF counterparts.
+
+## Buttons
+* FlatButton
+* AddButton
+* ExportButton
+* MoreButton
+* NextButton
+* PreviousButton
+* RemoveButton
+* SearchButton
+
+## Toggle Buttons
+* FlatToggleButton
+* EditToggleButton
+* EmailToggleButton
+* ExpanderToggleButton
+* OneWayToggle
+* VisibilityToggleButton
+
+## Text Boxes
+* FilterTextBox
+* FlatPasswordBox
+* SearchTextBox
+* WatermarkTextBox
+
+## Progress Bars
+* CircularProgressBar
+
+## Item Controls
+
+* FlatListView
+* FlatTreeView
+* FlatTabControl
+
+## Charts
+
+* LineChart
+* PieChart
+* NetworkChart
+
+## Other
+
+* ChromelessWindow
+* FlatExpander
+* FlatScrollViewer
+* FlatScrollBar
+* FlatGroupBox
 
 ## License
 
