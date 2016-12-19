@@ -48,7 +48,7 @@ Most of these controls are similar (or even identical) to use than their WPF cou
 
 * LineChart
 * PieChart
-* NetworkChart
+* [NetworkView](Samples/NetworkView/Description.md)
 
 ## Other
 
