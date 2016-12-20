@@ -8,8 +8,7 @@ https://www.nuget.org/packages/Metrolib
 
 # Controls
 
-This library ships several custom controls that re-style and enhance already existing controls.
-Most of these controls are similar (or even identical) to use than their WPF counterparts.
+This library ships a lot of restyled controls, from buttons to full blown charts:
 
 ## Buttons
 * FlatButton
@@ -39,19 +38,17 @@ Most of these controls are similar (or even identical) to use than their WPF cou
 * CircularProgressBar
 
 ## Item Controls
-
 * FlatListView
 * FlatTreeView
 * FlatTabControl
 
 ## Charts
-
 * LineChart
-* PieChart
+* [PieChart](Samples/PieChart/Description.md)
 * [NetworkView](Samples/NetworkView/Description.md)
+* MapView
 
 ## Other
-
 * ChromelessWindow
 * FlatExpander
 * FlatScrollViewer
