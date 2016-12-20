@@ -69,6 +69,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Charts\Map\MapView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Charts\Map\PointItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Charts\Network\NetworkView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -269,6 +277,16 @@
     <Compile Include="Controls\Charts\Line\LineChartType.cs" />
     <Compile Include="Controls\Charts\Line\LineSeries.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\Stacked\StackedLineChartCanvas.cs" />
+    <Compile Include="Controls\Charts\Map\Camera.cs" />
+    <Compile Include="Controls\Charts\Map\CameraChangedEventArgs.cs" />
+    <Compile Include="Controls\Charts\Map\MapViewItem.cs" />
+    <Compile Include="Controls\Charts\Map\ItemsLayer.cs" />
+    <Compile Include="Controls\Charts\Map\MapViewPointItem.cs" />
+    <Compile Include="Converters\GeoLocationConverter.cs" />
+    <Compile Include="Geography\GeoLocation.cs" />
+    <Compile Include="Controls\Charts\Map\Layer.cs" />
+    <Compile Include="Controls\Charts\Map\LayerCollection.cs" />
+    <Compile Include="Controls\Charts\Map\MapView.cs" />
     <Compile Include="Controls\Charts\Network\Algorithms\AlgorithmResult.cs" />
     <Compile Include="Controls\Charts\Network\Algorithms\SolvingNodeLayoutAlgorithm.cs" />
     <Compile Include="Controls\Charts\Network\INode.cs" />
@@ -286,6 +304,10 @@
     <Compile Include="Controls\Charts\Pie\SliceDirection.cs" />
     <Compile Include="Controls\ProgressBar\CircularProgressBar.cs" />
     <Compile Include="Converters\DoubleToThicknessConverter.cs" />
+    <Compile Include="Geography\MercatorLocation.cs" />
+    <Compile Include="Geography\MercatorRectangle.cs" />
+    <Compile Include="Geometry\Angle.cs" />
+    <Compile Include="Controls\Charts\Map\MapCanvas.cs" />
     <Compile Include="Physics\Attractor.cs" />
     <Compile Include="Physics\Body.cs" />
     <Compile Include="Geometry\Circle.cs" />

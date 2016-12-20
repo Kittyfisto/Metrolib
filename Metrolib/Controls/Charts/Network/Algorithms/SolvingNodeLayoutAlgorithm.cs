@@ -149,6 +149,11 @@ namespace Metrolib
 			StartNewTask();
 		}
 
+		/// <summary>
+		/// Overwrites the position assigned by this algorithm with the given one.
+		/// </summary>
+		/// <param name="node"></param>
+		/// <param name="position"></param>
 		public void SetPosition(INode node, Point position)
 		{
 			throw new NotImplementedException();

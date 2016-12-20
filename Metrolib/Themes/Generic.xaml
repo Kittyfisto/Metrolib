@@ -66,6 +66,9 @@
 
         <ResourceDictionary Source="/Metrolib;component/Controls/Charts/Network/NetworkViewNodeItem.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Charts/Network/NetworkView.xaml" />
+
+        <ResourceDictionary Source="/Metrolib;component/Controls/Charts/Map/MapView.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Charts/Map/PointItem.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

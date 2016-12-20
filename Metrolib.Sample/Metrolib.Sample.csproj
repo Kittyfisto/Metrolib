@@ -49,7 +49,11 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CityViewModel.cs" />
     <Compile Include="EdgeType.cs" />
+    <Compile Include="MapCharts.xaml.cs">
+      <DependentUpon>MapCharts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MarvelCharacterViewModel.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="LineCharts.xaml.cs">
@@ -130,6 +134,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MapCharts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NetworkCharts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

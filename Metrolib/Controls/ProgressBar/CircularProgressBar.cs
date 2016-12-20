@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 using Metrolib.Geometry;
 
 // ReSharper disable CheckNamespace
@@ -40,25 +38,14 @@ namespace Metrolib
 			DependencyProperty.Register("ContentTemplate", typeof (DataTemplate), typeof (CircularProgressBar),
 			                            new PropertyMetadata(default(DataTemplate)));
 
+		/// <summary>
+		///     Definition of the <see cref="IndeterminateAngle" /> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty IndeterminateAngleProperty =
 			DependencyProperty.Register("IndeterminateAngle", typeof (double),
-			typeof (CircularProgressBar), new PropertyMetadata(0.0, OnIndeterminateAngleChanged));
+			                            typeof (CircularProgressBar), new PropertyMetadata(0.0, OnIndeterminateAngleChanged));
 
-		private static void OnIndeterminateAngleChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
-		{
-			((CircularProgressBar) dependencyObject).UpdateClip(); 
-		}
-
-		public double IndeterminateAngle
-		{
-			get { return (double) GetValue(IndeterminateAngleProperty); }
-			set { SetValue(IndeterminateAngleProperty, value); }
-		}
-
-		private readonly DispatcherTimer _timer;
-		private readonly Stopwatch _stopwatch;
 		private Ellipse _indicator;
-		private double _indeterminateAngle;
 
 		static CircularProgressBar()
 		{
@@ -67,12 +54,21 @@ namespace Metrolib
 		}
 
 		/// <summary>
-		/// Initializes this object.
+		///     Initializes this object.
 		/// </summary>
 		public CircularProgressBar()
 		{
 			ValueChanged += OnValueChanged;
 			SizeChanged += OnSizeChanged;
+		}
+
+		/// <summary>
+		///     The current angle of of the circle segment when this progress bar is indeterminate.
+		/// </summary>
+		public double IndeterminateAngle
+		{
+			get { return (double) GetValue(IndeterminateAngleProperty); }
+			set { SetValue(IndeterminateAngleProperty, value); }
 		}
 
 		/// <summary>
@@ -102,6 +98,15 @@ namespace Metrolib
 			set { SetValue(ThicknessProperty, value); }
 		}
 
+		private static void OnIndeterminateAngleChanged(DependencyObject dependencyObject,
+		                                                DependencyPropertyChangedEventArgs args)
+		{
+			((CircularProgressBar) dependencyObject).UpdateClip();
+		}
+
+		/// <summary>
+		///     Called when the template's tree is generated.
+		/// </summary>
 		public override void OnApplyTemplate()
 		{
 			base.OnApplyTemplate();
@@ -146,8 +151,8 @@ namespace Metrolib
 					else
 					{
 						start = Math.PI;
-						double relativeValue = (Value - Minimum) / (Maximum - Minimum);
-						angle = relativeValue * 2 * Math.PI;
+						double relativeValue = (Value - Minimum)/(Maximum - Minimum);
+						angle = relativeValue*2*Math.PI;
 					}
 
 					dc.BeginFigure(center, true, true);
