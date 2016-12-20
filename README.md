@@ -43,7 +43,7 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 * FlatTabControl
 
 ## Charts
-* LineChart
+* [LineChart](Samples/LineChart/Description.md)
 * [PieChart](Samples/PieChart/Description.md)
 * [NetworkView](Samples/NetworkView/Description.md)
 * MapView

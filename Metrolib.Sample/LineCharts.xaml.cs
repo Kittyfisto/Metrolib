@@ -13,68 +13,13 @@ namespace Metrolib.Sample
 		private readonly ObservableCollection<Point> _curve;
 		private readonly DispatcherTimer _timer;
 		private readonly Random _random;
+		private readonly List<Point> _values;
 
 		public LineCharts()
 		{
 			InitializeComponent();
 
 			_curve = new ObservableCollection<Point>(Enumerable.Range(0, 101).Select(x => new Point()));
-
-			PART_Chart.Series = new[]
-				{
-					new LineSeries
-						{
-							PointRadius = 5,
-							PointFill = Brushes.DeepSkyBlue,
-
-							Fill = Brushes.LightSkyBlue,
-							/*Values = new List<Point>
-								{
-									new Point(0, 0),
-									new Point(1, 1),
-									new Point(2, 0),
-								}*/
-							Values = new List<Point>
-								{
-									new Point(0, 0),
-									new Point(1, 0.5),
-									new Point(2, 1),
-									new Point(3, 0.75),
-									new Point(4, 2),
-									new Point(5, -1),
-									new Point(6, 0.25),
-									new Point(7, 0.3),
-									new Point(8, 1),
-									new Point(9, 1.3),
-									new Point(10, 1.3),
-								}
-						},
-					new LineSeries
-						{
-							Fill = Brushes.LightSalmon,
-							Outline = new Pen(Brushes.OrangeRed, 2),
-							
-							PointRadius = 5,
-							PointFill = Brushes.LightSalmon,
-							PointOutline = new Pen(Brushes.OrangeRed, 2),
-							
-							//Values = _curve,
-							Values = new List<Point>
-								{
-									new Point(0, 1),
-									new Point(1, 1),
-									new Point(2, 1),
-									new Point(3, 1),
-									new Point(4, 1),
-									new Point(5, 1),
-									new Point(6, 1),
-									new Point(7, 1),
-									new Point(8, 1),
-									new Point(9, 1),
-									new Point(10, 1),
-								}
-						}
-				};
 
 			_random = new Random();
 			_timer = new DispatcherTimer
@@ -84,7 +29,7 @@ namespace Metrolib.Sample
 			_timer.Tick += TimerOnTick;
 			_timer.Start();
 
-			Normal.IsChecked = true;
+			Stacked.IsChecked = true;
 		}
 
 		private void TimerOnTick(object sender, EventArgs eventArgs)
