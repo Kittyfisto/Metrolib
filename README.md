@@ -35,7 +35,7 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 * WatermarkTextBox
 
 ## Progress Bars
-* CircularProgressBar
+* [CircularProgressBar](Samples/CircularProgressBar/Description.md)
 
 ## Item Controls
 * FlatListView
