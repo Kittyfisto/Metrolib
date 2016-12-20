@@ -30,4 +30,4 @@ The following example shows how to use a PieChart to present my favourite bars
 </metrolib:PieChart>
 ```
 
-![My favourite bars](Default.png)
+![My favourite bars](FavouriteBars.png)
