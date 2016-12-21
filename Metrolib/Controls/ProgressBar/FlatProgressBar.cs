@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics.Contracts;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -17,6 +18,13 @@ namespace Metrolib
 	public class FlatProgressBar
 		: ProgressBar
 	{
+		/// <summary>
+		///     Definition of the <see cref="IndeterminateValue" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty IndeterminateValueProperty =
+			DependencyProperty.Register("IndeterminateValue", typeof (double), typeof (FlatProgressBar),
+			                            new PropertyMetadata(default(double)));
+
 		private FrameworkElement _progress;
 		private FrameworkElement _valueNegative;
 		private FrameworkElement _valuePositive;
@@ -28,12 +36,22 @@ namespace Metrolib
 		}
 
 		/// <summary>
-		/// Initializes this object.
+		///     Initializes this object.
 		/// </summary>
 		public FlatProgressBar()
 		{
 			ValueChanged += OnValueChanged;
 			SizeChanged += OnSizeChanged;
+		}
+
+		/// <summary>
+		///     The relative value used in favour of <see cref="ProgressBar.Value" /> when this one is
+		///     <see cref="ProgressBar.IsIndeterminate" />.
+		/// </summary>
+		public double IndeterminateValue
+		{
+			get { return (double) GetValue(IndeterminateValueProperty); }
+			set { SetValue(IndeterminateValueProperty, value); }
 		}
 
 		private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
@@ -52,34 +70,49 @@ namespace Metrolib
 			{
 				double width = ActualWidth;
 				double height = ActualHeight;
-				double relativeValue = (Value - Minimum)/(Maximum - Minimum);
-				double relativeValueWidth = relativeValue*width;
 
-				var clipLeft = new StreamGeometry();
-				using (StreamGeometryContext dc = clipLeft.Open())
+				if (IsIndeterminate)
 				{
-					dc.BeginFigure(new Point(0, 0), true, true);
-					dc.LineTo(new Point(relativeValueWidth, 0), false, false);
-					dc.LineTo(new Point(relativeValueWidth, height), false, false);
-					dc.LineTo(new Point(0, height), false, false);
-					dc.LineTo(new Point(0, 0), false, false);
+					double relativeValue = IndeterminateValue;
+					double knobwidth = width * 0.2;
+					double relativeValueWidth = relativeValue*(width + knobwidth) - knobwidth;
+
+					var clip = CreateGeometry(relativeValueWidth,
+					                          relativeValueWidth + knobwidth,
+					                          0, height);
+
+					_progress.Clip = clip;
+				}
+				else
+				{
+					double relativeValue = (Value - Minimum) / (Maximum - Minimum);
+					double relativeValueWidth = relativeValue * width;
+
+					var clipLeft = CreateGeometry(0, relativeValueWidth, 0, height);
+					var clipRight = CreateGeometry(relativeValueWidth, width, 0, height);
+
+					_progress.Clip = clipLeft;
+					_valuePositive.Clip = clipLeft;
+
+					_valueNegative.Clip = clipRight;
 				}
 
-				_progress.Clip = clipLeft;
-				_valuePositive.Clip = clipLeft;
-
-				var clipRight = new StreamGeometry();
-				using (StreamGeometryContext dc = clipRight.Open())
-				{
-					dc.BeginFigure(new Point(width, 0), true, true);
-					dc.LineTo(new Point(width, height), false, false);
-					dc.LineTo(new Point(relativeValueWidth, height), false, false);
-					dc.LineTo(new Point(relativeValueWidth, 0), false, false);
-					dc.BeginFigure(new Point(width, 0), true, true);
-				}
-
-				_valueNegative.Clip = clipRight;
 			}
+		}
+
+		[Pure]
+		private static StreamGeometry CreateGeometry(double left, double right, double top, double bottom)
+		{
+			var geometry = new StreamGeometry();
+			using (StreamGeometryContext dc = geometry.Open())
+			{
+				dc.BeginFigure(new Point(left, top), true, true);
+				dc.LineTo(new Point(right, top), false, false);
+				dc.LineTo(new Point(right, bottom), false, false);
+				dc.LineTo(new Point(left, bottom), false, false);
+				dc.LineTo(new Point(left, top), false, false);
+			}
+			return geometry;
 		}
 
 		/// <summary>

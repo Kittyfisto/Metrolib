@@ -31,6 +31,24 @@
                             </Grid>
                         </Grid>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsIndeterminate" Value="True">
+                            <Setter TargetName="PART_ValuePositive" Property="Visibility" Value="Hidden" />
+                            <Setter TargetName="PART_ValueNegative" Property="Visibility" Value="Hidden" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Storyboard.TargetProperty="IndeterminateValue"
+                                                                       RepeatBehavior="Forever">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:0" Value="0" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:1.5" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
