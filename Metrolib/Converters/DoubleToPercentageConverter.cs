@@ -24,7 +24,8 @@ namespace Metrolib.Converters
 				return null;
 
 			var relativeValue = (double) value;
-			return string.Format("{0:P0}", relativeValue);
+			var formatted = string.Format(culture, "{0:P0}", relativeValue);
+			return formatted;
 		}
 
 		object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
