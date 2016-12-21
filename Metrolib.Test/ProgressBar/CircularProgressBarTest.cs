@@ -1,20 +1,14 @@
-﻿using System;
-using FluentAssertions;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Metrolib.Test.ProgressBar
 {
 	[TestFixture]
 	public sealed class CircularProgressBarTest
+		: AbstractProgressBarTest
 	{
-		[Test]
-		[STAThread]
-		public void TestCtor()
+		protected override AbstractProgressBar Create()
 		{
-			var bar = new CircularProgressBar();
-			bar.Minimum.Should().Be(0);
-			bar.Maximum.Should().Be(100);
-			bar.Value.Should().Be(0);
+			return new CircularProgressBar();
 		}
 	}
 }

@@ -15,7 +15,7 @@ namespace Metrolib
 	/// </summary>
 	[TemplatePart(Name = "PART_Indicator", Type = typeof (Ellipse))]
 	public class CircularProgressBar
-		: ProgressBar
+		: AbstractProgressBar
 	{
 		/// <summary>
 		///     Definition of the <see cref="Thickness" /> dependency property.

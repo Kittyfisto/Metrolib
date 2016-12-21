@@ -16,7 +16,7 @@ namespace Metrolib
 	[TemplatePart(Name = "PART_ValuePositive", Type = typeof (FrameworkElement))]
 	[TemplatePart(Name = "PART_ValueNegative", Type = typeof (FrameworkElement))]
 	public class FlatProgressBar
-		: ProgressBar
+		: AbstractProgressBar
 	{
 		/// <summary>
 		///     Definition of the <see cref="IndeterminateValue" /> dependency property.

@@ -76,12 +76,14 @@
     <Compile Include="Charts\Pie\PieChartTest.cs" />
     <Compile Include="Charts\Pie\PieChartValueItemTest.cs" />
     <Compile Include="DelegateCommandTest.cs" />
+    <Compile Include="DoubleToPercentageConverterTest.cs" />
     <Compile Include="FilterTextBoxTest.cs" />
     <Compile Include="Geometry\CircleSegmentTest.cs" />
     <Compile Include="Geometry\CircleTest.cs" />
     <Compile Include="InvertBoolConverterTest.cs" />
     <Compile Include="Panel\GridPanelTest.cs" />
     <Compile Include="Geometry\TriangleTest.cs" />
+    <Compile Include="ProgressBar\AbstractProgressBarTest.cs" />
     <Compile Include="ProgressBar\CircularProgressBarTest.cs" />
     <Compile Include="ProgressBar\FlatProgressBarTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

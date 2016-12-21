@@ -2,5 +2,12 @@
 
 CircularProgressBar is a ProgressBar meant to visualise how a task has progressed.
 
+```xaml
+<metrolib:CircularProgressBar Minimum="0"
+                              Maximum="100"
+                              Value="61"
+                              Content="Loading..." />
+```
+
 ![CircularProgressBar example](Normal.png)
 ![Indeterminate CircularProgressBar example](Indeterminate.png)

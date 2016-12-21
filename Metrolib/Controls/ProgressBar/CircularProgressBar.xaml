@@ -7,6 +7,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <converters:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter" />
+    <converters:DoubleToPercentageConverter x:Key="DoubleToPercentageConverter" />
 
     <Style TargetType="{x:Type metrolib:CircularProgressBar}">
         <Setter Property="Thickness" Value="10" />
@@ -31,7 +32,7 @@
                                 <ContentPresenter Content="{TemplateBinding Content}"
                                                   ContentTemplate="{TemplateBinding ContentTemplate}" />
                                 <TextBlock x:Name="PART_ProgressValue"
-                                    Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat={}{0:0.}%}"
+                                    Text="{Binding RelativeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DoubleToPercentageConverter}}"
                                     HorizontalAlignment="Center" />
                             </StackPanel>
                         </Grid>
