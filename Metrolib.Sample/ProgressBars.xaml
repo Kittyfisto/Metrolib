@@ -10,23 +10,34 @@
 
         <Grid VerticalAlignment="Center"
               HorizontalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-            <CheckBox IsChecked="{Binding IsIndeterminate,ElementName=Progress}"
-                      Content="IsIndeterminate" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
 
-            <metrolib:CircularProgressBar
-                x:Name="Progress"
-                Minimum="0"
-                Maximum="100"
-                Grid.Column="1"
-                Content="Loading..." />
+                <CheckBox IsChecked="{Binding IsIndeterminate,ElementName=CircularProgress}"
+                          Content="IsIndeterminate" />
+
+                <metrolib:CircularProgressBar
+                    x:Name="CircularProgress"
+                    Minimum="0"
+                    Maximum="100"
+                    Grid.Column="1"
+                    Content="Loading..." />
+            </Grid>
+
+            <metrolib:FlatProgressBar Grid.Row="1"
+                                      x:Name="FlatProgress"
+                                      Minimum="0"
+                                      Maximum="100" />
 
         </Grid>
-
     </Grid>
 
     <UserControl.Triggers>
@@ -34,7 +45,14 @@
             <BeginStoryboard>
                 <Storyboard>
                     <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
-                                                   Storyboard.TargetName="Progress"
+                                                   Storyboard.TargetName="CircularProgress"
+                                                   Storyboard.TargetProperty="Value"
+                                                   RepeatBehavior="Forever">
+                        <SplineDoubleKeyFrame KeyTime="00:00:0" Value="0" />
+                        <SplineDoubleKeyFrame KeyTime="00:00:3" Value="100" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                   Storyboard.TargetName="FlatProgress"
                                                    Storyboard.TargetProperty="Value"
                                                    RepeatBehavior="Forever">
                         <SplineDoubleKeyFrame KeyTime="00:00:0" Value="0" />

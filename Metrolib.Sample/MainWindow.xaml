@@ -41,7 +41,7 @@
             <controls:FlatTabItem Header="Toggle Buttons">
                 <sample:ToggleButtons />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="Progress Bars">
+            <controls:FlatTabItem Header="Progress Bars" IsSelected="True">
                 <sample:ProgressBars />
             </controls:FlatTabItem>
             <controls:FlatTabItem Header="Scrolling">
@@ -71,7 +71,7 @@
             <controls:FlatTabItem Header="Network Charts">
                 <sample:NetworkCharts />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="Map Charts" IsSelected="True">
+            <controls:FlatTabItem Header="Map Charts">
                 <sample:MapCharts />
             </controls:FlatTabItem>
         </tab:FlatTabControl>

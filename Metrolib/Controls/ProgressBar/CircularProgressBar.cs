@@ -111,7 +111,9 @@ namespace Metrolib
 		{
 			base.OnApplyTemplate();
 
-			_indicator = (Ellipse) GetTemplateChild("PART_Indicator");
+			_indicator = (Ellipse)GetTemplateChild("PART_Indicator");
+
+			UpdateClip();
 		}
 
 		private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)

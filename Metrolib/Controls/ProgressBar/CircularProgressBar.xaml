@@ -2,6 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:metrolib="clr-namespace:Metrolib"
                     xmlns:converters="clr-namespace:Metrolib.Converters">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Metrolib;component/Themes/Constants.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
     <converters:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter" />
 
     <Style TargetType="{x:Type metrolib:CircularProgressBar}">
@@ -14,10 +18,10 @@
                 <ControlTemplate TargetType="{x:Type metrolib:CircularProgressBar}">
                     <Grid>
                         <Ellipse x:Name="PART_BackgroundCircle"
-                                 Stroke="DarkGray"
+                                 Stroke="{StaticResource ProgressBackgroundBrush}"
                                  StrokeThickness="{TemplateBinding Thickness}" />
                         <Ellipse x:Name="PART_Indicator"
-                                 Stroke="#2D9E21"
+                                 Stroke="{StaticResource ProgressForegroundBrush}"
                                  StrokeThickness="{TemplateBinding Thickness}" />
                         <Grid
                             Margin="{TemplateBinding Thickness, Converter={StaticResource DoubleToThicknessConverter}}"

@@ -1,27 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace Metrolib.Sample
 {
 	public partial class LineCharts
 	{
-		private readonly ObservableCollection<Point> _curve;
 		private readonly DispatcherTimer _timer;
-		private readonly Random _random;
-		private readonly List<Point> _values;
 
 		public LineCharts()
 		{
 			InitializeComponent();
 
-			_curve = new ObservableCollection<Point>(Enumerable.Range(0, 101).Select(x => new Point()));
-
-			_random = new Random();
 			_timer = new DispatcherTimer
 				{
 					Interval = TimeSpan.FromMilliseconds(60)

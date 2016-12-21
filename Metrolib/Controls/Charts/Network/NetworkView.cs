@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 
 // ReSharper disable CheckNamespace
+
 namespace Metrolib
 // ReSharper restore CheckNamespace
 {
@@ -181,8 +182,8 @@ namespace Metrolib
 		private Vector GetNodeOffset(System.Windows.Size size)
 		{
 			Rect rect = BoundingRectangle;
-			Vector dataCenter = (Vector)rect.TopLeft + (Vector)rect.Size / 2;
-			Vector center = (Vector)size / 2;
+			Vector dataCenter = (Vector) rect.TopLeft + (Vector) rect.Size/2;
+			Vector center = (Vector) size/2;
 			Vector offset = dataCenter - center;
 			return offset;
 		}
@@ -218,7 +219,7 @@ namespace Metrolib
 
 			if (_currentPositions != null)
 			{
-				var offset = GetNodeOffset(finalSize);
+				Vector offset = GetNodeOffset(finalSize);
 
 				foreach (var node in _currentPositions)
 				{
@@ -239,7 +240,7 @@ namespace Metrolib
 						}
 
 						item.Arrange(new Rect(item.DisplayPosition, item.DesiredSize));
-						nodeOffset = new Vector(item.DesiredSize.Width / 2, item.DesiredSize.Height / 2);
+						nodeOffset = new Vector(item.DesiredSize.Width/2, item.DesiredSize.Height/2);
 					}
 					else
 					{
@@ -575,9 +576,13 @@ namespace Metrolib
 			RemoveEdges(_edgesToItems.Keys.ToList());
 		}
 
+		/// <summary>
+		///     Is called when the left mouse button is pressed.
+		/// </summary>
+		/// <param name="e"></param>
 		protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
 		{
-			var result = VisualTreeHelper.HitTest(this, e.GetPosition(this));
+			HitTestResult result = VisualTreeHelper.HitTest(this, e.GetPosition(this));
 			var node = result.VisualHit.FindFirstAncestorOfType<NetworkViewNodeItem>();
 			if (node != null)
 			{
@@ -594,11 +599,15 @@ namespace Metrolib
 			}
 		}
 
+		/// <summary>
+		///     Is called when the mouse is moved.
+		/// </summary>
+		/// <param name="e"></param>
 		protected override void OnMouseMove(MouseEventArgs e)
 		{
 			if (_mouseDraggingNode != null)
 			{
-				var position = e.GetPosition(this);
+				Point position = e.GetPosition(this);
 				_mouseDraggingNode.DisplayPosition = position;
 				_mouseDraggingNode.Position = position - NodeOffset;
 
@@ -612,6 +621,10 @@ namespace Metrolib
 			}
 		}
 
+		/// <summary>
+		///     Is called when the left mouse button is released.
+		/// </summary>
+		/// <param name="e"></param>
 		protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
 		{
 			if (_mouseDraggingNode != null)

@@ -39,6 +39,7 @@
         <ResourceDictionary Source="/Metrolib;component/Controls/TextBoxes/SearchTextBox.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/TextBoxes/FlatPasswordBox.xaml" />
 
+        <ResourceDictionary Source="/Metrolib;component/Controls/ProgressBar/FlatProgressBar.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/ProgressBar/CircularProgressBar.xaml" />
 
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/AddButton.xaml" />

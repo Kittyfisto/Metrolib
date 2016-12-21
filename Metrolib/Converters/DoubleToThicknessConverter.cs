@@ -11,6 +11,14 @@ namespace Metrolib.Converters
 	public sealed class DoubleToThicknessConverter
 		: IValueConverter
 	{
+		/// <summary>
+		///     Converts a <see cref="double" /> value to a <see cref="Thickness" />.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <param name="targetType"></param>
+		/// <param name="parameter"></param>
+		/// <param name="culture"></param>
+		/// <returns></returns>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			if (!(value is double))
@@ -20,9 +28,9 @@ namespace Metrolib.Converters
 			return new Thickness(v, v, v, v);
 		}
 
-		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			throw new NotImplementedException();
+			return null;
 		}
 	}
 }
