@@ -8,5 +8,5 @@ FlatProgressBar is a ProgressBar meant to visualise how a task has progressed.
                           Value="69" />
 ```
 
-![FlatProgressBar example](Normal.png)
+![FlatProgressBar example](Default.png)
 ![Indeterminate FlatProgressBar example](Indeterminate.png)
