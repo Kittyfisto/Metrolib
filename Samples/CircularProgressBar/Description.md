@@ -8,6 +8,11 @@ CircularProgressBar is a ProgressBar meant to visualise how a task has progresse
                               Value="61"
                               Content="Loading..." />
 ```
-
 ![CircularProgressBar example](Normal.png)
+
+
+```xaml
+<metrolib:CircularProgressBar IsIndeterminate="True"
+                              Content="Loading..." />
+```
 ![Indeterminate CircularProgressBar example](Indeterminate.png)
