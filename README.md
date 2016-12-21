@@ -32,7 +32,7 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 * FilterTextBox
 * FlatPasswordBox
 * SearchTextBox
-* WatermarkTextBox
+* [WatermarkTextBox](Samples/WatermarkTextBox/Description.md)
 
 ## Progress Bars
 * [FlatProgressBar](Samples/FlatProgressBar/Description.md)
