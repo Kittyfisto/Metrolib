@@ -291,6 +291,8 @@
     <Compile Include="Converters\DoubleToPercentageConverter.cs" />
     <Compile Include="Converters\GeoLocationConverter.cs" />
     <Compile Include="Converters\NullImageConverter.cs" />
+    <Compile Include="Converters\NullToCollapsedConverter.cs" />
+    <Compile Include="Converters\NullToVisibleConverter.cs" />
     <Compile Include="FocusExtension.cs" />
     <Compile Include="Geography\GeoLocation.cs" />
     <Compile Include="Controls\Charts\Map\Layer.cs" />
