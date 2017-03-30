@@ -5,18 +5,18 @@ using System.Windows.Data;
 namespace Metrolib.Converters
 {
 	/// <summary>
-	///     Converts values of type <see cref="ushort" /> to <see cref="string" /> and vice verca.
+	///     Converts values of type <see cref="ulong" /> to <see cref="string" /> and vice verca.
 	/// </summary>
-	public sealed class UInt16ToStringConverter
+	public sealed class UInt64ToStringConverter
 		: IValueConverter
 	{
 		/// <inheritdoc />
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			if (!(value is ushort))
+			if (!(value is ulong))
 				return null;
 
-			var numericValue = (ushort)value;
+			var numericValue = (ulong) value;
 			var formatted = numericValue.ToString(culture);
 			return formatted;
 		}
@@ -27,12 +27,12 @@ namespace Metrolib.Converters
 			if (!(value is string))
 				return null;
 
-			if (targetType != typeof(ushort) && targetType != typeof(ushort?))
+			if (targetType != typeof(ulong) && targetType != typeof(ulong?))
 				return null;
 
-			var formatted = (string)value;
-			ushort numericValue;
-			if (!ushort.TryParse(formatted, NumberStyles.Integer, culture, out numericValue))
+			var formatted = (string) value;
+			ulong numericValue;
+			if (!ulong.TryParse(formatted, NumberStyles.Integer, culture, out numericValue))
 				return Binding.DoNothing;
 
 			return numericValue;

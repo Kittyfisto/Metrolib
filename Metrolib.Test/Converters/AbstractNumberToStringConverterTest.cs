@@ -7,7 +7,7 @@ namespace Metrolib.Test.Converters
 	public abstract class AbstractNumberToStringConverterTest
 	{
 		protected abstract IValueConverter Converter { get; }
-
+		
 		[Test]
 		public void TestConvert1()
 		{

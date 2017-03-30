@@ -85,10 +85,12 @@
     <Compile Include="Charts\Pie\PieChartValueItemTest.cs" />
     <Compile Include="Converters\AbstractListToStringConverterTest.cs" />
     <Compile Include="Converters\AbstractNumberToStringConverterTest.cs" />
+    <Compile Include="Converters\ByteToStringConverterTest.cs" />
     <Compile Include="Converters\Int32ListToStringConverterTest.cs" />
     <Compile Include="Converters\UInt16ToStringConverterTest.cs" />
     <Compile Include="Converters\UInt32ListToStringConverterTest.cs" />
     <Compile Include="Converters\UInt32ToStringConverterTest.cs" />
+    <Compile Include="Converters\UInt64ToStringConverterTest.cs" />
     <Compile Include="DelegateCommandTest.cs" />
     <Compile Include="DoubleToPercentageConverterTest.cs" />
     <Compile Include="FilterTextBoxTest.cs" />

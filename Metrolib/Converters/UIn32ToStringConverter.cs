@@ -27,7 +27,7 @@ namespace Metrolib.Converters
 			if (!(value is string))
 				return null;
 
-			if (targetType != typeof(uint))
+			if (targetType != typeof(uint) && targetType != typeof(uint?))
 				return null;
 
 			var formatted = (string) value;

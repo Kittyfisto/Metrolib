@@ -30,6 +30,12 @@ namespace Metrolib.Test.Converters
 			_converter.ConvertBack("42", typeof(ushort), null, null).Should().Be((ushort)42);
 		}
 
+		[Test]
+		public void TestConvertBack3()
+		{
+			_converter.ConvertBack("42", typeof(ushort?), null, null).Should().Be((ushort)42);
+		}
+
 		public static IEnumerable<string> InvalidInputs
 		{
 			get
@@ -45,7 +51,7 @@ namespace Metrolib.Test.Converters
 		}
 
 		[Test]
-		public void TestConvertBack3([ValueSource(nameof(InvalidInputs))] string invalidInput)
+		public void TestConvertBack4([ValueSource(nameof(InvalidInputs))] string invalidInput)
 		{
 			_converter.ConvertBack(invalidInput, typeof(ushort), null, null)
 				.Should().Be(Binding.DoNothing, "because the user hasn't finished his input");
