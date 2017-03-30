@@ -34,12 +34,7 @@
     <DocumentationFile>..\bin\Release\Metrolib.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentAssertions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\bin\Debug\FluentAssertions.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml">
@@ -292,6 +287,8 @@
     <Compile Include="Converters\AbstractNumericListToStringConverter.cs" />
     <Compile Include="Converters\ByteToStringConverter.cs" />
     <Compile Include="Converters\DoubleToPercentageConverter.cs" />
+    <Compile Include="Converters\EmptyToCollapsedConverter.cs" />
+    <Compile Include="Converters\EmptyToHiddenConverter.cs" />
     <Compile Include="Converters\GeoLocationConverter.cs" />
     <Compile Include="Converters\Int32ListToStringConverter.cs" />
     <Compile Include="Converters\NullImageConverter.cs" />
