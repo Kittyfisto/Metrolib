@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Data;
 using FluentAssertions;
 using NUnit.Framework;
@@ -41,6 +42,22 @@ namespace Metrolib.Test.Converters
 			value.Should().BeOfType<T[]>();
 		}
 
+		[Test]
+		public void TestConvertBack5()
+		{
+			var value = Converter.ConvertBack(null, typeof(Collection<T>), null, null);
+			value.Should().NotBeNull();
+			value.Should().BeOfType<Collection<T>>();
+		}
+
+		[Test]
+		public void TestConvertBack6()
+		{
+			Converter.ConvertBack(null, typeof(int), null, null).Should().BeNull();
+			Converter.ConvertBack(null, typeof(float), null, null).Should().BeNull();
+			Converter.ConvertBack(null, typeof(string), null, null).Should().BeNull();
+		}
+
 		public IEnumerable<string> InvalidInput
 		{
 			get
@@ -59,7 +76,7 @@ namespace Metrolib.Test.Converters
 		}
 
 		[Test]
-		public void TestConvertBack5([ValueSource(nameof(InvalidInput))] string input)
+		public void TestConvertBack7([ValueSource(nameof(InvalidInput))] string input)
 		{
 			new Action(() => Converter.ConvertBack(input, typeof(T[]), null, null)).ShouldNotThrow();
 			Converter.ConvertBack(input, typeof(T[]), null, null).Should().Be(Binding.DoNothing);

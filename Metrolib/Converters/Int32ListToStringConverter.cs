@@ -28,11 +28,14 @@ namespace Metrolib.Converters
 		{
 			var min = Math.Min(firstValue, lastValue);
 			var max = Math.Max(firstValue, lastValue);
-			var count = max - min;
+			var count = max - min + 1;
+			if (count < 0 || count > MaximumAllowedRange)
+				return null;
+
 			var values = new List<int>(count);
 			for (int i = 0; i < count; ++i)
 			{
-				values[i] = min + i;
+				values.Add(min + i);
 			}
 			return values;
 		}

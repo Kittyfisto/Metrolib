@@ -63,6 +63,13 @@ namespace Metrolib.Test.Converters
 			values.Should().BeEquivalentTo(new UInt32[] { 1, 2 });
 		}
 
+		[Test]
+		public new void TestConvertBack3()
+		{
+			var values = _converter.ConvertBack("1-5", typeof(IEnumerable<UInt32>), null, null) as IEnumerable<UInt32>;
+			values.Should().BeEquivalentTo(new UInt32[] {1, 2, 3, 4, 5});
+		}
+
 		protected override IValueConverter Converter
 		{
 			get { return _converter; }

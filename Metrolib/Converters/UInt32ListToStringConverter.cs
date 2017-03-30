@@ -31,11 +31,11 @@ namespace Metrolib.Converters
 		{
 			var min = Math.Min(firstValue, lastValue);
 			var max = Math.Max(firstValue, lastValue);
-			var count = max - min;
+			var count = max - min + 1;
 			var values = new List<UInt32>((int) count);
 			for (int i = 0; i < count; ++i)
 			{
-				values[i] = (uint) (min+i);
+				values.Add((uint) (min + i));
 			}
 			return values;
 		}

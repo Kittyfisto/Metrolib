@@ -20,6 +20,7 @@ namespace Metrolib.Converters
 		{
 			Separator = ", ";
 			RangeConnector = "-";
+			MaximumAllowedRange = 10000;
 		}
 
 		/// <summary>
@@ -40,6 +41,16 @@ namespace Metrolib.Converters
 		/// </example>
 		public string RangeConnector { get; set; }
 
+		/// <summary>
+		/// The maximum number of values that are expanded when the user
+		/// enters a range. Exists to prevent input such as "0-int.Max"
+		/// from blocking the UI thread for too long and eating a huge amount of
+		/// memory.
+		/// If you want the user to input such huge lists of ranges, then binding
+		/// to an explicit list of values is not the right way, anyways...
+		/// </summary>
+		public int MaximumAllowedRange { get; set; }
+		
 		/// <inheritdoc />
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
@@ -124,6 +135,10 @@ namespace Metrolib.Converters
 			if (targetType == null)
 				return null;
 
+			// We can only convert to an enumeration
+			if (!typeof(IEnumerable<T>).IsAssignableFrom(targetType))
+				return null;
+
 			var str = value as string;
 			var values = ParseValues(str, culture);
 			if (values == null)
@@ -176,7 +191,11 @@ namespace Metrolib.Converters
 				if (!TryParse(last, out lastValue, culture))
 					return false;
 
-				values.AddRange(GetRange(firstValue, lastValue));
+				var range = GetRange(firstValue, lastValue);
+				if (range == null)
+					return false;
+
+				values.AddRange(range);
 			}
 
 			return true;
