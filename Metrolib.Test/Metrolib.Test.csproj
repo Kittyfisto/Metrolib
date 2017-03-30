@@ -87,6 +87,8 @@
     <Compile Include="Converters\AbstractNumberToStringConverterTest.cs" />
     <Compile Include="Converters\ByteToStringConverterTest.cs" />
     <Compile Include="Converters\Int32ListToStringConverterTest.cs" />
+    <Compile Include="Converters\NonEmptyToCollapsedConverterTest.cs" />
+    <Compile Include="Converters\NonEmptyToHiddenConverterTest.cs" />
     <Compile Include="Converters\UInt16ToStringConverterTest.cs" />
     <Compile Include="Converters\UInt32ListToStringConverterTest.cs" />
     <Compile Include="Converters\UInt32ToStringConverterTest.cs" />

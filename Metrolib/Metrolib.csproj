@@ -291,6 +291,8 @@
     <Compile Include="Converters\EmptyToHiddenConverter.cs" />
     <Compile Include="Converters\GeoLocationConverter.cs" />
     <Compile Include="Converters\Int32ListToStringConverter.cs" />
+    <Compile Include="Converters\NonEmptyToCollapsedConverter.cs" />
+    <Compile Include="Converters\NonEmptyToHiddenConverter.cs" />
     <Compile Include="Converters\NullImageConverter.cs" />
     <Compile Include="Converters\NullToCollapsedConverter.cs" />
     <Compile Include="Converters\NullToHiddenConverter.cs" />
