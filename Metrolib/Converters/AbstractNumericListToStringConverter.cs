@@ -16,6 +16,9 @@ namespace Metrolib.Converters
 		: IValueConverter
 		where T : IComparable<T>, IEquatable<T>
 	{
+		private string _separator;
+		private string _trimmedSeparator;
+
 		protected AbstractNumericListToStringConverter()
 		{
 			Separator = ", ";
@@ -30,7 +33,15 @@ namespace Metrolib.Converters
 		/// <example>
 		/// 1, 2, 3
 		/// </example>
-		public string Separator { get; set; }
+		public string Separator
+		{
+			get { return _separator; }
+			set
+			{
+				_separator = value;
+				_trimmedSeparator = value?.Trim();
+			}
+		}
 
 		/// <summary>
 		/// The string used to denote a range between of values between two ends.
@@ -150,10 +161,13 @@ namespace Metrolib.Converters
 		private IEnumerable<T> ParseValues(string str, CultureInfo culture)
 		{
 			str = str ?? "";
+			if (str.EndsWith(_trimmedSeparator)) //< The input is obviously incomplete and we should not allow the binding to take place
+				return null;
+
 			var values = new List<T>();
 			int current = 0;
 			int previous = 0;
-			while((current = str.IndexOf(Separator, current)) != -1)
+			while((current = str.IndexOf(_trimmedSeparator, current)) != -1)
 			{
 				if (!ParsePart(str, previous, current-previous, culture, values))
 					return null;

@@ -8,14 +8,14 @@ namespace Metrolib.Converters
 	/// <summary>
 	///     Converts null to <see cref="Visibility.Visible" />, anything else to <see cref="Visibility.Visible" />.
 	/// </summary>
-	public sealed class NullToCollapsedConverter
+	public sealed class NullToHiddenConverter
 		: IValueConverter
 	{
 		/// <inheritdoc />
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			return value == null
-				? Visibility.Collapsed
+				? Visibility.Hidden
 				: Visibility.Visible;
 		}
 

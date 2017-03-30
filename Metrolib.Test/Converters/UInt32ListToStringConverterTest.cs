@@ -70,6 +70,32 @@ namespace Metrolib.Test.Converters
 			values.Should().BeEquivalentTo(new UInt32[] {1, 2, 3, 4, 5});
 		}
 
+		public IEnumerable<string> UnfinishedInputs
+		{
+			get
+			{
+				return new[]
+				{
+					"1,",
+					"1, ",
+					"1 ,",
+					"1 ,\t",
+					"1-10,",
+					"1,3-",
+					"1-",
+					"1 -",
+					"2 - "
+				};
+			}
+		}
+
+		[Test]
+		public void TestConvertBack4([ValueSource(nameof(UnfinishedInputs))] string unfinishedInput)
+		{
+			var values = _converter.ConvertBack(unfinishedInput, typeof(IEnumerable<UInt32>), null, null);
+			values.Should().Be(Binding.DoNothing, "because the user isn't finished typing");
+		}
+		
 		protected override IValueConverter Converter
 		{
 			get { return _converter; }
