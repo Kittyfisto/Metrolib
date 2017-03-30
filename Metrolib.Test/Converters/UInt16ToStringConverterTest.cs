@@ -12,8 +12,8 @@ namespace Metrolib.Test.Converters
 	{
 		private UInt16ToStringConverter _converter;
 
-		[TestFixtureSetUp]
-		public void TestFixtureSetUp()
+		[OneTimeSetUp]
+		public void OneTimeSetUp()
 		{
 			_converter = new UInt16ToStringConverter();
 		}

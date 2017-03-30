@@ -13,8 +13,8 @@ namespace Metrolib.Test.Converters
 	{
 		private UInt32ToStringConverter _converter;
 
-		[TestFixtureSetUp]
-		public void TestFixtureSetUp()
+		[OneTimeSetUp]
+		public void OneTimeSetUp()
 		{
 			_converter = new UInt32ToStringConverter();
 		}

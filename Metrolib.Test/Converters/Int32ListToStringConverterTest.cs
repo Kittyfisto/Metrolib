@@ -15,8 +15,8 @@ namespace Metrolib.Test.Converters
 	{
 		private Int32ListToStringConverter _converter;
 
-		[TestFixtureSetUp]
-		public void TestFixtureSetup()
+		[OneTimeSetUp]
+		public void OneTimeSetUp()
 		{
 			_converter = new Int32ListToStringConverter();
 		}

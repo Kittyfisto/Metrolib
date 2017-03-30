@@ -4,6 +4,9 @@ using System.Windows.Data;
 
 namespace Metrolib.Converters
 {
+	/// <summary>
+	///     Converts values of type <see cref="uint" /> to <see cref="string" /> and vice verca.
+	/// </summary>
 	public sealed class UInt32ToStringConverter
 		: IValueConverter
 	{

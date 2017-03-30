@@ -26,8 +26,8 @@ namespace Metrolib.Test
 		private FilterTextBox _control;
 		private Application _app;
 
-		[TestFixtureSetUp]
-		public void TestFixtureSetUp()
+		[OneTimeSetUp]
+		public void OneTimeSetUp()
 		{
 			_app = new Application();
 		}
