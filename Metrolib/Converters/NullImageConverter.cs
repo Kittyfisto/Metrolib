@@ -12,6 +12,7 @@ namespace Metrolib.Converters
 	/// </summary>
 	public class NullImageConverter : IValueConverter
 	{
+		/// <inheritdoc />
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			if (value == null)
@@ -19,6 +20,7 @@ namespace Metrolib.Converters
 			return value;
 		}
 
+		/// <inheritdoc />
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			return Binding.DoNothing;

@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Threading;
 using FluentAssertions;
 using NUnit.Framework;
 
 namespace Metrolib.Test.Charts.Map
 {
 	[TestFixture]
+	[RequiresThread(ApartmentState.STA)]
 	public sealed class ItemsLayerTest
 	{
 		[Test]
-		[STAThread]
 		public void TestCtor()
 		{
 			var layer = new ItemsLayer();

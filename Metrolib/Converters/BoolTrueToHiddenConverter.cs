@@ -12,15 +12,7 @@ namespace Metrolib.Converters
 	public sealed class BoolTrueToHiddenConverter
 		: IValueConverter
 	{
-		/// <summary>
-		///     Converts true to <see cref="Visibility.Hidden" />, false to <see cref="Visibility.Visible" /> and anything else
-		///     to null.
-		/// </summary>
-		/// <param name="value"></param>
-		/// <param name="targetType"></param>
-		/// <param name="parameter"></param>
-		/// <param name="culture"></param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			if (targetType != typeof(Visibility))
@@ -38,17 +30,10 @@ namespace Metrolib.Converters
 			return Visibility.Visible;
 		}
 
-		/// <summary>
-		///     Not implemented, returns null.
-		/// </summary>
-		/// <param name="value"></param>
-		/// <param name="targetType"></param>
-		/// <param name="parameter"></param>
-		/// <param name="culture"></param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			return null;
+			return Binding.DoNothing;
 		}
 	}
 }

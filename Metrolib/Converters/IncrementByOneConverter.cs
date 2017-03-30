@@ -10,14 +10,7 @@ namespace Metrolib.Converters
 	public sealed class IncrementByOneConverter
 		: IValueConverter
 	{
-		/// <summary>
-		///     Increments the given value by 1.
-		/// </summary>
-		/// <param name="value"></param>
-		/// <param name="targetType"></param>
-		/// <param name="parameter"></param>
-		/// <param name="culture"></param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			if (!(value is int))
@@ -27,14 +20,7 @@ namespace Metrolib.Converters
 			return actualValue + 1;
 		}
 
-		/// <summary>
-		///     Not implemented, returns null.
-		/// </summary>
-		/// <param name="value"></param>
-		/// <param name="targetType"></param>
-		/// <param name="parameter"></param>
-		/// <param name="culture"></param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			return null;

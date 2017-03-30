@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using FluentAssertions;
 using Moq;
@@ -9,10 +10,10 @@ using NUnit.Framework;
 namespace Metrolib.Test.Charts.Network
 {
 	[TestFixture]
+	[RequiresThread(ApartmentState.STA)]
 	public sealed class NetworkViewTest
 	{
 		[Test]
-		[STAThread]
 		[Description("Verifies that null is an allowed value for the Nodes property")]
 		public void TestNodes1()
 		{
@@ -22,7 +23,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that an empty array is an allowed value for the Nodes property")]
 		public void TestNodes2()
 		{
@@ -32,7 +32,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that we can set a list of one node to the Nodes property")]
 		public void TestNodes3()
 		{
@@ -43,7 +42,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that the items representing nodes are only created once the control has been loaded")]
 		public void TestNodes4()
 		{
@@ -56,7 +54,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that the items representing nodes are only created once the control has been loaded")]
 		public void TestNodes5()
 		{
@@ -70,7 +67,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that the items representing nodes are removed when the Nodes property is changed ot null")]
 		public void TestNodes6()
 		{
@@ -86,7 +82,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that the item created actually represents the added node")]
 		public void TestNodes7()
 		{
@@ -101,7 +96,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that a new item is created when a node is added to the list of nodes")]
 		public void TestAddNodes1()
 		{
@@ -120,7 +114,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that the item representing a node is removed when the node itself is removed")]
 		public void TestRemoveNodes1()
 		{
@@ -137,7 +130,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that null is an allowed value for the Edges property")]
 		public void TestEdges1()
 		{
@@ -157,7 +149,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that we can set a list of one edge to the Edges property")]
 		public void TestEdges3()
 		{
@@ -168,7 +159,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		public void TestEdges4()
 		{
 			var chart = new NetworkView();
@@ -180,7 +170,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that the items representing edges are only created once the control has been loaded")]
 		public void TestEdges5()
 		{
@@ -194,7 +183,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that the items representing edges are removed when the Edges property is changed ot null")]
 		public void TestEdges6()
 		{
@@ -210,7 +198,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that the item created actually represents the added edge")]
 		public void TestEdges7()
 		{
@@ -225,7 +212,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that the chart can be loaded / unloaded multiple times")]
 		public void TestLoad1()
 		{
@@ -242,7 +228,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that the chart can be loaded / unloaded multiple times")]
 		public void TestLoad2()
 		{
@@ -259,7 +244,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that the chart tollerates the Loaded event to be fired twice in succession")]
 		public void TestLoad3()
 		{
@@ -274,7 +258,6 @@ namespace Metrolib.Test.Charts.Network
 		}
 
 		[Test]
-		[STAThread]
 		[Description("")]
 		public void TestMeasure1()
 		{

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
 using FluentAssertions;
 using NUnit.Framework;
@@ -6,10 +7,10 @@ using NUnit.Framework;
 namespace Metrolib.Test.Charts.Pie
 {
 	[TestFixture]
+	[RequiresThread(ApartmentState.STA)]
 	public sealed class PieChartSliceItemTest
 	{
 		[Test]
-		[STAThread]
 		public void TestCtor()
 		{
 			var item = new PieChartSliceItem();
@@ -20,7 +21,6 @@ namespace Metrolib.Test.Charts.Pie
 		}
 
 		[Test]
-		[STAThread]
 		public void TestOpenAngle1()
 		{
 			var item = new PieChartSliceItem {OpenAngle = Math.PI/4};
@@ -30,7 +30,6 @@ namespace Metrolib.Test.Charts.Pie
 		}
 
 		[Test]
-		[STAThread]
 		public void TestStartAngle1()
 		{
 			var item = new PieChartSliceItem { StartAngle = Math.PI / 4 };
@@ -40,7 +39,6 @@ namespace Metrolib.Test.Charts.Pie
 		}
 
 		[Test]
-		[STAThread]
 		public void TestStartAngle2()
 		{
 			var item = new PieChartSliceItem
@@ -53,7 +51,6 @@ namespace Metrolib.Test.Charts.Pie
 		}
 
 		[Test]
-		[STAThread]
 		public void TestStartAngle3()
 		{
 			var item = new PieChartSliceItem
@@ -66,7 +63,6 @@ namespace Metrolib.Test.Charts.Pie
 		}
 
 		[Test]
-		[STAThread]
 		public void TestStartAngle4()
 		{
 			var item = new PieChartSliceItem
@@ -79,7 +75,6 @@ namespace Metrolib.Test.Charts.Pie
 		}
 
 		[Test]
-		[STAThread]
 		public void TestCenter1()
 		{
 			var item = new PieChartSliceItem

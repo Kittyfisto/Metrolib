@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows.Data;
 using FluentAssertions;
 using Metrolib.Converters;
@@ -8,27 +7,27 @@ using NUnit.Framework;
 namespace Metrolib.Test.Converters
 {
 	[TestFixture]
-	public sealed class UInt32ToStringConverterTest
+	public sealed class UInt16ToStringConverterTest
 		: AbstractNumberToStringConverterTest
 	{
-		private UInt32ToStringConverter _converter;
+		private UInt16ToStringConverter _converter;
 
 		[TestFixtureSetUp]
 		public void TestFixtureSetUp()
 		{
-			_converter = new UInt32ToStringConverter();
+			_converter = new UInt16ToStringConverter();
 		}
 
 		[Test]
 		public new void TestConvert1()
 		{
-			_converter.Convert(42u, null, null, null).Should().Be("42");
+			_converter.Convert((ushort)42, null, null, null).Should().Be("42");
 		}
-		
+
 		[Test]
 		public new void TestConvertBack2()
 		{
-			_converter.ConvertBack("42", typeof(UInt32), null, null).Should().Be(42u);
+			_converter.ConvertBack("42", typeof(ushort), null, null).Should().Be((ushort)42);
 		}
 
 		public static IEnumerable<string> InvalidInputs
@@ -48,7 +47,7 @@ namespace Metrolib.Test.Converters
 		[Test]
 		public void TestConvertBack3([ValueSource(nameof(InvalidInputs))] string invalidInput)
 		{
-			_converter.ConvertBack(invalidInput, typeof(UInt32), null, null)
+			_converter.ConvertBack(invalidInput, typeof(ushort), null, null)
 				.Should().Be(Binding.DoNothing, "because the user hasn't finished his input");
 		}
 

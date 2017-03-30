@@ -37,15 +37,7 @@ namespace Metrolib.Converters
 		/// </summary>
 		public bool HasPlural { get; set; }
 
-		/// <summary>
-		///     Converts the given numeric value to readable text, omitting uninteresting decimals, e.g.
-		///     12.344.112 becomes 12M.
-		/// </summary>
-		/// <param name="value"></param>
-		/// <param name="targetType"></param>
-		/// <param name="parameter"></param>
-		/// <param name="culture"></param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		[Pure]
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
@@ -61,17 +53,11 @@ namespace Metrolib.Converters
 			return Format(culture, count, count, "");
 		}
 
-		/// <summary>
-		///     No implemented, returns null.
-		/// </summary>
-		/// <param name="value"></param>
-		/// <param name="targetType"></param>
-		/// <param name="parameter"></param>
-		/// <param name="culture"></param>
+		/// <inheritdoc />
 		/// <returns></returns>
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			return null;
+			return Binding.DoNothing;
 		}
 
 		[Pure]

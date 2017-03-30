@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
 using FluentAssertions;
 using Metrolib.Controls.Charts.Line.Canvas;
@@ -8,6 +9,7 @@ using NUnit.Framework;
 namespace Metrolib.Test.Charts.Line
 {
 	[TestFixture]
+	[RequiresThread(ApartmentState.STA)]
 	public sealed class StackedLineChartCanvasTest
 		: AbstractLineChartCanvasTest
 	{
@@ -17,7 +19,6 @@ namespace Metrolib.Test.Charts.Line
 		}
 
 		[Test]
-		[STAThread]
 		public void TestLineSeries1()
 		{
 			var canvas = Create();
@@ -30,7 +31,6 @@ namespace Metrolib.Test.Charts.Line
 		}
 
 		[Test]
-		[STAThread]
 		public void TestLineSeries2()
 		{
 			var canvas = Create();
@@ -53,7 +53,6 @@ namespace Metrolib.Test.Charts.Line
 		}
 
 		[Test]
-		[STAThread]
 		public void TestStackedSeries1()
 		{
 			var canvas = Create();

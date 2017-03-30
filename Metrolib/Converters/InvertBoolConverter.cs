@@ -11,15 +11,7 @@ namespace Metrolib.Converters
 	public sealed class InvertBoolConverter
 		: IValueConverter
 	{
-		/// <summary>
-		///     Inverts the given boolean value.
-		///     Returns null if no boolean value was given.
-		/// </summary>
-		/// <param name="value"></param>
-		/// <param name="targetType"></param>
-		/// <param name="parameter"></param>
-		/// <param name="culture"></param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			if (!(value is bool))
@@ -28,15 +20,7 @@ namespace Metrolib.Converters
 			return !((bool) value);
 		}
 
-		/// <summary>
-		///     Inverts the given boolean value.
-		///     Returns null if no boolean value was given.
-		/// </summary>
-		/// <param name="value"></param>
-		/// <param name="targetType"></param>
-		/// <param name="parameter"></param>
-		/// <param name="culture"></param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			if (!(value is bool))

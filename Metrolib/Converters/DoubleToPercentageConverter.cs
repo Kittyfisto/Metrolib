@@ -18,6 +18,7 @@ namespace Metrolib.Converters
 	public sealed class DoubleToPercentageConverter
 		: IValueConverter
 	{
+		/// <inheritdoc />
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			if (!(value is double))
@@ -28,9 +29,10 @@ namespace Metrolib.Converters
 			return formatted;
 		}
 
+		/// <inheritdoc />
 		object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			throw new NotImplementedException();
+			return Binding.DoNothing;
 		}
 	}
 }

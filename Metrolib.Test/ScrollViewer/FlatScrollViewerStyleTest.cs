@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using FluentAssertions;
@@ -9,10 +9,10 @@ namespace Metrolib.Test.ScrollViewer
 {
 	[TestFixture]
 	[LocalTest]
+	[RequiresThread(ApartmentState.STA)]
 	public sealed class FlatScrollViewerStyleTest
 	{
 		[SetUp]
-		[STAThread]
 		public void SetUp()
 		{
 			_scrollViewer = new FlatScrollViewer {Style = StyleHelper.Load<FlatScrollViewer>()};
@@ -21,14 +21,12 @@ namespace Metrolib.Test.ScrollViewer
 		private FlatScrollViewer _scrollViewer;
 
 		[Test]
-		[STAThread]
 		public void TestCtor()
 		{
 			_scrollViewer.MousePanningMode.Should().Be(PanningMode.None);
 		}
 
 		[Test]
-		[STAThread]
 		public void TestScroll1()
 		{
 			_scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;

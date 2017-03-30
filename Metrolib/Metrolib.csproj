@@ -298,6 +298,7 @@
     <Compile Include="Converters\NullToHiddenConverter.cs" />
     <Compile Include="Converters\NullToVisibleConverter.cs" />
     <Compile Include="Converters\UIn32ToStringConverter.cs" />
+    <Compile Include="Converters\UInt16ToStringConverter.cs" />
     <Compile Include="Converters\UInt32ListToStringConverter.cs" />
     <Compile Include="FocusExtension.cs" />
     <Compile Include="Geography\GeoLocation.cs" />

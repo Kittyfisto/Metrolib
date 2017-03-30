@@ -12,14 +12,7 @@ namespace Metrolib.Converters
 	public class NegateConverter
 		: IValueConverter
 	{
-		/// <summary>
-		///     Negates the given value if it's any of the available numeric types.
-		/// </summary>
-		/// <param name="value"></param>
-		/// <param name="targetType"></param>
-		/// <param name="parameter"></param>
-		/// <param name="culture"></param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			if (targetType == typeof (Decimal))
@@ -67,14 +60,7 @@ namespace Metrolib.Converters
 			return null;
 		}
 
-		/// <summary>
-		///     Negates the given value if it's any of the available numeric types.
-		/// </summary>
-		/// <param name="value"></param>
-		/// <param name="targetType"></param>
-		/// <param name="parameter"></param>
-		/// <param name="culture"></param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			return Convert(value, targetType, parameter, culture);

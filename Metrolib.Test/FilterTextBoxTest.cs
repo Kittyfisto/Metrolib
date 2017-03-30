@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading;
 using System.Windows;
 using System.Windows.Automation.Peers;
 using System.Windows.Automation.Provider;
@@ -10,9 +10,9 @@ using NUnit.Framework;
 namespace Metrolib.Test
 {
 	[TestFixture]
+	[RequiresThread(ApartmentState.STA)]
 	public sealed class FilterTextBoxTest
 	{
-		[STAThread]
 		[SetUp]
 		public void SetUp()
 		{
@@ -26,7 +26,6 @@ namespace Metrolib.Test
 		private FilterTextBox _control;
 		private Application _app;
 
-		[STAThread]
 		[TestFixtureSetUp]
 		public void TestFixtureSetUp()
 		{
@@ -48,7 +47,6 @@ namespace Metrolib.Test
 		}
 
 		[Test]
-		[STAThread]
 		public void TestRemoveFilterText1()
 		{
 			_control.FilterText = null;
@@ -61,7 +59,6 @@ namespace Metrolib.Test
 		}
 
 		[Test]
-		[STAThread]
 		public void TestRemoveFilterText2()
 		{
 			_control.FilterText = "Foobar";

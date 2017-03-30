@@ -58,7 +58,7 @@ namespace Metrolib.Test.Converters
 			Converter.ConvertBack(null, typeof(string), null, null).Should().BeNull();
 		}
 
-		public IEnumerable<string> InvalidInput
+		public static IEnumerable<string> InvalidInput
 		{
 			get
 			{

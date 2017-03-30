@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using FluentAssertions;
 using NUnit.Framework;
@@ -8,10 +9,10 @@ using NUnit.Framework;
 namespace Metrolib.Test.Charts.Pie
 {
 	[TestFixture]
+	[RequiresThread(ApartmentState.STA)]
 	public sealed class PieChartTest
 	{
 		[Test]
-		[STAThread]
 		[Description("Verifies that the correct default values are set upon construction")]
 		public void TestCtor()
 		{
@@ -26,7 +27,6 @@ namespace Metrolib.Test.Charts.Pie
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that Load/Unload/Load is allowed")]
 		public void TestLoad1()
 		{
@@ -37,7 +37,6 @@ namespace Metrolib.Test.Charts.Pie
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that Arrange can be called even if the control hasn't been loaded yet")]
 		public void TestArrange1()
 		{
@@ -46,7 +45,6 @@ namespace Metrolib.Test.Charts.Pie
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that Arrange can be called even if the control is unloaded")]
 		public void TestArrange2()
 		{
@@ -57,7 +55,6 @@ namespace Metrolib.Test.Charts.Pie
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that setting a series with no slices is allowed")]
 		public void TestPieSeries1()
 		{
@@ -69,7 +66,6 @@ namespace Metrolib.Test.Charts.Pie
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that setting a series with null slices is allowed")]
 		public void TestPieSeries2()
 		{
@@ -81,7 +77,6 @@ namespace Metrolib.Test.Charts.Pie
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that setting a series with one slice is allowed")]
 		public void TestPieSeries3()
 		{
@@ -95,7 +90,6 @@ namespace Metrolib.Test.Charts.Pie
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that the original DisplayValue property is represented by an item")]
 		public void TestPieSeries4()
 		{
@@ -114,7 +108,6 @@ namespace Metrolib.Test.Charts.Pie
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that the ValueTemplate is used to present the DisplayValue, if one is set")]
 		public void TestPieSeries5()
 		{
@@ -133,7 +126,6 @@ namespace Metrolib.Test.Charts.Pie
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that the chart listens to changes of the Slices property")]
 		public void TestPieSeries6()
 		{
@@ -152,7 +144,6 @@ namespace Metrolib.Test.Charts.Pie
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that the chart listens to changes of the Slices property")]
 		public void TestPieSeries7()
 		{

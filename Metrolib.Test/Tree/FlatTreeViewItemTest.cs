@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading;
 using FluentAssertions;
 using Metrolib.Controls;
 using NUnit.Framework;
@@ -6,10 +6,10 @@ using NUnit.Framework;
 namespace Metrolib.Test.Tree
 {
 	[TestFixture]
+	[RequiresThread(ApartmentState.STA)]
 	public sealed class FlatTreeViewItemTest
 	{
 		[Test]
-		[STAThread]
 		public void TestCtor()
 		{
 			var item = new FlatTreeViewItem();

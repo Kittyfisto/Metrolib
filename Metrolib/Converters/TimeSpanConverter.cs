@@ -22,14 +22,7 @@ namespace Metrolib.Converters
 	public sealed class TimeSpanConverter
 		: IValueConverter
 	{
-		/// <summary>
-		///     Converts a value.
-		/// </summary>
-		/// <param name="value"></param>
-		/// <param name="targetType"></param>
-		/// <param name="parameter"></param>
-		/// <param name="culture"></param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			if (!(value is TimeSpan))
@@ -69,17 +62,10 @@ namespace Metrolib.Converters
 			return Format(age, oneMillisecond, "millisecond");
 		}
 
-		/// <summary>
-		///     Converts a value.
-		/// </summary>
-		/// <param name="value"></param>
-		/// <param name="targetType"></param>
-		/// <param name="parameter"></param>
-		/// <param name="culture"></param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			return null;
+			return Binding.DoNothing;
 		}
 
 		private object Format(TimeSpan value, TimeSpan divider, string caption)

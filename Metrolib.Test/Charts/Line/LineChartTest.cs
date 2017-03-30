@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Windows;
 using FluentAssertions;
 using Moq;
@@ -8,10 +9,10 @@ using NUnit.Framework;
 namespace Metrolib.Test.Charts.Line
 {
 	[TestFixture]
+	[RequiresThread(ApartmentState.STA)]
 	public sealed class LineChartTest
 	{
 		[Test]
-		[STAThread]
 		public void TestCtor()
 		{
 			var chart = new LineChart();
@@ -21,7 +22,6 @@ namespace Metrolib.Test.Charts.Line
 		}
 
 		[Test]
-		[STAThread]
 		public void TestSeries1()
 		{
 			var chart = new LineChart();
@@ -32,7 +32,6 @@ namespace Metrolib.Test.Charts.Line
 		}
 
 		[Test]
-		[STAThread]
 		public void TestSeries2()
 		{
 			var chart = new LineChart();
@@ -43,7 +42,6 @@ namespace Metrolib.Test.Charts.Line
 		}
 
 		[Test]
-		[STAThread]
 		public void TestSeries3()
 		{
 			var chart = new LineChart();
@@ -55,7 +53,6 @@ namespace Metrolib.Test.Charts.Line
 		}
 
 		[Test]
-		[STAThread]
 		public void TestSeries4()
 		{
 			var chart = new LineChart();
@@ -72,7 +69,6 @@ namespace Metrolib.Test.Charts.Line
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that any ILineSeries implementation can be attached to a line chart")]
 		public void TestSeries5()
 		{
@@ -89,7 +85,6 @@ namespace Metrolib.Test.Charts.Line
 		}
 
 		[Test]
-		[STAThread]
 		[Description("Verifies that any ILineSeries implementation can be attached to a line chart")]
 		public void TestSeries6()
 		{

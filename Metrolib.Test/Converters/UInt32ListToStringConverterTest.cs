@@ -70,7 +70,7 @@ namespace Metrolib.Test.Converters
 			values.Should().BeEquivalentTo(new UInt32[] {1, 2, 3, 4, 5});
 		}
 
-		public IEnumerable<string> UnfinishedInputs
+		public static IEnumerable<string> UnfinishedInputs
 		{
 			get
 			{

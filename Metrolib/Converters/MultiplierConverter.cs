@@ -15,14 +15,7 @@ namespace Metrolib.Converters
 		/// </summary>
 		public double Multiplier { get; set; }
 
-		/// <summary>
-		///     Multiplies the given numeric value with the given <see cref="Multiplier" />.
-		/// </summary>
-		/// <param name="value"></param>
-		/// <param name="targetType"></param>
-		/// <param name="parameter"></param>
-		/// <param name="culture"></param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			if (!(value is double))
@@ -32,17 +25,10 @@ namespace Metrolib.Converters
 			return actualValue*Multiplier;
 		}
 
-		/// <summary>
-		///     Not implemented, returns null.
-		/// </summary>
-		/// <param name="value"></param>
-		/// <param name="targetType"></param>
-		/// <param name="parameter"></param>
-		/// <param name="culture"></param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			return null;
+			return Binding.DoNothing;
 		}
 	}
 }

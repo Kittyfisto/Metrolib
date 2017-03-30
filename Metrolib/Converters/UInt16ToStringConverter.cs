@@ -4,16 +4,16 @@ using System.Windows.Data;
 
 namespace Metrolib.Converters
 {
-	public sealed class UInt32ToStringConverter
+	public sealed class UInt16ToStringConverter
 		: IValueConverter
 	{
 		/// <inheritdoc />
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			if (!(value is uint))
+			if (!(value is ushort))
 				return null;
 
-			var numericValue = (uint) value;
+			var numericValue = (ushort)value;
 			var formatted = numericValue.ToString(culture);
 			return formatted;
 		}
@@ -24,12 +24,12 @@ namespace Metrolib.Converters
 			if (!(value is string))
 				return null;
 
-			if (targetType != typeof(uint))
+			if (targetType != typeof(ushort))
 				return null;
 
-			var formatted = (string) value;
-			uint numericValue;
-			if (!uint.TryParse(formatted, NumberStyles.Integer, culture, out numericValue))
+			var formatted = (string)value;
+			ushort numericValue;
+			if (!ushort.TryParse(formatted, NumberStyles.Integer, culture, out numericValue))
 				return Binding.DoNothing;
 
 			return numericValue;

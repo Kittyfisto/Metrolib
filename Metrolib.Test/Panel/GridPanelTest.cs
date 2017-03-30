@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using FluentAssertions;
@@ -7,10 +8,10 @@ using NUnit.Framework;
 namespace Metrolib.Test.Panel
 {
 	[TestFixture]
+	[RequiresThread(ApartmentState.STA)]
 	public sealed class GridPanelTest
 	{
 		[Test]
-		[STAThread]
 		public void TestCtor()
 		{
 			var panel = new GridPanel();
@@ -21,7 +22,6 @@ namespace Metrolib.Test.Panel
 		}
 
 		[Test]
-		[STAThread]
 		[Ignore("Rewrite to use measure/arrange")]
 		public void TestVerticalAdd1()
 		{
@@ -34,7 +34,6 @@ namespace Metrolib.Test.Panel
 		}
 
 		[Test]
-		[STAThread]
 		[Ignore("Rewrite to use measure/arrange")]
 		public void TestVerticalAdd2()
 		{
@@ -51,7 +50,6 @@ namespace Metrolib.Test.Panel
 		}
 
 		[Test]
-		[STAThread]
 		[Ignore("Rewrite to use measure/arrange")]
 		public void TestVerticalInsert1()
 		{
@@ -65,7 +63,6 @@ namespace Metrolib.Test.Panel
 		}
 
 		[Test]
-		[STAThread]
 		[Ignore("Rewrite to use measure/arrange")]
 		public void TestVerticalInsert2()
 		{
@@ -82,7 +79,6 @@ namespace Metrolib.Test.Panel
 		}
 
 		[Test]
-		[STAThread]
 		[Ignore("Rewrite to use measure/arrange")]
 		public void TestVerticalRemove1()
 		{
@@ -95,7 +91,6 @@ namespace Metrolib.Test.Panel
 		}
 
 		[Test]
-		[STAThread]
 		[Ignore("Rewrite to use measure/arrange")]
 		public void TestVerticalRemove2()
 		{
@@ -112,7 +107,6 @@ namespace Metrolib.Test.Panel
 		}
 
 		[Test]
-		[STAThread]
 		[Ignore("Rewrite to use measure/arrange")]
 		public void TestVerticalRemove3()
 		{
@@ -133,7 +127,6 @@ namespace Metrolib.Test.Panel
 		}
 
 		[Test]
-		[STAThread]
 		[Ignore("Rewrite to use measure/arrange")]
 		public void TestHorizontalAdd1()
 		{
@@ -146,7 +139,6 @@ namespace Metrolib.Test.Panel
 		}
 
 		[Test]
-		[STAThread]
 		[Ignore("Rewrite to use measure/arrange")]
 		public void TestHorizontalAdd2()
 		{
@@ -163,7 +155,6 @@ namespace Metrolib.Test.Panel
 		}
 
 		[Test]
-		[STAThread]
 		[Ignore("Rewrite to use measure/arrange")]
 		public void TestHorizontalInsert1()
 		{
@@ -177,7 +168,6 @@ namespace Metrolib.Test.Panel
 		}
 
 		[Test]
-		[STAThread]
 		[Ignore("Rewrite to use measure/arrange")]
 		public void TestHorizontalInsert2()
 		{
@@ -194,7 +184,6 @@ namespace Metrolib.Test.Panel
 		}
 
 		[Test]
-		[STAThread]
 		[Ignore("Rewrite to use measure/arrange")]
 		public void TestHorizontalRemove1()
 		{
@@ -207,7 +196,6 @@ namespace Metrolib.Test.Panel
 		}
 
 		[Test]
-		[STAThread]
 		[Ignore("Rewrite to use measure/arrange")]
 		public void TestHorizontalRemove2()
 		{
@@ -224,7 +212,6 @@ namespace Metrolib.Test.Panel
 		}
 
 		[Test]
-		[STAThread]
 		[Ignore("Rewrite to use measure/arrange")]
 		public void TestHorizontalRemove3()
 		{

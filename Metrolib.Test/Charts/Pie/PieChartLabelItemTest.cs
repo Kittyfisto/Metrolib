@@ -1,14 +1,14 @@
-﻿using System;
+﻿using System.Threading;
 using FluentAssertions;
 using NUnit.Framework;
 
 namespace Metrolib.Test.Charts.Pie
 {
 	[TestFixture]
+	[RequiresThread(ApartmentState.STA)]
 	public sealed class PieChartLabelItemTest
 	{
 		[Test]
-		[STAThread]
 		public void TestCtor()
 		{
 			var item = new PieChartLabelItem();

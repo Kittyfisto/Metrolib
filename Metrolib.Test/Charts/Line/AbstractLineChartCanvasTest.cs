@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using FluentAssertions;
 using Metrolib.Controls.Charts.Line.Canvas;
@@ -11,12 +12,12 @@ using NUnit.Framework;
 namespace Metrolib.Test.Charts.Line
 {
 	[TestFixture]
+	[RequiresThread(ApartmentState.STA)]
 	public abstract class AbstractLineChartCanvasTest
 	{
 		protected abstract AbstractLineChartCanvas Create();
 
 		[Test]
-		[STAThread]
 		public void TestCtor()
 		{
 			var canvas = Create();
@@ -25,7 +26,6 @@ namespace Metrolib.Test.Charts.Line
 		}
 
 		[Test]
-		[STAThread]
 		public void TestSeries1()
 		{
 			var canvas = Create();
@@ -35,7 +35,6 @@ namespace Metrolib.Test.Charts.Line
 		}
 
 		[Test]
-		[STAThread]
 		public void TestSeries2()
 		{
 			var canvas = Create();
@@ -45,7 +44,6 @@ namespace Metrolib.Test.Charts.Line
 		}
 
 		[Test]
-		[STAThread]
 		public void TestSeries3()
 		{
 			var canvas = Create();
@@ -55,7 +53,6 @@ namespace Metrolib.Test.Charts.Line
 		}
 
 		[Test]
-		[STAThread]
 		public void TestSeries4()
 		{
 			var canvas = Create();
@@ -66,7 +63,6 @@ namespace Metrolib.Test.Charts.Line
 		}
 
 		[Test]
-		[STAThread]
 		public void TestSeries5()
 		{
 			var canvas = Create();
@@ -82,7 +78,6 @@ namespace Metrolib.Test.Charts.Line
 		}
 
 		[Test]
-		[STAThread]
 		public void TestXAxisTicks()
 		{
 			var canvas = Create();
