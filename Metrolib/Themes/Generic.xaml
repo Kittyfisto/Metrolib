@@ -43,6 +43,7 @@
         <ResourceDictionary Source="/Metrolib;component/Controls/ProgressBar/CircularProgressBar.xaml" />
 
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/AddButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/DeleteButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/ExportButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/FlatButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/MaximizeButton.xaml" />
