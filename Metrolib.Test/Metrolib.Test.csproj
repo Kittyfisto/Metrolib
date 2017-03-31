@@ -85,7 +85,10 @@
     <Compile Include="Charts\Pie\PieChartValueItemTest.cs" />
     <Compile Include="Converters\AbstractListToStringConverterTest.cs" />
     <Compile Include="Converters\AbstractNumberToStringConverterTest.cs" />
+    <Compile Include="Converters\AbstractOneWayValueConverterTest.cs" />
+    <Compile Include="Converters\BoolFalseToHiddenConverterTest.cs" />
     <Compile Include="Converters\ByteToStringConverterTest.cs" />
+    <Compile Include="Converters\EmptyToCollapsedConverterTest.cs" />
     <Compile Include="Converters\Int32ListToStringConverterTest.cs" />
     <Compile Include="Converters\NonEmptyToCollapsedConverterTest.cs" />
     <Compile Include="Converters\NonEmptyToHiddenConverterTest.cs" />
