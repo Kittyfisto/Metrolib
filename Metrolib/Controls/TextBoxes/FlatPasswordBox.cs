@@ -102,6 +102,7 @@ namespace Metrolib.Controls
 			}
 
 			_watermark = (TextBlock) GetTemplateChild("PART_Watermark");
+			UpdateWatermarkVisibility();
 		}
 
 		private void PasswordBoxOnPasswordChanged(object sender, RoutedEventArgs routedEventArgs)
@@ -115,9 +116,12 @@ namespace Metrolib.Controls
 
 		private void UpdateWatermarkVisibility()
 		{
-			_watermark.Visibility = string.IsNullOrEmpty(Password)
-				                        ? Visibility.Visible
-				                        : Visibility.Hidden;
+			if (_watermark != null)
+			{
+				_watermark.Visibility = string.IsNullOrEmpty(Password)
+					? Visibility.Visible
+					: Visibility.Hidden;
+			}
 		}
 	}
 }
