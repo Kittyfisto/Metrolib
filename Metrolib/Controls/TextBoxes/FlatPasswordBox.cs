@@ -20,6 +20,13 @@ namespace Metrolib.Controls
 			DependencyProperty.Register("Watermark", typeof (string), typeof (FlatPasswordBox),
 			                            new PropertyMetadata(default(string)));
 
+		/// <summary>
+		///     Definition of the <see cref="Password" /> property.
+		/// </summary>
+		public static readonly DependencyProperty PasswordProperty =
+			DependencyProperty.Register("Password", typeof(string), typeof(FlatPasswordBox),
+										new PropertyMetadata(default(string)));
+
 		private PasswordBox _passwordBox;
 		private TextBlock _watermark;
 
@@ -41,9 +48,6 @@ namespace Metrolib.Controls
 		/// <summary>
 		///     The password that has been entered by the user.
 		/// </summary>
-		/// <remarks>
-		///     Can not be bound to.
-		/// </remarks>
 		public string Password
 		{
 			get
@@ -62,9 +66,7 @@ namespace Metrolib.Controls
 					_passwordBox.Password = value;
 					UpdateWatermarkVisibility();
 
-					var fn = PasswordChanged;
-					if (fn != null)
-						fn(this, new RoutedEventArgs());
+					PasswordChanged?.Invoke(this, new RoutedEventArgs());
 				}
 			}
 		}
@@ -99,9 +101,7 @@ namespace Metrolib.Controls
 		{
 			UpdateWatermarkVisibility();
 
-			var fn = PasswordChanged;
-			if (fn != null)
-				fn(this, new RoutedEventArgs());
+			PasswordChanged?.Invoke(this, new RoutedEventArgs());
 		}
 
 		private void UpdateWatermarkVisibility()
