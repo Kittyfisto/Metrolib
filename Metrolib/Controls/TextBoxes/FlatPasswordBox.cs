@@ -25,7 +25,23 @@ namespace Metrolib.Controls
 		/// </summary>
 		public static readonly DependencyProperty PasswordProperty =
 			DependencyProperty.Register("Password", typeof(string), typeof(FlatPasswordBox),
-										new PropertyMetadata(default(string)));
+										new PropertyMetadata(default(string), OnPasswordChanged));
+
+		private static void OnPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			((FlatPasswordBox) d).OnPasswordChanged((string)e.NewValue);
+		}
+
+		private void OnPasswordChanged(string value)
+		{
+			if (_passwordBox != null)
+			{
+				_passwordBox.Password = value;
+				UpdateWatermarkVisibility();
+
+				PasswordChanged?.Invoke(this, new RoutedEventArgs());
+			}
+		}
 
 		private PasswordBox _passwordBox;
 		private TextBlock _watermark;
@@ -52,20 +68,11 @@ namespace Metrolib.Controls
 		{
 			get
 			{
-				return _passwordBox?.Password;
+				return (string) GetValue(PasswordProperty);
 			}
 			set
 			{
-				if (value == Password)
-					return;
-
-				if (_passwordBox != null)
-				{
-					_passwordBox.Password = value;
-					UpdateWatermarkVisibility();
-
-					PasswordChanged?.Invoke(this, new RoutedEventArgs());
-				}
+				SetValue(PasswordProperty, value);
 			}
 		}
 
@@ -89,6 +96,7 @@ namespace Metrolib.Controls
 			_passwordBox = (PasswordBox) GetTemplateChild("PART_PasswordBox");
 			if (_passwordBox != null)
 			{
+				_passwordBox.Password = Password;
 				_passwordBox.PasswordChanged += PasswordBoxOnPasswordChanged;
 			}
 
@@ -97,7 +105,8 @@ namespace Metrolib.Controls
 
 		private void PasswordBoxOnPasswordChanged(object sender, RoutedEventArgs routedEventArgs)
 		{
-			UpdateWatermarkVisibility();
+			if (_passwordBox != null)
+				Password = _passwordBox.Password;
 
 			PasswordChanged?.Invoke(this, new RoutedEventArgs());
 		}
