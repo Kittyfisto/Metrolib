@@ -36,7 +36,8 @@ namespace Metrolib.Controls
 		{
 			if (_passwordBox != null)
 			{
-				_passwordBox.Password = value;
+				if (_passwordBox.Password != value)
+					_passwordBox.Password = value;
 				UpdateWatermarkVisibility();
 
 				PasswordChanged?.Invoke(this, new RoutedEventArgs());
