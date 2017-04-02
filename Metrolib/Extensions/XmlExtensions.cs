@@ -2,7 +2,8 @@
 using System.Globalization;
 using System.Xml;
 
-namespace Metrolib.Extensions
+// ReSharper disable once CheckNamespace
+namespace Metrolib
 {
 	public static class XmlExtensions
 	{

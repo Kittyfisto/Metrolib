@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
+// ReSharper disable once CheckNamespace
 namespace Metrolib
 {
 	/// <summary>

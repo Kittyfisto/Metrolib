@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 
+// ReSharper disable once CheckNamespace
 namespace Metrolib
 {
 	/// <summary>
