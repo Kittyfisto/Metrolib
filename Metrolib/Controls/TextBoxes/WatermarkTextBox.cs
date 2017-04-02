@@ -2,7 +2,6 @@
 using System.Windows.Controls;
 
 // ReSharper disable CheckNamespace
-
 namespace Metrolib.Controls
 // ReSharper restore CheckNamespace
 {
@@ -24,7 +23,7 @@ namespace Metrolib.Controls
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (WatermarkTextBox),
 			                                         new FrameworkPropertyMetadata(typeof (WatermarkTextBox)));
 		}
-
+		
 		/// <summary>
 		///     The watermark text that shall appear until <see cref="TextBox.Text" /> is no longer empty.
 		/// </summary>
