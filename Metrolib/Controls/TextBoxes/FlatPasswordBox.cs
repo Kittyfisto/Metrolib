@@ -52,9 +52,7 @@ namespace Metrolib.Controls
 		{
 			get
 			{
-				return _passwordBox != null
-					       ? _passwordBox.Password
-					       : null;
+				return _passwordBox?.Password;
 			}
 			set
 			{

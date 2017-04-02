@@ -306,6 +306,7 @@
     <Compile Include="Converters\UInt16ToStringConverter.cs" />
     <Compile Include="Converters\UInt32ListToStringConverter.cs" />
     <Compile Include="Converters\UInt64ToStringConverter.cs" />
+    <Compile Include="Extensions\XmlExtensions.cs" />
     <Compile Include="FocusExtension.cs" />
     <Compile Include="Geography\GeoLocation.cs" />
     <Compile Include="Controls\Charts\Map\Layer.cs" />
