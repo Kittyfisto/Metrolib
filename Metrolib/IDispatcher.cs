@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Threading;
 
 namespace Metrolib
@@ -32,5 +33,22 @@ namespace Metrolib
 		/// <param name="fn"></param>
 		/// <param name="priority"></param>
 		void BeginInvoke(Action fn, DispatcherPriority priority);
+
+		/// <summary>
+		///     Adds the given action to the list of actions to be executed later on.
+		///     Returns a task that is completed once the actual action has finished executing.
+		/// </summary>
+		/// <param name="fn"></param>
+		/// <returns></returns>
+		Task BeginInvokeAsync(Action fn);
+
+		/// <summary>
+		///     Adds the given action to the list of actions to be executed later on.
+		///     Returns a task that is completed once the actual action has finished executing.
+		/// </summary>
+		/// <param name="fn"></param>
+		/// <param name="priority"></param>
+		/// <returns></returns>
+		Task BeginInvokeAsync(Action fn, DispatcherPriority priority);
 	}
 }

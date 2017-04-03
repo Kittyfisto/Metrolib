@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Threading;
 
 namespace Metrolib
@@ -86,6 +87,29 @@ namespace Metrolib
 					invoke();
 				}
 			}
+		}
+
+		public Task BeginInvokeAsync(Action fn)
+		{
+			return BeginInvokeAsync(fn, DispatcherPriority.Normal);
+		}
+
+		public Task BeginInvokeAsync(Action fn, DispatcherPriority priority)
+		{
+			var completionSource = new TaskCompletionSource<int>();
+			BeginInvoke(() =>
+			{
+				try
+				{
+					fn();
+					completionSource.TrySetResult(42);
+				}
+				catch (Exception e)
+				{
+					completionSource.TrySetException(e);
+				}
+			}, priority);
+			return completionSource.Task;
 		}
 	}
 }

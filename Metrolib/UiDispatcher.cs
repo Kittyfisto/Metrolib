@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Threading;
 
 namespace Metrolib
@@ -22,31 +23,48 @@ namespace Metrolib
 			_dispatcher = dispatcher;
 		}
 
-		/// <summary>
-		///     Whether or not the calling thread has access to the resource guarded by this dispatcher.
-		/// </summary>
+		/// <inheritdoc />
 		public bool HasAccess
 		{
 			get { return Thread.CurrentThread == _dispatcher.Thread; }
 		}
 
-		/// <summary>
-		///     Delays invocation of the given <paramref name="fn" /> until the dispatcher has time to execute it.
-		/// </summary>
-		/// <param name="fn"></param>
+		/// <inheritdoc />
 		public void BeginInvoke(Action fn)
 		{
 			BeginInvoke(fn, DispatcherPriority.Normal);
 		}
 
-		/// <summary>
-		///     Delays invocation of the given <paramref name="fn" /> until the dispatcher has time to execute it.
-		/// </summary>
-		/// <param name="fn"></param>
-		/// <param name="priority"></param>
+		/// <inheritdoc />
 		public void BeginInvoke(Action fn, DispatcherPriority priority)
 		{
 			_dispatcher.BeginInvoke(fn, priority);
+		}
+
+		/// <inheritdoc />
+		public Task BeginInvokeAsync(Action fn)
+		{
+			return BeginInvokeAsync(fn, DispatcherPriority.Normal);
+		}
+
+		/// <inheritdoc />
+		public Task BeginInvokeAsync(Action fn, DispatcherPriority priority)
+		{
+			var completionSource = new TaskCompletionSource<int>();
+			// TODO: What about cancelled? We should somehow keep track of cancelled actions that occur at application shutdown
+			BeginInvoke(() =>
+			{
+				try
+				{
+					fn();
+					completionSource.TrySetResult(42);
+				}
+				catch (Exception e)
+				{
+					completionSource.TrySetException(e);
+				}
+			}, priority);
+			return completionSource.Task;
 		}
 	}
 }
