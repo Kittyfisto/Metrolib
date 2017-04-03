@@ -61,6 +61,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Buttons\RefreshButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Charts\AxisControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -269,6 +273,7 @@
     <Compile Include="Controls\Buttons\DeleteButton.cs" />
     <Compile Include="Controls\Buttons\MaximizeButton.cs" />
     <Compile Include="Controls\Buttons\MinimizeButton.cs" />
+    <Compile Include="Controls\Buttons\RefreshButton.cs" />
     <Compile Include="Controls\Charts\AxisControl.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\AbstractLineChartCanvas.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\AbstractLineSeriesCanvas.cs" />

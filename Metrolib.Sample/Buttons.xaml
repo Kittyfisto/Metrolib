@@ -27,6 +27,7 @@
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -83,5 +84,12 @@
             <controls:SearchButton controls:Properties.IsInverted="True" />
         </Border>
         <controls:SearchButton Grid.Column="6" Grid.Row="8" IsEnabled="False" />
+
+        <TextBlock Text="RefreshButton" Grid.Row="9" VerticalAlignment="Center" />
+        <controls:RefreshButton Grid.Column="2" Grid.Row="9" />
+        <Border Background="Black" Grid.Column="4" Grid.Row="9">
+            <controls:RefreshButton controls:Properties.IsInverted="True" />
+        </Border>
+        <controls:RefreshButton Grid.Column="6" Grid.Row="9" IsEnabled="False" />
     </Grid>
 </UserControl>
