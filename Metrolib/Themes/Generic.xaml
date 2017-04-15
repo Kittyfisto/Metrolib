@@ -54,6 +54,7 @@
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/RefreshButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/RemoveButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/SearchButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/UndoButton.xaml" />
 
         <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/EditToggleButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/EmailToggleButton.xaml" />

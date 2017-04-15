@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:Metrolib.Controls;assembly=Metrolib"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="440">
+             d:DesignHeight="330" d:DesignWidth="440">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -20,6 +20,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
             <RowDefinition Height="8" />
+            <RowDefinition Height="32" />
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
@@ -91,5 +92,12 @@
             <controls:RefreshButton controls:Properties.IsInverted="True" />
         </Border>
         <controls:RefreshButton Grid.Column="6" Grid.Row="9" IsEnabled="False" />
+
+        <TextBlock Text="UndoButton" Grid.Row="10" VerticalAlignment="Center" />
+        <controls:UndoButton Grid.Column="2" Grid.Row="10" />
+        <Border Background="Black" Grid.Column="4" Grid.Row="10">
+            <controls:UndoButton controls:Properties.IsInverted="True" />
+        </Border>
+        <controls:UndoButton Grid.Column="6" Grid.Row="10" IsEnabled="False" />
     </Grid>
 </UserControl>
