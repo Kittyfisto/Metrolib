@@ -11,7 +11,7 @@
         <Setter Property="Padding" Value="4" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0,0,0,1" />
-        <Setter Property="BorderBrush" Value="{StaticResource SeparatorBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SeparatorBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:FlatListViewItem}">
@@ -20,13 +20,13 @@
                             Background="{TemplateBinding Background}">
                         <Grid>
                             <Rectangle x:Name="PART_HoveredRect"
-                                   Fill="{StaticResource BackgroundBrushHovered}"
+                                   Fill="{DynamicResource BackgroundBrushHovered}"
                                    Opacity="0" />
                             <Rectangle x:Name="PART_SelectedRect"
-                                   Fill="{StaticResource BackgroundBrushSelected}"
+                                   Fill="{DynamicResource BackgroundBrushSelected}"
                                    Opacity="0" />
                             <Rectangle x:Name="PART_SelectedHoveredRect"
-                                       Fill="{StaticResource BackgroundBrushSelectedAndHovered}"
+                                       Fill="{DynamicResource BackgroundBrushSelectedAndHovered}"
                                        Opacity="0"/>
                             <ContentPresenter x:Name="PART_Header"
                                           Margin="{TemplateBinding Padding}"
