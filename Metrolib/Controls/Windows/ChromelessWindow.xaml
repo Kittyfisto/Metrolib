@@ -1,10 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Metrolib.Controls">
+                    xmlns:controls="clr-namespace:Metrolib.Controls"
+                    xmlns:converters="clr-namespace:Metrolib.Converters">
     
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Metrolib;component/Themes/Constants.xaml" />
     </ResourceDictionary.MergedDictionaries>
+
+    <converters:NullToCollapsedConverter x:Key="NullToCollapsedConverter" />
+    <converters:BoolTrueToCollapsedConverter x:Key="BoolTrueToCollapsedConverter" />
     
     <Style TargetType="{x:Type controls:ChromelessWindow}">
         <Setter Property="BorderThickness" Value="1" />
@@ -46,10 +50,12 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Image Source="{TemplateBinding Icon}"
+                                       Visibility="{Binding Icon, Converter={StaticResource NullToCollapsedConverter}, RelativeSource={RelativeSource TemplatedParent}}"
                                        RenderOptions.BitmapScalingMode="HighQuality"
                                        Margin="4,4,0,4" />
 
                                 <TextBlock Text="{TemplateBinding Title}"
+                                           Visibility="{Binding HideTitle, Converter={StaticResource BoolTrueToCollapsedConverter}, RelativeSource={RelativeSource TemplatedParent}}"
                                            Grid.Column="1"
                                            Margin="4"
                                            FontSize="12"

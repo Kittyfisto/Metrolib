@@ -11,54 +11,60 @@ namespace Metrolib.Controls
 	///     Base class for a window without borders.
 	///     Styled to look like a window in Windows 10.
 	/// </summary>
-	[TemplatePart(Name = "PART_MinimizeWindow", Type = typeof (Button))]
-	[TemplatePart(Name = "PART_MaximizeWindow", Type = typeof (MaximizeButton))]
-	[TemplatePart(Name = "PART_CloseWindow", Type = typeof (Button))]
+	[TemplatePart(Name = "PART_MinimizeWindow", Type = typeof(Button))]
+	[TemplatePart(Name = "PART_MaximizeWindow", Type = typeof(MaximizeButton))]
+	[TemplatePart(Name = "PART_CloseWindow", Type = typeof(Button))]
 	public class ChromelessWindow
 		: Window
 	{
 		/// <summary>
+		///     Definition of the <see cref="HideTitle" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty HideTitleProperty = DependencyProperty.Register(
+			"HideTitle", typeof(bool), typeof(ChromelessWindow), new PropertyMetadata(false));
+
+		/// <summary>
 		///     Definition of the <see cref="VerticalHeaderAlignment" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty VerticalHeaderAlignmentProperty =
-			DependencyProperty.Register("VerticalHeaderAlignment", typeof (VerticalAlignment), typeof (ChromelessWindow),
-			                            new PropertyMetadata(default(VerticalAlignment)));
+			DependencyProperty.Register("VerticalHeaderAlignment", typeof(VerticalAlignment), typeof(ChromelessWindow),
+				new PropertyMetadata(default(VerticalAlignment)));
 
 		/// <summary>
 		///     Definition of the <see cref="HorizontalHeaderAlignment" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty HorizontalHeaderAlignmentProperty =
-			DependencyProperty.Register("HorizontalHeaderAlignment", typeof (HorizontalAlignment), typeof (
-				                                                                                       ChromelessWindow),
-			                            new PropertyMetadata(default(HorizontalAlignment)));
+			DependencyProperty.Register("HorizontalHeaderAlignment", typeof(HorizontalAlignment), typeof(
+					ChromelessWindow),
+				new PropertyMetadata(default(HorizontalAlignment)));
 
 		/// <summary>
 		///     Definition of the <see cref="Header" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty HeaderProperty =
-			DependencyProperty.Register("Header", typeof (object), typeof (ChromelessWindow),
-			                            new PropertyMetadata(default(object)));
+			DependencyProperty.Register("Header", typeof(object), typeof(ChromelessWindow),
+				new PropertyMetadata(default(object)));
 
 		/// <summary>
 		///     Definition of the <see cref="HeaderTemplate" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty HeaderTemplateProperty =
-			DependencyProperty.Register("HeaderTemplate", typeof (DataTemplate), typeof (ChromelessWindow),
-			                            new PropertyMetadata(default(DataTemplate)));
+			DependencyProperty.Register("HeaderTemplate", typeof(DataTemplate), typeof(ChromelessWindow),
+				new PropertyMetadata(default(DataTemplate)));
 
 		/// <summary>
 		///     Definition of the <see cref="HeaderTemplateSelector" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty HeaderTemplateSelectorProperty =
-			DependencyProperty.Register("HeaderTemplateSelector", typeof (DataTemplateSelector),
-			                            typeof (ChromelessWindow), new PropertyMetadata(default(DataTemplateSelector)));
+			DependencyProperty.Register("HeaderTemplateSelector", typeof(DataTemplateSelector),
+				typeof(ChromelessWindow), new PropertyMetadata(default(DataTemplateSelector)));
 
 		/// <summary>
 		///     Definition of the <see cref="TitleBarHeight" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty TitleBarHeightProperty =
-			DependencyProperty.Register("TitleBarHeight", typeof (double), typeof (ChromelessWindow),
-			                            new PropertyMetadata(default(double), OnTitleBarHeightChanged));
+			DependencyProperty.Register("TitleBarHeight", typeof(double), typeof(ChromelessWindow),
+				new PropertyMetadata(default(double), OnTitleBarHeightChanged));
 
 		private Button _closeWindow;
 		private MaximizeButton _maximizeWindow;
@@ -66,8 +72,17 @@ namespace Metrolib.Controls
 
 		static ChromelessWindow()
 		{
-			DefaultStyleKeyProperty.OverrideMetadata(typeof (ChromelessWindow),
-			                                         new FrameworkPropertyMetadata(typeof (ChromelessWindow)));
+			DefaultStyleKeyProperty.OverrideMetadata(typeof(ChromelessWindow),
+				new FrameworkPropertyMetadata(typeof(ChromelessWindow)));
+		}
+
+		/// <summary>
+		///     Whether or not the title of this window is actually shown.
+		/// </summary>
+		public bool HideTitle
+		{
+			get { return (bool) GetValue(HideTitleProperty); }
+			set { SetValue(HideTitleProperty, value); }
 		}
 
 		/// <summary>
@@ -125,14 +140,15 @@ namespace Metrolib.Controls
 			set { SetValue(HeaderProperty, value); }
 		}
 
-		private static void OnTitleBarHeightChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+		private static void OnTitleBarHeightChanged(DependencyObject dependencyObject,
+			DependencyPropertyChangedEventArgs args)
 		{
 			((ChromelessWindow) dependencyObject).OnTitleBarHeightChanged((double) args.NewValue);
 		}
 
 		private void OnTitleBarHeightChanged(double height)
 		{
-			WindowChrome chrome = WindowChrome.GetWindowChrome(this);
+			var chrome = WindowChrome.GetWindowChrome(this);
 			if (chrome != null)
 				chrome.CaptionHeight = height;
 		}
