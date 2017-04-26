@@ -1,5 +1,6 @@
 ﻿// ReSharper disable CheckNamespace
 
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -38,22 +39,54 @@ namespace Metrolib
 		{
 			if (Children.Count > 0)
 			{
+				if (double.IsInfinity(availableSize.Width) ||
+				    double.IsInfinity(availableSize.Height))
+				{
+					availableSize = MeasuredDesiredSize();
+				}
+
 				System.Windows.Size size;
 				if (Orientation == Orientation.Horizontal)
 				{
-					size = new System.Windows.Size(availableSize.Width/Children.Count, availableSize.Height);
+					size = new System.Windows.Size(availableSize.Width / Children.Count, availableSize.Height);
 				}
 				else
 				{
-					size = new System.Windows.Size(availableSize.Width, availableSize.Height/Children.Count);
+					size = new System.Windows.Size(availableSize.Width, availableSize.Height / Children.Count);
 				}
 
 				foreach (UIElement child in Children)
 				{
 					child.Measure(size);
 				}
+				return availableSize;
 			}
-			return availableSize;
+
+			return new System.Windows.Size();
+		}
+
+		private System.Windows.Size MeasuredDesiredSize()
+		{
+			double desiredWidth = 0;
+			double desiredHeight = 0;
+
+			foreach (UIElement child in Children)
+			{
+				child.Measure(new System.Windows.Size(double.PositiveInfinity, double.PositiveInfinity));
+
+				if (Orientation == Orientation.Horizontal)
+				{
+					desiredWidth += child.DesiredSize.Width;
+					desiredHeight = Math.Max(desiredHeight, child.DesiredSize.Height);
+				}
+				else
+				{
+					desiredWidth = Math.Max(desiredWidth, child.DesiredSize.Width);
+					desiredHeight += child.DesiredSize.Height;
+				}
+			}
+			var desiredSize = new System.Windows.Size(desiredWidth, desiredHeight);
+			return desiredSize;
 		}
 
 		/// <summary>

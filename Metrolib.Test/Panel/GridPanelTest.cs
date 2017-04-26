@@ -22,6 +22,16 @@ namespace Metrolib.Test.Panel
 		}
 
 		[Test]
+		[Description("Verifies that Measure() can produce a proper desired size, even when it is given infinite size")]
+		public void TestMeasure1()
+		{
+			var panel = new GridPanel();
+			panel.Children.Add(new TextBlock {Text = "Hello, World!"});
+			new Action(() => panel.Measure(new System.Windows.Size(double.PositiveInfinity, double.PositiveInfinity)))
+				.ShouldNotThrow();
+		}
+
+		[Test]
 		[Ignore("Rewrite to use measure/arrange")]
 		public void TestVerticalAdd1()
 		{
