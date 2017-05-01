@@ -1,14 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Metrolib.Controls">
+                    xmlns:controls="clr-namespace:Metrolib.Controls"
+                    xmlns:metrolib="clr-namespace:Metrolib">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="FlatButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
-    <Geometry x:Key="Add">
-        M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z
-    </Geometry>
 
     <Style TargetType="{x:Type controls:AddButton}" BasedOn="{StaticResource {x:Type controls:FlatButton}}">
         <Setter Property="ContentTemplate">
@@ -16,7 +13,7 @@
                 <DataTemplate>
                     <Viewbox>
                         <Canvas Width="24" Height="24">
-                            <Path x:Name="PART_Icon" Data="{StaticResource Add}"
+                            <Path x:Name="PART_Icon" Data="{x:Static metrolib:Icons.Add}"
                                   Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:FlatButton}}, Mode=OneWay}" />
                         </Canvas>
                     </Viewbox>

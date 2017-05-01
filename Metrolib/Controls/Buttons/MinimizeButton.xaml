@@ -1,14 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Metrolib.Controls">
+                    xmlns:controls="clr-namespace:Metrolib.Controls"
+                    xmlns:metrolib="clr-namespace:Metrolib">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="FlatButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
-    <Geometry x:Key="Minimize">
-        M20,14H4V10H20
-    </Geometry>
 
     <Style TargetType="{x:Type controls:MinimizeButton}" BasedOn="{StaticResource {x:Type controls:FlatButton}}">
         <Setter Property="HoveredBackground" Value="{StaticResource BackgroundBrushHovered}" />
@@ -22,7 +19,7 @@
                 <DataTemplate>
                     <Viewbox>
                         <Canvas Width="20" Height="20">
-                            <Path x:Name="PART_Icon" Data="{StaticResource Minimize}"
+                            <Path x:Name="PART_Icon" Data="{x:Static metrolib:Icons.WindowMinimize}"
                                   Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:FlatButton}}, Mode=OneWay}" />
                         </Canvas>
                     </Viewbox>

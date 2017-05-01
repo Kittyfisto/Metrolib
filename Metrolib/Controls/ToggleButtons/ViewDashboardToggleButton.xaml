@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:Metrolib.Converters"
-                    xmlns:local="clr-namespace:Metrolib.Controls">
+                    xmlns:local="clr-namespace:Metrolib.Controls"
+                    xmlns:metrolib="clr-namespace:Metrolib">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="FlatToggleButton.xaml" />
@@ -10,17 +11,13 @@
     <converters:BoolFalseToCollapsedConverter x:Key="BoolFalse2CollapsedConverter" />
     <converters:BoolTrueToCollapsedConverter x:Key="BoolTrue2CollapsedConverter" />
 
-    <Geometry x:Key="ViewDashboard">
-        M13,3V9H21V3M13,21H21V11H13M3,21H11V15H3M3,13H11V3H3V13Z
-    </Geometry>
-
     <Style TargetType="{x:Type local:ViewDashboardToggleButton}" BasedOn="{StaticResource {x:Type local:FlatToggleButton}}">
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
                     <Viewbox>
                         <Canvas Width="24" Height="24">
-                            <Path x:Name="PART_Icon" Data="{StaticResource ViewDashboard}"
+                            <Path x:Name="PART_Icon" Data="{x:Static metrolib:Icons.ViewDashboard}"
                                   Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:FlatToggleButton}}}" />
                         </Canvas>
                     </Viewbox>

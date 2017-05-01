@@ -358,6 +358,7 @@
     <Compile Include="Geography\MercatorRectangle.cs" />
     <Compile Include="Geometry\Angle.cs" />
     <Compile Include="Controls\Charts\Map\MapCanvas.cs" />
+    <Compile Include="Icons.cs" />
     <Compile Include="Physics\Attractor.cs" />
     <Compile Include="Physics\Body.cs" />
     <Compile Include="Geometry\Circle.cs" />

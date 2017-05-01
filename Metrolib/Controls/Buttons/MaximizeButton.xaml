@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:Metrolib.Controls"
-                    xmlns:converters="clr-namespace:Metrolib.Converters">
+                    xmlns:converters="clr-namespace:Metrolib.Converters"
+                    xmlns:metrolib="clr-namespace:Metrolib">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="FlatButton.xaml" />
@@ -9,14 +10,6 @@
 
     <converters:BoolFalseToHiddenConverter x:Key="BoolFalseToHiddenConverter" />
     <converters:BoolTrueToHiddenConverter x:Key="BoolTrueToHiddenConverter" />
-
-    <Geometry x:Key="Maximize">
-        M4,4H20V20H4V4M6,8V18H18V8H6Z
-    </Geometry>
-
-    <Geometry x:Key="Restore">
-        M4,8H8V4H20V16H16V20H4V8M16,8V14H18V6H10V8H16M6,12V18H14V12H6Z
-    </Geometry>
 
     <Style TargetType="{x:Type controls:MaximizeButton}" BasedOn="{StaticResource {x:Type controls:FlatButton}}">
         <Setter Property="HoveredBackground" Value="{StaticResource BackgroundBrushHovered}" />
@@ -30,10 +23,10 @@
                 <DataTemplate>
                     <Viewbox>
                         <Canvas Width="20" Height="20">
-                            <Path x:Name="PART_Maximize" Data="{StaticResource Maximize}"
+                            <Path x:Name="PART_Maximize" Data="{x:Static metrolib:Icons.WindowMaximize}"
                                   Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:FlatButton}}, Mode=OneWay}"
                                   Visibility="{Binding IsMaximized, RelativeSource={RelativeSource AncestorType={x:Type controls:MaximizeButton}}, Converter={StaticResource BoolTrueToHiddenConverter}}" />
-                            <Path x:Name="PART_Restore" Data="{StaticResource Restore}"
+                            <Path x:Name="PART_Restore" Data="{x:Static metrolib:Icons.WindowRestore}"
                                   Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:FlatButton}}, Mode=OneWay}"
                                   Visibility="{Binding IsMaximized, RelativeSource={RelativeSource AncestorType={x:Type controls:MaximizeButton}}, Converter={StaticResource BoolFalseToHiddenConverter}}" />
                         </Canvas>

@@ -1,14 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Metrolib.Controls">
+                    xmlns:controls="clr-namespace:Metrolib.Controls"
+                    xmlns:metrolib="clr-namespace:Metrolib">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="FlatButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
-    <Geometry x:Key="ChevronUp">
-        M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z
-    </Geometry>
 
     <Style TargetType="{x:Type controls:PreviousButton}" BasedOn="{StaticResource {x:Type controls:FlatButton}}">
         <Setter Property="ContentTemplate">
@@ -16,7 +13,7 @@
                 <DataTemplate>
                     <Viewbox>
                         <Canvas Width="24" Height="24">
-                            <Path x:Name="PART_Icon" Data="{StaticResource ChevronUp}"
+                            <Path x:Name="PART_Icon" Data="{x:Static metrolib:Icons.ChevronUp}"
                                   Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:FlatButton}}, Mode=OneWay}" />
                         </Canvas>
                     </Viewbox>

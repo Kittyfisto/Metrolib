@@ -1,19 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:Metrolib.Controls"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:metrolib="clr-namespace:Metrolib">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Metrolib;component/Themes/Constants.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
-    <Geometry x:Key="ChevronDown">
-        M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z
-    </Geometry>
-
-    <Geometry x:Key="ChevronUp">
-        M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z
-    </Geometry>
 
     <EllipseGeometry x:Key="Circle" Center="12,12" RadiusX="12" RadiusY="12" />
 
@@ -60,10 +53,10 @@
                     <ControlTemplate.Triggers>
                         <!-- ChevronUp/Down depending on IsChecked -->
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Data" TargetName="PART_Chevron" Value="{StaticResource ChevronDown}" />
+                            <Setter Property="Data" TargetName="PART_Chevron" Value="{x:Static metrolib:Icons.ChevronDown}" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="False">
-                            <Setter Property="Data" TargetName="PART_Chevron" Value="{StaticResource ChevronUp}" />
+                            <Setter Property="Data" TargetName="PART_Chevron" Value="{x:Static metrolib:Icons.ChevronUp}" />
                         </Trigger>
 
                         <!-- Chevron and Circle color based on IsSelected -->

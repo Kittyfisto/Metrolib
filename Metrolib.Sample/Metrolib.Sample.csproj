@@ -51,6 +51,9 @@
   <ItemGroup>
     <Compile Include="CityViewModel.cs" />
     <Compile Include="EdgeType.cs" />
+    <Compile Include="HistogramCharts.xaml.cs">
+      <DependentUpon>HistogramCharts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MapCharts.xaml.cs">
       <DependentUpon>MapCharts.xaml</DependentUpon>
     </Compile>
@@ -97,6 +100,10 @@
       <DependentUpon>Tree.xaml</DependentUpon>
     </Compile>
     <Page Include="Buttons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HistogramCharts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
