@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -19,10 +20,77 @@ namespace Metrolib.Controls
 		public static readonly DependencyProperty IsExpandableProperty =
 			DependencyProperty.Register("IsExpandable", typeof(bool), typeof(FlatTreeViewItem), new PropertyMetadata(true));
 
+		private ITreeViewItemViewModel _model;
+
 		static FlatTreeViewItem()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (FlatTreeViewItem),
 			                                         new FrameworkPropertyMetadata(typeof (FlatTreeViewItem)));
+		}
+
+		/// <inheritdoc />
+		protected override void OnHeaderChanged(object oldHeader, object newHeader)
+		{
+			base.OnHeaderChanged(oldHeader, newHeader);
+
+			var old = oldHeader as ITreeViewItemViewModel;
+			if (old != null)
+			{
+				old.PropertyChanged -= HeaderOnPropertyChanged;
+			}
+
+			_model = newHeader as ITreeViewItemViewModel;
+			if (_model != null)
+			{
+				_model.PropertyChanged += HeaderOnPropertyChanged;
+				IsExpanded = _model.IsExpanded;
+				IsSelected = _model.IsSelected;
+			}
+		}
+
+		private void HeaderOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			switch (e.PropertyName)
+			{
+				case "IsSelected":
+					IsSelected = _model.IsSelected;
+					break;
+				case "IsExpanded":
+					IsExpanded = _model.IsExpanded;
+					break;
+			}
+		}
+
+		/// <inheritdoc />
+		protected override void OnExpanded(RoutedEventArgs e)
+		{
+			base.OnExpanded(e);
+			if (_model != null)
+				_model.IsExpanded = true;
+		}
+
+		/// <inheritdoc />
+		protected override void OnCollapsed(RoutedEventArgs e)
+		{
+			base.OnCollapsed(e);
+			if (_model != null)
+				_model.IsExpanded = false;
+		}
+
+		/// <inheritdoc />
+		protected override void OnSelected(RoutedEventArgs e)
+		{
+			base.OnSelected(e);
+			if (_model != null)
+				_model.IsSelected = true;
+		}
+
+		/// <inheritdoc />
+		protected override void OnUnselected(RoutedEventArgs e)
+		{
+			base.OnUnselected(e);
+			if (_model != null)
+				_model.IsSelected = false;
 		}
 
 		/// <summary>

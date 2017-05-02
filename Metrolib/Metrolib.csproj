@@ -314,6 +314,7 @@
     <Compile Include="Controls\ProgressBar\FlatProgressBar.cs" />
     <Compile Include="Controls\ToggleButtons\ViewDashboardToggleButton.cs" />
     <Compile Include="Controls\ToggleButtons\ViewQuiltToggleButton.cs" />
+    <Compile Include="Controls\Tree\ITreeViewItemViewModel.cs" />
     <Compile Include="Converters\AbstractNumericListToStringConverter.cs" />
     <Compile Include="Converters\ByteToStringConverter.cs" />
     <Compile Include="Converters\DoubleToPercentageConverter.cs" />
