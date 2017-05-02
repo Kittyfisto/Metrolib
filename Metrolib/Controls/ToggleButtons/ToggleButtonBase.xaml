@@ -19,6 +19,8 @@
         <Setter Property="HoveredBackground" Value="Transparent" />
         <Setter Property="PressedBackground" Value="Transparent" />
         <Setter Property="CheckedBackground" Value="{StaticResource BackgroundBrushSelected}" />
+        <!-- We don't want to draw this ugly dotted border around a focused toggle button -->
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="ContextMenu.HorizontalOffset" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" />
         <Setter Property="ContextMenu.VerticalOffset" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" />
         <Style.Triggers>

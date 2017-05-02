@@ -17,6 +17,8 @@
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="Padding" Value="4" />
         <Setter Property="IconHeight" Value="{x:Static system:Double.NaN}" />
+        <!-- We don't want to draw this ugly dotted border around a focused toggle button -->
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:ExpanderToggleButton}">
