@@ -118,6 +118,8 @@
                         <!-- Horizontal -->
                         <Trigger Property="Orientation" Value="Horizontal">
                             <Setter TargetName="PART_Track" Property="Height" Value="{Binding Thickness, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand" />
+                            <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand" />
                         </Trigger>
                         <!--<MultiTrigger>
                             <MultiTrigger.Conditions>

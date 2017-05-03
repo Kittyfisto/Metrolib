@@ -19,6 +19,7 @@
                 </TextBlock.Text>
             </TextBlock>
         </controls:FlatScrollViewer>
+        
         <controls:FlatScrollViewer Grid.Column="1"
                                    HorizontalScrollBarVisibility="Auto"
                                    VerticalAlignment="Top"
