@@ -21,7 +21,7 @@
     <SolidColorBrush x:Key="BackgroundBrushPressed" Color="#CCCCCC" />
     <SolidColorBrush x:Key="BackgroundBrushSelected" Color="#3998D6" />
     <SolidColorBrush x:Key="BackgroundBrushSelectedAndHovered" Color="#348BC1" />
-    <SolidColorBrush x:Key="BackgroundBrushSelectedUnfocused" Color="#E7E7E7" />
+    <SolidColorBrush x:Key="BackgroundBrushSelectedUnfocused" Color="#D7D7D7" />
 
     <SolidColorBrush x:Key="ForegroundBrushHovered" Color="{x:Static metrolib:Constants.ForegroundColorHovered}" />
     <SolidColorBrush x:Key="ForegroundBrushPressed" Color="{x:Static metrolib:Constants.ForegroundColorPressed}" />
