@@ -89,6 +89,40 @@
 
 		#endregion
 
+		#region Bookmark
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry Bookmark;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry BookmarkCheck;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry BookmarkOutline;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry BookmarkPlus;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry BookmarkPlusOutline;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry BookmarkRemove;
+
+		#endregion
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -108,11 +142,6 @@
 		/// 
 		/// </summary>
 		public static readonly System.Windows.Media.Geometry Delete;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public static readonly System.Windows.Media.Geometry FileExport;
 
 		/// <summary>
 		/// 
@@ -175,6 +204,15 @@
 		/// 
 		/// </summary>
 		public static readonly System.Windows.Media.Geometry FilterRemoveOutline;
+
+		#endregion
+
+		#region File
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileExport;
 
 		#endregion
 
@@ -280,6 +318,13 @@
 			EmailOpen = CreateGeometry("M4,8L12,13L20,8V8L12,3L4,8V8M22,8V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V8C2,7.27 2.39,6.64 2.97,6.29L12,0.64L21.03,6.29C21.61,6.64 22,7.27 22,8Z");
 			ChevronDown = CreateGeometry("M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z");
 			ChevronUp = CreateGeometry("M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z");
+
+			Bookmark = CreateGeometry("M17,3H7A2,2 0 0,0 5,5V21L12,18L19,21V5C19,3.89 18.1,3 17,3Z");
+			BookmarkCheck = CreateGeometry("M17,3A2,2 0 0,1 19,5V21L12,18L5,21V5C5,3.89 5.9,3 7,3H17M11,14L17.25,7.76L15.84,6.34L11,11.18L8.41,8.59L7,10L11,14Z");
+			BookmarkOutline = CreateGeometry("M17,18L12,15.82L7,18V5H17M17,3H7A2,2 0 0,0 5,5V21L12,18L19,21V5C19,3.89 18.1,3 17,3Z");
+			BookmarkPlus = CreateGeometry("M17,3A2,2 0 0,1 19,5V21L12,18L5,21V5C5,3.89 5.9,3 7,3H17M11,7V9H9V11H11V13H13V11H15V9H13V7H11Z");
+			BookmarkPlusOutline = CreateGeometry("M17,18V5H7V18L12,15.82L17,18M17,3A2,2 0 0,1 19,5V21L12,18L5,21V5C5,3.89 5.9,3 7,3H17M11,7H13V9H15V11H13V13H11V11H9V9H11V7Z");
+			BookmarkRemove = CreateGeometry("M17,3A2,2 0 0,1 19,5V21L12,18L5,21V5C5,3.89 5.9,3 7,3H17M8.17,8.58L10.59,11L8.17,13.41L9.59,14.83L12,12.41L14.41,14.83L15.83,13.41L13.41,11L15.83,8.58L14.41,7.17L12,9.58L9.59,7.17L8.17,8.58Z");
 
 			ViewList = CreateGeometry("M9,5V9H21V5M9,19H21V15H9M9,14H21V10H9M4,9H8V5H4M4,19H8V15H4M4,14H8V10H4V14Z");
 			ViewGrid = CreateGeometry("M3,11H11V3H3M3,21H11V13H3M13,21H21V13H13M13,3V11H21V3");
