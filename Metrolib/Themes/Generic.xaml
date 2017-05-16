@@ -46,6 +46,7 @@
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/DeleteButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/ExportButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/FlatButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/FolderOpenButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/MaximizeButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/MinimizeButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/MoreButton.xaml" />

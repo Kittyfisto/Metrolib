@@ -29,6 +29,7 @@
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -99,5 +100,12 @@
             <controls:UndoButton controls:Properties.IsInverted="True" />
         </Border>
         <controls:UndoButton Grid.Column="6" Grid.Row="10" IsEnabled="False" />
+
+        <TextBlock Text="FolderOpenButton" Grid.Row="11" VerticalAlignment="Center" />
+        <controls:FolderOpenButton Grid.Column="2" Grid.Row="11" />
+        <Border Background="Black" Grid.Column="4" Grid.Row="11">
+            <controls:FolderOpenButton controls:Properties.IsInverted="True" />
+        </Border>
+        <controls:FolderOpenButton Grid.Column="6" Grid.Row="11" IsEnabled="False" />
     </Grid>
 </UserControl>
