@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Metrolib")]
-[assembly: AssemblyCopyright("Copyright © Kittyfisto 2016")]
+[assembly: AssemblyCopyright("Copyright © Kittyfisto 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
