@@ -8,11 +8,11 @@ using System.Windows;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("Metrolib")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("WPF UI Library")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Metrolib")]
-[assembly: AssemblyCopyright("Copyright © Kittyfisto 2017")]
+[assembly: AssemblyCopyright("Copyright © Simon Mießler 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
