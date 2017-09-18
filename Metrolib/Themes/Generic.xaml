@@ -31,6 +31,7 @@
         <ResourceDictionary Source="/Metrolib;component/Controls/Tree/FlatTreeViewItem.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Tree/FlatTreeView.xaml" />
 
+        <ResourceDictionary Source="/Metrolib;component/Controls/TextBlocks/EditableTextBlock.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/TextBlocks/FlatTextBlock.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/TextBlocks/FlavourTextBlock.xaml" />
 

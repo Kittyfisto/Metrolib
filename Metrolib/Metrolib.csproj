@@ -181,6 +181,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\TextBlocks\EditableTextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\TextBlocks\FlatTextBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -317,6 +321,7 @@
     <Compile Include="Controls\Charts\Map\MapViewPointItem.cs" />
     <Compile Include="Controls\ProgressBar\AbstractProgressBar.cs" />
     <Compile Include="Controls\ProgressBar\FlatProgressBar.cs" />
+    <Compile Include="Controls\TextBlocks\EditableTextBlock.cs" />
     <Compile Include="Controls\ToggleButtons\ViewDashboardToggleButton.cs" />
     <Compile Include="Controls\ToggleButtons\ViewQuiltToggleButton.cs" />
     <Compile Include="Controls\Tree\ITreeViewItemViewModel.cs" />
