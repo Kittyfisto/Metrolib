@@ -22,6 +22,7 @@
                                 Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" />
                             <controls:WatermarkTextBox
                                 x:Name="PART_TextBox"
+                                Watermark="{Binding Watermark, RelativeSource={RelativeSource TemplatedParent}}"
                                 Visibility="{Binding IsEditing, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalseToHiddenConverter}}" />
                         </Grid>
                     </Border>

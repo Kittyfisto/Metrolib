@@ -40,15 +40,32 @@ namespace Metrolib.Controls
 		public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
 			"Text", typeof(string), typeof(EditableTextBlock), new PropertyMetadata(default(string)));
 
-		private TextBox _textBox;
+		/// <summary>
+		///     Definition of the <see cref="Watermark" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty WatermarkProperty = DependencyProperty.Register(
+			"Watermark", typeof(string), typeof(EditableTextBlock), new PropertyMetadata(default(string)));
+
 		private TextBlock _textBlock;
+
+		private TextBox _textBox;
 
 		static EditableTextBlock()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(EditableTextBlock),
 				new FrameworkPropertyMetadata(typeof(EditableTextBlock)));
 		}
-		
+
+		/// <summary>
+		///     The watermark displayed in the <see cref="TextBox" /> if no text has been entered.
+		///     By default, no watermark is displayed.
+		/// </summary>
+		public string Watermark
+		{
+			get { return (string) GetValue(WatermarkProperty); }
+			set { SetValue(WatermarkProperty, value); }
+		}
+
 		/// <summary>
 		///     Whether or not the text of this control is being edited.
 		/// </summary>
@@ -102,7 +119,7 @@ namespace Metrolib.Controls
 							_textBox.Focus();
 							var text = _textBox.Text;
 							if (text != null)
-								_textBox.Select(0, text.Length);
+								_textBox.Select(start: 0, length: text.Length);
 						}
 					}));
 			}

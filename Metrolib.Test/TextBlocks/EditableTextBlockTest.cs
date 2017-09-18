@@ -16,8 +16,8 @@ namespace Metrolib.Test.TextBlocks
 		private EditableTextBlock _control;
 		private TestMouse _mouse;
 		private TestKeyboard _keyboard;
-		private TextBox _textBox;
-		private TextBlock _textBlock;
+		private WatermarkTextBox _textBox;
+		private FlatTextBlock _textBlock;
 
 		[OneTimeSetUp]
 		public void OneTimeSetUp()
@@ -36,8 +36,8 @@ namespace Metrolib.Test.TextBlocks
 			_control.ApplyTemplate();
 
 			var type = typeof(EditableTextBlock);
-			_textBox = (TextBox)type.GetField("_textBox", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_control);
-			_textBlock = (TextBlock)type.GetField("_textBlock", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_control);
+			_textBox = (WatermarkTextBox)type.GetField("_textBox", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_control);
+			_textBlock = (FlatTextBlock)type.GetField("_textBlock", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_control);
 		}
 
 		[Test]
@@ -60,6 +60,13 @@ namespace Metrolib.Test.TextBlocks
 			_textBox.IsVisible.Should().BeTrue("because enabling editing shall show the textbox");
 			_textBox.IsFocused.Should().BeTrue();
 			_textBox.SelectedText.Should().Be("Hello, World!", "because the entire text shall be selected by default");
+		}
+
+		[Test]
+		public void TestChangeWatermark()
+		{
+			_control.Watermark = "Give me characters!";
+			_textBox.Watermark.Should().Be("Give me characters!");
 		}
 
 		[Test]

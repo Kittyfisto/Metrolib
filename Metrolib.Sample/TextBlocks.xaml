@@ -35,16 +35,22 @@
         <TextBlock Text="Disabled" Grid.Column="6" />
 
         <TextBlock Text="FlatTextBlock" Grid.Row="2" VerticalAlignment="Center" />
-        <controls:FlatTextBlock Grid.Column="2" Grid.Row="2" Text="Foo" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <controls:FlatTextBlock Grid.Column="2" Grid.Row="2" Text="Foo" VerticalAlignment="Center"
+                                HorizontalAlignment="Center" />
         <Border Background="Black" Grid.Column="4" Grid.Row="2">
-            <controls:FlatTextBlock controls:Properties.IsInverted="True" Text="Foo" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <controls:FlatTextBlock controls:Properties.IsInverted="True" Text="Foo" VerticalAlignment="Center"
+                                    HorizontalAlignment="Center" />
         </Border>
-        <controls:FlatTextBlock Grid.Column="6" Grid.Row="2" IsEnabled="False" Text="Foo" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <controls:FlatTextBlock Grid.Column="6" Grid.Row="2" IsEnabled="False" Text="Foo" VerticalAlignment="Center"
+                                HorizontalAlignment="Center" />
 
         <TextBlock Text="OpenInNewHyperlink" Grid.Row="3" VerticalAlignment="Center" />
-        <controls:OpenInNewHyperlink Grid.Column="2" Grid.Row="3" Text="google.com" NavigateUri="http://google.com" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <controls:OpenInNewHyperlink Grid.Column="4" Grid.Row="3" Text="Notepad" ProcessName="Notepad.exe" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <controls:OpenInNewHyperlink Grid.Column="6" Grid.Row="3" IsEnabled="False" Text="google.com" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <controls:OpenInNewHyperlink Grid.Column="2" Grid.Row="3" Text="google.com" NavigateUri="http://google.com"
+                                     VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <controls:OpenInNewHyperlink Grid.Column="4" Grid.Row="3" Text="Notepad" ProcessName="Notepad.exe"
+                                     VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <controls:OpenInNewHyperlink Grid.Column="6" Grid.Row="3" IsEnabled="False" Text="google.com"
+                                     VerticalAlignment="Center" HorizontalAlignment="Center" />
 
         <TextBlock Text="HyperlinkRun" Grid.Row="4" VerticalAlignment="Center" />
         <TextBlock Grid.Column="2" Grid.Row="4">
@@ -55,6 +61,7 @@
 
         <TextBlock Text="EditableTextBlock" Grid.Row="5" VerticalAlignment="Center" />
         <controls:EditableTextBlock Grid.Row="5" Grid.Column="2"
-                                      Text="Click me!"/>
+                                    Text="Click me!"
+                                    Watermark="Give me characters" />
     </Grid>
 </UserControl>
