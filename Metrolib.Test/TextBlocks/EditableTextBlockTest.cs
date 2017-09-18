@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using System.Reflection;
+using System.Threading;
+using System.Windows.Controls;
 using System.Windows.Input;
 using FluentAssertions;
 using Metrolib.Controls;
@@ -14,6 +16,8 @@ namespace Metrolib.Test.TextBlocks
 		private EditableTextBlock _control;
 		private TestMouse _mouse;
 		private TestKeyboard _keyboard;
+		private TextBox _textBox;
+		private TextBlock _textBlock;
 
 		[OneTimeSetUp]
 		public void OneTimeSetUp()
@@ -30,6 +34,10 @@ namespace Metrolib.Test.TextBlocks
 				Style = StyleHelper.Load<EditableTextBlock>()
 			};
 			_control.ApplyTemplate();
+
+			var type = typeof(EditableTextBlock);
+			_textBox = (TextBox)type.GetField("_textBox", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_control);
+			_textBlock = (TextBlock)type.GetField("_textBlock", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_control);
 		}
 
 		[Test]
@@ -39,19 +47,19 @@ namespace Metrolib.Test.TextBlocks
 			_control.Text = "Hello, World!";
 
 			_control.IsEditing.Should().BeFalse();
-			_control.TextBlock.IsVisible.Should().BeTrue();
-			_control.TextBox.IsVisible.Should().BeFalse();
-			_control.TextBox.IsFocused.Should().BeFalse();
+			_textBlock.IsVisible.Should().BeTrue();
+			_textBox.IsVisible.Should().BeFalse();
+			_textBox.IsFocused.Should().BeFalse();
 
-			_mouse.LeftClick(_control.TextBlock);
-			_mouse.LeftClick(_control.TextBlock);
+			_mouse.LeftClick(_textBlock);
+			_mouse.LeftClick(_textBlock);
 
 			_control.IsEditing.Should().BeTrue();
 			// _control.Dispatcher.ExecuteAllPendingEvents();
-			_control.TextBlock.IsVisible.Should().BeFalse();
-			_control.TextBox.IsVisible.Should().BeTrue("because enabling editing shall show the textbox");
-			_control.TextBox.IsFocused.Should().BeTrue();
-			_control.TextBox.SelectedText.Should().Be("Hello, World!", "because the entire text shall be selected by default");
+			_textBlock.IsVisible.Should().BeFalse();
+			_textBox.IsVisible.Should().BeTrue("because enabling editing shall show the textbox");
+			_textBox.IsFocused.Should().BeTrue();
+			_textBox.SelectedText.Should().Be("Hello, World!", "because the entire text shall be selected by default");
 		}
 
 		[Test]
@@ -60,10 +68,10 @@ namespace Metrolib.Test.TextBlocks
 		{
 			_control.IsEditing = true;
 			// _control.Dispatcher.ExecuteAllPendingEvents();
-			_control.TextBox.IsVisible.Should().BeTrue();
+			_textBox.IsVisible.Should().BeTrue();
 
 			_control.IsEditing = false;
-			_control.TextBox.IsVisible.Should().BeFalse();
+			_textBox.IsVisible.Should().BeFalse();
 		}
 
 		[Test]
@@ -71,7 +79,7 @@ namespace Metrolib.Test.TextBlocks
 		{
 			_control.IsEditing = true;
 
-			_keyboard.Click(_control.TextBox, Key.Escape);
+			_keyboard.Click(_textBox, Key.Escape);
 			_control.IsEditing.Should().BeFalse("because pressing escape shall disable editing");
 		}
 
@@ -80,7 +88,7 @@ namespace Metrolib.Test.TextBlocks
 		{
 			_control.IsEditing = true;
 
-			_keyboard.Click(_control.TextBox, Key.Enter);
+			_keyboard.Click(_textBox, Key.Enter);
 			_control.IsEditing.Should().BeFalse("because pressing enter shall disable editing");
 		}
 
@@ -90,8 +98,8 @@ namespace Metrolib.Test.TextBlocks
 		{
 			_control.Text = "Hello,";
 			_control.IsEditing = true;
-			_control.TextBox.Text.Should().Be("Hello,");
-			_control.TextBox.Text = "Hello, World!";
+			_textBox.Text.Should().Be("Hello,");
+			_textBox.Text = "Hello, World!";
 			_control.Text.Should().Be("Hello,", "because we haven't finished editing");
 
 			_control.IsEditing = false;
@@ -105,11 +113,11 @@ namespace Metrolib.Test.TextBlocks
 		{
 			_control.Text = "Hello,";
 			_control.IsEditing = true;
-			_control.TextBox.Text.Should().Be("Hello,");
-			_control.TextBox.Text = "Hello, World!";
+			_textBox.Text.Should().Be("Hello,");
+			_textBox.Text = "Hello, World!";
 			_control.Text.Should().Be("Hello,", "because we haven't finished editing");
 
-			_keyboard.Click(_control.TextBox, Key.Enter);
+			_keyboard.Click(_textBox, Key.Enter);
 			_control.Text.Should().Be("Hello, World!",
 				"because we've finished editing and thus the edited value should've been written to the text property");
 		}
@@ -120,9 +128,9 @@ namespace Metrolib.Test.TextBlocks
 		{
 			_control.Text = "stuff!";
 			_control.IsEditing = true;
-			_control.TextBox.Text.Should().Be("stuff!");
-			_control.TextBox.Text = "some stuff!";
-			_keyboard.Click(_control.TextBox, Key.Escape);
+			_textBox.Text.Should().Be("stuff!");
+			_textBox.Text = "some stuff!";
+			_keyboard.Click(_textBox, Key.Escape);
 			_control.Text.Should().Be("stuff!", "because we cancelled the user input and thus the text value should remain unchanged");
 		}
 	}

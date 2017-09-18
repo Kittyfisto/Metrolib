@@ -40,22 +40,15 @@ namespace Metrolib.Controls
 		public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
 			"Text", typeof(string), typeof(EditableTextBlock), new PropertyMetadata(default(string)));
 
+		private TextBox _textBox;
+		private TextBlock _textBlock;
+
 		static EditableTextBlock()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(EditableTextBlock),
 				new FrameworkPropertyMetadata(typeof(EditableTextBlock)));
 		}
-
-		/// <summary>
-		///     For testing.
-		/// </summary>
-		internal TextBlock TextBlock { get; private set; }
-
-		/// <summary>
-		///     For testing.
-		/// </summary>
-		internal TextBox TextBox { get; private set; }
-
+		
 		/// <summary>
 		///     Whether or not the text of this control is being edited.
 		/// </summary>
@@ -98,24 +91,24 @@ namespace Metrolib.Controls
 		{
 			if (isEditing)
 			{
-				if (TextBox != null)
-					TextBox.Text = Text;
+				if (_textBox != null)
+					_textBox.Text = Text;
 
 				Dispatcher.BeginInvoke(DispatcherPriority.Background,
 					new Action(() =>
 					{
-						if (TextBox != null)
+						if (_textBox != null)
 						{
-							TextBox.Focus();
-							var text = TextBox.Text;
+							_textBox.Focus();
+							var text = _textBox.Text;
 							if (text != null)
-								TextBox.Select(0, text.Length);
+								_textBox.Select(0, text.Length);
 						}
 					}));
 			}
 			else
 			{
-				Text = TextBox?.Text;
+				Text = _textBox?.Text;
 			}
 		}
 
@@ -124,24 +117,24 @@ namespace Metrolib.Controls
 		{
 			base.OnApplyTemplate();
 
-			if (TextBlock != null)
-				TextBlock.MouseLeftButtonDown -= TextBlockOnMouseLeftButtonDown;
+			if (_textBlock != null)
+				_textBlock.MouseLeftButtonDown -= TextBlockOnMouseLeftButtonDown;
 
-			if (TextBox != null)
+			if (_textBox != null)
 			{
-				TextBox.LostFocus -= TextBoxOnLostFocus;
-				TextBox.KeyDown -= TextBoxOnKeyDown;
+				_textBox.LostFocus -= TextBoxOnLostFocus;
+				_textBox.KeyDown -= TextBoxOnKeyDown;
 			}
 
-			TextBlock = (TextBlock) GetTemplateChild(PART_TextBlock);
-			if (TextBlock != null)
-				TextBlock.MouseLeftButtonDown += TextBlockOnMouseLeftButtonDown;
+			_textBlock = (TextBlock) GetTemplateChild(PART_TextBlock);
+			if (_textBlock != null)
+				_textBlock.MouseLeftButtonDown += TextBlockOnMouseLeftButtonDown;
 
-			TextBox = (TextBox) GetTemplateChild(PART_TextBox);
-			if (TextBox != null)
+			_textBox = (TextBox) GetTemplateChild(PART_TextBox);
+			if (_textBox != null)
 			{
-				TextBox.LostFocus += TextBoxOnLostFocus;
-				TextBox.KeyDown += TextBoxOnKeyDown;
+				_textBox.LostFocus += TextBoxOnLostFocus;
+				_textBox.KeyDown += TextBoxOnKeyDown;
 			}
 		}
 
@@ -176,7 +169,7 @@ namespace Metrolib.Controls
 		/// </summary>
 		public void CancelEditing()
 		{
-			var textBox = TextBox;
+			var textBox = _textBox;
 			if (textBox != null)
 				textBox.Text = Text;
 
