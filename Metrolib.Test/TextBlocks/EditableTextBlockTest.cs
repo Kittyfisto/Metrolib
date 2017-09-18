@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using FluentAssertions;
@@ -70,15 +71,16 @@ namespace Metrolib.Test.TextBlocks
 		}
 
 		[Test]
-		[Ignore("https://github.com/Kittyfisto/WpfUnit/issues/2")]
 		public void TestDisableEditing1()
 		{
+			_control.IsEditing.Should().BeFalse();
+			_textBox.Visibility.Should().Be(Visibility.Hidden);
+
 			_control.IsEditing = true;
-			// _control.Dispatcher.ExecuteAllPendingEvents();
-			_textBox.IsVisible.Should().BeTrue();
+			_textBox.Visibility.Should().Be(Visibility.Visible);
 
 			_control.IsEditing = false;
-			_textBox.IsVisible.Should().BeFalse();
+			_textBox.Visibility.Should().Be(Visibility.Hidden);
 		}
 
 		[Test]
