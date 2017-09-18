@@ -142,5 +142,18 @@ namespace Metrolib.Test.TextBlocks
 			_keyboard.Click(_textBox, Key.Escape);
 			_control.Text.Should().Be("stuff!", "because we cancelled the user input and thus the text value should remain unchanged");
 		}
+
+		[Test]
+		[Description("Verifies that both textbox and -block share the same padding")]
+		public void TestPadding()
+		{
+			_control.Padding.Should().Be(new Thickness(4));
+			_textBox.Padding.Should().Be(new Thickness(4));
+			_textBlock.Padding.Should().Be(new Thickness(4));
+
+			_control.Padding = new Thickness(5);
+			_textBox.Padding.Should().Be(new Thickness(5));
+			_textBlock.Padding.Should().Be(new Thickness(5));
+		}
 	}
 }
