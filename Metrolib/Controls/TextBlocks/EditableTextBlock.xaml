@@ -22,7 +22,7 @@
                                 VerticalAlignment="Center"
                                 Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"
                                 Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" />
-                            <controls:WatermarkTextBox
+                            <controls:EditorTextBox
                                 x:Name="PART_TextBox"
                                 Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"
                                 Watermark="{Binding Watermark, RelativeSource={RelativeSource TemplatedParent}}"

@@ -408,7 +408,7 @@
     <Compile Include="Controls\TextBlocks\HyperlinkRun.cs" />
     <Compile Include="Controls\TextBoxes\FlatPasswordBox.cs" />
     <Compile Include="Controls\TextBoxes\SearchTextBox.cs" />
-    <Compile Include="Controls\TextBoxes\WatermarkTextBox.cs" />
+    <Compile Include="Controls\TextBoxes\EditorTextBox.cs" />
     <Compile Include="Controls\ToggleButtons\EmailToggleButton.cs" />
     <Compile Include="Controls\ToggleButtons\ToggleButtonBase.cs" />
     <Compile Include="Controls\ToggleButtons\ExpanderToggleButton.cs" />

@@ -31,9 +31,9 @@
         <TextBlock Text="Normal" Grid.Column="2" />
         <TextBlock Text="Disabled" Grid.Column="4" />
         
-        <TextBlock Text="WatermarkTextBox" Grid.Row="2" VerticalAlignment="Center" />
-        <controls:WatermarkTextBox Grid.Column="2" Grid.Row="2" Watermark="Click me!" />
-        <controls:WatermarkTextBox Grid.Column="4" Grid.Row="2" Watermark="You can't click me!" IsEnabled="False" />
+        <TextBlock Text="EditorTextBox" Grid.Row="2" VerticalAlignment="Center" />
+        <controls:EditorTextBox Grid.Column="2" Grid.Row="2" Watermark="Click me!" />
+        <controls:EditorTextBox Grid.Column="4" Grid.Row="2" Watermark="You can't click me!" IsEnabled="False" />
 
         <TextBlock Text="FilterTextBox" Grid.Row="4" VerticalAlignment="Center" />
         <controls:FilterTextBox Grid.Column="2" Grid.Row="4" Watermark="Click me!" />

@@ -17,7 +17,7 @@ namespace Metrolib.Test.TextBlocks
 		private EditableTextBlock _control;
 		private TestMouse _mouse;
 		private TestKeyboard _keyboard;
-		private WatermarkTextBox _textBox;
+		private EditorTextBox _textBox;
 		private FlatTextBlock _textBlock;
 
 		[OneTimeSetUp]
@@ -37,7 +37,7 @@ namespace Metrolib.Test.TextBlocks
 			_control.ApplyTemplate();
 
 			var type = typeof(EditableTextBlock);
-			_textBox = (WatermarkTextBox)type.GetField("_textBox", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_control);
+			_textBox = (EditorTextBox)type.GetField("_textBox", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_control);
 			_textBlock = (FlatTextBlock)type.GetField("_textBlock", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_control);
 		}
 

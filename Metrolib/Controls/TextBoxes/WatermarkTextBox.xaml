@@ -9,7 +9,7 @@
 
     <converters:NullOrEmptyStringToVisibleConverter x:Key="EmptyToVisibleConverter" />
 
-    <Style TargetType="{x:Type controls:WatermarkTextBox}">
+    <Style TargetType="{x:Type controls:EditorTextBox}">
         <Setter Property="BorderBrush" Value="{StaticResource BorderBrushHovered}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Background" Value="White" />
@@ -18,7 +18,7 @@
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type controls:WatermarkTextBox}">
+                <ControlTemplate TargetType="{x:Type controls:EditorTextBox}">
                     <Grid x:Name="root" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
                         <!-- managing visual states to change controls styles on different states -->
                         <VisualStateManager.VisualStateGroups>
