@@ -21,6 +21,8 @@ namespace Metrolib.Controls.TextBlocks
 				{"*", MarkdownTokenType.Star},
 				{"_", MarkdownTokenType.Underscore},
 
+				{"~", MarkdownTokenType.Tilde},
+
 				// Line breaks are only ever acknowledged if they are preceeded by at least two spaces
 				{"  \r\n", MarkdownTokenType.LineBreak},
 				{"  \n", MarkdownTokenType.LineBreak},

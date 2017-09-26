@@ -75,6 +75,13 @@ namespace Metrolib.Test.TextBlocks
 		}
 
 		[Test]
+		public void TestTilde1()
+		{
+			var tokenizer = new MarkdownTokenizer();
+			tokenizer.Tokenize("~").Should().Equal(new MarkdownToken(MarkdownTokenType.Tilde));
+		}
+
+		[Test]
 		public void TestSpace1()
 		{
 			var tokenizer = new MarkdownTokenizer();

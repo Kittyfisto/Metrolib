@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Documents;
 
 namespace Metrolib.Controls.TextBlocks
@@ -77,6 +78,20 @@ namespace Metrolib.Controls.TextBlocks
 			{
 				var children = MatchAll(match);
 				var element = new Bold();
+				element.Inlines.AddRange(children);
+				consumedCount = 4 + match.Count;
+				return element;
+			}
+
+			if ((match = Match(tokens, out totalMatchCount,
+				    TokenPattern.Required(MarkdownTokenType.Tilde, MarkdownTokenType.Tilde),
+				    TokenPattern.Optional(MarkdownTokenType.Tilde, MarkdownTokenType.Tilde))) != null)
+			{
+				var children = MatchAll(match);
+				var element = new Span();
+				var decoration = new TextDecoration {Location = TextDecorationLocation.Strikethrough};
+				decoration.Freeze();
+				element.TextDecorations.Add(decoration);
 				element.Inlines.AddRange(children);
 				consumedCount = 4 + match.Count;
 				return element;

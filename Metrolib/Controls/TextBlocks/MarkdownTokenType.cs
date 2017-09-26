@@ -11,6 +11,8 @@
 		Underscore,
 		LineBreak,
 		Whitespace,
-		Text
+		Tilde,
+
+		Text = 255
 	}
 }

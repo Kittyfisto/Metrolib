@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Windows;
 using System.Windows.Documents;
 using FluentAssertions;
 using Metrolib.Controls.TextBlocks;
@@ -196,6 +197,20 @@ namespace Metrolib.Test.TextBlocks
 			((Bold)values[1]).Inlines.Should().HaveCount(1);
 			((Bold)values[1]).Inlines.ElementAt(0).Should().BeOfType<Run>();
 			((Run)((Bold)values[1]).Inlines.ElementAt(0)).Text.Should().Be("world!");
+		}
+
+		[Test]
+		public void TestStrikethrough()
+		{
+			var parser = new MarkdownParser();
+			var values = parser.Parse("~~hello, world!~~");
+			values.Should().HaveCount(1);
+			values[0].Should().BeOfType<Span>();
+			((Span) values[0]).Inlines.Should().HaveCount(1);
+			((Span) values[0]).Inlines.ElementAt(0).Should().BeOfType<Run>();
+			((Run) ((Span) values[0]).Inlines.ElementAt(0)).Text.Should().Be("hello, world!");
+			((Span) values[0]).TextDecorations.Should().HaveCount(1);
+			((Span) values[0]).TextDecorations[0].Location.Should().Be(TextDecorationLocation.Strikethrough);
 		}
 	}
 }
