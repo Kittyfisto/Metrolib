@@ -125,6 +125,8 @@
     <Compile Include="SizeTest.cs" />
     <Compile Include="StyleHelper.cs" />
     <Compile Include="TextBlocks\EditableTextBlockTest.cs" />
+    <Compile Include="TextBlocks\MarkdownParserTest.cs" />
+    <Compile Include="TextBlocks\MarkdownBlockTest.cs" />
     <Compile Include="TextBoxes\EditorTextBoxTest.cs" />
     <Compile Include="TimeSpanConverterTest.cs" />
     <Compile Include="Tree\FlatTreeViewItemTest.cs" />

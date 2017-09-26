@@ -189,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\TextBlocks\MarkdownBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\TextBoxes\FlatPasswordBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -197,7 +201,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\TextBoxes\WatermarkTextBox.xaml">
+    <Page Include="Controls\TextBoxes\EditorTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -322,6 +326,8 @@
     <Compile Include="Controls\ProgressBar\AbstractProgressBar.cs" />
     <Compile Include="Controls\ProgressBar\FlatProgressBar.cs" />
     <Compile Include="Controls\TextBlocks\EditableTextBlock.cs" />
+    <Compile Include="Controls\TextBlocks\MarkdownParser.cs" />
+    <Compile Include="Controls\TextBlocks\MarkdownBlock.cs" />
     <Compile Include="Controls\ToggleButtons\ViewDashboardToggleButton.cs" />
     <Compile Include="Controls\ToggleButtons\ViewQuiltToggleButton.cs" />
     <Compile Include="Controls\Tree\ITreeViewItemViewModel.cs" />

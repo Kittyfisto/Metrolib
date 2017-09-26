@@ -15,13 +15,13 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}">
                         <Grid>
-                            <controls:FlatTextBlock
-                                x:Name="PART_TextBlock"
+                            <controls:MarkdownBlock
+                                x:Name="PART_MarkdownPresenter"
                                 Visibility="{Binding IsEditing, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolTrueToCollapsedConverter}}"
                                 Background="Transparent"
                                 VerticalAlignment="Center"
                                 Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"
-                                Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" />
+                                Markdown="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" />
                             <controls:EditorTextBox
                                 x:Name="PART_TextBox"
                                 Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"

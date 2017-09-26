@@ -12,7 +12,7 @@ namespace Metrolib.Controls
 	///     When editable, the textblock is replaced by a textbox, which allows the user to
 	///     change the text property.
 	/// </summary>
-	[TemplatePart(Name = PART_TextBlock, Type = typeof(TextBlock))]
+	[TemplatePart(Name = PART_MarkdownPresenter, Type = typeof(MarkdownBlock))]
 	[TemplatePart(Name = PART_TextBox, Type = typeof(TextBox))]
 	public sealed class EditableTextBlock
 		: Control
@@ -20,7 +20,7 @@ namespace Metrolib.Controls
 		/// <summary>
 		///     Name of the <see cref="TextBlock" /> control.
 		/// </summary>
-		public const string PART_TextBlock = "PART_TextBlock";
+		public const string PART_MarkdownPresenter = "PART_MarkdownPresenter";
 
 		/// <summary>
 		///     Text of the <see cref="TextBox" /> control.
@@ -46,7 +46,7 @@ namespace Metrolib.Controls
 		public static readonly DependencyProperty WatermarkProperty = DependencyProperty.Register(
 			"Watermark", typeof(string), typeof(EditableTextBlock), new PropertyMetadata(default(string)));
 
-		private TextBlock _textBlock;
+		private MarkdownBlock _block;
 
 		private TextBox _textBox;
 
@@ -134,8 +134,8 @@ namespace Metrolib.Controls
 		{
 			base.OnApplyTemplate();
 
-			if (_textBlock != null)
-				_textBlock.MouseLeftButtonDown -= TextBlockOnMouseLeftButtonDown;
+			if (_block != null)
+				_block.MouseLeftButtonDown -= BlockOnMouseLeftButtonDown;
 
 			if (_textBox != null)
 			{
@@ -143,9 +143,11 @@ namespace Metrolib.Controls
 				_textBox.KeyDown -= TextBoxOnKeyDown;
 			}
 
-			_textBlock = (TextBlock) GetTemplateChild(PART_TextBlock);
-			if (_textBlock != null)
-				_textBlock.MouseLeftButtonDown += TextBlockOnMouseLeftButtonDown;
+			_block = (MarkdownBlock) GetTemplateChild(PART_MarkdownPresenter);
+			if (_block != null)
+			{
+				_block.MouseLeftButtonDown += BlockOnMouseLeftButtonDown;
+			}
 
 			_textBox = (TextBox) GetTemplateChild(PART_TextBox);
 			if (_textBox != null)
@@ -155,7 +157,7 @@ namespace Metrolib.Controls
 			}
 		}
 
-		private void TextBlockOnMouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
+		private void BlockOnMouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
 		{
 			if (mouseButtonEventArgs.ClickCount >= 2)
 				IsEditing = true;

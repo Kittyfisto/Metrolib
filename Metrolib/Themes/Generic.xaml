@@ -34,8 +34,9 @@
         <ResourceDictionary Source="/Metrolib;component/Controls/TextBlocks/EditableTextBlock.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/TextBlocks/FlatTextBlock.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/TextBlocks/FlavourTextBlock.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/TextBlocks/MarkdownBlock.xaml" />
 
-        <ResourceDictionary Source="/Metrolib;component/Controls/TextBoxes/WatermarkTextBox.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/TextBoxes/EditorTextBox.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/TextBoxes/FilterTextBox.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/TextBoxes/SearchTextBox.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/TextBoxes/FlatPasswordBox.xaml" />

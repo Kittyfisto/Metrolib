@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using FluentAssertions;
 using Metrolib.Controls;
@@ -18,7 +17,7 @@ namespace Metrolib.Test.TextBlocks
 		private TestMouse _mouse;
 		private TestKeyboard _keyboard;
 		private EditorTextBox _textBox;
-		private FlatTextBlock _textBlock;
+		private MarkdownBlock _block;
 
 		[OneTimeSetUp]
 		public void OneTimeSetUp()
@@ -38,7 +37,21 @@ namespace Metrolib.Test.TextBlocks
 
 			var type = typeof(EditableTextBlock);
 			_textBox = (EditorTextBox)type.GetField("_textBox", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_control);
-			_textBlock = (FlatTextBlock)type.GetField("_textBlock", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_control);
+			_block = (MarkdownBlock)type.GetField("_block", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_control);
+		}
+
+		[Test]
+		public void TestApplyTemplate()
+		{
+			var control = new EditableTextBlock
+			{
+				Style = StyleHelper.Load<EditableTextBlock>(),
+				Text = "Foobar"
+			};
+			control.ApplyTemplate();
+			var type = typeof(EditableTextBlock);
+			var presenter = (MarkdownBlock)type.GetField("_block", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(control);
+			presenter.Markdown.Should().Be("Foobar");
 		}
 
 		[Test]
@@ -48,16 +61,16 @@ namespace Metrolib.Test.TextBlocks
 			_control.Text = "Hello, World!";
 
 			_control.IsEditing.Should().BeFalse();
-			_textBlock.IsVisible.Should().BeTrue();
+			_block.IsVisible.Should().BeTrue();
 			_textBox.IsVisible.Should().BeFalse();
 			_textBox.IsFocused.Should().BeFalse();
 
-			_mouse.LeftClick(_textBlock);
-			_mouse.LeftClick(_textBlock);
+			_mouse.LeftClick(_block);
+			_mouse.LeftClick(_block);
 
 			_control.IsEditing.Should().BeTrue();
 			// _control.Dispatcher.ExecuteAllPendingEvents();
-			_textBlock.IsVisible.Should().BeFalse();
+			_block.IsVisible.Should().BeFalse();
 			_textBox.IsVisible.Should().BeTrue("because enabling editing shall show the textbox");
 			_textBox.IsFocused.Should().BeTrue();
 			_textBox.SelectedText.Should().Be("Hello, World!", "because the entire text shall be selected by default");
@@ -149,11 +162,11 @@ namespace Metrolib.Test.TextBlocks
 		{
 			_control.Padding.Should().Be(new Thickness(4));
 			_textBox.Padding.Should().Be(new Thickness(4));
-			_textBlock.Padding.Should().Be(new Thickness(4));
+			_block.Padding.Should().Be(new Thickness(4));
 
 			_control.Padding = new Thickness(5);
 			_textBox.Padding.Should().Be(new Thickness(5));
-			_textBlock.Padding.Should().Be(new Thickness(5));
+			_block.Padding.Should().Be(new Thickness(5));
 		}
 	}
 }
