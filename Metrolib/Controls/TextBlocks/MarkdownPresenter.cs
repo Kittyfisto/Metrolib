@@ -10,21 +10,21 @@ namespace Metrolib.Controls
 	///     <see cref="https://stackoverflow.com/editing-help" /> for a description of markdown.
 	/// </summary>
 	[TemplatePart(Name = PART_TextBlock, Type = typeof(TextBlock))]
-	public sealed class MarkdownBlock
+	public sealed class MarkdownPresenter
 		: Control
 	{
 		public const string PART_TextBlock = "PART_TextBlock";
 
 		public static readonly DependencyProperty MarkdownProperty = DependencyProperty.Register(
-			"Markdown", typeof(string), typeof(MarkdownBlock),
+			"Markdown", typeof(string), typeof(MarkdownPresenter),
 			new PropertyMetadata(defaultValue: null, propertyChangedCallback: OnMarkdownChanged));
 
 		private TextBlock _textBlock;
 
-		static MarkdownBlock()
+		static MarkdownPresenter()
 		{
-			DefaultStyleKeyProperty.OverrideMetadata(typeof(MarkdownBlock),
-				new FrameworkPropertyMetadata(typeof(MarkdownBlock)));
+			DefaultStyleKeyProperty.OverrideMetadata(typeof(MarkdownPresenter),
+				new FrameworkPropertyMetadata(typeof(MarkdownPresenter)));
 		}
 
 		public string Markdown
@@ -35,7 +35,7 @@ namespace Metrolib.Controls
 
 		private static void OnMarkdownChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
 		{
-			((MarkdownBlock) dependencyObject).OnMarkdownChanged((string) args.NewValue);
+			((MarkdownPresenter) dependencyObject).OnMarkdownChanged((string) args.NewValue);
 		}
 
 		/// <inheritdoc />

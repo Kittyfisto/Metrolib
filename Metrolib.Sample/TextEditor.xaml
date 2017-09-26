@@ -15,7 +15,7 @@
         <controls:EditorTextBox Watermark="I support markdown"
                                 x:Name="Editor"
                                 Margin="8" />
-        <controls:MarkdownBlock
+        <controls:MarkdownPresenter
             Markdown="{Binding Text, ElementName=Editor, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
             Grid.Column="1"
             Margin="0,8,8,8" />

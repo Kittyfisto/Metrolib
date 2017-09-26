@@ -23,6 +23,10 @@ namespace Metrolib.Test.TextBoxes
 		[SetUp]
 		public void Setup()
 		{
+			// We'll just reset all keys to their default (non-pressed) state in case
+			// a test forgot to do so...
+			_keyboard.Reset();
+
 			_textBox = new EditorTextBox();
 		}
 
@@ -32,8 +36,7 @@ namespace Metrolib.Test.TextBoxes
 			_textBox.Text = "Foobar";
 			_textBox.Select(0, 6);
 
-			_keyboard.Press(Key.LeftCtrl);
-			_keyboard.Click(_textBox, Key.B);
+			_keyboard.Click(_textBox, Key.B, ModifierKeys.Control);
 
 			_textBox.Text.Should().Be("**Foobar**");
 			_textBox.SelectedText.Should().Be("**Foobar**");
@@ -45,8 +48,7 @@ namespace Metrolib.Test.TextBoxes
 			_textBox.Text = "**Foobar**";
 			_textBox.Select(0, 10);
 
-			_keyboard.Press(Key.LeftCtrl);
-			_keyboard.Click(_textBox, Key.B);
+			_keyboard.Click(_textBox, Key.B, ModifierKeys.Control);
 
 			_textBox.Text.Should().Be("Foobar");
 			_textBox.SelectedText.Should().Be("Foobar");
@@ -58,8 +60,7 @@ namespace Metrolib.Test.TextBoxes
 			_textBox.Text = "__Foobar__";
 			_textBox.Select(0, 10);
 
-			_keyboard.Press(Key.LeftCtrl);
-			_keyboard.Click(_textBox, Key.B);
+			_keyboard.Click(_textBox, Key.B, ModifierKeys.Control);
 
 			_textBox.Text.Should().Be("Foobar");
 			_textBox.SelectedText.Should().Be("Foobar");
@@ -71,8 +72,7 @@ namespace Metrolib.Test.TextBoxes
 			_textBox.Text = "Foobar";
 			_textBox.Select(0, 6);
 
-			_keyboard.Press(Key.LeftCtrl);
-			_keyboard.Click(_textBox, Key.I);
+			_keyboard.Click(_textBox, Key.I, ModifierKeys.Control);
 
 			_textBox.Text.Should().Be("*Foobar*");
 			_textBox.SelectedText.Should().Be("*Foobar*");
@@ -84,8 +84,7 @@ namespace Metrolib.Test.TextBoxes
 			_textBox.Text = "*Foobar*";
 			_textBox.Select(0, 8);
 
-			_keyboard.Press(Key.LeftCtrl);
-			_keyboard.Click(_textBox, Key.I);
+			_keyboard.Click(_textBox, Key.I, ModifierKeys.Control);
 
 			_textBox.Text.Should().Be("Foobar");
 			_textBox.SelectedText.Should().Be("Foobar");
@@ -97,8 +96,7 @@ namespace Metrolib.Test.TextBoxes
 			_textBox.Text = "_Foobar_";
 			_textBox.Select(0, 8);
 
-			_keyboard.Press(Key.LeftCtrl);
-			_keyboard.Click(_textBox, Key.I);
+			_keyboard.Click(_textBox, Key.I, ModifierKeys.Control);
 
 			_textBox.Text.Should().Be("Foobar");
 			_textBox.SelectedText.Should().Be("Foobar");

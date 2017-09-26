@@ -17,7 +17,7 @@ namespace Metrolib.Test.TextBlocks
 		private TestMouse _mouse;
 		private TestKeyboard _keyboard;
 		private EditorTextBox _textBox;
-		private MarkdownBlock _block;
+		private MarkdownPresenter _presenter;
 
 		[OneTimeSetUp]
 		public void OneTimeSetUp()
@@ -37,7 +37,7 @@ namespace Metrolib.Test.TextBlocks
 
 			var type = typeof(EditableTextBlock);
 			_textBox = (EditorTextBox)type.GetField("_textBox", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_control);
-			_block = (MarkdownBlock)type.GetField("_block", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_control);
+			_presenter = (MarkdownPresenter)type.GetField("_presenter", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_control);
 		}
 
 		[Test]
@@ -50,7 +50,7 @@ namespace Metrolib.Test.TextBlocks
 			};
 			control.ApplyTemplate();
 			var type = typeof(EditableTextBlock);
-			var presenter = (MarkdownBlock)type.GetField("_block", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(control);
+			var presenter = (MarkdownPresenter)type.GetField("_presenter", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(control);
 			presenter.Markdown.Should().Be("Foobar");
 		}
 
@@ -61,16 +61,16 @@ namespace Metrolib.Test.TextBlocks
 			_control.Text = "Hello, World!";
 
 			_control.IsEditing.Should().BeFalse();
-			_block.IsVisible.Should().BeTrue();
+			_presenter.IsVisible.Should().BeTrue();
 			_textBox.IsVisible.Should().BeFalse();
 			_textBox.IsFocused.Should().BeFalse();
 
-			_mouse.LeftClick(_block);
-			_mouse.LeftClick(_block);
+			_mouse.LeftClick(_presenter);
+			_mouse.LeftClick(_presenter);
 
 			_control.IsEditing.Should().BeTrue();
 			// _control.Dispatcher.ExecuteAllPendingEvents();
-			_block.IsVisible.Should().BeFalse();
+			_presenter.IsVisible.Should().BeFalse();
 			_textBox.IsVisible.Should().BeTrue("because enabling editing shall show the textbox");
 			_textBox.IsFocused.Should().BeTrue();
 			_textBox.SelectedText.Should().Be("Hello, World!", "because the entire text shall be selected by default");
@@ -162,11 +162,11 @@ namespace Metrolib.Test.TextBlocks
 		{
 			_control.Padding.Should().Be(new Thickness(4));
 			_textBox.Padding.Should().Be(new Thickness(4));
-			_block.Padding.Should().Be(new Thickness(4));
+			_presenter.Padding.Should().Be(new Thickness(4));
 
 			_control.Padding = new Thickness(5);
 			_textBox.Padding.Should().Be(new Thickness(5));
-			_block.Padding.Should().Be(new Thickness(5));
+			_presenter.Padding.Should().Be(new Thickness(5));
 		}
 	}
 }

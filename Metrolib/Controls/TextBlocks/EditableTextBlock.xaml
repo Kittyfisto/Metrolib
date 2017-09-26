@@ -15,7 +15,7 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}">
                         <Grid>
-                            <controls:MarkdownBlock
+                            <controls:MarkdownPresenter
                                 x:Name="PART_MarkdownPresenter"
                                 Visibility="{Binding IsEditing, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolTrueToCollapsedConverter}}"
                                 Background="Transparent"

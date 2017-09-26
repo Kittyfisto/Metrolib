@@ -189,7 +189,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\TextBlocks\MarkdownBlock.xaml">
+    <Page Include="Controls\TextBlocks\MarkdownPresenter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -326,8 +326,14 @@
     <Compile Include="Controls\ProgressBar\AbstractProgressBar.cs" />
     <Compile Include="Controls\ProgressBar\FlatProgressBar.cs" />
     <Compile Include="Controls\TextBlocks\EditableTextBlock.cs" />
+    <Compile Include="ListSliceDebugView.cs" />
+    <Compile Include="ReadOnlyListExtensions.cs" />
+    <Compile Include="ListSlice.cs" />
     <Compile Include="Controls\TextBlocks\MarkdownParser.cs" />
-    <Compile Include="Controls\TextBlocks\MarkdownBlock.cs" />
+    <Compile Include="Controls\TextBlocks\MarkdownPresenter.cs" />
+    <Compile Include="Controls\TextBlocks\MarkdownToken.cs" />
+    <Compile Include="Controls\TextBlocks\MarkdownTokenizer.cs" />
+    <Compile Include="Controls\TextBlocks\MarkdownTokenType.cs" />
     <Compile Include="Controls\ToggleButtons\ViewDashboardToggleButton.cs" />
     <Compile Include="Controls\ToggleButtons\ViewQuiltToggleButton.cs" />
     <Compile Include="Controls\Tree\ITreeViewItemViewModel.cs" />

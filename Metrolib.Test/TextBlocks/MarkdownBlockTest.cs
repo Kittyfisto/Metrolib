@@ -11,14 +11,14 @@ namespace Metrolib.Test.TextBlocks
 	[RequiresThread(ApartmentState.STA)]
 	public sealed class MarkdownBlockTest
 	{
-		private MarkdownBlock _control;
+		private MarkdownPresenter _control;
 
 		[SetUp]
 		public void Setup()
 		{
-			_control = new MarkdownBlock()
+			_control = new MarkdownPresenter()
 			{
-				Style = StyleHelper.Load<MarkdownBlock>()
+				Style = StyleHelper.Load<MarkdownPresenter>()
 			};
 		}
 

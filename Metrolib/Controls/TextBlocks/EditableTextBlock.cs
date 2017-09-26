@@ -12,7 +12,7 @@ namespace Metrolib.Controls
 	///     When editable, the textblock is replaced by a textbox, which allows the user to
 	///     change the text property.
 	/// </summary>
-	[TemplatePart(Name = PART_MarkdownPresenter, Type = typeof(MarkdownBlock))]
+	[TemplatePart(Name = PART_MarkdownPresenter, Type = typeof(MarkdownPresenter))]
 	[TemplatePart(Name = PART_TextBox, Type = typeof(TextBox))]
 	public sealed class EditableTextBlock
 		: Control
@@ -46,7 +46,7 @@ namespace Metrolib.Controls
 		public static readonly DependencyProperty WatermarkProperty = DependencyProperty.Register(
 			"Watermark", typeof(string), typeof(EditableTextBlock), new PropertyMetadata(default(string)));
 
-		private MarkdownBlock _block;
+		private MarkdownPresenter _presenter;
 
 		private TextBox _textBox;
 
@@ -134,8 +134,8 @@ namespace Metrolib.Controls
 		{
 			base.OnApplyTemplate();
 
-			if (_block != null)
-				_block.MouseLeftButtonDown -= BlockOnMouseLeftButtonDown;
+			if (_presenter != null)
+				_presenter.MouseLeftButtonDown -= PresenterOnMouseLeftButtonDown;
 
 			if (_textBox != null)
 			{
@@ -143,10 +143,10 @@ namespace Metrolib.Controls
 				_textBox.KeyDown -= TextBoxOnKeyDown;
 			}
 
-			_block = (MarkdownBlock) GetTemplateChild(PART_MarkdownPresenter);
-			if (_block != null)
+			_presenter = (MarkdownPresenter) GetTemplateChild(PART_MarkdownPresenter);
+			if (_presenter != null)
 			{
-				_block.MouseLeftButtonDown += BlockOnMouseLeftButtonDown;
+				_presenter.MouseLeftButtonDown += PresenterOnMouseLeftButtonDown;
 			}
 
 			_textBox = (TextBox) GetTemplateChild(PART_TextBox);
@@ -157,7 +157,7 @@ namespace Metrolib.Controls
 			}
 		}
 
-		private void BlockOnMouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
+		private void PresenterOnMouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
 		{
 			if (mouseButtonEventArgs.ClickCount >= 2)
 				IsEditing = true;

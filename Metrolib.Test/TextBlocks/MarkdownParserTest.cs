@@ -10,6 +10,36 @@ namespace Metrolib.Test.TextBlocks
 	public sealed class MarkdownParserTest
 	{
 		[Test]
+		public void TestNull()
+		{
+			var parser = new MarkdownParser();
+			var values = parser.Parse(null);
+			values.Should().NotBeNull();
+			values.Should().BeEmpty();
+		}
+
+		[Test]
+		public void TestEmpty()
+		{
+			var parser = new MarkdownParser();
+			var values = parser.Parse(string.Empty);
+			values.Should().NotBeNull();
+			values.Should().BeEmpty();
+		}
+
+		[Test]
+		public void TestTextOnly()
+		{
+			var parser = new MarkdownParser();
+			var values = parser.Parse("Hello, World!");
+			values.Should().NotBeNull();
+			values.Should().HaveCount(1);
+			values[0].Should().NotBeNull();
+			values[0].Should().BeOfType<Run>();
+			((Run) values[0]).Text.Should().Be("Hello, World!");
+		}
+
+		[Test]
 		public void TestItalic1()
 		{
 			var parser = new MarkdownParser();
@@ -112,7 +142,6 @@ namespace Metrolib.Test.TextBlocks
 		}
 
 		[Test]
-		[Ignore("Hasn't been fixed yet (parser counts wrong)")]
 		public void TestBoldItalicNormal()
 		{
 			var parser = new MarkdownParser();
@@ -128,6 +157,20 @@ namespace Metrolib.Test.TextBlocks
 			((Run)((Italic)values[1]).Inlines.ElementAt(0)).Text.Should().Be("o");
 			values[2].Should().BeOfType<Run>();
 			((Run)values[2]).Text.Should().Be("o");
+		}
+
+		[Test]
+		public void TestNormalBold()
+		{
+			var parser = new MarkdownParser();
+			var values = parser.Parse("hello, **world!**");
+			values.Should().HaveCount(2);
+			values[0].Should().BeOfType<Run>();
+			((Run)values[0]).Text.Should().Be("hello, ");
+			values[1].Should().BeOfType<Bold>();
+			((Bold)values[1]).Inlines.Should().HaveCount(1);
+			((Bold)values[1]).Inlines.ElementAt(0).Should().BeOfType<Run>();
+			((Run)((Bold)values[1]).Inlines.ElementAt(0)).Text.Should().Be("world!");
 		}
 	}
 }

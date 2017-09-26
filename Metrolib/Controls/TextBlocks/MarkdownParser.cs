@@ -1,192 +1,211 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Documents;
 
 namespace Metrolib.Controls.TextBlocks
 {
 	/// <summary>
-	/// Interprets a <see cref="string"/> as markdown (<see cref="https://stackoverflow.com/editing-help"/>)
-	/// and creates a <see cref="TextElement"/> that represents the document.
+	///     Interprets a <see cref="string" /> as markdown (<see cref="https://stackoverflow.com/editing-help" />)
+	///     and creates a <see cref="TextElement" /> that represents the document.
 	/// </summary>
 	public sealed class MarkdownParser
 	{
-		public IReadOnlyList<Inline> Parse(string markdown)
-		{
-			if (markdown == null)
-				return new Inline[0];
+		private readonly MarkdownTokenizer _tokenizer;
 
-			int unused;
-			return ParseLeftHandRecursive(markdown, 0, markdown.Length, false, false, out unused);
+		/// <summary>
+		/// </summary>
+		public MarkdownParser()
+		{
+			_tokenizer = new MarkdownTokenizer();
 		}
 
-		private IReadOnlyList<Inline> ParseLeftHandRecursive(string markdown, int startIndex, int count, bool isBold, bool isItalic, out int consumedCount)
+		/// <summary>
+		///     Parses the given markdown document and creates a document tree consisting of
+		///     <see cref="TextElement" />s.
+		/// </summary>
+		/// <param name="markdown"></param>
+		/// <returns></returns>
+		public IReadOnlyList<Inline> Parse(string markdown)
+		{
+			var tokens = _tokenizer.Tokenize(markdown);
+			return MatchAll(tokens);
+		}
+
+		private IReadOnlyList<Inline> MatchAll(IReadOnlyList<MarkdownToken> tokens)
 		{
 			var ret = new List<Inline>();
-			consumedCount = 0;
 
-			do
+			int totalConsumed = 0;
+			IReadOnlyList<MarkdownToken> remainingTokens = tokens;
+			while (remainingTokens.Count > 0)
 			{
-				if (IsBold(markdown, startIndex, count))
+				Inline element;
+				int consumed;
+				if ((element = MatchOne(remainingTokens, out consumed)) != null)
 				{
-					consumedCount += 2;
-					int tmp;
-					var children = ParseLeftHandRecursive(markdown, startIndex + 2, count - 2, true, isItalic, out tmp);
-					consumedCount += tmp;
-
-					var element = new Bold();
-					element.Inlines.AddRange(children);
 					ret.Add(element);
-				}
-				else if (IsItalic(markdown, startIndex, count))
-				{
-					consumedCount += 1;
-					int tmp;
-					var children = ParseLeftHandRecursive(markdown, startIndex + 1, count - 1, isBold, true, out tmp);
-					consumedCount += tmp;
-
-					var element = new Italic();
-					element.Inlines.AddRange(children);
-					ret.Add(element);
-				}
-				else if (isItalic)
-				{
-					// Try to consume until the next italic marker.
-					// That marker will have to be interpreted as an end marker
-					var index = markdown.IndexOfAny(new[] {'*', '_'}, startIndex, count);
-					if (index != -1)
-					{
-						string substring = markdown.Substring(startIndex, index - startIndex);
-						ret.Add(new Run(substring));
-						consumedCount = substring.Length + 1;
-					}
-					else
-					{
-						string substring = markdown.Substring(startIndex);
-						ret.Add(new Run(substring));
-						consumedCount = substring.Length;
-					}
-
-					break;
-				}
-				else if (isBold)
-				{
-					// Try to consume until the next bold marker.
-					// That marker will have to be interpreted as an end marker
-					var index = IndexOfAny(markdown, new[] {"**", "__"}, startIndex, count);
-					if (index != -1)
-					{
-						string substring = markdown.Substring(startIndex, index - startIndex);
-						ret.Add(new Run(substring));
-						consumedCount = substring.Length + 2;
-					}
-					else
-					{
-						string substring = markdown.Substring(startIndex);
-						ret.Add(new Run(substring));
-						consumedCount = substring.Length;
-					}
-
-					break;
+					totalConsumed += consumed;
+					remainingTokens = tokens.Slice(totalConsumed);
 				}
 				else
 				{
-					// We will consume everything
-					var substring = markdown.Substring(startIndex);
-					ret.Add(new Run(substring));
-					consumedCount = substring.Length;
-				}
-
-				if (consumedCount == 0)
-				{
-					// This is a serious parsing error - we better break
-					// and display bad text instead of not returning at all...
 					break;
 				}
-
-				startIndex += consumedCount;
-				count -= consumedCount;
-			} while (count > 0);
+			}
 
 			return ret;
 		}
 
-		private bool IsBold(string markdown, int startIndex, int count)
+		private Inline MatchOne(IReadOnlyList<MarkdownToken> tokens, out int consumedCount)
 		{
-			if (count < 2)
-				return false;
-
-			var first = markdown[startIndex];
-			var second = markdown[startIndex + 1];
-
-			if (first == '*' && second == '*' ||
-			    first == '_' && second == '_')
-				return true;
-
-			return false;
-		}
-
-		private bool IsItalic(string markdown, int startIndex, int count)
-		{
-			if (count < 1)
-				return false;
-
-			var first = markdown[startIndex];
-
-			if (first == '*' || first == '_')
-				return true;
-
-			return false;
-		}
-
-		private static int IndexOfAny(string markdown, string[] values, int startIndex, int count)
-		{
-			for (int i = startIndex; i < startIndex + count; ++i)
+			int totalMatchCount;
+			IReadOnlyList<MarkdownToken> match;
+			if ((match = MatchAndConsume(tokens, out totalMatchCount,
+				    TokenPattern.Required(MarkdownTokenType.Star, MarkdownTokenType.Star),
+				    TokenPattern.Optional(MarkdownTokenType.Star, MarkdownTokenType.Star))) != null)
 			{
-				int left = startIndex + count - i;
-				for (int n = 0; n < values.Length; ++n)
-				{
-					if (StartsWith(markdown, values[n], i, left))
-					{
-						return i;
-					}
-				}
+				var children = MatchAll(match);
+				var element = new Bold();
+				element.Inlines.AddRange(children);
+				consumedCount = 4 + match.Count;
+				return element;
 			}
 
-			return -1;
+			if ((match = MatchAndConsume(tokens, out totalMatchCount,
+				    TokenPattern.Required(MarkdownTokenType.Underscore, MarkdownTokenType.Underscore),
+				    TokenPattern.Optional(MarkdownTokenType.Underscore, MarkdownTokenType.Underscore))) != null)
+			{
+				var children = MatchAll(match);
+				var element = new Bold();
+				element.Inlines.AddRange(children);
+				consumedCount = 4 + match.Count;
+				return element;
+			}
+
+			if ((match = MatchAndConsume(tokens, out totalMatchCount,
+				    TokenPattern.Required(MarkdownTokenType.Star),
+				    TokenPattern.Optional(MarkdownTokenType.Star))) != null)
+			{
+				var children = MatchAll(match);
+				var element = new Italic();
+				element.Inlines.AddRange(children);
+				consumedCount = 2 + match.Count;
+				return element;
+			}
+
+			if ((match = MatchAndConsume(tokens, out totalMatchCount,
+				    TokenPattern.Required(MarkdownTokenType.Underscore),
+				    TokenPattern.Optional(MarkdownTokenType.Underscore))) != null)
+			{
+				var children = MatchAll(match);
+				var element = new Italic();
+				element.Inlines.AddRange(children);
+				consumedCount = 2 + match.Count;
+				return element;
+			}
+
+			var token = tokens[index: 0];
+			consumedCount = 1;
+			return new Run(token.Text);
 		}
 
-		private static bool StartsWith(string markdown, string search, int startIndex, int count)
+		/// <summary>
+		///     Tries to find a match with the given pattern(s).
+		///     If start is specified, then the match must occur at the very first token.
+		///     If end is specified, then the match includes every token until the first token
+		///     matching the end pattern.
+		/// </summary>
+		/// <param name="tokens"></param>
+		/// <param name="matchTotalTokenCount"></param>
+		/// <param name="start"></param>
+		/// <param name="end"></param>
+		/// <returns>The list of matching tokens, excluding start/end tokens</returns>
+		private static IReadOnlyList<MarkdownToken> MatchAndConsume(IReadOnlyList<MarkdownToken> tokens,
+			out int matchTotalTokenCount,
+			TokenPattern? start = null, TokenPattern? end = null)
 		{
-			if (count < search.Length)
+			var startIndex = 0;
+			if (start != null)
+			{
+				if (!StartsWith(tokens, start.Value))
+				{
+					matchTotalTokenCount = 0;
+					return null;
+				}
+
+				startIndex += start.Value.Length;
+			}
+
+			if (end != null)
+			{
+				var slice = tokens.Slice(startIndex, tokens.Count - startIndex);
+				var idx = FindFirst(slice, end.Value);
+				if (idx == -1)
+					if (end.Value.IsRequired)
+					{
+						matchTotalTokenCount = 0;
+						return null;
+					}
+					else
+					{
+						// We have a match until the end
+						matchTotalTokenCount = tokens.Count;
+						return tokens.Slice(startIndex, tokens.Count - startIndex);
+					}
+				// We have a match
+				matchTotalTokenCount = startIndex + idx + end.Value.Length;
+				return tokens.Slice(startIndex, idx);
+			}
+			// We have a match
+			matchTotalTokenCount = tokens.Count;
+			return tokens.Slice(startIndex, tokens.Count - startIndex);
+		}
+
+		private static bool StartsWith(IReadOnlyList<MarkdownToken> tokens, TokenPattern pattern)
+		{
+			if (tokens.Count < pattern.Length)
 				return false;
 
-			for (int i = 0; i < search.Length; ++i)
+			for (var i = 0; i < pattern.Length; ++i)
 			{
-				var v = markdown[startIndex+i];
-				if (v != search[i])
+				var token = tokens[i];
+				var expected = pattern.Types[i];
+				if (token.Type != expected)
 					return false;
 			}
 
 			return true;
 		}
 
-		private static int FirstIndexOfAny(string markdown, char[] values, int startIndex, out int valueIndex)
+		private static int FindFirst(IReadOnlyList<MarkdownToken> tokens, TokenPattern pattern)
 		{
-			for (int i = startIndex; i < markdown.Length; ++i)
+			for (var i = 0; i < tokens.Count; ++i)
+				if (StartsWith(tokens.Slice(i), pattern))
+					return i;
+
+			return -1;
+		}
+
+		private struct TokenPattern
+		{
+			public readonly bool IsRequired;
+			public readonly MarkdownTokenType[] Types;
+			public int Length => Types.Length;
+
+			public static TokenPattern Required(params MarkdownTokenType[] types)
 			{
-				var value = markdown[i];
-				for (int n = 0; n < values.Length; ++n)
-				{
-					if (value == n)
-					{
-						valueIndex = n;
-						return i;
-					}
-				}
+				return new TokenPattern(isRequired: true, types: types);
 			}
 
-			valueIndex = -1;
-			return -1;
+			public static TokenPattern Optional(params MarkdownTokenType[] types)
+			{
+				return new TokenPattern(isRequired: false, types: types);
+			}
+
+			private TokenPattern(bool isRequired, params MarkdownTokenType[] types)
+			{
+				IsRequired = isRequired;
+				Types = types;
+			}
 		}
 	}
 }
