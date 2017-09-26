@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 
 namespace Metrolib.Controls.TextBlocks
 {
@@ -7,14 +8,28 @@ namespace Metrolib.Controls.TextBlocks
 	/// </summary>
 	public sealed class MarkdownTokenizer
 	{
-		private static readonly IReadOnlyDictionary<char, MarkdownTokenType> Tokens;
+		private static readonly IReadOnlyDictionary<string, MarkdownTokenType> Tokens;
 
 		static MarkdownTokenizer()
 		{
-			Tokens = new Dictionary<char, MarkdownTokenType>
+			Tokens = new Dictionary<string, MarkdownTokenType>
 			{
-				{'*', MarkdownTokenType.Star},
-				{'_', MarkdownTokenType.Underscore}
+				// Unfortunately, our tokenizer cannot differentiate between
+				// bold (**) and two italic tokens (**) and therefore we have
+				// to model each character as is => It's the parsers job to
+				// make sense of this duplicity
+				{"*", MarkdownTokenType.Star},
+				{"_", MarkdownTokenType.Underscore},
+
+				// Line breaks are only ever acknowledged if they are preceeded by at least two spaces
+				{"  \r\n", MarkdownTokenType.LineBreak},
+				{"  \n", MarkdownTokenType.LineBreak},
+				// If there's no preceeding spaces, then line breaks are replaced with a single space
+				{"\r\n", MarkdownTokenType.Whitespace},
+				{"\n", MarkdownTokenType.Whitespace},
+
+				{"\t", MarkdownTokenType.Whitespace},
+				{" ", MarkdownTokenType.Whitespace}
 			};
 		}
 
@@ -44,6 +59,82 @@ namespace Metrolib.Controls.TextBlocks
 			return ret;
 		}
 
+		/// <summary>
+		///     Returns an list of tokens which is semantically identical to the given list,
+		///     but contains fewer tokens, if possible.
+		/// </summary>
+		/// <remarks>
+		/// None tokens will be removed and adjacent text tokens will be merged.
+		/// </remarks>
+		/// <param name="tokens"></param>
+		public IReadOnlyList<MarkdownToken> Optimize(IReadOnlyList<MarkdownToken> tokens)
+		{
+			var ret = new List<MarkdownToken>(tokens.Count);
+			// #1: Remove none tokens
+			foreach (var token in tokens)
+				if (token.Type != MarkdownTokenType.None)
+					ret.Add(token);
+
+			// #2: Remove unnecessary space tokens
+			for (var i = 0; i < ret.Count;)
+			{
+				if (ret[i].Type == MarkdownTokenType.Whitespace)
+				{
+					int n;
+					for (n = i + 1; n < ret.Count; ++n)
+					{
+						if (ret[n].Type != MarkdownTokenType.Whitespace)
+							break;
+					}
+					int count = n - i;
+					if (count > 1)
+					{
+						ret.RemoveRange(i, count);
+						ret.Insert(i, new MarkdownToken(MarkdownTokenType.Whitespace));
+					}
+				}
+
+				++i;
+			}
+
+			// #2: Merge adjacent text/space tokens
+			for (var i = 0; i < ret.Count;)
+			{
+				if (ret[i].Type == MarkdownTokenType.Text ||
+					ret[i].Type == MarkdownTokenType.Whitespace)
+				{
+					int n;
+					for (n = i + 1; n < ret.Count; ++n)
+					{
+						if (ret[n].Type != MarkdownTokenType.Text &&
+							ret[n].Type != MarkdownTokenType.Whitespace)
+							break;
+					}
+					int count = n - i;
+					if (count > 1)
+					{
+						var token = MergeAsText(ret.Slice(i, count));
+						ret.RemoveRange(i, count);
+						ret.Insert(i, token);
+					}
+				}
+
+				++i;
+			}
+
+			return ret;
+		}
+
+		private MarkdownToken MergeAsText(IReadOnlyList<MarkdownToken> tokens)
+		{
+			var builder = new StringBuilder();
+			for(int i = 0; i < tokens.Count; ++i)
+			{
+				builder.Append(tokens[i].Type == MarkdownTokenType.Whitespace ? " " : tokens[i].Text);
+			}
+			return new MarkdownToken(MarkdownTokenType.Text, builder.ToString());
+		}
+
 		private static MarkdownToken? CreateNextToken(string markdown, int startIndex, out int idx)
 		{
 			if (startIndex >= markdown.Length)
@@ -52,51 +143,59 @@ namespace Metrolib.Controls.TextBlocks
 				return null;
 			}
 
-			var next = markdown[startIndex];
-			switch (next)
+			foreach (var pair in Tokens)
+				if (StartsWith(markdown, pair.Key, startIndex))
+				{
+					idx = startIndex + pair.Key.Length;
+					return new MarkdownToken(pair.Value);
+				}
+
+			MarkdownTokenType type;
+			var ret = FirstIndexOfAny(markdown, Tokens, startIndex, out type);
+			string sub;
+			if (ret == -1)
 			{
-				case '*':
-					idx = startIndex + 1;
-					return new MarkdownToken(MarkdownTokenType.Star);
-
-				case '_':
-					idx = startIndex + 1;
-					return new MarkdownToken(MarkdownTokenType.Underscore);
-
-				default:
-					MarkdownTokenType type;
-					var ret = FirstIndexOfAny(markdown, Tokens, startIndex, out type);
-					string sub;
-					if (ret == -1)
-					{
-						sub = markdown.Substring(startIndex);
-						idx = markdown.Length;
-					}
-					else
-					{
-						sub = markdown.Substring(startIndex, ret - startIndex);
-						idx = ret;
-					}
-					return new MarkdownToken(MarkdownTokenType.Text, sub);
+				sub = markdown.Substring(startIndex);
+				idx = markdown.Length;
 			}
+			else
+			{
+				sub = markdown.Substring(startIndex, ret - startIndex);
+				idx = ret;
+			}
+			return new MarkdownToken(MarkdownTokenType.Text, sub);
 		}
 
-		private static int FirstIndexOfAny(string markdown, IReadOnlyDictionary<char, MarkdownTokenType> values,
+		private static int FirstIndexOfAny(string markdown, IReadOnlyDictionary<string, MarkdownTokenType> values,
 			int startIndex, out MarkdownTokenType tokenType)
 		{
 			for (var i = startIndex; i < markdown.Length; ++i)
-			{
-				var value = markdown[i];
 				foreach (var pair in values)
-					if (value == pair.Key)
+					if (StartsWith(markdown, pair.Key, i))
 					{
 						tokenType = pair.Value;
 						return i;
 					}
-			}
 
 			tokenType = MarkdownTokenType.None;
 			return -1;
+		}
+
+		private static bool StartsWith(string markdown, string pattern, int startIndex)
+		{
+			var left = markdown.Length - startIndex;
+			if (left < pattern.Length)
+				return false;
+
+			for (var i = 0; i < pattern.Length; ++i)
+			{
+				var expected = pattern[i];
+				var actual = markdown[startIndex + i];
+				if (expected != actual)
+					return false;
+			}
+
+			return true;
 		}
 	}
 }

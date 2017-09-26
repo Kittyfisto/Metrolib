@@ -28,6 +28,31 @@ namespace Metrolib.Test.TextBlocks
 		}
 
 		[Test]
+		public void TestParseLineBreak1()
+		{
+			var parser = new MarkdownParser();
+			var values = parser.Parse("Hello,\r\nWorld!");
+			values.Should().NotBeNull();
+			values.Should().HaveCount(1);
+			values[0].Should().BeOfType<Run>();
+			((Run) values[0]).Text.Should().Be("Hello, World!");
+		}
+
+		[Test]
+		public void TestParseLineBreak2()
+		{
+			var parser = new MarkdownParser();
+			var values = parser.Parse("Hello,  \r\nWorld!");
+			values.Should().NotBeNull();
+			values.Should().HaveCount(3);
+			values[0].Should().BeOfType<Run>();
+			((Run)values[0]).Text.Should().Be("Hello,");
+			values[1].Should().BeOfType<LineBreak>();
+			values[2].Should().BeOfType<Run>();
+			((Run)values[2]).Text.Should().Be("World!");
+		}
+
+		[Test]
 		public void TestTextOnly()
 		{
 			var parser = new MarkdownParser();

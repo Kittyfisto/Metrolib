@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Documents;
 
 namespace Metrolib.Controls.TextBlocks
@@ -26,7 +27,7 @@ namespace Metrolib.Controls.TextBlocks
 		/// <returns></returns>
 		public IReadOnlyList<Inline> Parse(string markdown)
 		{
-			var tokens = _tokenizer.Tokenize(markdown);
+			var tokens = _tokenizer.Optimize(_tokenizer.Tokenize(markdown));
 			return MatchAll(tokens);
 		}
 
@@ -59,7 +60,7 @@ namespace Metrolib.Controls.TextBlocks
 		{
 			int totalMatchCount;
 			IReadOnlyList<MarkdownToken> match;
-			if ((match = MatchAndConsume(tokens, out totalMatchCount,
+			if ((match = Match(tokens, out totalMatchCount,
 				    TokenPattern.Required(MarkdownTokenType.Star, MarkdownTokenType.Star),
 				    TokenPattern.Optional(MarkdownTokenType.Star, MarkdownTokenType.Star))) != null)
 			{
@@ -70,7 +71,7 @@ namespace Metrolib.Controls.TextBlocks
 				return element;
 			}
 
-			if ((match = MatchAndConsume(tokens, out totalMatchCount,
+			if ((match = Match(tokens, out totalMatchCount,
 				    TokenPattern.Required(MarkdownTokenType.Underscore, MarkdownTokenType.Underscore),
 				    TokenPattern.Optional(MarkdownTokenType.Underscore, MarkdownTokenType.Underscore))) != null)
 			{
@@ -81,7 +82,7 @@ namespace Metrolib.Controls.TextBlocks
 				return element;
 			}
 
-			if ((match = MatchAndConsume(tokens, out totalMatchCount,
+			if ((match = Match(tokens, out totalMatchCount,
 				    TokenPattern.Required(MarkdownTokenType.Star),
 				    TokenPattern.Optional(MarkdownTokenType.Star))) != null)
 			{
@@ -92,7 +93,7 @@ namespace Metrolib.Controls.TextBlocks
 				return element;
 			}
 
-			if ((match = MatchAndConsume(tokens, out totalMatchCount,
+			if ((match = Match(tokens, out totalMatchCount,
 				    TokenPattern.Required(MarkdownTokenType.Underscore),
 				    TokenPattern.Optional(MarkdownTokenType.Underscore))) != null)
 			{
@@ -101,6 +102,20 @@ namespace Metrolib.Controls.TextBlocks
 				element.Inlines.AddRange(children);
 				consumedCount = 2 + match.Count;
 				return element;
+			}
+
+			if ((match = Match(tokens, out totalMatchCount,
+				start: TokenPattern.Required(MarkdownTokenType.LineBreak))) != null)
+			{
+				consumedCount = 1;
+				return new LineBreak();
+			}
+
+			if ((match = Match(tokens, out totalMatchCount,
+				    start: TokenPattern.Required(MarkdownTokenType.Whitespace))) != null)
+			{
+				consumedCount = 1;
+				return new Run(" ");
 			}
 
 			var token = tokens[index: 0];
@@ -119,7 +134,7 @@ namespace Metrolib.Controls.TextBlocks
 		/// <param name="start"></param>
 		/// <param name="end"></param>
 		/// <returns>The list of matching tokens, excluding start/end tokens</returns>
-		private static IReadOnlyList<MarkdownToken> MatchAndConsume(IReadOnlyList<MarkdownToken> tokens,
+		private static IReadOnlyList<MarkdownToken> Match(IReadOnlyList<MarkdownToken> tokens,
 			out int matchTotalTokenCount,
 			TokenPattern? start = null, TokenPattern? end = null)
 		{

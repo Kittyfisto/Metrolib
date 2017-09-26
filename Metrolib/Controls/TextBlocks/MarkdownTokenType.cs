@@ -3,12 +3,14 @@
 	/// <summary>
 	/// 
 	/// </summary>
-	public enum MarkdownTokenType
+	public enum MarkdownTokenType : byte
 	{
 		None = 0,
 
 		Star,
 		Underscore,
+		LineBreak,
+		Whitespace,
 		Text
 	}
 }

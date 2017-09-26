@@ -128,6 +128,7 @@
     <Compile Include="TextBlocks\EditableTextBlockTest.cs" />
     <Compile Include="TextBlocks\MarkdownParserTest.cs" />
     <Compile Include="TextBlocks\MarkdownBlockTest.cs" />
+    <Compile Include="TextBlocks\MarkdownTokenizerTest.cs" />
     <Compile Include="TextBoxes\EditorTextBoxTest.cs" />
     <Compile Include="TimeSpanConverterTest.cs" />
     <Compile Include="Tree\FlatTreeViewItemTest.cs" />
