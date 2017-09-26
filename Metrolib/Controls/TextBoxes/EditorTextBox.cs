@@ -12,6 +12,9 @@ namespace Metrolib.Controls
 	///     A textbox meant to edit text.
 	///     Displays a watermark while no text has been entered.
 	/// </summary>
+	/// <remarks>
+	///     Supports many markdown shortcuts, when <see cref="EnableMarkdownShortcuts" /> is set to true.
+	/// </remarks>
 	public sealed class EditorTextBox
 		: TextBox
 	{
@@ -21,6 +24,12 @@ namespace Metrolib.Controls
 		public static readonly DependencyProperty WatermarkProperty =
 			DependencyProperty.Register("Watermark", typeof(string), typeof(EditorTextBox),
 				new PropertyMetadata(default(string)));
+
+		/// <summary>
+		///     Definition of the <see cref="EnableMarkdownShortcuts" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty EnableMarkdownShortcutsProperty = DependencyProperty.Register(
+			"EnableMarkdownShortcuts", typeof(bool), typeof(EditorTextBox), new PropertyMetadata(defaultValue: false));
 
 		static EditorTextBox()
 		{
@@ -38,6 +47,17 @@ namespace Metrolib.Controls
 		}
 
 		/// <summary>
+		///     Whether or not this control shall accept shortcuts (key gestures) which insert the appropriate markdown
+		///     syntax (such as ctrl+b to make text bold, inserts **...**).
+		///     Is disabled by default.
+		/// </summary>
+		public bool EnableMarkdownShortcuts
+		{
+			get { return (bool) GetValue(EnableMarkdownShortcutsProperty); }
+			set { SetValue(EnableMarkdownShortcutsProperty, value); }
+		}
+
+		/// <summary>
 		///     The watermark text that shall appear until <see cref="TextBox.Text" /> is no longer empty.
 		/// </summary>
 		public string Watermark
@@ -48,33 +68,30 @@ namespace Metrolib.Controls
 
 		private void ToggleItalic()
 		{
-			if (SelectionLength > 0)
-			{
-				var selectionStart = SelectionStart;
-				var selectionEnd = SelectionStart + SelectionLength;
-				bool wasBold = IsSelectionItalic();
+			if (EnableMarkdownShortcuts)
+				if (SelectionLength > 0)
+				{
+					var selectionStart = SelectionStart;
+					var selectionEnd = SelectionStart + SelectionLength;
+					var wasBold = IsSelectionItalic();
 
-				var builder = new StringBuilder(Text);
-				if (wasBold)
-				{
-					builder.Remove(selectionStart, 1);
-					builder.Remove(selectionEnd - 2, 1);
+					var builder = new StringBuilder(Text);
+					if (wasBold)
+					{
+						builder.Remove(selectionStart, length: 1);
+						builder.Remove(selectionEnd - 2, length: 1);
+					}
+					else
+					{
+						builder.Insert(selectionStart, value: '*');
+						builder.Insert(selectionEnd + 1, value: '*');
+					}
+					Text = builder.ToString();
+					if (wasBold)
+						Select(selectionStart, selectionEnd - 2);
+					else
+						Select(selectionStart, selectionEnd + 2);
 				}
-				else
-				{
-					builder.Insert(selectionStart, '*');
-					builder.Insert(selectionEnd + 1, '*');
-				}
-				Text = builder.ToString();
-				if (wasBold)
-				{
-					Select(selectionStart, selectionEnd - 2);
-				}
-				else
-				{
-					Select(selectionStart, selectionEnd + 2);
-				}
-			}
 		}
 
 		[Pure]
@@ -86,50 +103,43 @@ namespace Metrolib.Controls
 				return false;
 
 			var selectedText = SelectedText;
-			if (selectedText[0] == '*' &&
+			if (selectedText[index: 0] == '*' &&
 			    selectedText[selectionLength - 1] == '*')
-			{
 				return true;
-			}
-			if (selectedText[0] == '_' &&
+			if (selectedText[index: 0] == '_' &&
 			    selectedText[selectionLength - 1] == '_')
-			{
 				return true;
-			}
 			return false;
 		}
 
 		private void ToggleBoldness()
 		{
-			if (SelectionLength > 0)
-			{
-				var selectionStart = SelectionStart;
-				var selectionEnd = SelectionStart + SelectionLength;
-				bool wasBold = IsSelectionBold();
+			if (EnableMarkdownShortcuts)
+				if (SelectionLength > 0)
+				{
+					var selectionStart = SelectionStart;
+					var selectionEnd = SelectionStart + SelectionLength;
+					var wasBold = IsSelectionBold();
 
-				var builder = new StringBuilder(Text);
-				if (wasBold)
-				{
-					builder.Remove(selectionStart, 2);
-					builder.Remove(selectionEnd - 4, 2);
+					var builder = new StringBuilder(Text);
+					if (wasBold)
+					{
+						builder.Remove(selectionStart, length: 2);
+						builder.Remove(selectionEnd - 4, length: 2);
+					}
+					else
+					{
+						builder.Insert(selectionStart, value: '*');
+						builder.Insert(selectionStart, value: '*');
+						builder.Insert(selectionEnd + 2, value: '*');
+						builder.Insert(selectionEnd + 2, value: '*');
+					}
+					Text = builder.ToString();
+					if (wasBold)
+						Select(selectionStart, selectionEnd - 4);
+					else
+						Select(selectionStart, selectionEnd + 4);
 				}
-				else
-				{
-					builder.Insert(selectionStart, '*');
-					builder.Insert(selectionStart, '*');
-					builder.Insert(selectionEnd + 2, '*');
-					builder.Insert(selectionEnd + 2, '*');
-				}
-				Text = builder.ToString();
-				if (wasBold)
-				{
-					Select(selectionStart, selectionEnd - 4);
-				}
-				else
-				{
-					Select(selectionStart, selectionEnd + 4);
-				}
-			}
 		}
 
 		[Pure]
@@ -141,20 +151,16 @@ namespace Metrolib.Controls
 				return false;
 
 			var selectedText = SelectedText;
-			if (selectedText[0] == '*' &&
-			    selectedText[1] == '*' &&
+			if (selectedText[index: 0] == '*' &&
+			    selectedText[index: 1] == '*' &&
 			    selectedText[selectionLength - 1] == '*' &&
 			    selectedText[selectionLength - 2] == '*')
-			{
 				return true;
-			}
-			if (selectedText[0] == '_' &&
-			    selectedText[1] == '_' &&
+			if (selectedText[index: 0] == '_' &&
+			    selectedText[index: 1] == '_' &&
 			    selectedText[selectionLength - 1] == '_' &&
 			    selectedText[selectionLength - 2] == '_')
-			{
 				return true;
-			}
 			return false;
 		}
 	}

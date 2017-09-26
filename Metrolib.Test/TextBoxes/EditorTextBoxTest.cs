@@ -31,8 +31,16 @@ namespace Metrolib.Test.TextBoxes
 		}
 
 		[Test]
+		public void TestCtor()
+		{
+			_textBox.Text.Should().BeNullOrEmpty();
+			_textBox.EnableMarkdownShortcuts.Should().BeFalse();
+		}
+
+		[Test]
 		public void TestToggleBoldness1()
 		{
+			_textBox.EnableMarkdownShortcuts = true;
 			_textBox.Text = "Foobar";
 			_textBox.Select(0, 6);
 
@@ -45,6 +53,7 @@ namespace Metrolib.Test.TextBoxes
 		[Test]
 		public void TestToggleBoldness2()
 		{
+			_textBox.EnableMarkdownShortcuts = true;
 			_textBox.Text = "**Foobar**";
 			_textBox.Select(0, 10);
 
@@ -57,6 +66,7 @@ namespace Metrolib.Test.TextBoxes
 		[Test]
 		public void TestToggleBoldness3()
 		{
+			_textBox.EnableMarkdownShortcuts = true;
 			_textBox.Text = "__Foobar__";
 			_textBox.Select(0, 10);
 
@@ -67,8 +77,33 @@ namespace Metrolib.Test.TextBoxes
 		}
 
 		[Test]
+		public void TestToggleBoldness4()
+		{
+			_textBox.Text = "Foobar";
+			_textBox.Select(0, 10);
+
+			_keyboard.Click(_textBox, Key.B, ModifierKeys.Control);
+
+			_textBox.Text.Should().Be("Foobar");
+			_textBox.SelectedText.Should().Be("Foobar");
+		}
+
+		[Test]
+		public void TestToggleBoldness5()
+		{
+			_textBox.Text = "**Foobar**";
+			_textBox.Select(0, 10);
+
+			_keyboard.Click(_textBox, Key.B, ModifierKeys.Control);
+
+			_textBox.Text.Should().Be("**Foobar**");
+			_textBox.SelectedText.Should().Be("**Foobar**");
+		}
+
+		[Test]
 		public void TestToggleItalic1()
 		{
+			_textBox.EnableMarkdownShortcuts = true;
 			_textBox.Text = "Foobar";
 			_textBox.Select(0, 6);
 
@@ -81,6 +116,7 @@ namespace Metrolib.Test.TextBoxes
 		[Test]
 		public void TestToggleItalic2()
 		{
+			_textBox.EnableMarkdownShortcuts = true;
 			_textBox.Text = "*Foobar*";
 			_textBox.Select(0, 8);
 
@@ -93,6 +129,7 @@ namespace Metrolib.Test.TextBoxes
 		[Test]
 		public void TestToggleItalic3()
 		{
+			_textBox.EnableMarkdownShortcuts = true;
 			_textBox.Text = "_Foobar_";
 			_textBox.Select(0, 8);
 
@@ -100,6 +137,32 @@ namespace Metrolib.Test.TextBoxes
 
 			_textBox.Text.Should().Be("Foobar");
 			_textBox.SelectedText.Should().Be("Foobar");
+		}
+
+		[Test]
+		public void TestToggleItalic4()
+		{
+			_textBox.EnableMarkdownShortcuts = false;
+			_textBox.Text = "Foobar";
+			_textBox.Select(0, 8);
+
+			_keyboard.Click(_textBox, Key.I, ModifierKeys.Control);
+
+			_textBox.Text.Should().Be("Foobar");
+			_textBox.SelectedText.Should().Be("Foobar");
+		}
+
+		[Test]
+		public void TestToggleItalic5()
+		{
+			_textBox.EnableMarkdownShortcuts = false;
+			_textBox.Text = "_Foobar_";
+			_textBox.Select(0, 8);
+
+			_keyboard.Click(_textBox, Key.I, ModifierKeys.Control);
+
+			_textBox.Text.Should().Be("_Foobar_");
+			_textBox.SelectedText.Should().Be("_Foobar_");
 		}
 	}
 }
