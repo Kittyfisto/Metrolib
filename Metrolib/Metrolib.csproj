@@ -326,6 +326,7 @@
     <Compile Include="Controls\ProgressBar\AbstractProgressBar.cs" />
     <Compile Include="Controls\ProgressBar\FlatProgressBar.cs" />
     <Compile Include="Controls\TextBlocks\EditableTextBlock.cs" />
+    <Compile Include="DelegateCommand2.cs" />
     <Compile Include="ListSliceDebugView.cs" />
     <Compile Include="ReadOnlyListExtensions.cs" />
     <Compile Include="ListSlice.cs" />

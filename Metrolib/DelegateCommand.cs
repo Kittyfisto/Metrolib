@@ -20,7 +20,7 @@ namespace Metrolib
 		/// <param name="execute"></param>
 		public DelegateCommand(Action execute)
 		{
-			if (execute == null) throw new ArgumentNullException("execute");
+			if (execute == null) throw new ArgumentNullException(nameof(execute));
 
 			_execute = execute;
 		}
@@ -32,8 +32,8 @@ namespace Metrolib
 		/// <param name="canExecute"></param>
 		public DelegateCommand(Action execute, Func<bool> canExecute)
 		{
-			if (execute == null) throw new ArgumentNullException("execute");
-			if (canExecute == null) throw new ArgumentNullException("canExecute");
+			if (execute == null) throw new ArgumentNullException(nameof(execute));
+			if (canExecute == null) throw new ArgumentNullException(nameof(canExecute));
 
 			_execute = execute;
 			_canExecute = canExecute;
@@ -69,9 +69,7 @@ namespace Metrolib
 		/// </summary>
 		public void RaiseCanExecuteChanged()
 		{
-			EventHandler fn = CanExecuteChanged;
-			if (fn != null)
-				fn(this, null);
+			CanExecuteChanged?.Invoke(this, null);
 		}
 	}
 
@@ -96,7 +94,7 @@ namespace Metrolib
 		/// <param name="execute"></param>
 		public DelegateCommand(Action<T> execute)
 		{
-			if (execute == null) throw new ArgumentNullException("execute");
+			if (execute == null) throw new ArgumentNullException(nameof(execute));
 
 			_execute = execute;
 		}
@@ -108,8 +106,8 @@ namespace Metrolib
 		/// <param name="canExecute"></param>
 		public DelegateCommand(Action<T> execute, Func<T, bool> canExecute)
 		{
-			if (execute == null) throw new ArgumentNullException("execute");
-			if (canExecute == null) throw new ArgumentNullException("canExecute");
+			if (execute == null) throw new ArgumentNullException(nameof(execute));
+			if (canExecute == null) throw new ArgumentNullException(nameof(canExecute));
 
 			_execute = execute;
 			_canExecute = canExecute;
@@ -151,9 +149,7 @@ namespace Metrolib
 		/// </summary>
 		public void RaiseCanExecuteChanged()
 		{
-			EventHandler fn = CanExecuteChanged;
-			if (fn != null)
-				fn(this, null);
+			CanExecuteChanged?.Invoke(this, null);
 		}
 	}
 }
