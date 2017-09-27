@@ -62,6 +62,6 @@
         <TextBlock Text="EditableTextBlock" Grid.Row="5" VerticalAlignment="Center" />
         <controls:EditableTextBlock Grid.Row="5" Grid.Column="2"
                                     Text="Click me!"
-                                    Watermark="Give me characters" />
+                                    Watermark="I'm the watermark" />
     </Grid>
 </UserControl>

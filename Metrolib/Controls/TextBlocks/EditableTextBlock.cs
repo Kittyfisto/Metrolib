@@ -38,13 +38,26 @@ namespace Metrolib.Controls
 		///     Definition of the <see cref="Text" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
-			"Text", typeof(string), typeof(EditableTextBlock), new PropertyMetadata(default(string)));
+			"Text", typeof(string), typeof(EditableTextBlock),
+			new PropertyMetadata(defaultValue: null, propertyChangedCallback: OnTextChanged));
 
 		/// <summary>
 		///     Definition of the <see cref="Watermark" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty WatermarkProperty = DependencyProperty.Register(
-			"Watermark", typeof(string), typeof(EditableTextBlock), new PropertyMetadata(default(string)));
+			"Watermark", typeof(string), typeof(EditableTextBlock),
+			new PropertyMetadata(defaultValue: null, propertyChangedCallback: OnWatermarkChanged));
+
+		private static readonly DependencyPropertyKey TextOrWatermarkPropertyKey
+			= DependencyProperty.RegisterReadOnly("TextOrWatermark", typeof(string), typeof(EditableTextBlock),
+				new FrameworkPropertyMetadata(default(string),
+					FrameworkPropertyMetadataOptions.None));
+
+		/// <summary>
+		///     Definition of the <see cref="TextOrWatermark" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty TextOrWatermarkProperty
+			= TextOrWatermarkPropertyKey.DependencyProperty;
 
 		private MarkdownPresenter _presenter;
 
@@ -54,6 +67,15 @@ namespace Metrolib.Controls
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(EditableTextBlock),
 				new FrameworkPropertyMetadata(typeof(EditableTextBlock)));
+		}
+
+		/// <summary>
+		///     The text to display or the watermark, if <see cref="Text" /> is null.
+		/// </summary>
+		public string TextOrWatermark
+		{
+			get { return (string) GetValue(TextOrWatermarkProperty); }
+			protected set { SetValue(TextOrWatermarkPropertyKey, value); }
 		}
 
 		/// <summary>
@@ -97,6 +119,26 @@ namespace Metrolib.Controls
 		{
 			get { return (string) GetValue(TextProperty); }
 			set { SetValue(TextProperty, value); }
+		}
+
+		private static void OnTextChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+		{
+			((EditableTextBlock) dependencyObject).OnTextChanged((string) args.NewValue);
+		}
+
+		private void OnTextChanged(string text)
+		{
+			TextOrWatermark = string.IsNullOrEmpty(text) ? Watermark : text;
+		}
+
+		private static void OnWatermarkChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+		{
+			((EditableTextBlock) dependencyObject).OnWatermarkChanged((string) args.NewValue);
+		}
+
+		private void OnWatermarkChanged(string watermark)
+		{
+			TextOrWatermark = string.IsNullOrEmpty(Text) ? watermark : Text;
 		}
 
 		private static void OnIsEditingChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
@@ -145,9 +187,7 @@ namespace Metrolib.Controls
 
 			_presenter = (MarkdownPresenter) GetTemplateChild(PART_MarkdownPresenter);
 			if (_presenter != null)
-			{
 				_presenter.MouseLeftButtonDown += PresenterOnMouseLeftButtonDown;
-			}
 
 			_textBox = (TextBox) GetTemplateChild(PART_TextBox);
 			if (_textBox != null)

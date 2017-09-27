@@ -5,6 +5,7 @@
 
     <converters:BoolTrueToCollapsedConverter x:Key="BoolTrueToCollapsedConverter" />
     <converters:BoolFalseToHiddenConverter x:Key="BoolFalseToHiddenConverter" />
+    <converters:NullToVisibleConverter x:Key="NullToVisibleConverter" />
 
     <Style TargetType="{x:Type controls:EditableTextBlock}">
         <Setter Property="Padding" Value="4" />
@@ -21,7 +22,8 @@
                                 Background="Transparent"
                                 VerticalAlignment="Center"
                                 Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"
-                                Markdown="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" />
+                                Markdown="{Binding TextOrWatermark, RelativeSource={RelativeSource TemplatedParent}}" />
+                            
                             <controls:EditorTextBox
                                 x:Name="PART_TextBox"
                                 Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"

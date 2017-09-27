@@ -41,6 +41,14 @@ namespace Metrolib.Test.TextBlocks
 		}
 
 		[Test]
+		public void TestCtor()
+		{
+			_control.Text.Should().BeNullOrEmpty();
+			_control.Watermark.Should().BeNullOrEmpty();
+			_control.TextOrWatermark.Should().BeNullOrEmpty();
+		}
+
+		[Test]
 		public void TestApplyTemplate()
 		{
 			var control = new EditableTextBlock
@@ -77,10 +85,53 @@ namespace Metrolib.Test.TextBlocks
 		}
 
 		[Test]
-		public void TestChangeWatermark()
+		public void TestChangeWatermark1()
 		{
 			_control.Watermark = "Give me characters!";
 			_textBox.Watermark.Should().Be("Give me characters!");
+		}
+
+		[Test]
+		public void TestChangeWatermark2()
+		{
+			_control.Watermark = "Foo";
+			_control.Text.Should().BeNull();
+			_control.TextOrWatermark.Should().Be("Foo");
+			_presenter.Markdown.Should().Be("Foo");
+
+			_control.Watermark = "Foobar";
+			_control.Text.Should().BeNull();
+			_control.TextOrWatermark.Should().Be("Foobar");
+			_presenter.Markdown.Should().Be("Foobar");
+		}
+
+		[Test]
+		public void TestChangeText()
+		{
+			_control.Text = "Foo";
+			_control.TextOrWatermark.Should().Be("Foo");
+			_presenter.Markdown.Should().Be("Foo");
+
+			_control.Text = "Foobar";
+			_control.TextOrWatermark.Should().Be("Foobar");
+			_presenter.Markdown.Should().Be("Foobar");
+		}
+
+		[Test]
+		public void TestChangeTextAndWatermark()
+		{
+			_control.Watermark = "Stuff";
+			_control.TextOrWatermark.Should().Be("Stuff");
+			_presenter.Markdown.Should().Be("Stuff");
+
+			_control.Text = "";
+			_control.Watermark.Should().Be("Stuff");
+			_control.TextOrWatermark.Should().Be("Stuff");
+			_presenter.Markdown.Should().Be("Stuff");
+
+			_control.Text = "Foobar";
+			_control.TextOrWatermark.Should().Be("Foobar");
+			_presenter.Markdown.Should().Be("Foobar");
 		}
 
 		[Test]
