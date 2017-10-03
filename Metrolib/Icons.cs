@@ -613,6 +613,155 @@
 
 		#endregion
 
+		#region Media
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry Play;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry PlayBoxOutline;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry PlayCircle;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry PlayCircleOutline;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry PlayPause;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry Pause;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry PauseCircle;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry PauseCircleOutline;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry PauseOctagon;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry PauseOctagonOutline;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry StepBackward;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry StepBackward2;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry StepForward;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry StepForward2;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry Stop;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry StopCircle;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry StopCircleOutline;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry Rewind;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry RewindOutline;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FastForward;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FastForwardOutline;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry SkipForward;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry SkipBackward;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry SkipPrevious;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry SkipNext;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry SkipNextCircle;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry SkipNextCircleOutline;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry SkipPreviousCircle;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry SkipPreviousCircleOutline;
+
+		#endregion
+
 		#region Database
 
 		/// <summary>
@@ -761,6 +910,36 @@
 			ChartDonut = CreateGeometry("M13,2.05V5.08C16.39,5.57 19,8.47 19,12C19,12.9 18.82,13.75 18.5,14.54L21.12,16.07C21.68,14.83 22,13.45 22,12C22,6.82 18.05,2.55 13,2.05M12,19A7,7 0 0,1 5,12C5,8.47 7.61,5.57 11,5.08V2.05C5.94,2.55 2,6.81 2,12A10,10 0 0,0 12,22C15.3,22 18.23,20.39 20.05,17.91L17.45,16.38C16.17,18 14.21,19 12,19Z");
 			ChartDonutVariant = CreateGeometry("M13,2.05C18.05,2.55 22,6.82 22,12C22,13.45 21.68,14.83 21.12,16.07L18.5,14.54C18.82,13.75 19,12.9 19,12C19,8.47 16.39,5.57 13,5.08V2.05M12,19C14.21,19 16.17,18 17.45,16.38L20.05,17.91C18.23,20.39 15.3,22 12,22C6.47,22 2,17.5 2,12C2,6.81 5.94,2.55 11,2.05V5.08C7.61,5.57 5,8.47 5,12A7,7 0 0,0 12,19M12,6A6,6 0 0,1 18,12C18,14.97 15.84,17.44 13,17.92V14.83C14.17,14.42 15,13.31 15,12A3,3 0 0,0 12,9L11.45,9.05L9.91,6.38C10.56,6.13 11.26,6 12,6M6,12C6,10.14 6.85,8.5 8.18,7.38L9.72,10.05C9.27,10.57 9,11.26 9,12C9,13.31 9.83,14.42 11,14.83V17.92C8.16,17.44 6,14.97 6,12Z");
 
+			Play = CreateGeometry("M8,5.14V19.14L19,12.14L8,5.14Z");
+			PlayBoxOutline = CreateGeometry("M19,19H5V5H19M19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M10,8V16L15,12L10,8Z");
+			PlayCircle = CreateGeometry("M10,16.5V7.5L16,12M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z");
+			PlayCircleOutline = CreateGeometry("M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,16.5L16,12L10,7.5V16.5Z");
+			PlayPause = CreateGeometry("M3,5V19L11,12M13,19H16V5H13M18,5V19H21V5");
+			Pause = CreateGeometry("M14,19H18V5H14M6,19H10V5H6V19Z");
+			PauseCircle = CreateGeometry("M15,16H13V8H15M11,16H9V8H11M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z");
+			PauseCircleOutline = CreateGeometry("M13,16V8H15V16H13M9,16V8H11V16H9M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z");
+			PauseOctagon = CreateGeometry("M15.73,3L21,8.27V15.73L15.73,21H8.27L3,15.73V8.27L8.27,3H15.73M15,16V8H13V16H15M11,16V8H9V16H11Z");
+			PauseOctagonOutline = CreateGeometry("M15,16H13V8H15V16M11,16H9V8H11V16M15.73,3L21,8.27V15.73L15.73,21H8.27L3,15.73V8.27L8.27,3H15.73M14.9,5H9.1L5,9.1V14.9L9.1,19H14.9L19,14.9V9.1L14.9,5Z");
+			StepBackward = CreateGeometry("M19,5V19H16V5M14,5V19L3,12");
+			StepBackward2 = CreateGeometry("M17,5H14V19H17V5M12,5L1,12L12,19V5M22,5H19V19H22V5Z");
+			StepForward = CreateGeometry("M5,5V19H8V5M10,5V19L21,12");
+			StepForward2 = CreateGeometry("M7,5H10V19H7V5M12,5L23,12L12,19V5M2,5H5V19H2V5Z");
+			Stop = CreateGeometry("M18,18H6V6H18V18Z");
+			StopCircle = CreateGeometry("M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M9,9H15V15H9");
+			StopCircleOutline = CreateGeometry("M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4M9,9V15H15V9");
+			Rewind = CreateGeometry("M11.5,12L20,18V6M11,18V6L2.5,12L11,18Z");
+			RewindOutline = CreateGeometry("M10,9.9L7,12L10,14.1V9.9M19,9.9L16,12L19,14.1V9.9M12,6V18L3.5,12L12,6M21,6V18L12.5,12L21,6Z");
+			FastForward = CreateGeometry("M13,6V18L21.5,12M4,18L12.5,12L4,6V18Z");
+			FastForwardOutline = CreateGeometry("M15,9.9L18,12L15,14.1V9.9M6,9.9L9,12L6,14.1V9.9M13,6V18L21.5,12L13,6M4,6V18L12.5,12L4,6Z");
+			SkipBackward = CreateGeometry("M20,5V19L13,12M6,5V19H4V5M13,5V19L6,12");
+			SkipForward = CreateGeometry("M4,5V19L11,12M18,5V19H20V5M11,5V19L18,12");
+			SkipPrevious = CreateGeometry("M6,18V6H8V18H6M9.5,12L18,6V18L9.5,12Z");
+			SkipNext = CreateGeometry("M16,18H18V6H16M6,18L14.5,12L6,6V18Z");
+			SkipNextCircle = CreateGeometry("M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M8,8L13,12L8,16M14,8H16V16H14");
+			SkipNextCircleOutline = CreateGeometry("M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4M8,8V16L13,12M14,8V16H16V8");
+			SkipPreviousCircle = CreateGeometry("M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M8,8H10V16H8M16,8V16L11,12");
+			SkipPreviousCircleOutline = CreateGeometry("M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4C7.59,4 4,7.59 4,12C4,16.41 7.59,20 12,20C16.41,20 20,16.41 20,12C20,7.59 16.41,4 12,4M16,8V16L11,12M10,8V16H8V8");
+
 			Database = CreateGeometry("M12,3C7.58,3 4,4.79 4,7C4,9.21 7.58,11 12,11C16.42,11 20,9.21 20,7C20,4.79 16.42,3 12,3M4,9V12C4,14.21 7.58,16 12,16C16.42,16 20,14.21 20,12V9C20,11.21 16.42,13 12,13C7.58,13 4,11.21 4,9M4,14V17C4,19.21 7.58,21 12,21C16.42,21 20,19.21 20,17V14C20,16.21 16.42,18 12,18C7.58,18 4,16.21 4,14Z");
 			DatabaseMinus = CreateGeometry("M9,3C4.58,3 1,4.79 1,7C1,9.21 4.58,11 9,11C13.42,11 17,9.21 17,7C17,4.79 13.42,3 9,3M1,9V12C1,14.21 4.58,16 9,16C13.42,16 17,14.21 17,12V9C17,11.21 13.42,13 9,13C4.58,13 1,11.21 1,9M1,14V17C1,19.21 4.58,21 9,21C10.41,21 11.79,20.81 13,20.46V17.46C11.79,17.81 10.41,18 9,18C4.58,18 1,16.21 1,14M15,17V19H23V17");
 			DatabasePlus = CreateGeometry("M9,3C4.58,3 1,4.79 1,7C1,9.21 4.58,11 9,11C13.42,11 17,9.21 17,7C17,4.79 13.42,3 9,3M1,9V12C1,14.21 4.58,16 9,16C13.42,16 17,14.21 17,12V9C17,11.21 13.42,13 9,13C4.58,13 1,11.21 1,9M1,14V17C1,19.21 4.58,21 9,21C10.41,21 11.79,20.81 13,20.46V17.46C11.79,17.81 10.41,18 9,18C4.58,18 1,16.21 1,14M18,14V17H15V19H18V22H20V19H23V17H20V14");
@@ -773,4 +952,4 @@
 			return geometry;
 		}
 	}
-}
+};
