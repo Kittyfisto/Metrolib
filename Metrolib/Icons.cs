@@ -8,6 +8,11 @@
 		/// <summary>
 		/// 
 		/// </summary>
+		public static readonly System.Windows.Media.Geometry Apps;
+
+		/// <summary>
+		/// 
+		/// </summary>
 		public static readonly System.Windows.Media.Geometry Pen;
 
 		/// <summary>
@@ -207,7 +212,182 @@
 
 		#endregion
 
+		#region Content
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry ContentSave;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry ContentSaveAll;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry ContentSaveSettings;
+
+		#endregion
+
 		#region File
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry File;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileAccount;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileChart;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileCheck;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileCloud;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileDelimited;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileDocument;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileDocumentBox;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileExcel;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileExcelBox;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileFind;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileHidden;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileImage;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileImport;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileLock;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileMultiple;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileMusic;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileOutline;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FilePdf;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FilePercent;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FilePlus;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FilePowerPoint;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FilePowerPointBox;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FilePresentationBox;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileRestore;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileSend;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileTree;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileVideo;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileWord;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileWordBox;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry FileXml;
 
 		/// <summary>
 		/// 
@@ -454,6 +634,8 @@
 
 		static Icons()
 		{
+			Apps = CreateGeometry("M16,20H20V16H16M16,14H20V10H16M10,8H14V4H10M16,8H20V4H16M10,14H14V10H10M4,14H8V10H4M4,20H8V16H4M10,20H14V16H10M4,8H8V4H4V8Z");
+
 			Add = CreateGeometry("M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z");
 			Delete = CreateGeometry("M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z");
 			Pen = CreateGeometry("M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z");
@@ -483,7 +665,6 @@
 
 			Eye = CreateGeometry("M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z");
 			EyeOff = CreateGeometry("M11.83,9L15,12.16C15,12.11 15,12.05 15,12A3,3 0 0,0 12,9C11.94,9 11.89,9 11.83,9M7.53,9.8L9.08,11.35C9.03,11.56 9,11.77 9,12A3,3 0 0,0 12,15C12.22,15 12.44,14.97 12.65,14.92L14.2,16.47C13.53,16.8 12.79,17 12,17A5,5 0 0,1 7,12C7,11.21 7.2,10.47 7.53,9.8M2,4.27L4.28,6.55L4.73,7C3.08,8.3 1.78,10 1,12C2.73,16.39 7,19.5 12,19.5C13.55,19.5 15.03,19.2 16.38,18.66L16.81,19.08L19.73,22L21,20.73L3.27,3M12,7A5,5 0 0,1 17,12C17,12.64 16.87,13.26 16.64,13.82L19.57,16.75C21.07,15.5 22.27,13.86 23,12C21.27,7.61 17,4.5 12,4.5C10.6,4.5 9.26,4.75 8,5.2L10.17,7.35C10.74,7.13 11.35,7 12,7Z");
-			FileExport = CreateGeometry("M6,2C4.89,2 4,2.9 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13,3.5L18.5,9H13M8.93,12.22H16V19.29L13.88,17.17L11.05,20L8.22,17.17L11.05,14.35");
 			WindowMinimize = CreateGeometry("M20,14H4V10H20");
 			WindowMaximize = CreateGeometry("M4,4H20V20H4V4M6,8V18H18V8H6Z");
 			WindowRestore = CreateGeometry("M4,8H8V4H20V16H16V20H4V8M16,8V14H18V6H10V8H16M6,12V18H14V12H6Z");
@@ -497,6 +678,43 @@
 			FilterOutline = CreateGeometry("M3,2H21V2H21V4H20.92L15,9.92V22.91L9,16.91V9.91L3.09,4H3V2M11,16.08L13,18.08V9H13.09L18.09,4H5.92L10.92,9H11V16.08Z");
 			FilterRemove = CreateGeometry("M14.76,20.83L17.6,18L14.76,15.17L16.17,13.76L19,16.57L21.83,13.76L23.24,15.17L20.43,18L23.24,20.83L21.83,22.24L19,19.4L16.17,22.24L14.76,20.83M2,2H20V2H20V4H19.92L13,10.92V22.91L9,18.91V10.91L2.09,4H2V2Z");
 			FilterRemoveOutline = CreateGeometry("M14.73,20.83L17.58,18L14.73,15.17L16.15,13.76L19,16.57L21.8,13.76L23.22,15.17L20.41,18L23.22,20.83L21.8,22.24L19,19.4L16.15,22.24L14.73,20.83M2,2H20V2H20V4H19.92L14,9.92V22.91L8,16.91V9.91L2.09,4H2V2M10,16.08L12,18.08V9H12.09L17.09,4H4.92L9.92,9H10V16.08Z");
+
+			ContentSave = CreateGeometry("M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z");
+			ContentSaveAll = CreateGeometry("M17,7V3H7V7H17M14,17A3,3 0 0,0 17,14A3,3 0 0,0 14,11A3,3 0 0,0 11,14A3,3 0 0,0 14,17M19,1L23,5V17A2,2 0 0,1 21,19H7C5.89,19 5,18.1 5,17V3A2,2 0 0,1 7,1H19M1,7H3V21H17V23H3A2,2 0 0,1 1,21V7Z");
+			ContentSaveSettings = CreateGeometry("M15,8V4H5V8H15M12,18A3,3 0 0,0 15,15A3,3 0 0,0 12,12A3,3 0 0,0 9,15A3,3 0 0,0 12,18M17,2L21,6V18A2,2 0 0,1 19,20H5C3.89,20 3,19.1 3,18V4A2,2 0 0,1 5,2H17M11,22H13V24H11V22M7,22H9V24H7V22M15,22H17V24H15V22Z");
+
+			File = CreateGeometry("M13,9V3.5L18.5,9M6,2C4.89,2 4,2.89 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2H6Z");
+			FileAccount = CreateGeometry("M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M14,20V19C14,17.67 11.33,17 10,17C8.67,17 6,17.67 6,19V20H14M10,12A2,2 0 0,0 8,14A2,2 0 0,0 10,16A2,2 0 0,0 12,14A2,2 0 0,0 10,12Z");
+			FileChart = CreateGeometry("M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M7,20H9V14H7V20M11,20H13V12H11V20M15,20H17V16H15V20Z");
+			FileCheck = CreateGeometry("M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M10.45,18.46L15.2,13.71L14.03,12.3L10.45,15.88L8.86,14.3L7.7,15.46L10.45,18.46Z");
+			FileCloud = CreateGeometry("M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M15.68,15C15.34,13.3 13.82,12 12,12C10.55,12 9.3,12.82 8.68,14C7.17,14.18 6,15.45 6,17A3,3 0 0,0 9,20H15.5A2.5,2.5 0 0,0 18,17.5C18,16.18 16.97,15.11 15.68,15Z");
+			FileDelimited = CreateGeometry("M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M14,15V11H10V15H12.3C12.6,17 12,18 9.7,19.38L10.85,20.2C13,19 14,16 14,15Z");
+			FileDocument = CreateGeometry("M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M15,18V16H6V18H15M18,14V12H6V14H18Z");
+			FileDocumentBox = CreateGeometry("M14,17H7V15H14M17,13H7V11H17M17,9H7V7H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z");
+			FileExcel = CreateGeometry("M6,2H14L20,8V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2M13,3.5V9H18.5L13,3.5M17,11H13V13H14L12,14.67L10,13H11V11H7V13H8L11,15.5L8,18H7V20H11V18H10L12,16.33L14,18H13V20H17V18H16L13,15.5L16,13H17V11Z");
+			FileExcelBox = CreateGeometry("M16.2,17H14.2L12,13.2L9.8,17H7.8L11,12L7.8,7H9.8L12,10.8L14.2,7H16.2L13,12M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z");
+			FileExport = CreateGeometry("M6,2C4.89,2 4,2.9 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13,3.5L18.5,9H13M8.93,12.22H16V19.29L13.88,17.17L11.05,20L8.22,17.17L11.05,14.35");
+			FileFind = CreateGeometry("M9,13A3,3 0 0,0 12,16A3,3 0 0,0 15,13A3,3 0 0,0 12,10A3,3 0 0,0 9,13M20,19.59V8L14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18C18.45,22 18.85,21.85 19.19,21.6L14.76,17.17C13.96,17.69 13,18 12,18A5,5 0 0,1 7,13A5,5 0 0,1 12,8A5,5 0 0,1 17,13C17,14 16.69,14.96 16.17,15.75L20,19.59Z");
+			FileHidden = CreateGeometry("M13,9H14V11H11V7H13V9M18.5,9L16.38,6.88L17.63,5.63L20,8V10H18V11H15V9H18.5M13,3.5V2H12V4H13V6H11V4H9V2H8V4H6V5H4V4C4,2.89 4.89,2 6,2H14L16.36,4.36L15.11,5.61L13,3.5M20,20A2,2 0 0,1 18,22H16V20H18V19H20V20M18,15H20V18H18V15M12,22V20H15V22H12M8,22V20H11V22H8M6,22C4.89,22 4,21.1 4,20V18H6V20H7V22H6M4,14H6V17H4V14M4,10H6V13H4V10M18,11H20V14H18V11M4,6H6V9H4V6Z");
+			FileImage = CreateGeometry("M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M6,20H15L18,20V12L14,16L12,14L6,20M8,9A2,2 0 0,0 6,11A2,2 0 0,0 8,13A2,2 0 0,0 10,11A2,2 0 0,0 8,9Z");
+			FileImport = CreateGeometry("M6,2C4.89,2 4,2.9 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13,3.5L18.5,9H13M10.05,11.22L12.88,14.05L15,11.93V19H7.93L10.05,16.88L7.22,14.05");
+			FileLock = CreateGeometry("M6,2C4.89,2 4,2.9 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2H6M13,3.5L18.5,9H13V3.5M12,11A3,3 0 0,1 15,14V15H16V19H8V15H9V14C9,12.36 10.34,11 12,11M12,13A1,1 0 0,0 11,14V15H13V14C13,13.47 12.55,13 12,13Z");
+			FileMultiple = CreateGeometry("M15,7H20.5L15,1.5V7M8,0H16L22,6V18A2,2 0 0,1 20,20H8C6.89,20 6,19.1 6,18V2A2,2 0 0,1 8,0M4,4V22H20V24H4A2,2 0 0,1 2,22V4H4Z");
+			FileMusic = CreateGeometry("M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M9,16A2,2 0 0,0 7,18A2,2 0 0,0 9,20A2,2 0 0,0 11,18V13H14V11H10V16.27C9.71,16.1 9.36,16 9,16Z");
+			FileOutline = CreateGeometry("M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M11,4H6V20H11L18,20V11H11V4Z");
+			FilePdf = CreateGeometry("M14,9H19.5L14,3.5V9M7,2H15L21,8V20A2,2 0 0,1 19,22H7C5.89,22 5,21.1 5,20V4A2,2 0 0,1 7,2M11.93,12.44C12.34,13.34 12.86,14.08 13.46,14.59L13.87,14.91C13,15.07 11.8,15.35 10.53,15.84V15.84L10.42,15.88L10.92,14.84C11.37,13.97 11.7,13.18 11.93,12.44M18.41,16.25C18.59,16.07 18.68,15.84 18.69,15.59C18.72,15.39 18.67,15.2 18.57,15.04C18.28,14.57 17.53,14.35 16.29,14.35L15,14.42L14.13,13.84C13.5,13.32 12.93,12.41 12.53,11.28L12.57,11.14C12.9,9.81 13.21,8.2 12.55,7.54C12.39,7.38 12.17,7.3 11.94,7.3H11.7C11.33,7.3 11,7.69 10.91,8.07C10.54,9.4 10.76,10.13 11.13,11.34V11.35C10.88,12.23 10.56,13.25 10.05,14.28L9.09,16.08L8.2,16.57C7,17.32 6.43,18.16 6.32,18.69C6.28,18.88 6.3,19.05 6.37,19.23L6.4,19.28L6.88,19.59L7.32,19.7C8.13,19.7 9.05,18.75 10.29,16.63L10.47,16.56C11.5,16.23 12.78,16 14.5,15.81C15.53,16.32 16.74,16.55 17.5,16.55C17.94,16.55 18.24,16.44 18.41,16.25M18,15.54L18.09,15.65C18.08,15.75 18.05,15.76 18,15.78H17.96L17.77,15.8C17.31,15.8 16.6,15.61 15.87,15.29C15.96,15.19 16,15.19 16.1,15.19C17.5,15.19 17.9,15.44 18,15.54M8.83,17C8.18,18.19 7.59,18.85 7.14,19C7.19,18.62 7.64,17.96 8.35,17.31L8.83,17M11.85,10.09C11.62,9.19 11.61,8.46 11.78,8.04L11.85,7.92L12,7.97C12.17,8.21 12.19,8.53 12.09,9.07L12.06,9.23L11.9,10.05L11.85,10.09Z");
+			FilePercent = CreateGeometry("M14,2L20,8V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2H14M7.37,20L15,12.35L13.65,11L6,18.65L7.37,20M13,9H18.5L13,3.5V9M7.5,11A1.5,1.5 0 0,0 6,12.5A1.5,1.5 0 0,0 7.5,14A1.5,1.5 0 0,0 9,12.5A1.5,1.5 0 0,0 7.5,11M13.5,17A1.5,1.5 0 0,0 12,18.5A1.5,1.5 0 0,0 13.5,20A1.5,1.5 0 0,0 15,18.5A1.5,1.5 0 0,0 13.5,17Z");
+			FilePlus = CreateGeometry("M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M11,15V12H9V15H6V17H9V20H11V17H14V15H11Z");
+			FilePowerPoint = CreateGeometry("M6,2H14L20,8V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2M13,3.5V9H18.5L13,3.5M8,11V13H9V19H8V20H12V19H11V17H13A3,3 0 0,0 16,14A3,3 0 0,0 13,11H8M13,13A1,1 0 0,1 14,14A1,1 0 0,1 13,15H11V13H13Z");
+			FilePowerPointBox = CreateGeometry("M9.8,13.4H12.3C13.8,13.4 14.46,13.12 15.1,12.58C15.74,12.03 16,11.25 16,10.23C16,9.26 15.75,8.5 15.1,7.88C14.45,7.29 13.83,7 12.3,7H8V17H9.8V13.4M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5C3,3.89 3.9,3 5,3H19M9.8,12V8.4H12.1C12.76,8.4 13.27,8.65 13.6,9C13.93,9.35 14.1,9.72 14.1,10.24C14.1,10.8 13.92,11.19 13.6,11.5C13.28,11.81 12.9,12 12.22,12H9.8Z");
+			FilePresentationBox = CreateGeometry("M19,16H5V8H19M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z");
+			FileRestore = CreateGeometry("M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M12,18C9.95,18 8.19,16.76 7.42,15H9.13C9.76,15.9 10.81,16.5 12,16.5A3.5,3.5 0 0,0 15.5,13A3.5,3.5 0 0,0 12,9.5C10.65,9.5 9.5,10.28 8.9,11.4L10.5,13H6.5V9L7.8,10.3C8.69,8.92 10.23,8 12,8A5,5 0 0,1 17,13A5,5 0 0,1 12,18Z");
+			FileSend = CreateGeometry("M14,2H6C4.89,2 4,2.89 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M12.54,19.37V17.37H8.54V15.38H12.54V13.38L15.54,16.38L12.54,19.37M13,9V3.5L18.5,9H13Z");
+			FileTree = CreateGeometry("M3,3H9V7H3V3M15,10H21V14H15V10M15,17H21V21H15V17M13,13H7V18H13V20H7L5,20V9H7V11H13V13Z");
+			FileVideo = CreateGeometry("M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M17,19V13L14,15.2V13H7V19H14V16.8L17,19Z");
+			FileWord = CreateGeometry("M6,2H14L20,8V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2M13,3.5V9H18.5L13,3.5M7,13L8.5,20H10.5L12,17L13.5,20H15.5L17,13H18V11H14V13H15L14.1,17.2L13,15V15H11V15L9.9,17.2L9,13H10V11H6V13H7Z");
+			FileWordBox = CreateGeometry("M15.5,17H14L12,9.5L10,17H8.5L6.1,7H7.8L9.34,14.5L11.3,7H12.7L14.67,14.5L16.2,7H17.9M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z");
+			FileXml = CreateGeometry("M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M6.12,15.5L9.86,19.24L11.28,17.83L8.95,15.5L11.28,13.17L9.86,11.76L6.12,15.5M17.28,15.5L13.54,11.76L12.12,13.17L14.45,15.5L12.12,17.83L13.54,19.24L17.28,15.5Z");
 
 			Folder = CreateGeometry("M10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6H12L10,4Z");
 			FolderAccount = CreateGeometry("M19,17H11V16C11,14.67 13.67,14 15,14C16.33,14 19,14.67 19,16M15,9A2,2 0 0,1 17,11A2,2 0 0,1 15,13A2,2 0 0,1 13,11C13,9.89 13.9,9 15,9M20,6H12L10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6Z");
