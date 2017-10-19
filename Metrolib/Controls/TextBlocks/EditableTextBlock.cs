@@ -39,7 +39,7 @@ namespace Metrolib.Controls
 		/// </summary>
 		public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
 			"Text", typeof(string), typeof(EditableTextBlock),
-			new PropertyMetadata(defaultValue: null, propertyChangedCallback: OnTextChanged));
+			new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnTextChanged));
 
 		/// <summary>
 		///     Definition of the <see cref="Watermark" /> dependency property.

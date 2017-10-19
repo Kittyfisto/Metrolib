@@ -49,6 +49,16 @@ namespace Metrolib.Test.TextBlocks
 		}
 
 		[Test]
+		[Description("Verifies that the Text DP binds two-way by default")]
+		public void TestTextProperty()
+		{
+			var metadata = EditableTextBlock.TextProperty.GetMetadata(typeof(EditableTextBlock));
+			metadata.Should().BeOfType<FrameworkPropertyMetadata>();
+			var m = (FrameworkPropertyMetadata)metadata;
+			m.BindsTwoWayByDefault.Should().BeTrue("Because a user's intention when using this control is to allow text editing and therefore the Text binding should behave like that of a TextBox");
+		}
+
+		[Test]
 		public void TestApplyTemplate()
 		{
 			var control = new EditableTextBlock
