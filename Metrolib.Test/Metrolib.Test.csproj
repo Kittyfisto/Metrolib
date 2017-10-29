@@ -96,6 +96,7 @@
     <Compile Include="Converters\AbstractOneWayValueConverterTest.cs" />
     <Compile Include="Converters\BoolFalseToHiddenConverterTest.cs" />
     <Compile Include="Converters\ByteToStringConverterTest.cs" />
+    <Compile Include="Converters\ColorToBrushConverterTest.cs" />
     <Compile Include="Converters\EmptyToCollapsedConverterTest.cs" />
     <Compile Include="Converters\Int32ListToStringConverterTest.cs" />
     <Compile Include="Converters\NonEmptyToCollapsedConverterTest.cs" />
