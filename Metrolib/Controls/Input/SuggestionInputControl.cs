@@ -21,12 +21,28 @@ namespace Metrolib.Controls
 		public const string PART_SuggestionPopup = "PART_SuggestionPopup";
 
 		/// <summary>
+		///     Definition of the <see cref="SuggestionTemplate" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty SuggestionTemplateProperty = DependencyProperty.Register(
+		                                                                                                   "SuggestionTemplate",
+		                                                                                                   typeof(DataTemplate
+		                                                                                                   ),
+		                                                                                                   typeof(
+			                                                                                                   SuggestionInputControl
+		                                                                                                   ),
+		                                                                                                   new
+			                                                                                                   PropertyMetadata(propertyChangedCallback
+			                                                                                                                    : null))
+			;
+
+		/// <summary>
 		///     Definition of the <see cref="Text" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string),
 		                                                                                     typeof(SuggestionInputControl),
 		                                                                                     new
-			                                                                                     FrameworkPropertyMetadata(default(string),
+			                                                                                     FrameworkPropertyMetadata(defaultValue: null,
+			                                                                                                               flags:
 			                                                                                                               FrameworkPropertyMetadataOptions
 				                                                                                                               .BindsTwoWayByDefault))
 			;
@@ -38,9 +54,9 @@ namespace Metrolib.Controls
 		                                                                                          "Watermark", typeof(string),
 		                                                                                          typeof(
 			                                                                                          SuggestionInputControl),
-		                                                                                          new PropertyMetadata(default
-		                                                                                                               (string
-		                                                                                                               )));
+		                                                                                          new
+			                                                                                          PropertyMetadata(propertyChangedCallback
+			                                                                                                           : null));
 
 		/// <summary>
 		///     Definition of the <see cref="Suggestions" /> dependency property.
@@ -48,15 +64,13 @@ namespace Metrolib.Controls
 		public static readonly DependencyProperty SuggestionsProperty = DependencyProperty.Register(
 		                                                                                            "Suggestions",
 		                                                                                            typeof(IReadOnlyList<
-			                                                                                            string>),
+			                                                                                            object>),
 		                                                                                            typeof(
 			                                                                                            SuggestionInputControl),
 		                                                                                            new
-			                                                                                            PropertyMetadata(default(
-				                                                                                                             IReadOnlyList
-				                                                                                                             <string
-				                                                                                                             >),
-			                                                                                                             OnSuggestionsChanged))
+			                                                                                            PropertyMetadata(defaultValue: null,
+			                                                                                                             propertyChangedCallback
+			                                                                                                             : OnSuggestionsChanged))
 			;
 
 		/// <summary>
@@ -64,15 +78,30 @@ namespace Metrolib.Controls
 		/// </summary>
 		public static readonly DependencyProperty SelectedSuggestionsProperty = DependencyProperty.Register(
 		                                                                                                    "SelectedSuggestions",
-		                                                                                                    typeof(string),
+		                                                                                                    typeof(object),
 		                                                                                                    typeof(
 			                                                                                                    SuggestionInputControl
 		                                                                                                    ),
 		                                                                                                    new
-			                                                                                                    PropertyMetadata(default
-			                                                                                                                     (string
-			                                                                                                                     )))
-			;	
+			                                                                                                    PropertyMetadata(propertyChangedCallback
+			                                                                                                                     : null))
+			;
+
+		/// <summary>
+		///     Definition of the <see cref="SuggestionTemplateSelector" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty SuggestionTemplateSelectorProperty = DependencyProperty.Register(
+		                                                                                                           "SuggestionTemplateSelector",
+		                                                                                                           typeof(
+			                                                                                                           DataTemplateSelector
+		                                                                                                           ),
+		                                                                                                           typeof(
+			                                                                                                           SuggestionInputControl
+		                                                                                                           ),
+		                                                                                                           new
+			                                                                                                           PropertyMetadata(propertyChangedCallback
+			                                                                                                                            : null))
+			;
 
 		private Popup _popup;
 
@@ -83,11 +112,29 @@ namespace Metrolib.Controls
 		}
 
 		/// <summary>
+		///     The template with which a suggestions is displayed.
+		/// </summary>
+		public DataTemplate SuggestionTemplate
+		{
+			get { return (DataTemplate) GetValue(SuggestionTemplateProperty); }
+			set { SetValue(SuggestionTemplateProperty, value); }
+		}
+
+		/// <summary>
+		///     The template selector which can provide individual data templates for each suggestions.
+		/// </summary>
+		public DataTemplateSelector SuggestionTemplateSelector
+		{
+			get { return (DataTemplateSelector) GetValue(SuggestionTemplateSelectorProperty); }
+			set { SetValue(SuggestionTemplateSelectorProperty, value); }
+		}
+
+		/// <summary>
 		///     The selection currently selected, if any.
 		/// </summary>
-		public string SelectedSuggestions
+		public object SelectedSuggestions
 		{
-			get { return (string) GetValue(SelectedSuggestionsProperty); }
+			get { return GetValue(SelectedSuggestionsProperty); }
 			set { SetValue(SelectedSuggestionsProperty, value); }
 		}
 
@@ -112,18 +159,18 @@ namespace Metrolib.Controls
 		/// <summary>
 		///     The list of suggestions to present to the user.
 		/// </summary>
-		public IReadOnlyList<string> Suggestions
+		public IReadOnlyList<object> Suggestions
 		{
-			get { return (IReadOnlyList<string>) GetValue(SuggestionsProperty); }
+			get { return (IReadOnlyList<object>) GetValue(SuggestionsProperty); }
 			set { SetValue(SuggestionsProperty, value); }
 		}
 
 		private static void OnSuggestionsChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
 		{
-			((SuggestionInputControl) dependencyObject).OnSuggestionsChanged((IReadOnlyList<string>) args.NewValue);
+			((SuggestionInputControl) dependencyObject).OnSuggestionsChanged((IReadOnlyList<object>) args.NewValue);
 		}
 
-		private void OnSuggestionsChanged(IReadOnlyList<string> suggestions)
+		private void OnSuggestionsChanged(IReadOnlyList<object> suggestions)
 		{
 			if (suggestions != null && suggestions.Count > 0)
 				_popup.IsOpen = true;
@@ -131,6 +178,7 @@ namespace Metrolib.Controls
 				_popup.IsOpen = false;
 		}
 
+		/// <inheritdoc />
 		public override void OnApplyTemplate()
 		{
 			_popup = (Popup) GetTemplateChild(PART_SuggestionPopup);
