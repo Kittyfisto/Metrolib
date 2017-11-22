@@ -20,7 +20,7 @@
                         <Popup x:Name="PART_SuggestionPopup">
                             <Grid>
                                 <ListView ItemsSource="{TemplateBinding Suggestions}"
-                                          SelectedItem="{Binding SelectedSuggestions, RelativeSource={RelativeSource TemplatedParent}}"
+                                          SelectedItem="{Binding SelectedSuggestion, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                                           ItemTemplate="{TemplateBinding SuggestionTemplate}"
                                           ItemTemplateSelector="{TemplateBinding SuggestionTemplateSelector}" />
                             </Grid>

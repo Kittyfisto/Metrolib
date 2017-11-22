@@ -12,6 +12,13 @@ namespace Metrolib.Controls
 	///     which then displays a list of suggesstions from which the user
 	///     can select some, or continue typing...
 	/// </summary>
+	/// <example>
+	///     A view model should react to changes of the <see cref="Text" /> property and then provide
+	///     a list of suggestions to this control via the <see cref="Suggestions" /> property.
+	///     If the user selects a particular suggestions, then <see cref="SelectedSuggestion" /> is changed.
+	///     The user should then set the <see cref="Text" /> property to the value represented by the selected
+	///     suggestion.
+	/// </example>
 	[TemplatePart(Name = PART_SuggestionPopup, Type = typeof(Popup))]
 	public sealed class SuggestionInputControl
 		: Control
@@ -74,17 +81,16 @@ namespace Metrolib.Controls
 			;
 
 		/// <summary>
-		///     Definition of the <see cref="SelectedSuggestions" /> dependency property.
+		///     Definition of the <see cref="SelectedSuggestion" /> dependency property.
 		/// </summary>
-		public static readonly DependencyProperty SelectedSuggestionsProperty = DependencyProperty.Register(
-		                                                                                                    "SelectedSuggestions",
-		                                                                                                    typeof(object),
-		                                                                                                    typeof(
-			                                                                                                    SuggestionInputControl
-		                                                                                                    ),
-		                                                                                                    new
-			                                                                                                    PropertyMetadata(propertyChangedCallback
-			                                                                                                                     : null))
+		public static readonly DependencyProperty SelectedSuggestionProperty = DependencyProperty.Register(
+		                                                                                                   "SelectedSuggestion",
+		                                                                                                   typeof(object),
+		                                                                                                   typeof(
+			                                                                                                   SuggestionInputControl
+		                                                                                                   ),
+		                                                                                                   new
+			                                                                                                   FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault))
 			;
 
 		/// <summary>
@@ -132,10 +138,10 @@ namespace Metrolib.Controls
 		/// <summary>
 		///     The selection currently selected, if any.
 		/// </summary>
-		public object SelectedSuggestions
+		public object SelectedSuggestion
 		{
-			get { return GetValue(SelectedSuggestionsProperty); }
-			set { SetValue(SelectedSuggestionsProperty, value); }
+			get { return GetValue(SelectedSuggestionProperty); }
+			set { SetValue(SelectedSuggestionProperty, value); }
 		}
 
 		/// <summary>

@@ -41,6 +41,7 @@ namespace Metrolib.Sample
 
 		private string _text;
 		private IReadOnlyList<string> _suggestions;
+		private string _selectedSuggestion;
 
 		public string Text
 		{
@@ -87,6 +88,24 @@ namespace Metrolib.Sample
 			{
 				_suggestions = value;
 				EmitPropertyChanged();
+			}
+		}
+
+		public string SelectedSuggestion
+		{
+			get { return _selectedSuggestion; }
+			set
+			{
+				if (value == _selectedSuggestion)
+					return;
+
+				_selectedSuggestion = value;
+				EmitPropertyChanged();
+
+				if (value != null)
+				{
+					Text = value;
+				}
 			}
 		}
 
