@@ -113,6 +113,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Input\SuggestionInputControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\PageOverlay\PageOverlay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -326,6 +330,7 @@
     <Compile Include="Controls\ProgressBar\AbstractProgressBar.cs" />
     <Compile Include="Controls\ProgressBar\FlatProgressBar.cs" />
     <Compile Include="Controls\TextBlocks\EditableTextBlock.cs" />
+    <Compile Include="Controls\Input\SuggestionInputControl.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="DelegateCommand2.cs" />
     <Compile Include="ListSliceDebugView.cs" />

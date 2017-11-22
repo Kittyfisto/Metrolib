@@ -67,7 +67,9 @@
         <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/VisibilityToggleButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/ViewDashboardToggleButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/ViewQuiltToggleButton.xaml" />
-        
+
+        <ResourceDictionary Source="/Metrolib;component/Controls/Input/SuggestionInputControl.xaml" />
+
         <ResourceDictionary Source="/Metrolib;component/Controls/Windows/ChromelessWindow.xaml" />
 
         <ResourceDictionary Source="/Metrolib;component/Controls/Charts/AxisControl.xaml" />

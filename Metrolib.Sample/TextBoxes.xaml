@@ -25,6 +25,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="8" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="8" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <TextBlock Text="Control" />
@@ -46,5 +48,10 @@
         <TextBlock Text="FlatPasswordBox" Grid.Row="8" VerticalAlignment="Center" />
         <controls:FlatPasswordBox Grid.Column="2" Grid.Row="8" Watermark="Enter password" Password="Foo" />
         <controls:FlatPasswordBox Grid.Column="4" Grid.Row="8" Watermark="Enter password" Password="password" IsEnabled="False" />
+
+        <TextBlock Text="SuggestionInputControl" Grid.Row="10" VerticalAlignment="Center" />
+        <controls:SuggestionInputControl Grid.Column="2" Grid.Row="10" Text="{Binding SuggestionsViewModel.Text, ElementName=This}"
+                                                                       Suggestions="{Binding SuggestionsViewModel.Suggestions, ElementName=This}"/>
+        <controls:SuggestionInputControl Grid.Column="4" Grid.Row="10" Text="password" IsEnabled="False" />
     </Grid>
 </UserControl>
