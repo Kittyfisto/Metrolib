@@ -56,7 +56,8 @@
                                          Text="{Binding SuggestionsViewModel.Text, ElementName=This}"
                                          Suggestions="{Binding SuggestionsViewModel.Suggestions, ElementName=This}"
                                          SelectedSuggestion="{Binding SuggestionsViewModel.SelectedSuggestion, ElementName=This}"
-                                         SuggestionChosenCommand="{Binding SuggestionsViewModel.SelectSuggestionCommand, ElementName=This}" />
+                                         SuggestionChosenCommand="{Binding SuggestionsViewModel.SelectSuggestionCommand, ElementName=This}"
+                                         IsThinking="{Binding SuggestionsViewModel.IsThinking, ElementName=This}"/>
         <controls:SuggestionInputControl Grid.Column="4" Grid.Row="10" Text="password" IsEnabled="False" />
     </Grid>
 </UserControl>

@@ -111,6 +111,8 @@ namespace Metrolib.Sample
 
 		public ICommand SelectSuggestionCommand => new DelegateCommand<string>(OnSuggestionChosen);
 
+		public bool IsThinking => true;
+
 		private void OnSuggestionChosen(string suggestion)
 		{
 			try

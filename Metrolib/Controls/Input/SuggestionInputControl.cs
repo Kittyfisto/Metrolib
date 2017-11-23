@@ -28,7 +28,6 @@ namespace Metrolib.Controls
 		public const string PART_SuggestionPopup = "PART_SuggestionPopup";
 
 		/// <summary>
-		/// 
 		/// </summary>
 		public const string PART_SuggestionTextBox = "PART_SuggestionTextBox";
 
@@ -149,9 +148,20 @@ namespace Metrolib.Controls
 			                                                                                                                            : null))
 			;
 
-		private readonly KeyBinding _upBinding;
+		/// <summary>
+		///     Definition of the <see cref="IsThinking" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty IsThinkingProperty = DependencyProperty.Register(
+		                                                                                           "IsThinking", typeof(bool),
+		                                                                                           typeof(
+			                                                                                           SuggestionInputControl),
+		                                                                                           new
+			                                                                                           PropertyMetadata(default(
+				                                                                                                            bool)));
+
 		private readonly KeyBinding _downBinding;
-		private KeyBinding _enterBinding;
+		private readonly KeyBinding _upBinding;
+		private readonly KeyBinding _enterBinding;
 
 		static SuggestionInputControl()
 		{
@@ -171,6 +181,19 @@ namespace Metrolib.Controls
 			InputBindings.Add(_upBinding);
 			InputBindings.Add(_downBinding);
 			InputBindings.Add(_enterBinding);
+		}
+
+		/// <summary>
+		///     When set to true, the user is lead to believe that the software is trying
+		///     to come up with suggestions.
+		/// </summary>
+		/// <remarks>
+		///     Set this to true while you're looking for suggestions and then set it to false again.
+		/// </remarks>
+		public bool IsThinking
+		{
+			get { return (bool) GetValue(IsThinkingProperty); }
+			set { SetValue(IsThinkingProperty, value); }
 		}
 
 		/// <summary>
