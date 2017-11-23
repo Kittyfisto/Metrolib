@@ -32,7 +32,7 @@
         <TextBlock Text="Control" />
         <TextBlock Text="Normal" Grid.Column="2" />
         <TextBlock Text="Disabled" Grid.Column="4" />
-        
+
         <TextBlock Text="EditorTextBox" Grid.Row="2" VerticalAlignment="Center" />
         <controls:EditorTextBox Grid.Column="2" Grid.Row="2" Watermark="Click me!" />
         <controls:EditorTextBox Grid.Column="4" Grid.Row="2" Watermark="You can't click me!" IsEnabled="False" />
@@ -42,17 +42,21 @@
         <controls:FilterTextBox Grid.Column="4" Grid.Row="4" Watermark="You can't click me!" IsEnabled="False" />
 
         <TextBlock Text="SearchTextBox" Grid.Row="6" VerticalAlignment="Center" />
-        <controls:SearchTextBox Grid.Column="2" Grid.Row="6" Watermark="Titles, Names, Genres" OccurenceCount="10" CurrentOccurenceIndex="0" />
+        <controls:SearchTextBox Grid.Column="2" Grid.Row="6" Watermark="Titles, Names, Genres" OccurenceCount="10"
+                                CurrentOccurenceIndex="0" />
         <controls:SearchTextBox Grid.Column="4" Grid.Row="6" Watermark="Titles, Names, Genres" IsEnabled="False" />
 
         <TextBlock Text="FlatPasswordBox" Grid.Row="8" VerticalAlignment="Center" />
         <controls:FlatPasswordBox Grid.Column="2" Grid.Row="8" Watermark="Enter password" Password="Foo" />
-        <controls:FlatPasswordBox Grid.Column="4" Grid.Row="8" Watermark="Enter password" Password="password" IsEnabled="False" />
+        <controls:FlatPasswordBox Grid.Column="4" Grid.Row="8" Watermark="Enter password" Password="password"
+                                  IsEnabled="False" />
 
         <TextBlock Text="SuggestionInputControl" Grid.Row="10" VerticalAlignment="Center" />
-        <controls:SuggestionInputControl Grid.Column="2" Grid.Row="10" Text="{Binding SuggestionsViewModel.Text, ElementName=This}"
-                                                                       Suggestions="{Binding SuggestionsViewModel.Suggestions, ElementName=This}"
-                                                                       SelectedSuggestion="{Binding SuggestionsViewModel.SelectedSuggestion, ElementName=This}"/>
+        <controls:SuggestionInputControl Grid.Column="2" Grid.Row="10"
+                                         Text="{Binding SuggestionsViewModel.Text, ElementName=This}"
+                                         Suggestions="{Binding SuggestionsViewModel.Suggestions, ElementName=This}"
+                                         SelectedSuggestion="{Binding SuggestionsViewModel.SelectedSuggestion, ElementName=This}"
+                                         SuggestionChosenCommand="{Binding SuggestionsViewModel.SelectSuggestionCommand, ElementName=This}" />
         <controls:SuggestionInputControl Grid.Column="4" Grid.Row="10" Text="password" IsEnabled="False" />
     </Grid>
 </UserControl>

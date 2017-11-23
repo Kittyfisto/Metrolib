@@ -9,11 +9,13 @@
     <Style TargetType="{x:Type controls:FlatListView}">
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="{DynamicResource SeparatorBrush}" />
+        <Setter Property="Background" Value="White" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:FlatListView}">
                     <Border BorderThickness="{TemplateBinding BorderThickness}"
-                            BorderBrush="{TemplateBinding BorderBrush}">
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}">
                         <controls:FlatScrollViewer Background="{TemplateBinding Background}">
                             <ItemsPresenter />
                         </controls:FlatScrollViewer>

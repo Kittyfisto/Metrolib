@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 
 // ReSharper disable CheckNamespace
 namespace Metrolib.Controls
@@ -16,16 +17,20 @@ namespace Metrolib.Controls
 	///     A view model should react to changes of the <see cref="Text" /> property and then provide
 	///     a list of suggestions to this control via the <see cref="Suggestions" /> property.
 	///     If the user selects a particular suggestions, then <see cref="SelectedSuggestion" /> is changed.
-	///     The user should then set the <see cref="Text" /> property to the value represented by the selected
-	///     suggestion.
 	/// </example>
 	[TemplatePart(Name = PART_SuggestionPopup, Type = typeof(Popup))]
+	[TemplatePart(Name = PART_SuggestionTextBox, Type = typeof(TextBox))]
 	public sealed class SuggestionInputControl
 		: Control
 	{
 		/// <summary>
 		/// </summary>
 		public const string PART_SuggestionPopup = "PART_SuggestionPopup";
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public const string PART_SuggestionTextBox = "PART_SuggestionTextBox";
 
 		/// <summary>
 		///     Definition of the <see cref="SuggestionTemplate" /> dependency property.
@@ -90,7 +95,42 @@ namespace Metrolib.Controls
 			                                                                                                   SuggestionInputControl
 		                                                                                                   ),
 		                                                                                                   new
-			                                                                                                   FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault))
+			                                                                                                   FrameworkPropertyMetadata(defaultValue: null,
+			                                                                                                                             flags
+			                                                                                                                             : FrameworkPropertyMetadataOptions
+				                                                                                                                             .BindsTwoWayByDefault))
+			;
+
+		/// <summary>
+		///     Definition of the <see cref="SelectedSuggestionIndex" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty SelectedSuggestionIndexProperty = DependencyProperty.Register(
+		                                                                                                        "SelectedSuggestionIndex",
+		                                                                                                        typeof(int),
+		                                                                                                        typeof(
+			                                                                                                        SuggestionInputControl
+		                                                                                                        ),
+		                                                                                                        new
+			                                                                                                        FrameworkPropertyMetadata(defaultValue: 0,
+			                                                                                                                                  flags
+			                                                                                                                                  : FrameworkPropertyMetadataOptions
+				                                                                                                                                  .BindsTwoWayByDefault))
+			;
+
+		/// <summary>
+		///     Definition of the <see cref="SelectedSuggestionIndex" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty SuggestionChosenCommandProperty = DependencyProperty.Register(
+		                                                                                                        "SuggestionChosenCommand",
+		                                                                                                        typeof(
+			                                                                                                        ICommand),
+		                                                                                                        typeof(
+			                                                                                                        SuggestionInputControl
+		                                                                                                        ),
+		                                                                                                        new
+			                                                                                                        PropertyMetadata(default
+			                                                                                                                         (ICommand
+			                                                                                                                         )))
 			;
 
 		/// <summary>
@@ -109,12 +149,38 @@ namespace Metrolib.Controls
 			                                                                                                                            : null))
 			;
 
-		private Popup _popup;
+		private readonly KeyBinding _upBinding;
+		private readonly KeyBinding _downBinding;
+		private KeyBinding _enterBinding;
 
 		static SuggestionInputControl()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(SuggestionInputControl),
 			                                         new FrameworkPropertyMetadata(typeof(SuggestionInputControl)));
+		}
+
+		/// <summary>
+		///     Initializes this object.
+		/// </summary>
+		public SuggestionInputControl()
+		{
+			_upBinding = new KeyBinding(new DelegateCommand2(OnKeyUp), Key.Up, ModifierKeys.None);
+			_downBinding = new KeyBinding(new DelegateCommand2(OnKeyDown), Key.Down, ModifierKeys.None);
+			_enterBinding = new KeyBinding(new DelegateCommand2(OnEnter), Key.Enter, ModifierKeys.None);
+
+			InputBindings.Add(_upBinding);
+			InputBindings.Add(_downBinding);
+			InputBindings.Add(_enterBinding);
+		}
+
+		/// <summary>
+		///     This command is <see cref="ICommand.Execute(object)" />d when the user actually decides to use a particular
+		///     suggestion.
+		/// </summary>
+		public ICommand SuggestionChosenCommand
+		{
+			get { return (ICommand) GetValue(SuggestionChosenCommandProperty); }
+			set { SetValue(SuggestionChosenCommandProperty, value); }
 		}
 
 		/// <summary>
@@ -145,6 +211,15 @@ namespace Metrolib.Controls
 		}
 
 		/// <summary>
+		///     The index of the <see cref="SelectedSuggestion" />, if any.
+		/// </summary>
+		public int SelectedSuggestionIndex
+		{
+			get { return (int) GetValue(SelectedSuggestionIndexProperty); }
+			set { SetValue(SelectedSuggestionIndexProperty, value); }
+		}
+
+		/// <summary>
 		///     The watermark being displayed while no text has been entered.
 		/// </summary>
 		public string Watermark
@@ -171,6 +246,43 @@ namespace Metrolib.Controls
 			set { SetValue(SuggestionsProperty, value); }
 		}
 
+		internal Popup Popup { get; private set; }
+		internal TextBox TextBox { get; private set; }
+
+		private void OnKeyUp()
+		{
+			if (Suggestions?.Count > 0)
+			{
+				var previous = SelectedSuggestionIndex - 1;
+				if (previous < 0)
+					previous = Suggestions.Count - 1;
+				SelectedSuggestionIndex = previous;
+			}
+		}
+
+		private void OnKeyDown()
+		{
+			if (Suggestions?.Count > 0)
+			{
+				var next = (SelectedSuggestionIndex + 1) % Suggestions.Count;
+				SelectedSuggestionIndex = next;
+			}
+		}
+
+		private void OnEnter()
+		{
+			var selected = SelectedSuggestion;
+			if (Suggestions?.Count > 0 && selected != null)
+			{
+				var fn = SuggestionChosenCommand;
+				if (fn != null && fn.CanExecute(selected))
+					fn.Execute(selected);
+
+				Popup.IsOpen = false;
+				Keyboard.ClearFocus();
+			}
+		}
+
 		private static void OnSuggestionsChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
 		{
 			((SuggestionInputControl) dependencyObject).OnSuggestionsChanged((IReadOnlyList<object>) args.NewValue);
@@ -179,15 +291,18 @@ namespace Metrolib.Controls
 		private void OnSuggestionsChanged(IReadOnlyList<object> suggestions)
 		{
 			if (suggestions != null && suggestions.Count > 0)
-				_popup.IsOpen = true;
+				Popup.IsOpen = true;
 			else
-				_popup.IsOpen = false;
+				Popup.IsOpen = false;
 		}
 
 		/// <inheritdoc />
 		public override void OnApplyTemplate()
 		{
-			_popup = (Popup) GetTemplateChild(PART_SuggestionPopup);
+			Popup = (Popup) GetTemplateChild(PART_SuggestionPopup);
+			TextBox = (TextBox) GetTemplateChild(PART_SuggestionTextBox);
+			TextBox.InputBindings.Add(_upBinding);
+			TextBox.InputBindings.Add(_downBinding);
 
 			base.OnApplyTemplate();
 		}

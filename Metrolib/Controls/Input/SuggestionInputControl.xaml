@@ -7,7 +7,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <TextBlock Text="{Binding}"
-                               Margin="8,4,8,4"/>
+                               Margin="8,4,8,4" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
@@ -15,14 +15,16 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:SuggestionInputControl}">
                     <Grid>
-                        <controls:EditorTextBox Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
-                                                Watermark="{Binding Watermark, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <controls:EditorTextBox x:Name="PART_SuggestionTextBox"
+                                                Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
+                                                Watermark="{Binding Watermark, RelativeSource={RelativeSource TemplatedParent}}" />
                         <Popup x:Name="PART_SuggestionPopup">
                             <Grid>
-                                <ListView ItemsSource="{TemplateBinding Suggestions}"
-                                          SelectedItem="{Binding SelectedSuggestion, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                          ItemTemplate="{TemplateBinding SuggestionTemplate}"
-                                          ItemTemplateSelector="{TemplateBinding SuggestionTemplateSelector}" />
+                                <controls:FlatListView ItemsSource="{TemplateBinding Suggestions}"
+                                                       SelectedItem="{Binding SelectedSuggestion, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                       SelectedIndex="{Binding SelectedSuggestionIndex, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                       ItemTemplate="{TemplateBinding SuggestionTemplate}"
+                                                       ItemTemplateSelector="{TemplateBinding SuggestionTemplateSelector}" />
                             </Grid>
                         </Popup>
                     </Grid>

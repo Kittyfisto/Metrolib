@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Windows.Input;
 using log4net;
 
 namespace Metrolib.Sample
@@ -42,6 +43,7 @@ namespace Metrolib.Sample
 		private string _text;
 		private IReadOnlyList<string> _suggestions;
 		private string _selectedSuggestion;
+		private bool _disableSuggestions;
 
 		public string Text
 		{
@@ -54,20 +56,23 @@ namespace Metrolib.Sample
 				_text = value;
 				EmitPropertyChanged();
 
-				// Finding suggestions for any given search term might take a very long time and thus we
-				// should perform the search on a BG thread so the UI isn't blocked...
-				_scheduler.StartNew(() => FindSuggestions(value))
-				          .ContinueWith(t => _dispatcher.BeginInvoke(() =>
-				          {
-					          try
+				if (!_disableSuggestions)
+				{
+					// Finding suggestions for any given search term might take a very long time and thus we
+					// should perform the search on a BG thread so the UI isn't blocked...
+					_scheduler.StartNew(() => FindSuggestions(value))
+					          .ContinueWith(t => _dispatcher.BeginInvoke(() =>
 					          {
-						          Suggestions = t.Result;
-					          }
-					          catch (Exception e)
-					          {
-						          Log.ErrorFormat("Caught unexpected exception: {0}", e);
-					          }
-				          }));
+						          try
+						          {
+							          Suggestions = t.Result;
+						          }
+						          catch (Exception e)
+						          {
+							          Log.ErrorFormat("Caught unexpected exception: {0}", e);
+						          }
+					          }));
+				}
 			}
 		}
 
@@ -101,11 +106,21 @@ namespace Metrolib.Sample
 
 				_selectedSuggestion = value;
 				EmitPropertyChanged();
+			}
+		}
 
-				if (value != null)
-				{
-					Text = value;
-				}
+		public ICommand SelectSuggestionCommand => new DelegateCommand<string>(OnSuggestionChosen);
+
+		private void OnSuggestionChosen(string suggestion)
+		{
+			try
+			{
+				_disableSuggestions = true;
+				Text = suggestion;
+			}
+			finally
+			{
+				_disableSuggestions = false;
 			}
 		}
 

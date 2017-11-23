@@ -18,19 +18,12 @@ namespace Metrolib.Test
 		{
 			_control = new FilterTextBox
 				{
-					Style = (Style) _app.FindResource(typeof (FilterTextBox))
+					Style = (Style) App.Instance.FindResource(typeof (FilterTextBox))
 				};
 			_control.ApplyTemplate().Should().BeTrue();
 		}
 
 		private FilterTextBox _control;
-		private Application _app;
-
-		[OneTimeSetUp]
-		public void OneTimeSetUp()
-		{
-			_app = new Application();
-		}
 
 		public static void ExecuteEvents()
 		{
