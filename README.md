@@ -11,28 +11,36 @@ https://www.nuget.org/packages/Metrolib
 This library ships a lot of restyled controls, from buttons to full blown charts:
 
 ## Buttons
-* FlatButton
 * AddButton
+* DeleteButton
 * ExportButton
+* FlatButton
+* FolderOpenButton
+* MaximizeButton
+* MinimizeButton
 * MoreButton
 * NextButton
 * PreviousButton
+* RefreshButton
 * RemoveButton
 * SearchButton
+* UndoButton
 
 ## Toggle Buttons
-* FlatToggleButton
 * EditToggleButton
 * EmailToggleButton
 * ExpanderToggleButton
+* FlatToggleButton
 * OneWayToggle
+* ViewDashboardToggleButton
+* ViewQuiltToggleButton
 * VisibilityToggleButton
 
 ## Text Boxes
+* EditorTextBox
 * FilterTextBox
 * FlatPasswordBox
 * [SearchTextBox](Samples/SearchTextBox/Description.md)
-* [WatermarkTextBox](Samples/WatermarkTextBox/Description.md)
 
 ## Progress Bars
 * [FlatProgressBar](Samples/FlatProgressBar/Description.md)
