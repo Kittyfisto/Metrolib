@@ -44,6 +44,9 @@ namespace Metrolib
 			UpdateRelativeValue(Minimum, newValue, Value);
 		}
 
+		/// <summary>
+		///     Initializes this object.
+		/// </summary>
 		protected AbstractProgressBar()
 		{
 			ValueChanged += OnValueChanged;
