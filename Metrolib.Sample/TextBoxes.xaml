@@ -53,6 +53,7 @@
 
         <TextBlock Text="SuggestionInputControl" Grid.Row="10" VerticalAlignment="Center" />
         <controls:SuggestionInputControl Grid.Column="2" Grid.Row="10"
+                                         x:Name="Foobar"
                                          Text="{Binding SuggestionsViewModel.Text, ElementName=This}"
                                          Suggestions="{Binding SuggestionsViewModel.Suggestions, ElementName=This}"
                                          SelectedSuggestion="{Binding SuggestionsViewModel.SelectedSuggestion, ElementName=This}"

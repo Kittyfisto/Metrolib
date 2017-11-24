@@ -181,6 +181,13 @@ namespace Metrolib.Controls
 			InputBindings.Add(_upBinding);
 			InputBindings.Add(_downBinding);
 			InputBindings.Add(_enterBinding);
+
+			GotFocus += OnGotFocus;
+		}
+
+		private void OnGotFocus(object sender, RoutedEventArgs routedEventArgs)
+		{
+			TextBox?.Focus();
 		}
 
 		/// <summary>

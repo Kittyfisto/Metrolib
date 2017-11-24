@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Windows.Threading;
 
 namespace Metrolib.Sample
@@ -13,6 +14,11 @@ namespace Metrolib.Sample
 			                                                new UiDispatcher(Dispatcher.CurrentDispatcher));
 
 			InitializeComponent();
+
+			Dispatcher.BeginInvoke(new Action(() =>
+			{
+				Foobar.Focus();
+			}));
 		}
 	}
 }
