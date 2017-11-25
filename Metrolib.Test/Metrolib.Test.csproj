@@ -107,6 +107,7 @@
     <Compile Include="Converters\UInt32ToStringConverterTest.cs" />
     <Compile Include="Converters\UInt64ToStringConverterTest.cs" />
     <Compile Include="DelegateCommandTest.cs" />
+    <Compile Include="DependencyObjectExtensionsTest.cs" />
     <Compile Include="DoubleToPercentageConverterTest.cs" />
     <Compile Include="FilterTextBoxTest.cs" />
     <Compile Include="Geometry\CircleSegmentTest.cs" />
