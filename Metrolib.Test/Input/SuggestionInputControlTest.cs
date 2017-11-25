@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
@@ -34,6 +35,15 @@ namespace Metrolib.Test.Input
 			_control.Popup.Should().NotBeNull();
 
 			_keyboard = new TestKeyboard();
+		}
+
+		[Test]
+		[Description("It should be possible to change suggestions without having a style applied yet")]
+		public void TestChangeSuggestions()
+		{
+			var control = new SuggestionInputControl();
+			new Action(() => control.Suggestions = new List<object>())
+				.ShouldNotThrow();
 		}
 
 		[Test]

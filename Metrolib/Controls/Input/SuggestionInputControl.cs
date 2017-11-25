@@ -316,15 +316,18 @@ namespace Metrolib.Controls
 
 		private static void OnSuggestionsChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
 		{
-			((SuggestionInputControl) dependencyObject).OnSuggestionsChanged((IReadOnlyList<object>) args.NewValue);
+			((SuggestionInputControl) dependencyObject).OnSuggestionsChanged((IEnumerable<object>) args.NewValue);
 		}
 
-		private void OnSuggestionsChanged(IReadOnlyList<object> suggestions)
+		private void OnSuggestionsChanged(IEnumerable<object> suggestions)
 		{
-			if (suggestions != null && suggestions.Count > 0)
-				Popup.IsOpen = true;
-			else
-				Popup.IsOpen = false;
+			if (Popup != null)
+			{
+				if (suggestions != null && suggestions.Any())
+					Popup.IsOpen = true;
+				else
+					Popup.IsOpen = false;
+			}
 		}
 
 		/// <inheritdoc />
