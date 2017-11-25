@@ -53,8 +53,8 @@ using System.Windows;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("0.2.2.5")]
-[assembly: AssemblyFileVersion("0.2.2.5")]
+[assembly: AssemblyVersion("0.3.0.65")]
+[assembly: AssemblyFileVersion("0.3.0.65")]
 
 #if DEBUG
 [assembly: InternalsVisibleTo("Metrolib.Test")]

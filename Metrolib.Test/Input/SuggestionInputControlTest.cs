@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
@@ -14,16 +16,6 @@ namespace Metrolib.Test.Input
 	[RequiresThread(ApartmentState.STA)]
 	public sealed class SuggestionInputControlTest
 	{
-		private Style _style;
-		private SuggestionInputControl _control;
-		private TestKeyboard _keyboard;
-
-		[OneTimeSetUp]
-		public void OneTimeSetup()
-		{
-			_style = (Style) App.Instance.FindResource(typeof(SuggestionInputControl));
-		}
-
 		[SetUp]
 		public void Setup()
 		{
@@ -37,13 +29,83 @@ namespace Metrolib.Test.Input
 			_keyboard = new TestKeyboard();
 		}
 
+		private Style _style;
+		private SuggestionInputControl _control;
+		private TestKeyboard _keyboard;
+
+		[OneTimeSetUp]
+		public void OneTimeSetup()
+		{
+			_style = (Style) App.Instance.FindResource(typeof(SuggestionInputControl));
+		}
+
+		private sealed class ObservableCollectionMock
+			: IEnumerable<object>
+				, INotifyCollectionChanged
+		{
+			private readonly List<NotifyCollectionChangedEventHandler> _listeners;
+
+			public IReadOnlyList<NotifyCollectionChangedEventHandler> Listeners => _listeners;
+
+			public ObservableCollectionMock()
+			{
+				_listeners = new List<NotifyCollectionChangedEventHandler>();
+			}
+
+			public IEnumerator<object> GetEnumerator()
+			{
+				return new List<object>().GetEnumerator();
+			}
+
+			IEnumerator IEnumerable.GetEnumerator()
+			{
+				return GetEnumerator();
+			}
+
+			public event NotifyCollectionChangedEventHandler CollectionChanged
+			{
+				add { _listeners.Add(value); }
+				remove { _listeners.Remove(value); }
+			}
+		}
+
 		[Test]
 		[Description("It should be possible to change suggestions without having a style applied yet")]
-		public void TestChangeSuggestions()
+		public void TestChangeSuggestions1()
 		{
 			var control = new SuggestionInputControl();
 			new Action(() => control.Suggestions = new List<object>())
 				.ShouldNotThrow();
+		}
+
+		[Test]
+		[Description("Verifies that the control subs and unsubs when the collection is replaced")]
+		public void TestChangeSuggestions2()
+		{
+			var control = new SuggestionInputControl();
+			var suggestions = new ObservableCollectionMock();
+			suggestions.Listeners.Should().BeEmpty();
+
+			control.Suggestions = suggestions;
+			suggestions.Listeners.Should().HaveCount(1);
+
+			control.Suggestions = null;
+			suggestions.Listeners.Should().BeEmpty();
+		}
+
+		[Test]
+		[Description("Verifies that the control unsubs when unloaded")]
+		public void TestChangeSuggestions3()
+		{
+			var control = new SuggestionInputControl();
+			var suggestions = new ObservableCollectionMock();
+			suggestions.Listeners.Should().BeEmpty();
+
+			control.Suggestions = suggestions;
+			suggestions.Listeners.Should().HaveCount(1);
+
+			control.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
+			suggestions.Listeners.Should().BeEmpty();
 		}
 
 		[Test]
@@ -72,24 +134,81 @@ namespace Metrolib.Test.Input
 		}
 
 		[Test]
-		public void TestSelectNextSuggestion1()
+		public void TestChooseSuggestion1()
 		{
 			_control.Text = "I";
-			var suggestions= new[]
+			var suggestions = new[]
 			{
 				"I'm Groot",
 				"I'm awesome!"
 			};
 			_control.Suggestions = suggestions;
-			_control.SelectedSuggestionIndex.Should().Be(0);
+			_control.SelectedSuggestionIndex.Should().Be(expected: 0);
+			_control.SelectedSuggestion.Should().Be(suggestions[0]);
+
+			new Action(() => _keyboard.Press(_control, Key.Enter)).ShouldNotThrow(
+			                                                                      "because the control should expect that users forget to set the command");
+		}
+
+		[Test]
+		public void TestChooseSuggestion2([Values(arg1: 0, arg2: 1)] int selectedIndex)
+		{
+			_control.Text = "I";
+
+			var suggestions = new[]
+			{
+				"I'm Groot",
+				"I'm awesome!"
+			};
+			_control.Suggestions = suggestions;
+			_control.SelectedSuggestionIndex = selectedIndex;
+
+			string chosenValue = null;
+			_control.SuggestionChosenCommand = new DelegateCommand<string>(tmp => { chosenValue = tmp; });
+
+			_keyboard.Press(_control, Key.Enter);
+			chosenValue.Should().Be(suggestions[selectedIndex]);
+		}
+
+		[Test]
+		public void TestChooseSuggestion3([Values(arg1: 0, arg2: 1)] int selectedIndex)
+		{
+			_control.Text = "I";
+
+			var suggestions = new[]
+			{
+				"I'm Groot",
+				"I'm awesome!"
+			};
+			_control.Suggestions = suggestions;
+			_control.SelectedSuggestionIndex = selectedIndex;
+
+			string chosenValue = null;
+			_control.SuggestionChosenCommand = new DelegateCommand<string>(tmp => { chosenValue = tmp; });
+
+			_keyboard.Press(_control.TextBox, Key.Enter);
+			chosenValue.Should().Be(suggestions[selectedIndex]);
+		}
+
+		[Test]
+		public void TestSelectNextSuggestion1()
+		{
+			_control.Text = "I";
+			var suggestions = new[]
+			{
+				"I'm Groot",
+				"I'm awesome!"
+			};
+			_control.Suggestions = suggestions;
+			_control.SelectedSuggestionIndex.Should().Be(expected: 0);
 			_control.SelectedSuggestion.Should().Be(suggestions[0]);
 
 			_keyboard.Press(_control, Key.Down);
-			_control.SelectedSuggestionIndex.Should().Be(1);
+			_control.SelectedSuggestionIndex.Should().Be(expected: 1);
 			_control.SelectedSuggestion.Should().Be(suggestions[1]);
 
 			_keyboard.Press(_control, Key.Down);
-			_control.SelectedSuggestionIndex.Should().Be(0);
+			_control.SelectedSuggestionIndex.Should().Be(expected: 0);
 			_control.SelectedSuggestion.Should().Be(suggestions[0]);
 		}
 
@@ -103,15 +222,15 @@ namespace Metrolib.Test.Input
 				"I'm awesome!"
 			};
 			_control.Suggestions = suggestions;
-			_control.SelectedSuggestionIndex.Should().Be(0);
+			_control.SelectedSuggestionIndex.Should().Be(expected: 0);
 			_control.SelectedSuggestion.Should().Be(suggestions[0]);
 
 			_keyboard.Press(_control.TextBox, Key.Down);
-			_control.SelectedSuggestionIndex.Should().Be(1);
+			_control.SelectedSuggestionIndex.Should().Be(expected: 1);
 			_control.SelectedSuggestion.Should().Be(suggestions[1]);
 
 			_keyboard.Press(_control.TextBox, Key.Down);
-			_control.SelectedSuggestionIndex.Should().Be(0);
+			_control.SelectedSuggestionIndex.Should().Be(expected: 0);
 			_control.SelectedSuggestion.Should().Be(suggestions[0]);
 		}
 
@@ -125,15 +244,15 @@ namespace Metrolib.Test.Input
 				"I'm awesome!"
 			};
 			_control.Suggestions = suggestions;
-			_control.SelectedSuggestionIndex.Should().Be(0);
+			_control.SelectedSuggestionIndex.Should().Be(expected: 0);
 			_control.SelectedSuggestion.Should().Be(suggestions[0]);
 
 			_keyboard.Press(_control, Key.Up);
-			_control.SelectedSuggestionIndex.Should().Be(1);
+			_control.SelectedSuggestionIndex.Should().Be(expected: 1);
 			_control.SelectedSuggestion.Should().Be(suggestions[1]);
 
 			_keyboard.Press(_control, Key.Up);
-			_control.SelectedSuggestionIndex.Should().Be(0);
+			_control.SelectedSuggestionIndex.Should().Be(expected: 0);
 			_control.SelectedSuggestion.Should().Be(suggestions[0]);
 		}
 
@@ -147,79 +266,16 @@ namespace Metrolib.Test.Input
 				"I'm awesome!"
 			};
 			_control.Suggestions = suggestions;
-			_control.SelectedSuggestionIndex.Should().Be(0);
+			_control.SelectedSuggestionIndex.Should().Be(expected: 0);
 			_control.SelectedSuggestion.Should().Be(suggestions[0]);
 
 			_keyboard.Press(_control.TextBox, Key.Up);
-			_control.SelectedSuggestionIndex.Should().Be(1);
+			_control.SelectedSuggestionIndex.Should().Be(expected: 1);
 			_control.SelectedSuggestion.Should().Be(suggestions[1]);
 
 			_keyboard.Press(_control.TextBox, Key.Up);
-			_control.SelectedSuggestionIndex.Should().Be(0);
+			_control.SelectedSuggestionIndex.Should().Be(expected: 0);
 			_control.SelectedSuggestion.Should().Be(suggestions[0]);
-		}
-
-		[Test]
-		public void TestChooseSuggestion1()
-		{
-			_control.Text = "I";
-			var suggestions = new[]
-			{
-				"I'm Groot",
-				"I'm awesome!"
-			};
-			_control.Suggestions = suggestions;
-			_control.SelectedSuggestionIndex.Should().Be(0);
-			_control.SelectedSuggestion.Should().Be(suggestions[0]);
-
-			new Action(() => _keyboard.Press(_control, Key.Enter)).ShouldNotThrow(
-				"because the control should expect that users forget to set the command");
-		}
-
-		[Test]
-		public void TestChooseSuggestion2([Values(0, 1)] int selectedIndex)
-		{
-			_control.Text = "I";
-
-			var suggestions = new[]
-			{
-				"I'm Groot",
-				"I'm awesome!"
-			};
-			_control.Suggestions = suggestions;
-			_control.SelectedSuggestionIndex = selectedIndex;
-
-			string chosenValue = null;
-			_control.SuggestionChosenCommand = new DelegateCommand<string>(tmp =>
-			{
-				chosenValue = tmp;
-			});
-
-			_keyboard.Press(_control, Key.Enter);
-			chosenValue.Should().Be(suggestions[selectedIndex]);
-		}
-
-		[Test]
-		public void TestChooseSuggestion3([Values(0, 1)] int selectedIndex)
-		{
-			_control.Text = "I";
-
-			var suggestions = new[]
-			{
-				"I'm Groot",
-				"I'm awesome!"
-			};
-			_control.Suggestions = suggestions;
-			_control.SelectedSuggestionIndex = selectedIndex;
-
-			string chosenValue = null;
-			_control.SuggestionChosenCommand = new DelegateCommand<string>(tmp =>
-			{
-				chosenValue = tmp;
-			});
-
-			_keyboard.Press(_control.TextBox, Key.Enter);
-			chosenValue.Should().Be(suggestions[selectedIndex]);
 		}
 	}
 }

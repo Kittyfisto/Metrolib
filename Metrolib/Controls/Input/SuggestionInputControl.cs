@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -184,6 +185,18 @@ namespace Metrolib.Controls
 			InputBindings.Add(_enterBinding);
 
 			GotFocus += OnGotFocus;
+			Loaded += OnLoaded;
+			Unloaded += OnUnloaded;
+		}
+
+		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+		{
+			Subscribe(Suggestions);
+		}
+
+		private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
+		{
+			Unsubscribe(Suggestions);
 		}
 
 		private void OnGotFocus(object sender, RoutedEventArgs routedEventArgs)
@@ -316,18 +329,44 @@ namespace Metrolib.Controls
 
 		private static void OnSuggestionsChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
 		{
-			((SuggestionInputControl) dependencyObject).OnSuggestionsChanged((IEnumerable<object>) args.NewValue);
+			((SuggestionInputControl) dependencyObject).OnSuggestionsChanged((IEnumerable<object>)args.OldValue, (IEnumerable<object>) args.NewValue);
 		}
 
-		private void OnSuggestionsChanged(IEnumerable<object> suggestions)
+		private void OnSuggestionsChanged(IEnumerable<object> oldSuggestions, IEnumerable<object> newSuggestions)
+		{
+			Unsubscribe(oldSuggestions);
+			Subscribe(newSuggestions);
+			UpdatePopup();
+		}
+
+		private void UpdatePopup()
 		{
 			if (Popup != null)
 			{
-				if (suggestions != null && suggestions.Any())
+				if (Suggestions != null && Suggestions.Any())
 					Popup.IsOpen = true;
 				else
 					Popup.IsOpen = false;
 			}
+		}
+
+		private void Subscribe(IEnumerable<object> suggestions)
+		{
+			var changed = suggestions as INotifyCollectionChanged;
+			if (changed != null)
+				changed.CollectionChanged += ChangedOnCollectionChanged;
+		}
+
+		private void Unsubscribe(IEnumerable<object> suggestions)
+		{
+			var changed = suggestions as INotifyCollectionChanged;
+			if (changed != null)
+				changed.CollectionChanged -= ChangedOnCollectionChanged;
+		}
+
+		private void ChangedOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
+		{
+			UpdatePopup();
 		}
 
 		/// <inheritdoc />
