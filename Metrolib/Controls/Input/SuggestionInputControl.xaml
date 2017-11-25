@@ -8,6 +8,7 @@
     
     <Style TargetType="{x:Type controls:SuggestionInputControl}">
         <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="PopupPlacement" Value="Bottom" />
         <Setter Property="SuggestionTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -23,7 +24,8 @@
                         <controls:EditorTextBox x:Name="PART_SuggestionTextBox"
                                                 Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
                                                 Watermark="{Binding Watermark, RelativeSource={RelativeSource TemplatedParent}}" />
-                        <Popup x:Name="PART_SuggestionPopup">
+                        <Popup x:Name="PART_SuggestionPopup"
+                               Placement="{TemplateBinding PopupPlacement}">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="8" />

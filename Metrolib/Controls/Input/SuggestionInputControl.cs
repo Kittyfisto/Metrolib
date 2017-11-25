@@ -34,6 +34,20 @@ namespace Metrolib.Controls
 		public const string PART_SuggestionTextBox = "PART_SuggestionTextBox";
 
 		/// <summary>
+		///     Definition of the <see cref="PopupPlacement" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty PopupPlacementProperty = DependencyProperty.Register(
+		                                                                                               "PopupPlacement",
+		                                                                                               typeof(PlacementMode),
+		                                                                                               typeof(
+			                                                                                               SuggestionInputControl
+		                                                                                               ),
+		                                                                                               new
+			                                                                                               PropertyMetadata(default
+			                                                                                                                (PlacementMode
+			                                                                                                                )));
+
+		/// <summary>
 		///     Definition of the <see cref="SuggestionTemplate" /> dependency property.
 		/// </summary>
 		public static readonly DependencyProperty SuggestionTemplateProperty = DependencyProperty.Register(
@@ -162,8 +176,8 @@ namespace Metrolib.Controls
 				                                                                                                            bool)));
 
 		private readonly KeyBinding _downBinding;
-		private readonly KeyBinding _upBinding;
 		private readonly KeyBinding _enterBinding;
+		private readonly KeyBinding _upBinding;
 
 		static SuggestionInputControl()
 		{
@@ -189,19 +203,13 @@ namespace Metrolib.Controls
 			Unloaded += OnUnloaded;
 		}
 
-		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+		/// <summary>
+		///     Where the popup is placed.
+		/// </summary>
+		public PlacementMode PopupPlacement
 		{
-			Subscribe(Suggestions);
-		}
-
-		private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
-		{
-			Unsubscribe(Suggestions);
-		}
-
-		private void OnGotFocus(object sender, RoutedEventArgs routedEventArgs)
-		{
-			TextBox?.Focus();
+			get { return (PlacementMode) GetValue(PopupPlacementProperty); }
+			set { SetValue(PopupPlacementProperty, value); }
 		}
 
 		/// <summary>
@@ -293,6 +301,21 @@ namespace Metrolib.Controls
 		internal Popup Popup { get; private set; }
 		internal TextBox TextBox { get; private set; }
 
+		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+		{
+			Subscribe(Suggestions);
+		}
+
+		private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
+		{
+			Unsubscribe(Suggestions);
+		}
+
+		private void OnGotFocus(object sender, RoutedEventArgs routedEventArgs)
+		{
+			TextBox?.Focus();
+		}
+
 		private void OnKeyUp()
 		{
 			if (Suggestions?.Count() > 0)
@@ -329,7 +352,8 @@ namespace Metrolib.Controls
 
 		private static void OnSuggestionsChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
 		{
-			((SuggestionInputControl) dependencyObject).OnSuggestionsChanged((IEnumerable<object>)args.OldValue, (IEnumerable<object>) args.NewValue);
+			((SuggestionInputControl) dependencyObject).OnSuggestionsChanged((IEnumerable<object>) args.OldValue,
+			                                                                 (IEnumerable<object>) args.NewValue);
 		}
 
 		private void OnSuggestionsChanged(IEnumerable<object> oldSuggestions, IEnumerable<object> newSuggestions)
@@ -342,12 +366,10 @@ namespace Metrolib.Controls
 		private void UpdatePopup()
 		{
 			if (Popup != null)
-			{
 				if (Suggestions != null && Suggestions.Any())
 					Popup.IsOpen = true;
 				else
 					Popup.IsOpen = false;
-			}
 		}
 
 		private void Subscribe(IEnumerable<object> suggestions)
@@ -364,7 +386,8 @@ namespace Metrolib.Controls
 				changed.CollectionChanged -= ChangedOnCollectionChanged;
 		}
 
-		private void ChangedOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
+		private void ChangedOnCollectionChanged(object sender,
+		                                        NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
 		{
 			UpdatePopup();
 		}
