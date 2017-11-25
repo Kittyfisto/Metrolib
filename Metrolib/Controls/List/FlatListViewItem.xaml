@@ -40,58 +40,12 @@
                             <Setter Property="controls1:Properties.IsInverted" Value="True" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Trigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="PART_HoveredRect"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         From="0"
-                                                         To="1"
-                                                         Duration="0:0:0.200" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="PART_HoveredRect"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         From="1"
-                                                         To="0"
-                                                         Duration="0:0:0.200" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.ExitActions>
+                            <Setter TargetName="PART_HoveredRect" Property="Opacity" Value="1" />
                         </Trigger>
                         <!-- Foreground/Background when selected -->
                         <Trigger Property="IsSelected" Value="True">
                             <Setter TargetName="PART_Header" Property="TextBlock.Foreground" Value="{StaticResource ForegroundBrushInverted}" />
-                            <Trigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="PART_SelectedRect"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         From="0.6"
-                                                         To="1"
-                                                         Duration="0:0:0.200">
-                                            <DoubleAnimation.EasingFunction>
-                                                <CircleEase EasingMode="EaseInOut" />
-                                            </DoubleAnimation.EasingFunction>
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
-                                <BeginStoryboard>
-                                    <Storyboard FillBehavior="Stop">
-                                        <DoubleAnimation Storyboard.TargetName="PART_SelectedRect"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         From="1"
-                                                         To="0"
-                                                         Duration="0:0:0.200" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.ExitActions>
+                            <Setter TargetName="PART_SelectedRect" Property="Opacity" Value="1" />
                         </Trigger>
                         <!-- Background when selected and hovered -->
                         <MultiTrigger>
@@ -99,28 +53,7 @@
                                 <Condition Property="IsSelected" Value="True" />
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <MultiTrigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="PART_SelectedHoveredRect"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         From="0"
-                                                         To="1"
-                                                         Duration="0:0:0.200" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </MultiTrigger.EnterActions>
-                            <MultiTrigger.ExitActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="PART_SelectedHoveredRect"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         From="1"
-                                                         To="0"
-                                                         Duration="0:0:0.200" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </MultiTrigger.ExitActions>
+                            <Setter TargetName="PART_SelectedHoveredRect" Property="Opacity" Value="1" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
