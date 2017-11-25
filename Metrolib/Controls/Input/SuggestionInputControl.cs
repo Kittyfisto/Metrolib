@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -74,7 +75,7 @@ namespace Metrolib.Controls
 		/// </summary>
 		public static readonly DependencyProperty SuggestionsProperty = DependencyProperty.Register(
 		                                                                                            "Suggestions",
-		                                                                                            typeof(IReadOnlyList<
+		                                                                                            typeof(IEnumerable<
 			                                                                                            object>),
 		                                                                                            typeof(
 			                                                                                            SuggestionInputControl),
@@ -270,9 +271,9 @@ namespace Metrolib.Controls
 		/// <summary>
 		///     The list of suggestions to present to the user.
 		/// </summary>
-		public IReadOnlyList<object> Suggestions
+		public IEnumerable<object> Suggestions
 		{
-			get { return (IReadOnlyList<object>) GetValue(SuggestionsProperty); }
+			get { return (IEnumerable<object>) GetValue(SuggestionsProperty); }
 			set { SetValue(SuggestionsProperty, value); }
 		}
 
@@ -281,20 +282,20 @@ namespace Metrolib.Controls
 
 		private void OnKeyUp()
 		{
-			if (Suggestions?.Count > 0)
+			if (Suggestions?.Count() > 0)
 			{
 				var previous = SelectedSuggestionIndex - 1;
 				if (previous < 0)
-					previous = Suggestions.Count - 1;
+					previous = Suggestions.Count() - 1;
 				SelectedSuggestionIndex = previous;
 			}
 		}
 
 		private void OnKeyDown()
 		{
-			if (Suggestions?.Count > 0)
+			if (Suggestions?.Count() > 0)
 			{
-				var next = (SelectedSuggestionIndex + 1) % Suggestions.Count;
+				var next = (SelectedSuggestionIndex + 1) % Suggestions.Count();
 				SelectedSuggestionIndex = next;
 			}
 		}
@@ -302,7 +303,7 @@ namespace Metrolib.Controls
 		private void OnEnter()
 		{
 			var selected = SelectedSuggestion;
-			if (Suggestions?.Count > 0 && selected != null)
+			if (Suggestions?.Count() > 0 && selected != null)
 			{
 				var fn = SuggestionChosenCommand;
 				if (fn != null && fn.CanExecute(selected))

@@ -56,105 +56,111 @@ namespace Metrolib.Test.Input
 		{
 			_control.SelectedSuggestion.Should().BeNull();
 			_control.Text = "I feel";
-			_control.Suggestions = new[] { "I feel a disturbance in the force" };
-			_control.SelectedSuggestion.Should().Be(_control.Suggestions[0]);
+			var suggestions = new[] {"I feel a disturbance in the force"};
+			_control.Suggestions = suggestions;
+			_control.SelectedSuggestion.Should().Be(suggestions[0]);
 		}
 
 		[Test]
 		public void TestSelectNextSuggestion1()
 		{
 			_control.Text = "I";
-			_control.Suggestions = new[]
+			var suggestions= new[]
 			{
 				"I'm Groot",
 				"I'm awesome!"
 			};
+			_control.Suggestions = suggestions;
 			_control.SelectedSuggestionIndex.Should().Be(0);
-			_control.SelectedSuggestion.Should().Be(_control.Suggestions[0]);
+			_control.SelectedSuggestion.Should().Be(suggestions[0]);
 
 			_keyboard.Press(_control, Key.Down);
 			_control.SelectedSuggestionIndex.Should().Be(1);
-			_control.SelectedSuggestion.Should().Be(_control.Suggestions[1]);
+			_control.SelectedSuggestion.Should().Be(suggestions[1]);
 
 			_keyboard.Press(_control, Key.Down);
 			_control.SelectedSuggestionIndex.Should().Be(0);
-			_control.SelectedSuggestion.Should().Be(_control.Suggestions[0]);
+			_control.SelectedSuggestion.Should().Be(suggestions[0]);
 		}
 
 		[Test]
 		public void TestSelectNextSuggestion2()
 		{
 			_control.Text = "I";
-			_control.Suggestions = new[]
+			var suggestions = new[]
 			{
 				"I'm Groot",
 				"I'm awesome!"
 			};
+			_control.Suggestions = suggestions;
 			_control.SelectedSuggestionIndex.Should().Be(0);
-			_control.SelectedSuggestion.Should().Be(_control.Suggestions[0]);
+			_control.SelectedSuggestion.Should().Be(suggestions[0]);
 
 			_keyboard.Press(_control.TextBox, Key.Down);
 			_control.SelectedSuggestionIndex.Should().Be(1);
-			_control.SelectedSuggestion.Should().Be(_control.Suggestions[1]);
+			_control.SelectedSuggestion.Should().Be(suggestions[1]);
 
 			_keyboard.Press(_control.TextBox, Key.Down);
 			_control.SelectedSuggestionIndex.Should().Be(0);
-			_control.SelectedSuggestion.Should().Be(_control.Suggestions[0]);
+			_control.SelectedSuggestion.Should().Be(suggestions[0]);
 		}
 
 		[Test]
 		public void TestSelectPreviousSuggestion1()
 		{
 			_control.Text = "I";
-			_control.Suggestions = new[]
+			var suggestions = new[]
 			{
 				"I'm Groot",
 				"I'm awesome!"
 			};
+			_control.Suggestions = suggestions;
 			_control.SelectedSuggestionIndex.Should().Be(0);
-			_control.SelectedSuggestion.Should().Be(_control.Suggestions[0]);
+			_control.SelectedSuggestion.Should().Be(suggestions[0]);
 
 			_keyboard.Press(_control, Key.Up);
 			_control.SelectedSuggestionIndex.Should().Be(1);
-			_control.SelectedSuggestion.Should().Be(_control.Suggestions[1]);
+			_control.SelectedSuggestion.Should().Be(suggestions[1]);
 
 			_keyboard.Press(_control, Key.Up);
 			_control.SelectedSuggestionIndex.Should().Be(0);
-			_control.SelectedSuggestion.Should().Be(_control.Suggestions[0]);
+			_control.SelectedSuggestion.Should().Be(suggestions[0]);
 		}
 
 		[Test]
 		public void TestSelectPreviousSuggestion2()
 		{
 			_control.Text = "I";
-			_control.Suggestions = new[]
+			var suggestions = new[]
 			{
 				"I'm Groot",
 				"I'm awesome!"
 			};
+			_control.Suggestions = suggestions;
 			_control.SelectedSuggestionIndex.Should().Be(0);
-			_control.SelectedSuggestion.Should().Be(_control.Suggestions[0]);
+			_control.SelectedSuggestion.Should().Be(suggestions[0]);
 
 			_keyboard.Press(_control.TextBox, Key.Up);
 			_control.SelectedSuggestionIndex.Should().Be(1);
-			_control.SelectedSuggestion.Should().Be(_control.Suggestions[1]);
+			_control.SelectedSuggestion.Should().Be(suggestions[1]);
 
 			_keyboard.Press(_control.TextBox, Key.Up);
 			_control.SelectedSuggestionIndex.Should().Be(0);
-			_control.SelectedSuggestion.Should().Be(_control.Suggestions[0]);
+			_control.SelectedSuggestion.Should().Be(suggestions[0]);
 		}
 
 		[Test]
 		public void TestChooseSuggestion1()
 		{
 			_control.Text = "I";
-			_control.Suggestions = new[]
+			var suggestions = new[]
 			{
 				"I'm Groot",
 				"I'm awesome!"
 			};
+			_control.Suggestions = suggestions;
 			_control.SelectedSuggestionIndex.Should().Be(0);
-			_control.SelectedSuggestion.Should().Be(_control.Suggestions[0]);
+			_control.SelectedSuggestion.Should().Be(suggestions[0]);
 
 			new Action(() => _keyboard.Press(_control, Key.Enter)).ShouldNotThrow(
 				"because the control should expect that users forget to set the command");
