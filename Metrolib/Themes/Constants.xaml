@@ -37,6 +37,7 @@
     <SolidColorBrush x:Key="BorderBrushDisabled" Color="#C9DAEB" />
 
     <SolidColorBrush x:Key="ProgressBackgroundBrush" Color="#CCCCCC" />
+    <SolidColorBrush x:Key="ProgressBorderBrush" Color="#B7B7B7" />
     <SolidColorBrush x:Key="ProgressForegroundBrush" Color="#2D9E21" />
 
     <!-- BORDER THICKNESSES -->

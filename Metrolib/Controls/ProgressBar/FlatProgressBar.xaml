@@ -10,30 +10,34 @@
 
     <Style TargetType="{x:Type metrolib:FlatProgressBar}">
         <Setter Property="Background" Value="{StaticResource ProgressBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ProgressBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type metrolib:FlatProgressBar}">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="2">
-                        <Grid>
-                            <Rectangle x:Name="PART_Progress"
-                                       Fill="{StaticResource ProgressForegroundBrush}" />
-                            <Grid x:Name="PART_ValuePositive">
-                                <TextBlock VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                           Text="{Binding RelativeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DoubleToPercentageConverter}}"
-                                           Foreground="{StaticResource ForegroundBrushInverted}" />
-                            </Grid>
-                            <Grid x:Name="PART_ValueNegative">
-                                <TextBlock VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                           Text="{Binding RelativeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DoubleToPercentageConverter}}"
-                                           Foreground="{StaticResource ForegroundBrush}" />
-                            </Grid>
+                    <Grid>
+                        <Border x:Name="PART_Border"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="1" />
+                        <Rectangle x:Name="PART_Progress"
+                                    Fill="{StaticResource ProgressForegroundBrush}"
+                                    RadiusX="1"
+                                    RadiusY="1" />
+                        <Grid x:Name="PART_ValuePositive">
+                            <TextBlock VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Text="{Binding RelativeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DoubleToPercentageConverter}}"
+                                        Foreground="{StaticResource ForegroundBrushInverted}" />
                         </Grid>
-                    </Border>
+                        <Grid x:Name="PART_ValueNegative">
+                            <TextBlock VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Text="{Binding RelativeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DoubleToPercentageConverter}}"
+                                        Foreground="{StaticResource ForegroundBrush}" />
+                        </Grid>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsIndeterminate" Value="True">
                             <Setter TargetName="PART_ValuePositive" Property="Visibility" Value="Hidden" />

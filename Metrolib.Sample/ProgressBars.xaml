@@ -58,6 +58,7 @@
                                       Grid.Row="1"
                                       Grid.Column="1"
                                       Margin="8"
+                                      SnapsToDevicePixels="True"
                                       IsIndeterminate="{Binding IsChecked, ElementName=IsIndeterminate}"
                                       IsEnabled="{Binding IsChecked, ElementName=IsEnabled}"
                                       Minimum="0"
