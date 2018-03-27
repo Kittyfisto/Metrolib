@@ -1,10 +1,8 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
 // ReSharper disable CheckNamespace
-
 namespace Metrolib.Controls
 // ReSharper restore CheckNamespace
 {
@@ -30,6 +28,7 @@ namespace Metrolib.Controls
 			                            new PropertyMetadata(default(string), OnPasswordChanged));
 
 		private PasswordBox _passwordBox;
+		private Border _focusBorder;
 
 		static FlatPasswordBox()
 		{
@@ -79,16 +78,6 @@ namespace Metrolib.Controls
 				PasswordChanged?.Invoke(this, new RoutedEventArgs());
 			}
 		}
-		
-		private void OnGotFocus(object sender, RoutedEventArgs routedEventArgs)
-		{
-			_passwordBox?.Focus();
-		}
-
-		private void OnGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs keyboardFocusChangedEventArgs)
-		{
-			_passwordBox?.Focus();
-		}
 
 		/// <summary>
 		///     Is fired whenever the <see cref="Password" /> changes.
@@ -110,6 +99,26 @@ namespace Metrolib.Controls
 				_passwordBox.Password = Password;
 				_passwordBox.PasswordChanged += PasswordBoxOnPasswordChanged;
 			}
+
+			_focusBorder = (Border) GetTemplateChild("focusBorder");
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		protected override void OnIsKeyboardFocusWithinChanged(DependencyPropertyChangedEventArgs args)
+		{
+			_passwordBox?.Focus();
+		}
+
+		private void OnGotFocus(object sender, RoutedEventArgs routedEventArgs)
+		{
+			_passwordBox?.Focus();
+		}
+
+		private void OnGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs keyboardFocusChangedEventArgs)
+		{
+			_passwordBox?.Focus();
 		}
 
 		private void PasswordBoxOnPasswordChanged(object sender, RoutedEventArgs routedEventArgs)

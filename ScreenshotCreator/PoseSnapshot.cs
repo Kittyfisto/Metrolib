@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -64,17 +66,39 @@ namespace ScreenshotCreator
 			Invoke(() =>
 			{
 				_element.Focusable = true;
-				bool result = _element.Focus();
-				Keyboard.Focus(_element);
+				SetKeyboardFocused();
+				_element.Focus();
+
+				MakeFocusBorderVisible();
 			});
-			Invoke(() =>
+		}
+
+		private void MakeFocusBorderVisible()
+		{
+			// I'm too fucking stupid to get the fucking animation to work in this application
+			// and therefore I have to cheat...
+			var method = typeof(T).GetMethod("GetTemplateChild", BindingFlags.NonPublic | BindingFlags.Instance);
+			var focusBorder = (Border)method.Invoke(_element, new object[] {"focusBorder"});
+			focusBorder.Opacity = 1;
+		}
+
+		private void SetKeyboardFocused()
+		{
+			// Black magic necessary to make the control to believe that it's keyboard focused.
+			// Haven't found an easier wa to make this work (and no, Keyboard.Focus() has no fucking effect).
+
+			var field = typeof(UIElement).GetField("_flags", BindingFlags.NonPublic | BindingFlags.Instance);
+			var flags = Convert.ToInt32(field.GetValue(_element));
+			flags |= 0x00000400;
+			flags |= 0x00000800;
+			var type = typeof(UIElement).Assembly.GetType("System.Windows.CoreFlags");
+			var newFlags = Enum.ToObject(type, flags);
+			field.SetValue(_element, newFlags);
+
+			var method = typeof(UIElement).GetMethod("RaiseIsKeyboardFocusWithinChanged", BindingFlags.NonPublic | BindingFlags.Instance);
+			method.Invoke(_element, new object[]
 			{
-				var keyboard = Keyboard.PrimaryDevice;
-				var element = Keyboard.FocusedElement;
-				bool isFocused = _element.IsFocused;
-				bool isKeyboardFocus = _element.IsKeyboardFocused;
-				bool isKeyboardFocusWithin = _element.IsKeyboardFocusWithin;
-				int n = 0;
+				new DependencyPropertyChangedEventArgs(UIElement.IsKeyboardFocusWithinProperty, false, true)
 			});
 		}
 
@@ -93,23 +117,23 @@ namespace ScreenshotCreator
 		{
 			_dispatcher.Invoke(() =>
 			{
+				var screenshot = CaptureScreenshot(_element);
+				_snapshotCreator.Add(screenshot, _pose);
 			}, DispatcherPriority.Background);
-			var screenshot = CaptureScreenshot(_element);
-			_snapshotCreator.Add(screenshot, _pose);
 		}
+
+		public void Dispose()
+		{}
 
 		private BitmapSource CaptureScreenshot(FrameworkElement element)
 		{
 			var pixelWidth = (int) Math.Ceiling(element.ActualWidth);
 			var pixelHeight = (int) Math.Ceiling(element.ActualHeight);
 			const int dpi = 96;
-			return Invoke(() =>
-			{
-				var image = new RenderTargetBitmap(pixelWidth, pixelHeight, dpi, dpi, PixelFormats.Pbgra32);
-				image.Render(element);
-				image.Freeze();
-				return image;
-			});
+			var image = new RenderTargetBitmap(pixelWidth, pixelHeight, dpi, dpi, PixelFormats.Pbgra32);
+			image.Render(element);
+			image.Freeze();
+			return image;
 		}
 
 		private void Invoke(Action action)
@@ -122,10 +146,6 @@ namespace ScreenshotCreator
 			var result = default(TY);
 			Invoke(() => { result = func(); });
 			return result;
-		}
-
-		public void Dispose()
-		{
 		}
 	}
 }

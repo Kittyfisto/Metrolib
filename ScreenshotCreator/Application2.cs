@@ -57,7 +57,10 @@ namespace ScreenshotCreator
 				var application = new Application2();
 				manualResetEvent.Set();
 				((Application) application).Run();
-			});
+			})
+			{
+				IsBackground = true
+			};
 			thread.SetApartmentState(ApartmentState.STA);
 			thread.Start();
 
@@ -76,35 +79,42 @@ namespace ScreenshotCreator
 			const int width = 128;
 			const int height = 32;
 
-			using (var defaultPose = creator.AddPose("Default"))
+			using (var pose = creator.AddPose("Default"))
 			{
-				defaultPose.Resize(width, height);
-				defaultPose.Prepare(box => box.Watermark = "Enter password...");
-				defaultPose.Capture();
+				pose.Resize(width, height);
+				pose.Prepare(box => box.Watermark = "Enter password...");
+				pose.Capture();
 			}
 
-			using (var focusedPose = creator.AddPose("Focused"))
+			using (var pose = creator.AddPose("Focused"))
 			{
-				focusedPose.Resize(width, height);
-				focusedPose.Prepare(box => box.Watermark = "Enter password...");
-				focusedPose.Focus();
-				focusedPose.Wait(TimeSpan.FromSeconds(1));
-				focusedPose.Capture();
+				pose.Resize(width, height);
+				pose.Prepare(box => box.Watermark = "Enter password...");
+				pose.Focus();
+				pose.Capture();
 			}
 
-			using (var passwordPose = creator.AddPose("Password"))
+			using (var pose = creator.AddPose("PasswordFocused"))
 			{
-				passwordPose.Resize(width, height);
-				passwordPose.Prepare(box => box.Password = "Secret");
-				passwordPose.Capture();
+				pose.Resize(width, height);
+				pose.Prepare(box => box.Password = "Secret");
+				pose.Focus();
+				pose.Capture();
 			}
 
-			using (var disabledPose = creator.AddPose("Disabled"))
+			using (var pose = creator.AddPose("PasswordUnfocused"))
 			{
-				disabledPose.Resize(width, height);
-				disabledPose.Prepare(box => box.Password = "Secret");
-				disabledPose.Disable();
-				disabledPose.Capture();
+				pose.Resize(width, height);
+				pose.Prepare(box => box.Password = "Secret");
+				pose.Capture();
+			}
+
+			using (var pose = creator.AddPose("Disabled"))
+			{
+				pose.Resize(width, height);
+				pose.Prepare(box => box.Password = "Secret");
+				pose.Disable();
+				pose.Capture();
 			}
 
 			creator.SaveAllSnapshots(BasePath);

@@ -32,11 +32,6 @@ namespace ScreenshotCreator
 			return new PoseSnapshot<T>(this, _dispatcher, _resourceDictionary, pose);
 		}
 
-		internal void Add(BitmapSource screenshot, string pose)
-		{
-			_snapshots.Add(pose, screenshot);
-		}
-
 		public void SaveAllSnapshots(string basePath)
 		{
 			var elementName = typeof(T).Name;
@@ -49,6 +44,11 @@ namespace ScreenshotCreator
 				var destination = Path.Combine(basePath, elementName, string.Format("{0}.png", pose));
 				SaveSnapshot(bitmap, destination);
 			}
+		}
+
+		internal void Add(BitmapSource screenshot, string pose)
+		{
+			_snapshots.Add(pose, screenshot);
 		}
 
 		private static void SaveSnapshot(BitmapSource screenshot, string destination)

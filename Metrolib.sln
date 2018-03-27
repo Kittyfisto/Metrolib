@@ -80,7 +80,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FlatPasswordBox", "FlatPass
 		Samples\FlatPasswordBox\Description.md = Samples\FlatPasswordBox\Description.md
 		Samples\FlatPasswordBox\Disabled.png = Samples\FlatPasswordBox\Disabled.png
 		Samples\FlatPasswordBox\Focused.png = Samples\FlatPasswordBox\Focused.png
-		Samples\FlatPasswordBox\Password.png = Samples\FlatPasswordBox\Password.png
+		Samples\FlatPasswordBox\PasswordFocused.png = Samples\FlatPasswordBox\PasswordFocused.png
 		Samples\FlatPasswordBox\PasswordUnfocused.png = Samples\FlatPasswordBox\PasswordUnfocused.png
 	EndProjectSection
 EndProject
