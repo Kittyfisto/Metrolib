@@ -38,8 +38,8 @@
         <controls:EditorTextBox Grid.Column="4" Grid.Row="2" Watermark="You can't click me!" IsEnabled="False" />
 
         <TextBlock Text="FilterTextBox" Grid.Row="4" VerticalAlignment="Center" />
-        <controls:FilterTextBox Grid.Column="2" Grid.Row="4" Watermark="Click me!" />
-        <controls:FilterTextBox Grid.Column="4" Grid.Row="4" Watermark="You can't click me!" IsEnabled="False" />
+        <controls:FilterTextBox Grid.Column="2" Grid.Row="4" Watermark="Enter a filter!" IsValid="False" />
+        <controls:FilterTextBox Grid.Column="4" Grid.Row="4" Watermark="You can't enter a filter!" IsEnabled="False" />
 
         <TextBlock Text="SearchTextBox" Grid.Row="6" VerticalAlignment="Center" />
         <controls:SearchTextBox Grid.Column="2" Grid.Row="6" Watermark="Titles, Names, Genres" OccurenceCount="10"

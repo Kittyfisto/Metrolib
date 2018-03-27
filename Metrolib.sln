@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metrolib", "Metrolib\Metrolib.csproj", "{8BDC066F-3253-49EF-8096-3DFB4E032D4B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metrolib.Test", "Metrolib.Test\Metrolib.Test.csproj", "{092515A0-A36C-4177-B2C5-32FCB5FF8E67}"
@@ -19,6 +21,58 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netstat", "Netstat\Netstat.csproj", "{D082C633-AD0D-4EDD-AC73-611F88B0B9C7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{BFEDFEA6-9998-468A-89B4-EDADFFEF6EA4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{BCB5CCBC-F95F-4055-A2E4-8633EA17002A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FlatProgressBar", "FlatProgressBar", "{0BF896E0-1F07-42FC-8CD4-FC21758EB856}"
+	ProjectSection(SolutionItems) = preProject
+		Samples\FlatProgressBar\Description.md = Samples\FlatProgressBar\Description.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CircularProgressBar", "CircularProgressBar", "{588D9B26-444E-42ED-9677-988277A22CD8}"
+	ProjectSection(SolutionItems) = preProject
+		Samples\CircularProgressBar\Description.md = Samples\CircularProgressBar\Description.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LineChart", "LineChart", "{63886810-94B7-4234-91CD-5BE4FD70D1D4}"
+	ProjectSection(SolutionItems) = preProject
+		Samples\LineChart\Description.md = Samples\LineChart\Description.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetworkView", "NetworkView", "{9E959714-BD1F-469C-B273-1CC56084252C}"
+	ProjectSection(SolutionItems) = preProject
+		Samples\NetworkView\Description.md = Samples\NetworkView\Description.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PieChart", "PieChart", "{0A9092F3-37A8-48FC-B6EE-36C955EBDC3E}"
+	ProjectSection(SolutionItems) = preProject
+		Samples\PieChart\Description.md = Samples\PieChart\Description.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SearchTextBox", "SearchTextBox", "{3D8E8915-8F09-411D-B83F-A200508B2E3C}"
+	ProjectSection(SolutionItems) = preProject
+		Samples\SearchTextBox\Default.png = Samples\SearchTextBox\Default.png
+		Samples\SearchTextBox\Delete.png = Samples\SearchTextBox\Delete.png
+		Samples\SearchTextBox\Description.md = Samples\SearchTextBox\Description.md
+		Samples\SearchTextBox\Focused.png = Samples\SearchTextBox\Focused.png
+		Samples\SearchTextBox\Text.png = Samples\SearchTextBox\Text.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EditorTextBox", "EditorTextBox", "{8E09308F-0ADE-481C-A5FA-80E46A7C7B30}"
+	ProjectSection(SolutionItems) = preProject
+		Samples\EditorTextBox\Description.md = Samples\EditorTextBox\Description.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FilterTextBox", "FilterTextBox", "{24D8EF25-A741-4B69-A628-44EBE7C56083}"
+	ProjectSection(SolutionItems) = preProject
+		Samples\FilterTextBox\Default.png = Samples\FilterTextBox\Default.png
+		Samples\FilterTextBox\DeleteFilterText.png = Samples\FilterTextBox\DeleteFilterText.png
+		Samples\FilterTextBox\Description.md = Samples\FilterTextBox\Description.md
+		Samples\FilterTextBox\Disabled.png = Samples\FilterTextBox\Disabled.png
+		Samples\FilterTextBox\FilterText.png = Samples\FilterTextBox\FilterText.png
+		Samples\FilterTextBox\Focused.png = Samples\FilterTextBox\Focused.png
+		Samples\FilterTextBox\InvalidFilterText.png = Samples\FilterTextBox\InvalidFilterText.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,7 +102,19 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{092515A0-A36C-4177-B2C5-32FCB5FF8E67} = {ACB0B72D-184C-4E3E-8D41-8560A0D25901}
-		{D082C633-AD0D-4EDD-AC73-611F88B0B9C7} = {BFEDFEA6-9998-468A-89B4-EDADFFEF6EA4}
 		{47B2A88D-1E51-469D-A24E-8F05B1FB994D} = {BFEDFEA6-9998-468A-89B4-EDADFFEF6EA4}
+		{D082C633-AD0D-4EDD-AC73-611F88B0B9C7} = {BFEDFEA6-9998-468A-89B4-EDADFFEF6EA4}
+		{BCB5CCBC-F95F-4055-A2E4-8633EA17002A} = {C32FCBBE-2066-4B41-B19A-9D7106792A18}
+		{0BF896E0-1F07-42FC-8CD4-FC21758EB856} = {BCB5CCBC-F95F-4055-A2E4-8633EA17002A}
+		{588D9B26-444E-42ED-9677-988277A22CD8} = {BCB5CCBC-F95F-4055-A2E4-8633EA17002A}
+		{63886810-94B7-4234-91CD-5BE4FD70D1D4} = {BCB5CCBC-F95F-4055-A2E4-8633EA17002A}
+		{9E959714-BD1F-469C-B273-1CC56084252C} = {BCB5CCBC-F95F-4055-A2E4-8633EA17002A}
+		{0A9092F3-37A8-48FC-B6EE-36C955EBDC3E} = {BCB5CCBC-F95F-4055-A2E4-8633EA17002A}
+		{3D8E8915-8F09-411D-B83F-A200508B2E3C} = {BCB5CCBC-F95F-4055-A2E4-8633EA17002A}
+		{8E09308F-0ADE-481C-A5FA-80E46A7C7B30} = {BCB5CCBC-F95F-4055-A2E4-8633EA17002A}
+		{24D8EF25-A741-4B69-A628-44EBE7C56083} = {BCB5CCBC-F95F-4055-A2E4-8633EA17002A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9BA605CB-6F7E-48CB-BB6A-0AD24C1E496C}
 	EndGlobalSection
 EndGlobal

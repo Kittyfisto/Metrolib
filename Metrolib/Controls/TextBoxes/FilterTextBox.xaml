@@ -15,7 +15,7 @@
                         SnapsToDevicePixels="True"
                         BorderThickness="1"
                         BorderBrush="#717171">
-                        <Grid>
+                        <Grid Background="{TemplateBinding Background}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition Width="Auto" />
@@ -27,6 +27,8 @@
                                 Background="{TemplateBinding Background}"
                                 Foreground="{TemplateBinding Foreground}"
                                 BorderThickness="0"
+                                Margin="8,0,4,0"
+                                VerticalAlignment="Center"
                                 Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource TemplatedParent}}" />
                             <TextBlock
                                 x:Name="PART_Watermark"
