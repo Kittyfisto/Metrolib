@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 // ReSharper disable CheckNamespace
 
@@ -8,8 +10,8 @@ namespace Metrolib.Controls
 {
 	/// <summary>
 	/// </summary>
-	[TemplatePart(Name = "PART_PasswordBox", Type = typeof (PasswordBox))]
-	[TemplatePart(Name = "PART_Watermark", Type = typeof (TextBlock))]
+	[TemplatePart(Name = "PART_PasswordBox", Type = typeof(PasswordBox))]
+	[TemplatePart(Name = "PART_Watermark", Type = typeof(TextBlock))]
 	public class FlatPasswordBox
 		: Control
 	{
@@ -17,7 +19,7 @@ namespace Metrolib.Controls
 		///     Definition of the <see cref="Watermark" /> property.
 		/// </summary>
 		public static readonly DependencyProperty WatermarkProperty =
-			DependencyProperty.Register("Watermark", typeof (string), typeof (FlatPasswordBox),
+			DependencyProperty.Register("Watermark", typeof(string), typeof(FlatPasswordBox),
 			                            new PropertyMetadata(default(string)));
 
 		/// <summary>
@@ -25,11 +27,46 @@ namespace Metrolib.Controls
 		/// </summary>
 		public static readonly DependencyProperty PasswordProperty =
 			DependencyProperty.Register("Password", typeof(string), typeof(FlatPasswordBox),
-										new PropertyMetadata(default(string), OnPasswordChanged));
+			                            new PropertyMetadata(default(string), OnPasswordChanged));
+
+		private PasswordBox _passwordBox;
+
+		static FlatPasswordBox()
+		{
+			DefaultStyleKeyProperty.OverrideMetadata(typeof(FlatPasswordBox),
+			                                         new FrameworkPropertyMetadata(typeof(FlatPasswordBox)));
+		}
+
+		/// <summary>
+		///     Initializes this control.
+		/// </summary>
+		public FlatPasswordBox()
+		{
+			GotFocus += OnGotFocus;
+			GotKeyboardFocus += OnGotKeyboardFocus;
+		}
+
+		/// <summary>
+		///     The watermark that is displayed for as long as no password has been entered.
+		/// </summary>
+		public string Watermark
+		{
+			get => (string) GetValue(WatermarkProperty);
+			set => SetValue(WatermarkProperty, value);
+		}
+
+		/// <summary>
+		///     The password that has been entered by the user.
+		/// </summary>
+		public string Password
+		{
+			get => (string) GetValue(PasswordProperty);
+			set => SetValue(PasswordProperty, value);
+		}
 
 		private static void OnPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
-			((FlatPasswordBox) d).OnPasswordChanged((string)e.NewValue);
+			((FlatPasswordBox) d).OnPasswordChanged((string) e.NewValue);
 		}
 
 		private void OnPasswordChanged(string value)
@@ -42,38 +79,15 @@ namespace Metrolib.Controls
 				PasswordChanged?.Invoke(this, new RoutedEventArgs());
 			}
 		}
-
-		private PasswordBox _passwordBox;
-		private TextBlock _watermark;
-
-		static FlatPasswordBox()
+		
+		private void OnGotFocus(object sender, RoutedEventArgs routedEventArgs)
 		{
-			DefaultStyleKeyProperty.OverrideMetadata(typeof (FlatPasswordBox),
-			                                         new FrameworkPropertyMetadata(typeof (FlatPasswordBox)));
+			_passwordBox?.Focus();
 		}
 
-		/// <summary>
-		///     The watermark that is displayed for as long as no password has been entered.
-		/// </summary>
-		public string Watermark
+		private void OnGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs keyboardFocusChangedEventArgs)
 		{
-			get { return (string) GetValue(WatermarkProperty); }
-			set { SetValue(WatermarkProperty, value); }
-		}
-
-		/// <summary>
-		///     The password that has been entered by the user.
-		/// </summary>
-		public string Password
-		{
-			get
-			{
-				return (string) GetValue(PasswordProperty);
-			}
-			set
-			{
-				SetValue(PasswordProperty, value);
-			}
+			_passwordBox?.Focus();
 		}
 
 		/// <summary>
@@ -88,10 +102,7 @@ namespace Metrolib.Controls
 		{
 			base.OnApplyTemplate();
 
-			if (_passwordBox != null)
-			{
-				_passwordBox.PasswordChanged -= PasswordBoxOnPasswordChanged;
-			}
+			if (_passwordBox != null) _passwordBox.PasswordChanged -= PasswordBoxOnPasswordChanged;
 
 			_passwordBox = (PasswordBox) GetTemplateChild("PART_PasswordBox");
 			if (_passwordBox != null)
@@ -99,8 +110,6 @@ namespace Metrolib.Controls
 				_passwordBox.Password = Password;
 				_passwordBox.PasswordChanged += PasswordBoxOnPasswordChanged;
 			}
-
-			_watermark = (TextBlock) GetTemplateChild("PART_Watermark");
 		}
 
 		private void PasswordBoxOnPasswordChanged(object sender, RoutedEventArgs routedEventArgs)

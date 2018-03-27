@@ -84,6 +84,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FlatPasswordBox", "FlatPass
 		Samples\FlatPasswordBox\PasswordUnfocused.png = Samples\FlatPasswordBox\PasswordUnfocused.png
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenshotCreator", "ScreenshotCreator\ScreenshotCreator.csproj", "{D8464F07-F134-4F4D-ABCD-B0D4F4988DAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -106,6 +108,10 @@ Global
 		{D082C633-AD0D-4EDD-AC73-611F88B0B9C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D082C633-AD0D-4EDD-AC73-611F88B0B9C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D082C633-AD0D-4EDD-AC73-611F88B0B9C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8464F07-F134-4F4D-ABCD-B0D4F4988DAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8464F07-F134-4F4D-ABCD-B0D4F4988DAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8464F07-F134-4F4D-ABCD-B0D4F4988DAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8464F07-F134-4F4D-ABCD-B0D4F4988DAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -124,6 +130,7 @@ Global
 		{8E09308F-0ADE-481C-A5FA-80E46A7C7B30} = {BCB5CCBC-F95F-4055-A2E4-8633EA17002A}
 		{24D8EF25-A741-4B69-A628-44EBE7C56083} = {BCB5CCBC-F95F-4055-A2E4-8633EA17002A}
 		{10D39784-30F8-4155-BFFF-583CC7BE3D7D} = {BCB5CCBC-F95F-4055-A2E4-8633EA17002A}
+		{D8464F07-F134-4F4D-ABCD-B0D4F4988DAA} = {BFEDFEA6-9998-468A-89B4-EDADFFEF6EA4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9BA605CB-6F7E-48CB-BB6A-0AD24C1E496C}

@@ -3,33 +3,55 @@
                     xmlns:converters2="clr-namespace:Metrolib.Converters"
                     xmlns:controls="clr-namespace:Metrolib.Controls">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Metrolib;component/Themes/Constants.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
     <converters2:BoolFalseToCollapsedConverter x:Key="BoolFalseToCollapsedConverter" />
 
     <Style TargetType="{x:Type controls:FilterTextBox}">
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrushHovered}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="White" />
         <Setter Property="IsTabStop" Value="False" />
-        <Setter Property="Height" Value="28" />
+        <Setter Property="Height" Value="32" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:FilterTextBox}">
-                    <Border
-                        SnapsToDevicePixels="True"
-                        BorderThickness="1"
-                        BorderBrush="#717171">
+                    <Grid>
                         <Grid Background="{TemplateBinding Background}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
+                            <!-- main border, styling the border-brush and background for Normal state -->
+                            <Border x:Name="normalBorder"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}" />
+
+                            <!-- styling border-brush and background-color for MouseOver state -->
+                            <Border x:Name="hoverBorder" Opacity="0"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{StaticResource BorderBrushHovered}" />
+
+                            <!-- styling border-brush and background-color for Focused state -->
+                            <Border x:Name="focusBorder" Opacity="0"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{StaticResource BorderBrushSelected}" />
+
                             <TextBox
                                 x:Name="PART_FilterInput"
                                 TabIndex="{TemplateBinding TabIndex}"
                                 Background="{TemplateBinding Background}"
                                 Foreground="{TemplateBinding Foreground}"
+                                FocusVisualStyle="{x:Null}"
                                 BorderThickness="0"
                                 Margin="8,0,4,0"
                                 VerticalAlignment="Center"
                                 Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource TemplatedParent}}" />
+
                             <TextBlock
                                 x:Name="PART_Watermark"
                                 Text="{Binding Watermark, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
@@ -67,7 +89,53 @@
                                 x:Name="PART_RemoveFilterText" />
 
                         </Grid>
-                    </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation BeginTime="0:0:0.000" Duration="0:0:0.300"
+                                                         From="0" To="1"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Storyboard.TargetName="focusBorder" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation BeginTime="0:0:0.000" Duration="0:0:0.700"
+                                                         From="1" To="0"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Storyboard.TargetName="focusBorder" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation BeginTime="0:0:0.000" Duration="0:0:0.500"
+                                                         From="1" To="0"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Storyboard.TargetName="hoverBorder" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation BeginTime="0:0:0.000" Duration="0:0:0.500"
+                                                         From="0" To="1"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Storyboard.TargetName="hoverBorder" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
