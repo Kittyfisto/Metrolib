@@ -37,6 +37,7 @@ ipch/
 *.opensdf
 *.sdf
 *.cachefile
+.vs/
 
 *.psess
 *.vspx
