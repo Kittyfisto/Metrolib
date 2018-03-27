@@ -6,7 +6,7 @@ If the expression happens to be invalid (via the FilterTextBox.IsValid dependenc
 switches to red. Determining the latter is responsibility of users of FilterTextBox (i.e. usually the ViewModel)
 
 ```xaml
-<metrolib:FilterTextBox FilterText="[0-9]+" IsValid="False" />
+<metrolib:FilterTextBox FilterText="[0-9]+" Watermark="Enter a filter!" IsValid="False" />
 ```
 ![FilterTextBox example](Default.png)
 ![FilterTextBox focused example](Focused.png)
