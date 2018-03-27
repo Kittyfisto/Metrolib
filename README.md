@@ -39,7 +39,7 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 ## Text Boxes
 * EditorTextBox
 * [FilterTextBox](Samples/FilterTextBox/Description.md)
-* FlatPasswordBox
+* [FlatPasswordBox](Samples/FlatPasswordBox/Description.md)
 * [SearchTextBox](Samples/SearchTextBox/Description.md)
 
 ## Progress Bars

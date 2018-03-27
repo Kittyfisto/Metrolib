@@ -30,12 +30,12 @@ namespace Metrolib.Test
 		[SetCulture("en-US")]
 		public void TestConvert2()
 		{
-			_converter.Convert(0.0, typeof(string), null, null).Should().Be("0 %");
-			_converter.Convert(1.0, typeof(string), null, null).Should().Be("100 %");
-			_converter.Convert(0.5, typeof(string), null, null).Should().Be("50 %");
-			_converter.Convert(0.55, typeof(string), null, null).Should().Be("55 %");
-			_converter.Convert(0.555, typeof(string), null, null).Should().Be("56 %");
-			_converter.Convert(0.5555, typeof(string), null, null).Should().Be("56 %");
+			_converter.Convert(0.0, typeof(string), null, null).Should().Be("0%");
+			_converter.Convert(1.0, typeof(string), null, null).Should().Be("100%");
+			_converter.Convert(0.5, typeof(string), null, null).Should().Be("50%");
+			_converter.Convert(0.55, typeof(string), null, null).Should().Be("55%");
+			_converter.Convert(0.555, typeof(string), null, null).Should().Be("56%");
+			_converter.Convert(0.5555, typeof(string), null, null).Should().Be("56%");
 		}
 	}
 }

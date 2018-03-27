@@ -74,6 +74,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FilterTextBox", "FilterText
 		Samples\FilterTextBox\InvalidFilterText.png = Samples\FilterTextBox\InvalidFilterText.png
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FlatPasswordBox", "FlatPasswordBox", "{10D39784-30F8-4155-BFFF-583CC7BE3D7D}"
+	ProjectSection(SolutionItems) = preProject
+		Samples\FlatPasswordBox\Default.png = Samples\FlatPasswordBox\Default.png
+		Samples\FlatPasswordBox\Description.md = Samples\FlatPasswordBox\Description.md
+		Samples\FlatPasswordBox\Disabled.png = Samples\FlatPasswordBox\Disabled.png
+		Samples\FlatPasswordBox\Focused.png = Samples\FlatPasswordBox\Focused.png
+		Samples\FlatPasswordBox\Password.png = Samples\FlatPasswordBox\Password.png
+		Samples\FlatPasswordBox\PasswordUnfocused.png = Samples\FlatPasswordBox\PasswordUnfocused.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +123,7 @@ Global
 		{3D8E8915-8F09-411D-B83F-A200508B2E3C} = {BCB5CCBC-F95F-4055-A2E4-8633EA17002A}
 		{8E09308F-0ADE-481C-A5FA-80E46A7C7B30} = {BCB5CCBC-F95F-4055-A2E4-8633EA17002A}
 		{24D8EF25-A741-4B69-A628-44EBE7C56083} = {BCB5CCBC-F95F-4055-A2E4-8633EA17002A}
+		{10D39784-30F8-4155-BFFF-583CC7BE3D7D} = {BCB5CCBC-F95F-4055-A2E4-8633EA17002A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9BA605CB-6F7E-48CB-BB6A-0AD24C1E496C}
