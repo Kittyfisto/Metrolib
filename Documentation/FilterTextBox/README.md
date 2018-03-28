@@ -30,6 +30,13 @@ A textbox meant to input queries used for filtering.
 ```
 ![Image of FilterTextBox, FilterText, Unfocused](FilterText__Unfocused.png)
 
+### Invalid FilterText
+
+```xaml
+<Metrolib:FilterTextBox FilterText="[0-9]+" Watermark="Enter filter..." IsValid="False" />
+```
+![Image of FilterTextBox, Invalid FilterText](Invalid_FilterText.png)
+
 ### Disabled
 
 ```xaml

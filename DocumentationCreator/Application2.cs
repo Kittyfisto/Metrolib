@@ -115,6 +115,15 @@ namespace DocumentationCreator
 				example.Capture();
 			}
 
+			using (var example = creator.AddExample("Invalid FilterText"))
+			{
+				example.Resize(width, height);
+				example.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
+				example.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
+				example.SetValue(FilterTextBox.IsValidProperty, false);
+				example.Capture();
+			}
+
 			using (var example = creator.AddExample("Disabled"))
 			{
 				example.Resize(width, height);
