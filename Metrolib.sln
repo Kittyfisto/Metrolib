@@ -26,62 +26,62 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FlatProgressBar", "FlatProgressBar", "{0BF896E0-1F07-42FC-8CD4-FC21758EB856}"
 	ProjectSection(SolutionItems) = preProject
-		Samples\FlatProgressBar\Description.md = Samples\FlatProgressBar\Description.md
+		Documentation\FlatProgressBar\README.md = Documentation\FlatProgressBar\README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CircularProgressBar", "CircularProgressBar", "{588D9B26-444E-42ED-9677-988277A22CD8}"
 	ProjectSection(SolutionItems) = preProject
-		Samples\CircularProgressBar\Description.md = Samples\CircularProgressBar\Description.md
+		Documentation\CircularProgressBar\README.md = Documentation\CircularProgressBar\README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LineChart", "LineChart", "{63886810-94B7-4234-91CD-5BE4FD70D1D4}"
 	ProjectSection(SolutionItems) = preProject
-		Samples\LineChart\Description.md = Samples\LineChart\Description.md
+		Documentation\LineChart\README.md = Documentation\LineChart\README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetworkView", "NetworkView", "{9E959714-BD1F-469C-B273-1CC56084252C}"
 	ProjectSection(SolutionItems) = preProject
-		Samples\NetworkView\Description.md = Samples\NetworkView\Description.md
+		Documentation\NetworkView\README.md = Documentation\NetworkView\README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PieChart", "PieChart", "{0A9092F3-37A8-48FC-B6EE-36C955EBDC3E}"
 	ProjectSection(SolutionItems) = preProject
-		Samples\PieChart\Description.md = Samples\PieChart\Description.md
+		Documentation\PieChart\README.md = Documentation\PieChart\README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SearchTextBox", "SearchTextBox", "{3D8E8915-8F09-411D-B83F-A200508B2E3C}"
 	ProjectSection(SolutionItems) = preProject
-		Samples\SearchTextBox\Default.png = Samples\SearchTextBox\Default.png
-		Samples\SearchTextBox\Delete.png = Samples\SearchTextBox\Delete.png
-		Samples\SearchTextBox\Description.md = Samples\SearchTextBox\Description.md
-		Samples\SearchTextBox\Focused.png = Samples\SearchTextBox\Focused.png
-		Samples\SearchTextBox\Text.png = Samples\SearchTextBox\Text.png
+		Documentation\SearchTextBox\Default.png = Documentation\SearchTextBox\Default.png
+		Documentation\SearchTextBox\Delete.png = Documentation\SearchTextBox\Delete.png
+		Documentation\SearchTextBox\README.md = Documentation\SearchTextBox\README.md
+		Documentation\SearchTextBox\Focused.png = Documentation\SearchTextBox\Focused.png
+		Documentation\SearchTextBox\Text.png = Documentation\SearchTextBox\Text.png
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EditorTextBox", "EditorTextBox", "{8E09308F-0ADE-481C-A5FA-80E46A7C7B30}"
 	ProjectSection(SolutionItems) = preProject
-		Samples\EditorTextBox\Description.md = Samples\EditorTextBox\Description.md
+		Documentation\EditorTextBox\README.md = Documentation\EditorTextBox\README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FilterTextBox", "FilterTextBox", "{24D8EF25-A741-4B69-A628-44EBE7C56083}"
 	ProjectSection(SolutionItems) = preProject
-		Samples\FilterTextBox\Default.png = Samples\FilterTextBox\Default.png
-		Samples\FilterTextBox\DeleteFilterText.png = Samples\FilterTextBox\DeleteFilterText.png
-		Samples\FilterTextBox\Description.md = Samples\FilterTextBox\Description.md
-		Samples\FilterTextBox\Disabled.png = Samples\FilterTextBox\Disabled.png
-		Samples\FilterTextBox\FilterText.png = Samples\FilterTextBox\FilterText.png
-		Samples\FilterTextBox\Focused.png = Samples\FilterTextBox\Focused.png
-		Samples\FilterTextBox\InvalidFilterText.png = Samples\FilterTextBox\InvalidFilterText.png
+		Documentation\FilterTextBox\Default.png = Documentation\FilterTextBox\Default.png
+		Documentation\FilterTextBox\DeleteFilterText.png = Documentation\FilterTextBox\DeleteFilterText.png
+		Documentation\FilterTextBox\README.md = Documentation\FilterTextBox\README.md
+		Documentation\FilterTextBox\Disabled.png = Documentation\FilterTextBox\Disabled.png
+		Documentation\FilterTextBox\FilterText.png = Documentation\FilterTextBox\FilterText.png
+		Documentation\FilterTextBox\Focused.png = Documentation\FilterTextBox\Focused.png
+		Documentation\FilterTextBox\InvalidFilterText.png = Documentation\FilterTextBox\InvalidFilterText.png
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FlatPasswordBox", "FlatPasswordBox", "{10D39784-30F8-4155-BFFF-583CC7BE3D7D}"
 	ProjectSection(SolutionItems) = preProject
-		Samples\FlatPasswordBox\Default.png = Samples\FlatPasswordBox\Default.png
-		Samples\FlatPasswordBox\Description.md = Samples\FlatPasswordBox\Description.md
-		Samples\FlatPasswordBox\Disabled.png = Samples\FlatPasswordBox\Disabled.png
-		Samples\FlatPasswordBox\Focused.png = Samples\FlatPasswordBox\Focused.png
-		Samples\FlatPasswordBox\PasswordFocused.png = Samples\FlatPasswordBox\PasswordFocused.png
-		Samples\FlatPasswordBox\PasswordUnfocused.png = Samples\FlatPasswordBox\PasswordUnfocused.png
+		Documentation\FlatPasswordBox\Default.png = Documentation\FlatPasswordBox\Default.png
+		Documentation\FlatPasswordBox\README.md = Documentation\FlatPasswordBox\README.md
+		Documentation\FlatPasswordBox\Disabled.png = Documentation\FlatPasswordBox\Disabled.png
+		Documentation\FlatPasswordBox\Focused.png = Documentation\FlatPasswordBox\Focused.png
+		Documentation\FlatPasswordBox\PasswordFocused.png = Documentation\FlatPasswordBox\PasswordFocused.png
+		Documentation\FlatPasswordBox\PasswordUnfocused.png = Documentation\FlatPasswordBox\PasswordUnfocused.png
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenshotCreator", "ScreenshotCreator\ScreenshotCreator.csproj", "{D8464F07-F134-4F4D-ABCD-B0D4F4988DAA}"
