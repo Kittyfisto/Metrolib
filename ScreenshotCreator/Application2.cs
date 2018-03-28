@@ -83,7 +83,7 @@ namespace ScreenshotCreator
 			const int width = 128;
 			const int height = 32;
 
-			using (var pose = creator.AddExample("Default"))
+			using (var pose = creator.AddExample("Unfocused"))
 			{
 				pose.Resize(width, height);
 				pose.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
@@ -98,7 +98,7 @@ namespace ScreenshotCreator
 				pose.Capture();
 			}
 
-			using (var pose = creator.AddExample("FilterTextFocused"))
+			using (var pose = creator.AddExample("FilterText, Focused"))
 			{
 				pose.Resize(width, height);
 				pose.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
@@ -107,7 +107,7 @@ namespace ScreenshotCreator
 				pose.Capture();
 			}
 
-			using (var pose = creator.AddExample("FilterTextUnfocused"))
+			using (var pose = creator.AddExample("FilterText, Unfocused"))
 			{
 				pose.Resize(width, height);
 				pose.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");

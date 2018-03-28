@@ -2,12 +2,12 @@
 
 A textbox meant to input queries used for filtering.
 
-### Default
+### Unfocused
 
 ```xaml
 <Metrolib:FilterTextBox Watermark="Enter filter..." />
 ```
-![Image of FilterTextBox, Default](Default.png)
+![Image of FilterTextBox, Unfocused](Unfocused.png)
 
 ### Focused
 
@@ -16,19 +16,19 @@ A textbox meant to input queries used for filtering.
 ```
 ![Image of FilterTextBox, Focused](Focused.png)
 
-### FilterTextFocused
+### FilterText, Focused
 
 ```xaml
 <Metrolib:FilterTextBox FilterText="[0-9]+" Watermark="Enter filter..." />
 ```
-![Image of FilterTextBox, FilterTextFocused](FilterTextFocused.png)
+![Image of FilterTextBox, FilterText, Focused](FilterText, Focused.png)
 
-### FilterTextUnfocused
+### FilterText, Unfocused
 
 ```xaml
 <Metrolib:FilterTextBox FilterText="[0-9]+" Watermark="Enter filter..." />
 ```
-![Image of FilterTextBox, FilterTextUnfocused](FilterTextUnfocused.png)
+![Image of FilterTextBox, FilterText, Unfocused](FilterText, Unfocused.png)
 
 ### Disabled
 
