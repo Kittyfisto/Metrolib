@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 
-namespace ScreenshotCreator
+namespace DocumentationCreator
 {
 	/// <summary>
 	///     Responsible for writing the documentation for a single control.

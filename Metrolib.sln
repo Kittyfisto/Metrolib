@@ -53,8 +53,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SearchTextBox", "SearchText
 	ProjectSection(SolutionItems) = preProject
 		Documentation\SearchTextBox\Default.png = Documentation\SearchTextBox\Default.png
 		Documentation\SearchTextBox\Delete.png = Documentation\SearchTextBox\Delete.png
-		Documentation\SearchTextBox\README.md = Documentation\SearchTextBox\README.md
 		Documentation\SearchTextBox\Focused.png = Documentation\SearchTextBox\Focused.png
+		Documentation\SearchTextBox\README.md = Documentation\SearchTextBox\README.md
 		Documentation\SearchTextBox\Text.png = Documentation\SearchTextBox\Text.png
 	EndProjectSection
 EndProject
@@ -67,24 +67,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FilterTextBox", "FilterText
 	ProjectSection(SolutionItems) = preProject
 		Documentation\FilterTextBox\Default.png = Documentation\FilterTextBox\Default.png
 		Documentation\FilterTextBox\DeleteFilterText.png = Documentation\FilterTextBox\DeleteFilterText.png
-		Documentation\FilterTextBox\README.md = Documentation\FilterTextBox\README.md
 		Documentation\FilterTextBox\Disabled.png = Documentation\FilterTextBox\Disabled.png
 		Documentation\FilterTextBox\FilterText.png = Documentation\FilterTextBox\FilterText.png
 		Documentation\FilterTextBox\Focused.png = Documentation\FilterTextBox\Focused.png
 		Documentation\FilterTextBox\InvalidFilterText.png = Documentation\FilterTextBox\InvalidFilterText.png
+		Documentation\FilterTextBox\README.md = Documentation\FilterTextBox\README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FlatPasswordBox", "FlatPasswordBox", "{10D39784-30F8-4155-BFFF-583CC7BE3D7D}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\FlatPasswordBox\Default.png = Documentation\FlatPasswordBox\Default.png
-		Documentation\FlatPasswordBox\README.md = Documentation\FlatPasswordBox\README.md
 		Documentation\FlatPasswordBox\Disabled.png = Documentation\FlatPasswordBox\Disabled.png
 		Documentation\FlatPasswordBox\Focused.png = Documentation\FlatPasswordBox\Focused.png
 		Documentation\FlatPasswordBox\PasswordFocused.png = Documentation\FlatPasswordBox\PasswordFocused.png
 		Documentation\FlatPasswordBox\PasswordUnfocused.png = Documentation\FlatPasswordBox\PasswordUnfocused.png
+		Documentation\FlatPasswordBox\README.md = Documentation\FlatPasswordBox\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenshotCreator", "ScreenshotCreator\ScreenshotCreator.csproj", "{D8464F07-F134-4F4D-ABCD-B0D4F4988DAA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentationCreator", "DocumentationCreator\DocumentationCreator.csproj", "{D8464F07-F134-4F4D-ABCD-B0D4F4988DAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

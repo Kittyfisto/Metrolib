@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace ScreenshotCreator
+namespace DocumentationCreator
 {
 	public interface IControlDocumentationCreator
 	{

@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Xml.Linq;
 using log4net;
 
-namespace ScreenshotCreator
+namespace DocumentationCreator
 {
 	/// <summary>
 	///     Responsible for reading the documentation of a .NET assembly (which resides in a similarly named xml file,

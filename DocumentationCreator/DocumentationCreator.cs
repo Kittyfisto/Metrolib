@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
 
-namespace ScreenshotCreator
+namespace DocumentationCreator
 {
 	/// <summary>
 	///     Responsible for creating documentation for a library.

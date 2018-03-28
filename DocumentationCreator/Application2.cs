@@ -6,7 +6,7 @@ using System.Windows.Threading;
 using Metrolib;
 using Metrolib.Controls;
 
-namespace ScreenshotCreator
+namespace DocumentationCreator
 {
 	public sealed class Application2
 		: Application

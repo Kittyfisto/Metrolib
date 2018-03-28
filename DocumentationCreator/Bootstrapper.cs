@@ -2,7 +2,7 @@
 using System.Reflection;
 using log4net;
 
-namespace ScreenshotCreator
+namespace DocumentationCreator
 {
 	static class Bootstrapper
 	{

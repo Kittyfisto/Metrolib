@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace ScreenshotCreator
+namespace DocumentationCreator
 {
 	internal sealed class ExampleWriter
 		: IWriter

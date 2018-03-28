@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace ScreenshotCreator
+namespace DocumentationCreator
 {
 	public static class TextWriterExtensions
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace ScreenshotCreator
+namespace DocumentationCreator
 {
 	/// <summary>
 	///     Responsible for creating the documentation for a particular control in a particular example.

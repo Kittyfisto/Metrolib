@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace ScreenshotCreator
+namespace DocumentationCreator
 {
 	internal interface IWriter
 	{

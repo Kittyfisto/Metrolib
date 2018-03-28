@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace ScreenshotCreator
+namespace DocumentationCreator
 {
 	public sealed class TypeDocumentation
 		: MemberDocumentation

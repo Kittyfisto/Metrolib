@@ -7,7 +7,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
-namespace ScreenshotCreator
+namespace DocumentationCreator
 {
 	/// <summary>
 	///     Responsible for creating the documentation for a particular control in a particular example.
