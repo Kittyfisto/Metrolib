@@ -21,14 +21,14 @@ A textbox meant to input queries used for filtering.
 ```xaml
 <Metrolib:FilterTextBox FilterText="[0-9]+" Watermark="Enter filter..." />
 ```
-![Image of FilterTextBox, FilterText, Focused](FilterText, Focused.png)
+![Image of FilterTextBox, FilterText, Focused](FilterText__Focused.png)
 
 ### FilterText, Unfocused
 
 ```xaml
 <Metrolib:FilterTextBox FilterText="[0-9]+" Watermark="Enter filter..." />
 ```
-![Image of FilterTextBox, FilterText, Unfocused](FilterText, Unfocused.png)
+![Image of FilterTextBox, FilterText, Unfocused](FilterText__Unfocused.png)
 
 ### Disabled
 

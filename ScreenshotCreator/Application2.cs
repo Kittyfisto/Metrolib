@@ -83,45 +83,45 @@ namespace ScreenshotCreator
 			const int width = 128;
 			const int height = 32;
 
-			using (var pose = creator.AddExample("Unfocused"))
+			using (var example = creator.AddExample("Unfocused"))
 			{
-				pose.Resize(width, height);
-				pose.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
-				pose.Capture();
+				example.Resize(width, height);
+				example.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
+				example.Capture();
 			}
 
-			using (var pose = creator.AddExample("Focused"))
+			using (var example = creator.AddExample("Focused"))
 			{
-				pose.Resize(width, height);
-				pose.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
-				pose.Focus();
-				pose.Capture();
+				example.Resize(width, height);
+				example.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
+				example.Focus();
+				example.Capture();
 			}
 
-			using (var pose = creator.AddExample("FilterText, Focused"))
+			using (var example = creator.AddExample("FilterText, Focused"))
 			{
-				pose.Resize(width, height);
-				pose.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
-				pose.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
-				pose.Focus();
-				pose.Capture();
+				example.Resize(width, height);
+				example.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
+				example.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
+				example.Focus();
+				example.Capture();
 			}
 
-			using (var pose = creator.AddExample("FilterText, Unfocused"))
+			using (var example = creator.AddExample("FilterText, Unfocused"))
 			{
-				pose.Resize(width, height);
-				pose.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
-				pose.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
-				pose.Capture();
+				example.Resize(width, height);
+				example.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
+				example.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
+				example.Capture();
 			}
 
-			using (var pose = creator.AddExample("Disabled"))
+			using (var example = creator.AddExample("Disabled"))
 			{
-				pose.Resize(width, height);
-				pose.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
-				pose.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
-				pose.SetValue(UIElement.IsEnabledProperty, false);
-				pose.Capture();
+				example.Resize(width, height);
+				example.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
+				example.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
+				example.SetValue(UIElement.IsEnabledProperty, false);
+				example.Capture();
 			}
 
 			creator.SaveAllPoses(BasePath);
@@ -134,45 +134,45 @@ namespace ScreenshotCreator
 			const int width = 128;
 			const int height = 32;
 
-			using (var pose = creator.AddExample("Unfocused"))
+			using (var example = creator.AddExample("Unfocused"))
 			{
-				pose.Resize(width, height);
-				pose.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
-				pose.Capture();
+				example.Resize(width, height);
+				example.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
+				example.Capture();
 			}
 
-			using (var pose = creator.AddExample("Focused"))
+			using (var example = creator.AddExample("Focused"))
 			{
-				pose.Resize(width, height);
-				pose.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
-				pose.Focus();
-				pose.Capture();
+				example.Resize(width, height);
+				example.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
+				example.Focus();
+				example.Capture();
 			}
 
-			using (var pose = creator.AddExample("Password, Focused"))
+			using (var example = creator.AddExample("Password, Focused"))
 			{
-				pose.Resize(width, height);
-				pose.SetValue(FlatPasswordBox.PasswordProperty, "Secret");
-				pose.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
-				pose.Focus();
-				pose.Capture();
+				example.Resize(width, height);
+				example.SetValue(FlatPasswordBox.PasswordProperty, "Secret");
+				example.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
+				example.Focus();
+				example.Capture();
 			}
 
-			using (var pose = creator.AddExample("Password, Unfocused"))
+			using (var example = creator.AddExample("Password, Unfocused"))
 			{
-				pose.Resize(width, height);
-				pose.SetValue(FlatPasswordBox.PasswordProperty, "Secret");
-				pose.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
-				pose.Capture();
+				example.Resize(width, height);
+				example.SetValue(FlatPasswordBox.PasswordProperty, "Secret");
+				example.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
+				example.Capture();
 			}
 
-			using (var pose = creator.AddExample("Disabled"))
+			using (var example = creator.AddExample("Disabled"))
 			{
-				pose.Resize(width, height);
-				pose.SetValue(FlatPasswordBox.PasswordProperty, "Secret");
-				pose.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
-				pose.SetValue(UIElement.IsEnabledProperty, false);
-				pose.Capture();
+				example.Resize(width, height);
+				example.SetValue(FlatPasswordBox.PasswordProperty, "Secret");
+				example.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
+				example.SetValue(UIElement.IsEnabledProperty, false);
+				example.Capture();
 			}
 
 			creator.SaveAllPoses(BasePath);

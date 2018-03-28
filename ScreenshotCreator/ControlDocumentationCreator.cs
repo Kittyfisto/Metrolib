@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
@@ -73,9 +74,22 @@ namespace ScreenshotCreator
 
 		internal string AddImage(BitmapSource screenshot, string name)
 		{
-			var relativeImagePath = string.Format("{0}.png", name);
+			var actualName = CoerceImageName(name);
+
+			var relativeImagePath = string.Format("{0}.png", actualName);
 			_snapshots.Add(relativeImagePath, screenshot);
 			return relativeImagePath;
+		}
+
+		private static string CoerceImageName(string name)
+		{
+			var builder = new StringBuilder(name);
+			builder.Replace(',', '_');
+			builder.Replace(' ', '_');
+			builder.Replace('@', '_');
+			builder.Replace(':', '_');
+			builder.Replace('?', '_');
+			return builder.ToString();
 		}
 
 		private static void SaveSnapshot(BitmapSource screenshot, string destination)
