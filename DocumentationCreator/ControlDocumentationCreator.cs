@@ -84,11 +84,25 @@ namespace DocumentationCreator
 		private static string CoerceImageName(string name)
 		{
 			var builder = new StringBuilder(name);
-			builder.Replace(',', '_');
-			builder.Replace(' ', '_');
-			builder.Replace('@', '_');
-			builder.Replace(':', '_');
-			builder.Replace('?', '_');
+			var invalidChars = new[]
+			{
+				',',
+				' ',
+				'@',
+				':',
+				'?',
+				'!',
+				')',
+				'(',
+				'/',
+				'\\',
+				'\r',
+				'\n'
+			};
+			foreach (var invalidCharacter in invalidChars)
+			{
+				builder.Replace(invalidCharacter, '_');
+			}
 			return builder.ToString();
 		}
 

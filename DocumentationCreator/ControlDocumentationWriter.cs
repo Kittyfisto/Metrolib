@@ -39,9 +39,22 @@ namespace DocumentationCreator
 		{
 			textWriter.WriteHeader(typeof(T).Name);
 			textWriter.WriteSummary(_typeDocumentation);
+			textWriter.WriteRemarks(_typeDocumentation);
+
 			foreach (var subWriter in _subWriters)
 			{
 				subWriter.WriteTo(textWriter);
+			}
+
+			if (_typeDocumentation != null)
+			{
+				textWriter.WriteHeader("Properties");
+				foreach (var property in _typeDocumentation.Properties)
+				{
+					textWriter.WriteLine("**{0}**: {1}", property.PropertyName, property.PropertyType);
+					textWriter.WriteLine(property.Summary);
+					textWriter.WriteLine();
+				}
 			}
 		}
 	}

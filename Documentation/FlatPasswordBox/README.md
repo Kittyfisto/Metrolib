@@ -37,3 +37,11 @@ FlatPasswordBox is a TextBox which allows a user to enter a password.
 ```
 ![Image of FlatPasswordBox, Disabled](Disabled.png)
 
+# Properties
+
+**Watermark**: System.String
+The watermark that is displayed for as long as no password has been entered.
+
+**Password**: System.String
+The password that has been entered by the user.
+

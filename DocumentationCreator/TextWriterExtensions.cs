@@ -17,14 +17,21 @@ namespace DocumentationCreator
 				var summary = documentation.Summary ?? string.Empty;
 				writer.Write(summary);
 				writer.WriteLine();
-				if (!summary.EndsWith("\n"))
-					writer.WriteLine();
+				writer.WriteLine();
 			}
 		}
 
-		public static void WriteImage(this TextWriter writer, string relativeImagePath, string description)
+		public static void WriteRemarks(this TextWriter writer, MemberDocumentation documentation)
 		{
-			
+			if (documentation != null)
+			{
+				foreach (var remark in documentation.Remarks)
+				{
+					writer.Write(remark);
+					writer.WriteLine();
+					writer.WriteLine();
+				}
+			}
 		}
 	}
 }

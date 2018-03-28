@@ -19,7 +19,8 @@ namespace DocumentationCreator
 		private readonly string _assemblyDocumentationFilePath;
 		private readonly string _assemblyFilePath;
 		private readonly XDocument _document;
-		private readonly Dictionary<Type, TypeDocumentation> _typeDocumentations;
+		private readonly Dictionary<Type, TypeDocumentation> _typeDocumenstationsByType;
+		private readonly Dictionary<string, TypeDocumentation> _typeDocumenstationsByName;
 
 		public AssemblyDocumentationReader(Assembly assembly)
 		{
@@ -32,21 +33,39 @@ namespace DocumentationCreator
 			_assemblyDocumentationFilePath =
 				Path.Combine(Path.GetDirectoryName(_assemblyFilePath), string.Format("{0}.xml", assemblyFileName));
 			_document = XDocument.Load(_assemblyDocumentationFilePath);
-			_typeDocumentations = new Dictionary<Type, TypeDocumentation>();
+
+			_typeDocumenstationsByType = new Dictionary<Type, TypeDocumentation>();
+			_typeDocumenstationsByName = new Dictionary<string, TypeDocumentation>();
+
 			foreach (var member in _document.Descendants("member"))
 			{
 				var name = member.Attribute("name")?.Value ?? string.Empty;
 				if (name.StartsWith("T:"))
 				{
-					var typeDocumentation = new TypeDocumentation(member);
+					var typeDocumentation = TypeDocumentation.CreateFrom(member, assembly);
+
+					_typeDocumenstationsByName.Add(typeDocumentation.FullTypeName, typeDocumentation);
 					var type = assembly.GetType(typeDocumentation.FullTypeName);
 					if (type != null)
 					{
-						_typeDocumentations.Add(type, typeDocumentation);
+						_typeDocumenstationsByType.Add(type, typeDocumentation);
 					}
 					else
 					{
 						Log.WarnFormat("Unable to find type '{0}' in assembly '{1}'", typeDocumentation.FullTypeName, assemblyFileName);
+					}
+				}
+
+				if (name.StartsWith("P:"))
+				{
+					var propertyDocumentation = PropertyDocumentation.CreateFrom(member, assembly);
+					if (_typeDocumenstationsByName.TryGetValue(propertyDocumentation.FullTypeName, out var typeDocumentation))
+					{
+						typeDocumentation.Add(propertyDocumentation);
+					}
+					else
+					{
+						Log.WarnFormat("Unable to find type '{0}' in documentation", propertyDocumentation.FullTypeName);
 					}
 				}
 			}
@@ -54,8 +73,7 @@ namespace DocumentationCreator
 
 		public TypeDocumentation GetDocumentationOf(Type type)
 		{
-			TypeDocumentation documentation;
-			_typeDocumentations.TryGetValue(type, out documentation);
+			_typeDocumenstationsByType.TryGetValue(type, out var documentation);
 			return documentation;
 		}
 
