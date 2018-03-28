@@ -1,9 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
@@ -11,26 +11,30 @@ using System.Windows.Threading;
 namespace ScreenshotCreator
 {
 	/// <summary>
-	///     Allows capturing snapshots of an element in a defined pose (such as focused, disabled, etc...)
+	///     Responsible for creating the documentation for a particular control in a particular example.
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public sealed class PoseSnapshot<T>
-		: IDisposable
-		where T : FrameworkElement, new()
+	internal sealed class ControlExampleCreator<T>
+		: IControlExampleCreator<T> where T : FrameworkElement, new()
 	{
+		private readonly ControlDocumentationCreator<T> _controlDocumentationCreator;
 		private readonly Dispatcher _dispatcher;
+		private readonly ExampleWriter _writer;
 		private readonly T _element;
-		private readonly string _pose;
-		private readonly SnapshotCreator<T> _snapshotCreator;
+		private readonly string _exampleName;
+		private readonly CodeSnippetWriter _codeSnippet;
+		private readonly string _controlName;
 
-		public PoseSnapshot(SnapshotCreator<T> snapshotCreator,
-		                    Dispatcher dispatcher,
-		                    ResourceDictionary resourceDictionary,
-		                    string pose)
+		public ControlExampleCreator(ControlDocumentationCreator<T> controlDocumentationCreator,
+		                             Dispatcher dispatcher,
+		                             ResourceDictionary resourceDictionary,
+		                             ExampleWriter writer,
+		                             string exampleName)
 		{
-			_snapshotCreator = snapshotCreator;
+			_controlDocumentationCreator = controlDocumentationCreator;
 			_dispatcher = dispatcher;
-			_pose = pose;
+			_writer = writer;
+			_exampleName = exampleName;
 			_element = Invoke(() =>
 			{
 				var element = new T();
@@ -41,6 +45,22 @@ namespace ScreenshotCreator
 				var style = (Style) resourceDictionary[typeof(T)];
 				_element.Style = style;
 			});
+
+			_controlName = typeof(T).Name;
+			var xamlNamespace = typeof(T).Assembly.GetName().Name;
+
+			_codeSnippet = writer.AddCodeSnippet("xaml");
+			_codeSnippet.Write("<{0}:{1} ", xamlNamespace, _controlName);
+		}
+
+		public void Dispose()
+		{
+		}
+
+		public void SetValue(DependencyProperty property, object value)
+		{
+			Invoke(() => { _element.SetValue(property, value); });
+			_codeSnippet.Write("{0}=\"{1}\" ", property.Name, value);
 		}
 
 		public void Resize(int width, int height)
@@ -78,7 +98,7 @@ namespace ScreenshotCreator
 			// I'm too fucking stupid to get the fucking animation to work in this application
 			// and therefore I have to cheat...
 			var method = typeof(T).GetMethod("GetTemplateChild", BindingFlags.NonPublic | BindingFlags.Instance);
-			var focusBorder = (Border)method.Invoke(_element, new object[] {"focusBorder"});
+			var focusBorder = (Border) method.Invoke(_element, new object[] {"focusBorder"});
 			focusBorder.Opacity = 1;
 		}
 
@@ -95,10 +115,11 @@ namespace ScreenshotCreator
 			var newFlags = Enum.ToObject(type, flags);
 			field.SetValue(_element, newFlags);
 
-			var method = typeof(UIElement).GetMethod("RaiseIsKeyboardFocusWithinChanged", BindingFlags.NonPublic | BindingFlags.Instance);
+			var method = typeof(UIElement).GetMethod("RaiseIsKeyboardFocusWithinChanged",
+			                                         BindingFlags.NonPublic | BindingFlags.Instance);
 			method.Invoke(_element, new object[]
 			{
-				new DependencyPropertyChangedEventArgs(UIElement.IsKeyboardFocusWithinProperty, false, true)
+				new DependencyPropertyChangedEventArgs(UIElement.IsKeyboardFocusWithinProperty, oldValue: false, newValue: true)
 			});
 		}
 
@@ -108,22 +129,17 @@ namespace ScreenshotCreator
 			Invoke(() => { });
 		}
 
-		public void Disable()
-		{
-			Invoke(() => _element.IsEnabled = false);
-		}
-
 		public void Capture()
 		{
+			_codeSnippet.WriteLine("/>");
+
 			_dispatcher.Invoke(() =>
 			{
 				var screenshot = CaptureScreenshot(_element);
-				_snapshotCreator.Add(screenshot, _pose);
+				var relativeImagePath = _controlDocumentationCreator.AddImage(screenshot, _exampleName);
+				_writer.AddImage(string.Format("Image of {0}, {1}", _controlName, _exampleName), relativeImagePath);
 			}, DispatcherPriority.Background);
 		}
-
-		public void Dispose()
-		{}
 
 		private BitmapSource CaptureScreenshot(FrameworkElement element)
 		{

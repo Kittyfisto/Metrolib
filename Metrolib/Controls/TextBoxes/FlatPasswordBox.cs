@@ -7,6 +7,7 @@ namespace Metrolib.Controls
 // ReSharper restore CheckNamespace
 {
 	/// <summary>
+	///     FlatPasswordBox is a TextBox which allows a user to enter a password.
 	/// </summary>
 	[TemplatePart(Name = "PART_PasswordBox", Type = typeof(PasswordBox))]
 	[TemplatePart(Name = "PART_Watermark", Type = typeof(TextBlock))]
@@ -28,7 +29,6 @@ namespace Metrolib.Controls
 			                            new PropertyMetadata(default(string), OnPasswordChanged));
 
 		private PasswordBox _passwordBox;
-		private Border _focusBorder;
 
 		static FlatPasswordBox()
 		{
@@ -99,8 +99,6 @@ namespace Metrolib.Controls
 				_passwordBox.Password = Password;
 				_passwordBox.PasswordChanged += PasswordBoxOnPasswordChanged;
 			}
-
-			_focusBorder = (Border) GetTemplateChild("focusBorder");
 		}
 
 		/// <summary>

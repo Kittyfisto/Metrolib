@@ -38,13 +38,13 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 
 ## Text Boxes
 * EditorTextBox
-* [FilterTextBox](Samples/FilterTextBox/Description.md)
-* [FlatPasswordBox](Samples/FlatPasswordBox/Description.md)
-* [SearchTextBox](Samples/SearchTextBox/Description.md)
+* [FilterTextBox](Documentation/FilterTextBox/Description.md)
+* [FlatPasswordBox](Documentation/FlatPasswordBox/Description.md)
+* [SearchTextBox](Documentation/SearchTextBox/Description.md)
 
 ## Progress Bars
-* [FlatProgressBar](Samples/FlatProgressBar/Description.md)
-* [CircularProgressBar](Samples/CircularProgressBar/Description.md)
+* [FlatProgressBar](Documentation/FlatProgressBar/Description.md)
+* [CircularProgressBar](Documentation/CircularProgressBar/Description.md)
 
 ## Item Controls
 * FlatListView
@@ -52,9 +52,9 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 * FlatTabControl
 
 ## Charts
-* [LineChart](Samples/LineChart/Description.md)
-* [PieChart](Samples/PieChart/Description.md)
-* [NetworkView](Samples/NetworkView/Description.md)
+* [LineChart](Documentation/LineChart/Description.md)
+* [PieChart](Documentation/PieChart/Description.md)
+* [NetworkView](Documentation/NetworkView/Description.md)
 * MapView
 
 ## Other

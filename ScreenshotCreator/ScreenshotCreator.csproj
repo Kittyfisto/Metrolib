@@ -55,7 +55,16 @@
   <ItemGroup>
     <Compile Include="Application2.cs" />
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="ISnapshotCreator.cs" />
+    <Compile Include="CodeSnippetWriter.cs" />
+    <Compile Include="ControlDocumentationWriter.cs" />
+    <Compile Include="DocumentationCreator.cs" />
+    <Compile Include="AssemblyDocumentationReader.cs" />
+    <Compile Include="ExampleWriter.cs" />
+    <Compile Include="IControlDocumentationCreator.cs" />
+    <Compile Include="IControlExampleCreator.cs" />
+    <Compile Include="ImageWriter.cs" />
+    <Compile Include="IWriter.cs" />
+    <Compile Include="MemberDocumentation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -69,8 +78,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="PoseSnapshot.cs" />
-    <Compile Include="SnapshotCreator.cs" />
+    <Compile Include="ControlExampleCreator.cs" />
+    <Compile Include="ControlDocumentationCreator.cs" />
+    <Compile Include="TextWriterExtensions.cs" />
+    <Compile Include="TypeDocumentation.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -22,7 +22,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netstat", "Netstat\Netstat.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{BFEDFEA6-9998-468A-89B4-EDADFFEF6EA4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{BCB5CCBC-F95F-4055-A2E4-8633EA17002A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{BCB5CCBC-F95F-4055-A2E4-8633EA17002A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FlatProgressBar", "FlatProgressBar", "{0BF896E0-1F07-42FC-8CD4-FC21758EB856}"
 	ProjectSection(SolutionItems) = preProject

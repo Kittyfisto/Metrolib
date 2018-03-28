@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
+using Metrolib;
 using Metrolib.Controls;
 
 namespace ScreenshotCreator
@@ -13,6 +14,7 @@ namespace ScreenshotCreator
 		private static readonly string BasePath;
 		private static ResourceDictionary _resourceDictionary;
 		private static Dispatcher _dispatcher;
+		private static DocumentationCreator _documentationCreator;
 
 		static Application2()
 		{
@@ -26,6 +28,7 @@ namespace ScreenshotCreator
 			{
 				Source = new Uri("/Metrolib;component/Themes/Generic.xaml", UriKind.RelativeOrAbsolute)
 			};
+			_documentationCreator = new DocumentationCreator(_dispatcher, _resourceDictionary, typeof(Icons).Assembly);
 		}
 
 		public new static int Run()
@@ -69,61 +72,104 @@ namespace ScreenshotCreator
 
 		private static void TakeScreenshots()
 		{
+			TakeFilterTextBoxScreenshots();
 			TakeFlatPasswordBoxScreenshots();
 		}
 
-		private static void TakeFlatPasswordBoxScreenshots()
+		private static void TakeFilterTextBoxScreenshots()
 		{
-			var creator = PrepareSnapshotsFor<FlatPasswordBox>();
+			var creator = _documentationCreator.CreateDocumentationFor<FilterTextBox>();
 
 			const int width = 128;
 			const int height = 32;
 
-			using (var pose = creator.AddPose("Default"))
+			using (var pose = creator.AddExample("Default"))
 			{
 				pose.Resize(width, height);
-				pose.Prepare(box => box.Watermark = "Enter password...");
+				pose.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
 				pose.Capture();
 			}
 
-			using (var pose = creator.AddPose("Focused"))
+			using (var pose = creator.AddExample("Focused"))
 			{
 				pose.Resize(width, height);
-				pose.Prepare(box => box.Watermark = "Enter password...");
+				pose.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
 				pose.Focus();
 				pose.Capture();
 			}
 
-			using (var pose = creator.AddPose("PasswordFocused"))
+			using (var pose = creator.AddExample("FilterTextFocused"))
 			{
 				pose.Resize(width, height);
-				pose.Prepare(box => box.Password = "Secret");
+				pose.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
 				pose.Focus();
 				pose.Capture();
 			}
 
-			using (var pose = creator.AddPose("PasswordUnfocused"))
+			using (var pose = creator.AddExample("FilterTextUnfocused"))
 			{
 				pose.Resize(width, height);
-				pose.Prepare(box => box.Password = "Secret");
+				pose.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
 				pose.Capture();
 			}
 
-			using (var pose = creator.AddPose("Disabled"))
+			using (var pose = creator.AddExample("Disabled"))
 			{
 				pose.Resize(width, height);
-				pose.Prepare(box => box.Password = "Secret");
-				pose.Disable();
+				pose.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
+				pose.SetValue(UIElement.IsEnabledProperty, false);
 				pose.Capture();
 			}
 
-			creator.SaveAllSnapshots(BasePath);
+			creator.SaveAllPoses(BasePath);
 		}
 
-		private static SnapshotCreator<T> PrepareSnapshotsFor<T>() where T : FrameworkElement, new()
+		private static void TakeFlatPasswordBoxScreenshots()
 		{
-			var creator = new SnapshotCreator<T>(_dispatcher, _resourceDictionary);
-			return creator;
+			var creator = _documentationCreator.CreateDocumentationFor<FlatPasswordBox>();
+
+			const int width = 128;
+			const int height = 32;
+
+			using (var pose = creator.AddExample("Unfocused"))
+			{
+				pose.Resize(width, height);
+				pose.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
+				pose.Capture();
+			}
+
+			using (var pose = creator.AddExample("Focused"))
+			{
+				pose.Resize(width, height);
+				pose.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
+				pose.Focus();
+				pose.Capture();
+			}
+
+			using (var pose = creator.AddExample("Password, Focused"))
+			{
+				pose.Resize(width, height);
+				pose.SetValue(FlatPasswordBox.PasswordProperty, "Secret");
+				pose.Focus();
+				pose.Capture();
+			}
+
+			using (var pose = creator.AddExample("Password, Unfocused"))
+			{
+				pose.Resize(width, height);
+				pose.SetValue(FlatPasswordBox.PasswordProperty, "Secret");
+				pose.Capture();
+			}
+
+			using (var pose = creator.AddExample("Disabled"))
+			{
+				pose.Resize(width, height);
+				pose.SetValue(FlatPasswordBox.PasswordProperty, "Secret");
+				pose.SetValue(UIElement.IsEnabledProperty, false);
+				pose.Capture();
+			}
+
+			creator.SaveAllPoses(BasePath);
 		}
 	}
 }
