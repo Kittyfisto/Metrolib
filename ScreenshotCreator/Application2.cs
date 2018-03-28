@@ -102,6 +102,7 @@ namespace ScreenshotCreator
 			{
 				pose.Resize(width, height);
 				pose.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
+				pose.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
 				pose.Focus();
 				pose.Capture();
 			}
@@ -110,6 +111,7 @@ namespace ScreenshotCreator
 			{
 				pose.Resize(width, height);
 				pose.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
+				pose.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
 				pose.Capture();
 			}
 
@@ -117,6 +119,7 @@ namespace ScreenshotCreator
 			{
 				pose.Resize(width, height);
 				pose.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
+				pose.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
 				pose.SetValue(UIElement.IsEnabledProperty, false);
 				pose.Capture();
 			}
@@ -150,6 +153,7 @@ namespace ScreenshotCreator
 			{
 				pose.Resize(width, height);
 				pose.SetValue(FlatPasswordBox.PasswordProperty, "Secret");
+				pose.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
 				pose.Focus();
 				pose.Capture();
 			}
@@ -158,6 +162,7 @@ namespace ScreenshotCreator
 			{
 				pose.Resize(width, height);
 				pose.SetValue(FlatPasswordBox.PasswordProperty, "Secret");
+				pose.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
 				pose.Capture();
 			}
 
@@ -165,6 +170,7 @@ namespace ScreenshotCreator
 			{
 				pose.Resize(width, height);
 				pose.SetValue(FlatPasswordBox.PasswordProperty, "Secret");
+				pose.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
 				pose.SetValue(UIElement.IsEnabledProperty, false);
 				pose.Capture();
 			}

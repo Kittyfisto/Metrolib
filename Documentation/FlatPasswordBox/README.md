@@ -19,21 +19,21 @@ FlatPasswordBox is a TextBox which allows a user to enter a password.
 ### Password, Focused
 
 ```xaml
-<Metrolib:FlatPasswordBox Password="Secret" />
+<Metrolib:FlatPasswordBox Password="Secret" Watermark="Enter password..." />
 ```
 ![Image of FlatPasswordBox, Password, Focused](Password, Focused.png)
 
 ### Password, Unfocused
 
 ```xaml
-<Metrolib:FlatPasswordBox Password="Secret" />
+<Metrolib:FlatPasswordBox Password="Secret" Watermark="Enter password..." />
 ```
 ![Image of FlatPasswordBox, Password, Unfocused](Password, Unfocused.png)
 
 ### Disabled
 
 ```xaml
-<Metrolib:FlatPasswordBox Password="Secret" IsEnabled="False" />
+<Metrolib:FlatPasswordBox Password="Secret" Watermark="Enter password..." IsEnabled="False" />
 ```
 ![Image of FlatPasswordBox, Disabled](Disabled.png)
 
