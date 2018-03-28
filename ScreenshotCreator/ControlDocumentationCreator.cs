@@ -42,17 +42,18 @@ namespace ScreenshotCreator
 		public void SaveAllPoses(string basePath)
 		{
 			var elementName = typeof(T).Name;
+			var documentationFolder = Path.Combine(basePath, DocumentationFolderName, elementName);
 
 			foreach (var pair in _snapshots)
 			{
 				var relativeImagePath = pair.Key;
 				var bitmap = pair.Value;
 
-				var destination = Path.Combine(basePath, relativeImagePath);
+				var destination = Path.Combine(basePath, documentationFolder, relativeImagePath);
 				SaveSnapshot(bitmap, destination);
 			}
 
-			var dest = Path.Combine(basePath, DocumentationFolderName, elementName, "README.md");
+			var dest = Path.Combine(documentationFolder, "README.md");
 			using (var fileStream = File.Open(dest, FileMode.Create))
 			using (var streamWriter = new StreamWriter(fileStream))
 			{
@@ -72,8 +73,7 @@ namespace ScreenshotCreator
 
 		internal string AddImage(BitmapSource screenshot, string name)
 		{
-			var controlName = typeof(T).Name;
-			var relativeImagePath = Path.Combine(DocumentationFolderName, controlName, string.Format("{0}.png", name));
+			var relativeImagePath = string.Format("{0}.png", name);
 			_snapshots.Add(relativeImagePath, screenshot);
 			return relativeImagePath;
 		}
