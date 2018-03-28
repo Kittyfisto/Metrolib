@@ -39,18 +39,18 @@ A textbox meant to input queries used for filtering.
 
 # Properties
 
-**RemoveFilterTextButton**: System.Windows.Controls.Button
+**RemoveFilterTextButton**: System.Windows.Controls.Button  
 The button that appears to remove entered text.
 
-**HasFilterText**: System.Boolean
+**HasFilterText**: System.Boolean  
 Whether or not any  has been entered.
 
-**IsValid**: System.Boolean
+**IsValid**: System.Boolean  
 Whether or not the entered  is valid.
 
-**Watermark**: System.String
+**Watermark**: System.String  
 The watermark text that shall be displayed when the user hasn't entered any  (yet).
 
-**FilterText**: System.String
+**FilterText**: System.String  
 The filter text input by the user.
 
