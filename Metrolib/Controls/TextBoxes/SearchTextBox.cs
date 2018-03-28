@@ -9,10 +9,10 @@ namespace Metrolib.Controls
 {
 	/// <summary>
 	///     A text-box meant to input a search term.
-	///     - offers a dedicated button to perform the search
-	///     - offers a dedicated button to clear the search term
-	///     - offers a display of the number of matches
-	///     - offers buttons and shortcuts to advance to the next/previous location
+	///     * offers a dedicated button to perform the search
+	///     * offers a dedicated button to clear the search term
+	///     * offers a display of the number of matches
+	///     * offers buttons and shortcuts to advance to the next/previous location
 	/// </summary>
 	[TemplatePart(Name = "PART_MovePrevious", Type = typeof (Button))]
 	[TemplatePart(Name = "PART_MoveNext", Type = typeof (Button))]
