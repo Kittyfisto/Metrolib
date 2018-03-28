@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Threading;
 using Metrolib;
 using Metrolib.Controls;
@@ -72,11 +73,43 @@ namespace DocumentationCreator
 
 		private static void TakeScreenshots()
 		{
-			TakeFilterTextBoxScreenshots();
-			TakeFlatPasswordBoxScreenshots();
+			CreateFilterTextBoxDoc();
+			CreateSearchTextBoxDoc();
+			CreateFlatPasswordBoxDoc();
 		}
 
-		private static void TakeFilterTextBoxScreenshots()
+		private static void CreateSearchTextBoxDoc()
+		{
+			var creator = _documentationCreator.CreateDocumentationFor<SearchTextBox>();
+
+			const int width = 200;
+			const int height = 32;
+
+			using (var example = creator.AddExample("Unfocused"))
+			{
+				example.Resize(width, height);
+				example.SetValue(SearchTextBox.WatermarkProperty, "Enter search term...");
+			}
+
+			using (var example = creator.AddExample("Focused"))
+			{
+				example.Resize(width, height);
+				example.SetValue(SearchTextBox.WatermarkProperty, "Enter search term...");
+				example.Focus();
+			}
+			
+			using (var example = creator.AddExample("FilterText, Focused"))
+			{
+				example.Resize(width, height);
+				example.SetValue(TextBox.TextProperty, "Luke");
+				example.SetValue(SearchTextBox.WatermarkProperty, "Enter search term...");
+				example.Focus();
+			}
+
+			creator.SaveAllPoses(BasePath);
+		}
+
+		private static void CreateFilterTextBoxDoc()
 		{
 			var creator = _documentationCreator.CreateDocumentationFor<FilterTextBox>();
 
@@ -87,7 +120,6 @@ namespace DocumentationCreator
 			{
 				example.Resize(width, height);
 				example.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
-				example.Capture();
 			}
 
 			using (var example = creator.AddExample("Focused"))
@@ -95,7 +127,6 @@ namespace DocumentationCreator
 				example.Resize(width, height);
 				example.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
 				example.Focus();
-				example.Capture();
 			}
 
 			using (var example = creator.AddExample("FilterText, Focused"))
@@ -104,7 +135,6 @@ namespace DocumentationCreator
 				example.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
 				example.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
 				example.Focus();
-				example.Capture();
 			}
 
 			using (var example = creator.AddExample("FilterText, Unfocused"))
@@ -112,7 +142,6 @@ namespace DocumentationCreator
 				example.Resize(width, height);
 				example.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
 				example.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
-				example.Capture();
 			}
 
 			using (var example = creator.AddExample("Invalid FilterText"))
@@ -121,7 +150,6 @@ namespace DocumentationCreator
 				example.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
 				example.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
 				example.SetValue(FilterTextBox.IsValidProperty, false);
-				example.Capture();
 			}
 
 			using (var example = creator.AddExample("Disabled"))
@@ -130,13 +158,12 @@ namespace DocumentationCreator
 				example.SetValue(FilterTextBox.FilterTextProperty, "[0-9]+");
 				example.SetValue(FilterTextBox.WatermarkProperty, "Enter filter...");
 				example.SetValue(UIElement.IsEnabledProperty, false);
-				example.Capture();
 			}
 
 			creator.SaveAllPoses(BasePath);
 		}
 
-		private static void TakeFlatPasswordBoxScreenshots()
+		private static void CreateFlatPasswordBoxDoc()
 		{
 			var creator = _documentationCreator.CreateDocumentationFor<FlatPasswordBox>();
 
@@ -147,7 +174,6 @@ namespace DocumentationCreator
 			{
 				example.Resize(width, height);
 				example.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
-				example.Capture();
 			}
 
 			using (var example = creator.AddExample("Focused"))
@@ -155,7 +181,6 @@ namespace DocumentationCreator
 				example.Resize(width, height);
 				example.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
 				example.Focus();
-				example.Capture();
 			}
 
 			using (var example = creator.AddExample("Password, Focused"))
@@ -164,7 +189,6 @@ namespace DocumentationCreator
 				example.SetValue(FlatPasswordBox.PasswordProperty, "Secret");
 				example.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
 				example.Focus();
-				example.Capture();
 			}
 
 			using (var example = creator.AddExample("Password, Unfocused"))
@@ -172,7 +196,6 @@ namespace DocumentationCreator
 				example.Resize(width, height);
 				example.SetValue(FlatPasswordBox.PasswordProperty, "Secret");
 				example.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
-				example.Capture();
 			}
 
 			using (var example = creator.AddExample("Disabled"))
@@ -181,7 +204,6 @@ namespace DocumentationCreator
 				example.SetValue(FlatPasswordBox.PasswordProperty, "Secret");
 				example.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
 				example.SetValue(UIElement.IsEnabledProperty, false);
-				example.Capture();
 			}
 
 			creator.SaveAllPoses(BasePath);

@@ -30,10 +30,6 @@ namespace DocumentationCreator
 		/// </summary>
 		/// <param name="timeout"></param>
 		void Wait(TimeSpan timeout);
-
-		/// <summary>
-		/// </summary>
-		void Capture();
 	}
 
 	/// <summary>

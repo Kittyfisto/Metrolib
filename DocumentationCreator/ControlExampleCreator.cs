@@ -54,6 +54,14 @@ namespace DocumentationCreator
 
 		public void Dispose()
 		{
+			_codeSnippet.WriteLine("/>");
+
+			_dispatcher.Invoke(() =>
+			{
+				var screenshot = CaptureScreenshot(_element);
+				var relativeImagePath = _controlDocumentationCreator.AddImage(screenshot, _exampleName);
+				_writer.AddImage(string.Format("Image of {0}, {1}", _controlName, _exampleName), relativeImagePath);
+			}, DispatcherPriority.Background);
 		}
 
 		public void SetValue(DependencyProperty property, object value)
@@ -126,18 +134,6 @@ namespace DocumentationCreator
 		{
 			Thread.Sleep(timeout);
 			Invoke(() => { });
-		}
-
-		public void Capture()
-		{
-			_codeSnippet.WriteLine("/>");
-
-			_dispatcher.Invoke(() =>
-			{
-				var screenshot = CaptureScreenshot(_element);
-				var relativeImagePath = _controlDocumentationCreator.AddImage(screenshot, _exampleName);
-				_writer.AddImage(string.Format("Image of {0}, {1}", _controlName, _exampleName), relativeImagePath);
-			}, DispatcherPriority.Background);
 		}
 
 		private BitmapSource CaptureScreenshot(FrameworkElement element)
