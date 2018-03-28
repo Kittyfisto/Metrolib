@@ -20,6 +20,7 @@ namespace ScreenshotCreator
 		private readonly ResourceDictionary _resourceDictionary;
 		private readonly Dictionary<string, BitmapSource> _snapshots;
 		private readonly ControlDocumentationWriter<T> _documentationWriter;
+		private const string DocumentationFolderName = "Documentation";
 
 		public ControlDocumentationCreator(Dispatcher dispatcher,
 		                                   ResourceDictionary resourceDictionary,
@@ -51,7 +52,7 @@ namespace ScreenshotCreator
 				SaveSnapshot(bitmap, destination);
 			}
 
-			var dest = Path.Combine(basePath, elementName, "README.md");
+			var dest = Path.Combine(basePath, DocumentationFolderName, elementName, "README.md");
 			using (var fileStream = File.Open(dest, FileMode.Create))
 			using (var streamWriter = new StreamWriter(fileStream))
 			{
@@ -72,7 +73,7 @@ namespace ScreenshotCreator
 		internal string AddImage(BitmapSource screenshot, string name)
 		{
 			var controlName = typeof(T).Name;
-			var relativeImagePath = Path.Combine(controlName, string.Format("{0}.png", name));
+			var relativeImagePath = Path.Combine(DocumentationFolderName, controlName, string.Format("{0}.png", name));
 			_snapshots.Add(relativeImagePath, screenshot);
 			return relativeImagePath;
 		}

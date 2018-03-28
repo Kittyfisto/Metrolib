@@ -18,7 +18,7 @@ namespace ScreenshotCreator
 
 		static Application2()
 		{
-			BasePath = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "Samples");
+			BasePath = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..");
 		}
 
 		internal Application2()
