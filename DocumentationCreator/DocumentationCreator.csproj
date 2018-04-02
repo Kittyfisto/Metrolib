@@ -49,11 +49,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="dotnetdoc">
+      <HintPath>..\packages\dotnetdoc.0.1.0\lib\net45\dotnetdoc.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Extensions, Version=1.1.35.0, Culture=neutral, PublicKeyToken=951c63ca832f7094, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Extensions.1.1.35\lib\net45\System.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -70,16 +76,6 @@
   <ItemGroup>
     <Compile Include="Application2.cs" />
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="CodeSnippetWriter.cs" />
-    <Compile Include="ControlDocumentationWriter.cs" />
-    <Compile Include="DocumentationCreator.cs" />
-    <Compile Include="AssemblyDocumentationReader.cs" />
-    <Compile Include="ExampleWriter.cs" />
-    <Compile Include="IControlDocumentationCreator.cs" />
-    <Compile Include="IControlExampleCreator.cs" />
-    <Compile Include="ImageWriter.cs" />
-    <Compile Include="IWriter.cs" />
-    <Compile Include="MemberDocumentation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -93,11 +89,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ControlExampleCreator.cs" />
-    <Compile Include="ControlDocumentationCreator.cs" />
-    <Compile Include="PropertyDocumentation.cs" />
-    <Compile Include="TextWriterExtensions.cs" />
-    <Compile Include="TypeDocumentation.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
