@@ -38,9 +38,9 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 
 ## Text Boxes
 * EditorTextBox
-* [FilterTextBox](Documentation/FilterTextBox/README.md)
-* [FlatPasswordBox](Documentation/FlatPasswordBox/README.md)
-* [SearchTextBox](Documentation/SearchTextBox/README.md)
+* [FilterTextBox](Documentation/Metrolib.Controls.FilterTextBox/README.md)
+* [FlatPasswordBox](Documentation/Metrolib.Controls.FlatPasswordBox/README.md)
+* [SearchTextBox](Documentation/Metrolib.Controls.SearchTextBox/README.md)
 
 ## Progress Bars
 * [FlatProgressBar](Documentation/FlatProgressBar/README.md)
