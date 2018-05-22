@@ -11,20 +11,20 @@ https://www.nuget.org/packages/Metrolib
 This library ships a lot of restyled controls, from buttons to full blown charts:
 
 ## Buttons
-* AddButton
-* DeleteButton
-* ExportButton
-* FlatButton
-* FolderOpenButton
-* MaximizeButton
-* MinimizeButton
-* MoreButton
-* NextButton
-* PreviousButton
-* RefreshButton
-* RemoveButton
-* SearchButton
-* UndoButton
+* [AddButton](Documentation/Metrolib.Controls.AddButton/README.md)
+* [DeleteButton](Documentation/Metrolib.Controls.DeleteButton/README.md)
+* [ExportButton](Documentation/Metrolib.Controls.ExportButton/README.md)
+* [FlatButton](Documentation/Metrolib.Controls.FlatButton/README.md)
+* [FolderOpenButton](Documentation/Metrolib.Controls.FolderOpenButton/README.md)
+* [MaximizeButton](Documentation/Metrolib.Controls.MaximizeButton/README.md)
+* [MinimizeButton](Documentation/Metrolib.Controls.MinimizeButton/README.md)
+* [MoreButton](Documentation/Metrolib.Controls.MoreButton/README.md)
+* [NextButton](Documentation/Metrolib.Controls.NextButton/README.md)
+* [PreviousButton](Documentation/Metrolib.Controls.PreviousButton/README.md)
+* [RefreshButton](Documentation/Metrolib.Controls.RefreshButton/README.md)
+* [RemoveButton](Documentation/Metrolib.Controls.RemoveButton/README.md)
+* [SearchButton](Documentation/Metrolib.Controls.SearchButton/README.md)
+* [UndoButton](Documentation/Metrolib.Controls.UndoButton/README.md)
 
 ## Toggle Buttons
 * EditToggleButton
@@ -37,10 +37,10 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 * VisibilityToggleButton
 
 ## Text Boxes
-* EditorTextBox
-* [FilterTextBox](Documentation/FilterTextBox/README.md)
-* [FlatPasswordBox](Documentation/FlatPasswordBox/README.md)
-* [SearchTextBox](Documentation/SearchTextBox/README.md)
+* [EditorTextBox](Documentation/Metrolib.Controls.EditorTextBox/README.md)
+* [FilterTextBox](Documentation/Metrolib.Controls.FilterTextBox/README.md)
+* [FlatPasswordBox](Documentation/Metrolib.Controls.FlatPasswordBox/README.md)
+* [SearchTextBox](Documentation/Metrolib.Controls.SearchTextBox/README.md)
 
 ## Progress Bars
 * [FlatProgressBar](Documentation/FlatProgressBar/README.md)

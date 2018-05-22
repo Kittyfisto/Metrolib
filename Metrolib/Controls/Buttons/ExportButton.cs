@@ -7,6 +7,9 @@ namespace Metrolib.Controls
 	/// <summary>
 	///     A simple button that allows for the exporting of data.
 	/// </summary>
+	/// <remarks>
+	///     Displays a file with an arrow to top right.
+	/// </remarks>
 	public class ExportButton
 		: FlatButton
 	{

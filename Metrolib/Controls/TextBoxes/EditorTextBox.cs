@@ -14,6 +14,7 @@ namespace Metrolib.Controls
 	/// </summary>
 	/// <remarks>
 	///     Supports many markdown shortcuts, when <see cref="EnableMarkdownShortcuts" /> is set to true.
+	///     See https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet.
 	/// </remarks>
 	public sealed class EditorTextBox
 		: TextBox

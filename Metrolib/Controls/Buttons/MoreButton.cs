@@ -8,6 +8,9 @@ namespace Metrolib.Controls
 	///     A button that allows the user to show more content than is regularly visible, for example through
 	///     a context-menu.
 	/// </summary>
+	/// <remarks>
+	///     Displays three dots.
+	/// </remarks>
 	public class MoreButton
 		: FlatButton
 	{

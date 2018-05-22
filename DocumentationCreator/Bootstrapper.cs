@@ -13,7 +13,7 @@ namespace DocumentationCreator
 		{
 			try
 			{
-				return Application2.Run();
+				return Documentation.Run();
 			}
 			catch (Exception e)
 			{
