@@ -35,6 +35,15 @@
 		/// </summary>
 		public static readonly System.Windows.Media.Geometry ChevronUp;
 
+		#region Arrows
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry ArrowCollapseDown;
+
+		#endregion
+
 		#region View
 
 		/// <summary>
@@ -784,6 +793,8 @@
 		static Icons()
 		{
 			Apps = CreateGeometry("M16,20H20V16H16M16,14H20V10H16M10,8H14V4H10M16,8H20V4H16M10,14H14V10H10M4,14H8V10H4M4,20H8V16H4M10,20H14V16H10M4,8H8V4H4V8Z");
+
+			ArrowCollapseDown = CreateGeometry("M19.92,12.08L12,20L4.08,12.08L5.5,10.67L11,16.17V2H13V16.17L18.5,10.66L19.92,12.08M12,20H2V22H22V20H12Z");
 
 			Add = CreateGeometry("M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z");
 			Delete = CreateGeometry("M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z");

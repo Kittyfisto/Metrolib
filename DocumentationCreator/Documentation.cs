@@ -41,6 +41,7 @@ namespace DocumentationCreator
 		{
 			CreateButtonDoc<AddButton>(doc);
 			CreateButtonDoc<DeleteButton>(doc);
+			CreateButtonDoc<DownloadButton>(doc);
 			CreateButtonDoc<ExportButton>(doc);
 			CreateButtonDoc<FolderOpenButton>(doc);
 			CreateButtonDoc<MaximizeButton>(doc);
