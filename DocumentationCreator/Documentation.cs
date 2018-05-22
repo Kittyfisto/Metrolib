@@ -54,6 +54,7 @@ namespace DocumentationCreator
 			CreateButtonDoc<RemoveButton>(doc);
 			CreateButtonDoc<SearchButton>(doc);
 			CreateButtonDoc<UndoButton>(doc);
+			CreateButtonDoc<UploadButton>(doc);
 
 			CreateToggleButtonDoc<EditToggleButton>(doc);
 			CreateToggleButtonDoc<EmailToggleButton>(doc);

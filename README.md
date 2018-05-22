@@ -26,6 +26,7 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 * [RemoveButton](Documentation/Metrolib.Controls.RemoveButton/README.md)
 * [SearchButton](Documentation/Metrolib.Controls.SearchButton/README.md)
 * [UndoButton](Documentation/Metrolib.Controls.UndoButton/README.md)
+* [UploadButton](Documentation/Metrolib.Controls.UploadButton/README.md)
 
 ## Toggle Buttons
 * [EditToggleButton](Documentation/Metrolib.Controls.EditToggleButton/README.md)

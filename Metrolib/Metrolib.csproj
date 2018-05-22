@@ -77,6 +77,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Buttons\UploadButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Charts\AxisControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -313,6 +317,7 @@
     <Compile Include="Controls\Buttons\FolderOpenButton.cs" />
     <Compile Include="Controls\Buttons\RefreshButton.cs" />
     <Compile Include="Controls\Buttons\UndoButton.cs" />
+    <Compile Include="Controls\Buttons\UploadButton.cs" />
     <Compile Include="Controls\Charts\AxisControl.cs" />
     <Compile Include="Controls\Charts\Histogram\DateTimeHistogram.cs" />
     <Compile Include="Controls\Charts\Line\Canvas\AbstractLineChartCanvas.cs" />

@@ -7,13 +7,13 @@
         <ResourceDictionary Source="FlatButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="{x:Type controls:DownloadButton}" BasedOn="{StaticResource {x:Type controls:FlatButton}}">
+    <Style TargetType="{x:Type controls:UploadButton}" BasedOn="{StaticResource {x:Type controls:FlatButton}}">
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
                     <Viewbox>
                         <Canvas Width="24" Height="24">
-                            <Path x:Name="PART_Icon" Data="{x:Static metrolib:Icons.Download}"
+                            <Path x:Name="PART_Icon" Data="{x:Static metrolib:Icons.Upload}"
                                   Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:FlatButton}}, Mode=OneWay}" />
                         </Canvas>
                     </Viewbox>
