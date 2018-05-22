@@ -1,49 +1,32 @@
 ﻿using System;
 using System.IO;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Threading;
 using dotnetdoc;
 using Metrolib;
 using Metrolib.Controls;
 
 namespace DocumentationCreator
 {
-	public sealed class Application2
-		: Application
+	public sealed class Documentation
 	{
 		private static readonly string BasePath;
-		private static ResourceDictionary _resourceDictionary;
-		private static Dispatcher _dispatcher;
-		private static AssemblyDocumentationCreator _docCreator;
 
-		static Application2()
+		static Documentation()
 		{
 			BasePath = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "Documentation");
 		}
 
-		internal Application2()
-		{
-			_dispatcher = Dispatcher.CurrentDispatcher;
-			_resourceDictionary = new ResourceDictionary
-			{
-				Source = new Uri("/Metrolib;component/Themes/Generic.xaml", UriKind.RelativeOrAbsolute)
-			};
-			_docCreator = new AssemblyDocumentationCreator(typeof(Icons).Assembly,
-			                                               _dispatcher,
-			                                               _resourceDictionary);
-		}
-
-		public new static int Run()
+		public static int Run()
 		{
 			try
 			{
-				StartApplication();
-
-				CreateDocumentation();
-
-				_docCreator.RenderTo(BasePath);
+				using (var doc = new Doc(typeof(Icons).Assembly,
+				                         "/Metrolib;component/Themes/Generic.xaml"))
+				{
+					CreateDocumentation(doc);
+					doc.RenderTo(BasePath);
+				}
 
 				return 0;
 			}
@@ -52,40 +35,47 @@ namespace DocumentationCreator
 				Console.WriteLine(e);
 				return -1;
 			}
-			finally
-			{
-				_dispatcher.BeginInvokeShutdown(DispatcherPriority.Background);
-			}
 		}
 
-		private static void StartApplication()
+		private static void CreateDocumentation(Doc doc)
 		{
-			var manualResetEvent = new ManualResetEvent(false);
-			var thread = new Thread(() =>
-			{
-				var application = new Application2();
-				manualResetEvent.Set();
-				((Application) application).Run();
-			})
-			{
-				IsBackground = true
-			};
-			thread.SetApartmentState(ApartmentState.STA);
-			thread.Start();
+			CreateButtonDoc<AddButton>(doc);
+			CreateButtonDoc<DeleteButton>(doc);
+			CreateButtonDoc<ExportButton>(doc);
+			CreateButtonDoc<FolderOpenButton>(doc);
+			CreateButtonDoc<MaximizeButton>(doc);
+			CreateButtonDoc<MinimizeButton>(doc);
+			CreateButtonDoc<MoreButton>(doc);
+			CreateButtonDoc<NextButton>(doc);
+			CreateButtonDoc<PreviousButton>(doc);
+			CreateButtonDoc<RefreshButton>(doc);
+			CreateButtonDoc<RemoveButton>(doc);
+			CreateButtonDoc<SearchButton>(doc);
+			CreateButtonDoc<UndoButton>(doc);
 
-			manualResetEvent.WaitOne();
+			CreateEditorTextBoxDoc(doc);
+			CreateFilterTextBoxDoc(doc);
+			CreateSearchTextBoxDoc(doc);
+			CreateFlatPasswordBoxDoc(doc);
 		}
 
-		private static void CreateDocumentation()
+		private static void CreateButtonDoc<T>(Doc doc) where T : Button, new()
 		{
-			CreateFilterTextBoxDoc();
-			CreateSearchTextBoxDoc();
-			CreateFlatPasswordBoxDoc();
+			var creator = doc.CreateDocumentationForFrameworkElement<T>();
+			const int width = 32;
+			const int height = 32;
+
+			var example1 = creator.AddExample("Unfocused");
+			example1.Resize(width, height);
+
+			var example2 = creator.AddExample("Disabled");
+			example2.Resize(width, height);
+			example2.SetValue(UIElement.IsEnabledProperty, false);
 		}
 
-		private static void CreateSearchTextBoxDoc()
+		private static void CreateSearchTextBoxDoc(Doc doc)
 		{
-			var creator = _docCreator.CreateDocumentationForFrameworkElement<SearchTextBox>();
+			var creator = doc.CreateDocumentationForFrameworkElement<SearchTextBox>();
 			const int width = 200;
 			const int height = 32;
 
@@ -105,9 +95,9 @@ namespace DocumentationCreator
 			example3.Focus();
 		}
 
-		private static void CreateFilterTextBoxDoc()
+		private static void CreateFilterTextBoxDoc(Doc doc)
 		{
-			var creator = _docCreator.CreateDocumentationForFrameworkElement<FilterTextBox>();
+			var creator = doc.CreateDocumentationForFrameworkElement<FilterTextBox>();
 			const int width = 128;
 			const int height = 32;
 
@@ -144,9 +134,45 @@ namespace DocumentationCreator
 			example6.SetValue(UIElement.IsEnabledProperty, false);
 		}
 
-		private static void CreateFlatPasswordBoxDoc()
+		private static void CreateEditorTextBoxDoc(Doc doc)
 		{
-			var creator = _docCreator.CreateDocumentationForFrameworkElement<FlatPasswordBox>();
+			var creator = doc.CreateDocumentationForFrameworkElement<EditorTextBox>();
+			const int width = 128;
+			const int height = 64;
+
+			var example1 = creator.AddExample("Unfocused");
+			example1.Resize(width, height);
+			example1.SetValue(EditorTextBox.WatermarkProperty, "Enter comment...");
+
+			var example2 = creator.AddExample("Focused");
+			example2.Resize(width, height);
+			example2.SetValue(EditorTextBox.WatermarkProperty, "Enter comment...");
+			example2.Focus();
+
+			var example3 = creator.AddExample("Text, Focused");
+			example3.Resize(width, height);
+			example3.SetValue(TextBox.TextProperty, "The quick brown fox jumps over the lazy dog");
+			example3.SetValue(EditorTextBox.WatermarkProperty, "Enter comment...");
+			example3.SetValue(TextBox.TextWrappingProperty, TextWrapping.Wrap);
+			example3.Focus();
+
+			var example4 = creator.AddExample("Text, Unfocused");
+			example4.Resize(width, height);
+			example4.SetValue(TextBox.TextProperty, "The quick brown fox jumps over the lazy dog");
+			example4.SetValue(EditorTextBox.WatermarkProperty, "Enter comment...");
+			example4.SetValue(TextBox.TextWrappingProperty, TextWrapping.Wrap);
+
+			var example5 = creator.AddExample("Disabled");
+			example5.Resize(width, height);
+			example5.SetValue(TextBox.TextProperty, "The quick brown fox jumps over the lazy dog");
+			example5.SetValue(EditorTextBox.WatermarkProperty, "Enter comment...");
+			example3.SetValue(TextBox.TextWrappingProperty, TextWrapping.Wrap);
+			example5.SetValue(UIElement.IsEnabledProperty, false);
+		}
+
+		private static void CreateFlatPasswordBoxDoc(Doc doc)
+		{
+			var creator = doc.CreateDocumentationForFrameworkElement<FlatPasswordBox>();
 			const int width = 128;
 			const int height = 32;
 

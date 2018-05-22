@@ -50,13 +50,13 @@ A textbox meant to input queries used for filtering.
 The button that appears to remove entered text.
 
 **HasFilterText**: System.Boolean  
-Whether or not any  has been entered.
+Whether or not any FilterText has been entered.
 
 **IsValid**: System.Boolean  
-Whether or not the entered  is valid.
+Whether or not the entered FilterText is valid.
 
 **Watermark**: System.String  
-The watermark text that shall be displayed when the user hasn't entered any  (yet).
+The watermark text that shall be displayed when the user hasn't entered any FilterText (yet).
 
 **FilterText**: System.String  
 The filter text input by the user.

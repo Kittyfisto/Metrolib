@@ -5,7 +5,8 @@ namespace Metrolib.Controls
 // ReSharper restore CheckNamespace
 {
 	/// <summary>
-	///     A button that can be used to add things (files, items to a list, etc...)
+	///     A button that can be used to add things (files, items to a list, etc...).
+	///     Displays a plus sign.
 	/// </summary>
 	public class AddButton : FlatButton
 	{

@@ -49,5 +49,5 @@ The command that is executed when the user hits enter or presses the search butt
 The command that is executed when the user wants to stop/abort the search.
 
 **Watermark**: System.String  
-The watermark that is displayed until  becomes non-empty.
+The watermark that is displayed until Text becomes non-empty.
 

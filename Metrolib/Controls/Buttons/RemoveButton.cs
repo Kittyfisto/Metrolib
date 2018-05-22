@@ -7,6 +7,7 @@ namespace Metrolib.Controls
 {
 	/// <summary>
 	///     A button used to remove something, for example an item in a list.
+	///     Displays a (rotated) cross.
 	/// </summary>
 	public class RemoveButton : FlatButton
 	{
