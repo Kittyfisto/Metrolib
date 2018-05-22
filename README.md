@@ -13,6 +13,7 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 ## Buttons
 * [AddButton](Documentation/Metrolib.Controls.AddButton/README.md)
 * [DeleteButton](Documentation/Metrolib.Controls.DeleteButton/README.md)
+* [DownloadButton](Documentation/Metrolib.Controls.DownloadButton/README.md)
 * [ExportButton](Documentation/Metrolib.Controls.ExportButton/README.md)
 * [FlatButton](Documentation/Metrolib.Controls.FlatButton/README.md)
 * [FolderOpenButton](Documentation/Metrolib.Controls.FolderOpenButton/README.md)
