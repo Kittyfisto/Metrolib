@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using dotnetdoc;
 using Metrolib;
 using Metrolib.Controls;
@@ -54,10 +55,35 @@ namespace DocumentationCreator
 			CreateButtonDoc<SearchButton>(doc);
 			CreateButtonDoc<UndoButton>(doc);
 
+			CreateToggleButtonDoc<EditToggleButton>(doc);
+			CreateToggleButtonDoc<EmailToggleButton>(doc);
+			CreateToggleButtonDoc<ExpanderToggleButton>(doc);
+			CreateToggleButtonDoc<ViewDashboardToggleButton>(doc);
+			CreateToggleButtonDoc<ViewQuiltToggleButton>(doc);
+			CreateToggleButtonDoc<VisibilityToggleButton>(doc);
+
 			CreateEditorTextBoxDoc(doc);
 			CreateFilterTextBoxDoc(doc);
 			CreateSearchTextBoxDoc(doc);
 			CreateFlatPasswordBoxDoc(doc);
+		}
+
+		private static void CreateToggleButtonDoc<T>(Doc doc) where T : ToggleButton, new()
+		{
+			var creator = doc.CreateDocumentationForFrameworkElement<T>();
+			const int width = 32;
+			const int height = 32;
+
+			var example1 = creator.AddExample("Unfocused");
+			example1.Resize(width, height);
+
+			var example2 = creator.AddExample("Checked");
+			example2.Resize(width, height);
+			example2.SetValue(ToggleButton.IsCheckedProperty, true);
+
+			var example3 = creator.AddExample("Disabled");
+			example3.Resize(width, height);
+			example3.SetValue(UIElement.IsEnabledProperty, false);
 		}
 
 		private static void CreateButtonDoc<T>(Doc doc) where T : Button, new()
