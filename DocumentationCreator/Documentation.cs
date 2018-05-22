@@ -166,7 +166,7 @@ namespace DocumentationCreator
 			example5.Resize(width, height);
 			example5.SetValue(TextBox.TextProperty, "The quick brown fox jumps over the lazy dog");
 			example5.SetValue(EditorTextBox.WatermarkProperty, "Enter comment...");
-			example3.SetValue(TextBox.TextWrappingProperty, TextWrapping.Wrap);
+			example5.SetValue(TextBox.TextWrappingProperty, TextWrapping.Wrap);
 			example5.SetValue(UIElement.IsEnabledProperty, false);
 		}
 

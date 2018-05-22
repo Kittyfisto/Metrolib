@@ -2,6 +2,8 @@
 
 A button to undo something, for example a textbox change.
 
+Displays an curved arrow to the left.
+
 ### Unfocused
 
 ```xaml

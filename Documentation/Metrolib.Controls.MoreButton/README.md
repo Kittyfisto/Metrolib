@@ -3,6 +3,8 @@
 A button that allows the user to show more content than is regularly visible, for example through
                 a context-menu.
 
+Displays three dots.
+
 ### Unfocused
 
 ```xaml

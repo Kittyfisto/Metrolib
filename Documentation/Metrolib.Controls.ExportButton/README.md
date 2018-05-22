@@ -2,6 +2,8 @@
 
 A simple button that allows for the exporting of data.
 
+Displays a file with an arrow to top right.
+
 ### Unfocused
 
 ```xaml

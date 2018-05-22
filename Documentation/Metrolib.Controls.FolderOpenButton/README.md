@@ -2,6 +2,8 @@
 
 A button that should spawn a folder open dialog or a new explorer folder.
 
+Displays an open folder.
+
 ### Unfocused
 
 ```xaml

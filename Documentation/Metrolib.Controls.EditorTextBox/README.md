@@ -4,6 +4,7 @@ A textbox meant to edit text.
                 Displays a watermark while no text has been entered.
 
 Supports many markdown shortcuts, when EnableMarkdownShortcuts is set to true.
+                See https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet.
 
 ### Unfocused
 
@@ -36,7 +37,7 @@ Supports many markdown shortcuts, when EnableMarkdownShortcuts is set to true.
 ### Disabled
 
 ```xaml
-<Metrolib:EditorTextBox Text="The quick brown fox jumps over the lazy dog" Watermark="Enter comment..." IsEnabled="False" />
+<Metrolib:EditorTextBox Text="The quick brown fox jumps over the lazy dog" Watermark="Enter comment..." TextWrapping="Wrap" IsEnabled="False" />
 ```
 ![Image of EditorTextBox, Disabled](Disabled.png)
 
