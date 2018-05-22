@@ -1,6 +1,7 @@
 # DeleteButton
 
-
+A button which can be used to delete something for good.
+                Displays a trashcan.
 
 ### Unfocused
 

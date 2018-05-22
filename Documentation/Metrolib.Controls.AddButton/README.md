@@ -1,6 +1,7 @@
 # AddButton
 
-A button that can be used to add things (files, items to a list, etc...)
+A button that can be used to add things (files, items to a list, etc...).
+                Displays a plus sign.
 
 ### Unfocused
 

@@ -37,7 +37,7 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 * VisibilityToggleButton
 
 ## Text Boxes
-* EditorTextBox
+* [EditorTextBox](Documentation/Metrolib.Controls.EditorTextBox/README.md)
 * [FilterTextBox](Documentation/Metrolib.Controls.FilterTextBox/README.md)
 * [FlatPasswordBox](Documentation/Metrolib.Controls.FlatPasswordBox/README.md)
 * [SearchTextBox](Documentation/Metrolib.Controls.SearchTextBox/README.md)

@@ -1,6 +1,7 @@
 # RemoveButton
 
 A button used to remove something, for example an item in a list.
+                Displays a (rotated) cross.
 
 ### Unfocused
 

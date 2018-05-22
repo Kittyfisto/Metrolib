@@ -6,8 +6,10 @@ namespace Metrolib.Controls
 {
 	/// <summary>
 	///     A button that can be used to add things (files, items to a list, etc...).
-	///     Displays a plus sign.
 	/// </summary>
+	/// <remarks>
+	///     Displays a plus sign.
+	/// </remarks>
 	public class AddButton : FlatButton
 	{
 		static AddButton()
