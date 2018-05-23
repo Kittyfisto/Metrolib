@@ -2,7 +2,7 @@
 
 A button used to remove something, for example an item in a list.
 
-Displays a (rotated) cross.
+Displays a minus sign.
 
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  

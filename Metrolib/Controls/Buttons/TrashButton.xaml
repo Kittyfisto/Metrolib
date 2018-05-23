@@ -7,7 +7,7 @@
         <ResourceDictionary Source="FlatButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="{x:Type controls:DeleteButton}" BasedOn="{StaticResource {x:Type controls:FlatButton}}">
+    <Style TargetType="{x:Type controls:TrashButton}" BasedOn="{StaticResource {x:Type controls:FlatButton}}">
         <Setter Property="HoveredForeground" Value="#E81123" />
         <Setter Property="PressedForeground" Value="#F1707A" />
         <Setter Property="ContentTemplate">

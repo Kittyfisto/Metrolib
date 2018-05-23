@@ -7,13 +7,18 @@
         <ResourceDictionary Source="FlatButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="{x:Type controls:AddButton}" BasedOn="{StaticResource {x:Type controls:FlatButton}}">
+    <Style TargetType="{x:Type controls:CloseButton}" BasedOn="{StaticResource {x:Type controls:FlatButton}}">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+        <Setter Property="HoveredForeground" Value="White" />
+        <Setter Property="PressedForeground" Value="White" />
+        <Setter Property="HoveredBackground" Value="#E81123" />
+        <Setter Property="PressedBackground" Value="#F1707A" />
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
                     <Viewbox>
                         <Canvas Width="24" Height="24">
-                            <Path x:Name="PART_Icon" Data="{x:Static metrolib:Icons.Plus}"
+                            <Path x:Name="PART_Icon" Data="{x:Static metrolib:Icons.X}"
                                   Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:FlatButton}}, Mode=OneWay}" />
                         </Canvas>
                     </Viewbox>

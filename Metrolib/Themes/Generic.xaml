@@ -45,8 +45,8 @@
         <ResourceDictionary Source="/Metrolib;component/Controls/ProgressBar/CircularProgressBar.xaml" />
 
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/AddButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/CloseButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/DownloadButton.xaml" />
-        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/DeleteButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/ExportButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/FlatButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/FolderOpenButton.xaml" />
@@ -58,6 +58,7 @@
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/RefreshButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/RemoveButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/SearchButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/TrashButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/UndoButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/UploadButton.xaml" />
 

@@ -40,8 +40,10 @@ namespace DocumentationCreator
 
 		private static void CreateDocumentation(Doc doc)
 		{
+			GenerateCalculatorImage(doc);
+
 			CreateButtonDoc<AddButton>(doc);
-			CreateButtonDoc<DeleteButton>(doc);
+			CreateButtonDoc<CloseButton>(doc);
 			CreateButtonDoc<DownloadButton>(doc);
 			CreateButtonDoc<ExportButton>(doc);
 			CreateButtonDoc<FolderOpenButton>(doc);
@@ -53,6 +55,7 @@ namespace DocumentationCreator
 			CreateButtonDoc<RefreshButton>(doc);
 			CreateButtonDoc<RemoveButton>(doc);
 			CreateButtonDoc<SearchButton>(doc);
+			CreateButtonDoc<TrashButton>(doc);
 			CreateButtonDoc<UndoButton>(doc);
 			CreateButtonDoc<UploadButton>(doc);
 
@@ -70,6 +73,15 @@ namespace DocumentationCreator
 			CreateFilterTextBoxDoc(doc);
 			CreateSearchTextBoxDoc(doc);
 			CreateFlatPasswordBoxDoc(doc);
+		}
+
+		private static void GenerateCalculatorImage(Doc doc)
+		{
+			// Actually I only want to generate the image, but dotnetdoc doesn't
+			// expose this...
+			var creator = doc.CreateDocumentationForFrameworkElement<Calculator>();
+			var example = creator.AddExample("Calculator");
+			example.Resize(128, 256);
 		}
 
 		private static void CreateCircularProgressBarDoc(Doc doc)

@@ -142,7 +142,7 @@
                                                      Padding="0"
                                                      IsTabStop="False"
                                                      Visibility="{Binding IsPerformingSearch,RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalseToCollapsedConverter}}" />
-                                <controls:RemoveButton IsEnabled="{TemplateBinding IsEnabled}"
+                                <controls:CloseButton IsEnabled="{TemplateBinding IsEnabled}"
                                                        x:Name="PART_RemoveText"
                                                        Padding="0"
                                                        IsTabStop="False"

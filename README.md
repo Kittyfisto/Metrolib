@@ -6,13 +6,18 @@ This library contains a bunch of controls that help building a metro-like app fo
 
 https://www.nuget.org/packages/Metrolib
 
+# Example
+
+The following examples show a calculator mockup using (some of) the controls of this library:
+![Image of calculator mockup](Documentation/DocumentationCreator.Calculator/Calculator.png)
+
 # Controls
 
 This library ships a lot of restyled controls, from buttons to full blown charts:
 
 ## Buttons
 * [AddButton](Documentation/Metrolib.Controls.AddButton/README.md)
-* [DeleteButton](Documentation/Metrolib.Controls.DeleteButton/README.md)
+* [CloseButton](Documentation/Metrolib.Controls.CloseButton/README.md)
 * [DownloadButton](Documentation/Metrolib.Controls.DownloadButton/README.md)
 * [ExportButton](Documentation/Metrolib.Controls.ExportButton/README.md)
 * [FlatButton](Documentation/Metrolib.Controls.FlatButton/README.md)
@@ -25,6 +30,7 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 * [RefreshButton](Documentation/Metrolib.Controls.RefreshButton/README.md)
 * [RemoveButton](Documentation/Metrolib.Controls.RemoveButton/README.md)
 * [SearchButton](Documentation/Metrolib.Controls.SearchButton/README.md)
+* [TrashButton](Documentation/Metrolib.Controls.TrashButton/README.md)
 * [UndoButton](Documentation/Metrolib.Controls.UndoButton/README.md)
 * [UploadButton](Documentation/Metrolib.Controls.UploadButton/README.md)
 

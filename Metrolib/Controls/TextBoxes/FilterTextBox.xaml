@@ -83,7 +83,7 @@
                                 </TextBlock.Style>
                             </TextBlock>
 
-                            <controls:RemoveButton
+                            <controls:CloseButton
                                 Visibility="{Binding HasFilterText, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalseToCollapsedConverter}}"
                                 Grid.Column="1"
                                 x:Name="PART_RemoveFilterText" />

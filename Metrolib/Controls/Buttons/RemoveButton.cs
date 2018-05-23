@@ -9,7 +9,7 @@ namespace Metrolib.Controls
 	///     A button used to remove something, for example an item in a list.
 	/// </summary>
 	/// <remarks>
-	///     Displays a (rotated) cross.
+	///     Displays a minus sign.
 	/// </remarks>
 	public class RemoveButton : FlatButton
 	{

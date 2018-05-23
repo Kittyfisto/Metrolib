@@ -49,7 +49,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Buttons\DeleteButton.xaml">
+    <Page Include="Controls\Buttons\CloseButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -70,6 +70,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Buttons\RefreshButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Buttons\TrashButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -310,12 +314,13 @@
     <Compile Include="AbstractBootstrapper.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controls\BulletinItemsControl.cs" />
-    <Compile Include="Controls\Buttons\DeleteButton.cs" />
+    <Compile Include="Controls\Buttons\CloseButton.cs" />
     <Compile Include="Controls\Buttons\DownloadButton.cs" />
     <Compile Include="Controls\Buttons\MaximizeButton.cs" />
     <Compile Include="Controls\Buttons\MinimizeButton.cs" />
     <Compile Include="Controls\Buttons\FolderOpenButton.cs" />
     <Compile Include="Controls\Buttons\RefreshButton.cs" />
+    <Compile Include="Controls\Buttons\TrashButton.cs" />
     <Compile Include="Controls\Buttons\UndoButton.cs" />
     <Compile Include="Controls\Buttons\UploadButton.cs" />
     <Compile Include="Controls\Charts\AxisControl.cs" />

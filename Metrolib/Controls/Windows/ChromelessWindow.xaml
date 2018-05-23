@@ -75,9 +75,9 @@
                                 <controls:MaximizeButton Grid.Column="4"
                                                          x:Name="PART_MaximizeWindow"
                                                          WindowChrome.IsHitTestVisibleInChrome="True" />
-                                <controls:RemoveButton Grid.Column="5"
-                                                       x:Name="PART_CloseWindow"
-                                                       WindowChrome.IsHitTestVisibleInChrome="True" />
+                                <controls:CloseButton Grid.Column="5"
+                                                      x:Name="PART_CloseWindow"
+                                                      WindowChrome.IsHitTestVisibleInChrome="True" />
                             </Grid>
 
                             <ContentPresenter Grid.Row="1"

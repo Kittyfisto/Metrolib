@@ -8,8 +8,6 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type controls:RemoveButton}" BasedOn="{StaticResource {x:Type controls:FlatButton}}">
-        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
-        <Setter Property="Padding" Value="4" />
         <Setter Property="HoveredForeground" Value="White" />
         <Setter Property="PressedForeground" Value="White" />
         <Setter Property="HoveredBackground" Value="#E81123" />
@@ -19,7 +17,7 @@
                 <DataTemplate>
                     <Viewbox>
                         <Canvas Width="24" Height="24">
-                            <Path x:Name="PART_Icon" Data="{x:Static metrolib:Icons.Remove}"
+                            <Path x:Name="PART_Icon" Data="{x:Static metrolib:Icons.Minus}"
                                   Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:FlatButton}}}"/>
                         </Canvas>
                     </Viewbox>
