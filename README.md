@@ -6,9 +6,9 @@ This library contains a bunch of controls that help building a metro-like app fo
 
 https://www.nuget.org/packages/Metrolib
 
-# Example
+# Examples
 
-The following screenshots show off various controls from this library in no particular order:  
+The following screenshots show off applications built with controls from this library. The sources for these examples can be found in the DocumentationCreator project.
 
 **Calculator**:  
 ![Image of calculator mockup](Documentation/DocumentationCreator.Calculator/Calculator.png)  
