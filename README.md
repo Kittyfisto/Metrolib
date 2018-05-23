@@ -9,7 +9,11 @@ https://www.nuget.org/packages/Metrolib
 # Example
 
 The following screenshots show off various controls from this library in no particular order:  
+
+**Calculator**:  
 ![Image of calculator mockup](Documentation/DocumentationCreator.Calculator/Calculator.png)  
+
+**Solution Explorer**:  
 ![Image of solution explorer mockup](Documentation/DocumentationCreator.SolutionExplorer/Explorer.png)  
 
 # Controls
