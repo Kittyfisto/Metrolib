@@ -4,8 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 
 // ReSharper disable CheckNamespace
-
-namespace Metrolib
+namespace Metrolib.Controls
 // ReSharper restore CheckNamespace
 {
 	/// <summary>

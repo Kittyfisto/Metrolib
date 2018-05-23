@@ -1,6 +1,9 @@
-# VisibilityToggleButton
+# VisibilityToggleButton  
 
 A toggle button that allows the user to control whether a filter is being used to include or exclude items.
+
+Namespace: Metrolib.Controls  
+Assembly: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 
@@ -23,5 +26,5 @@ A toggle button that allows the user to control whether a filter is being used t
 ```
 ![Image of VisibilityToggleButton, Disabled](Disabled.png)
 
-# Properties
+# Properties  
 

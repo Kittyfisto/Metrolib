@@ -1,6 +1,9 @@
-# EditToggleButton
+# EditToggleButton  
 
 A toggle button that allows to toggle between editing and not-.
+
+Namespace: Metrolib.Controls  
+Assembly: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 
@@ -23,5 +26,5 @@ A toggle button that allows to toggle between editing and not-.
 ```
 ![Image of EditToggleButton, Disabled](Disabled.png)
 
-# Properties
+# Properties  
 

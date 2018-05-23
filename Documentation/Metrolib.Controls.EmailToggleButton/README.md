@@ -1,7 +1,10 @@
-# EmailToggleButton
+# EmailToggleButton  
 
 A toggle button with a letter icon.
                 The icon displays an opened letter when toggled.
+
+Namespace: Metrolib.Controls  
+Assembly: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 
@@ -24,5 +27,5 @@ A toggle button with a letter icon.
 ```
 ![Image of EmailToggleButton, Disabled](Disabled.png)
 
-# Properties
+# Properties  
 

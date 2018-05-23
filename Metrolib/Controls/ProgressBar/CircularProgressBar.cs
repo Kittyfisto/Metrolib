@@ -5,8 +5,7 @@ using System.Windows.Shapes;
 using Metrolib.Geometry;
 
 // ReSharper disable CheckNamespace
-
-namespace Metrolib
+namespace Metrolib.Controls
 // ReSharper restore CheckNamespace
 {
 	/// <summary>

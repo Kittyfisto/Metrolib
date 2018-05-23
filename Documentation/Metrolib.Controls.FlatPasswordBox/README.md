@@ -1,6 +1,9 @@
-# FlatPasswordBox
+# FlatPasswordBox  
 
 FlatPasswordBox is a TextBox which allows a user to enter a password.
+
+Namespace: Metrolib.Controls  
+Assembly: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 
@@ -37,7 +40,7 @@ FlatPasswordBox is a TextBox which allows a user to enter a password.
 ```
 ![Image of FlatPasswordBox, Disabled](Disabled.png)
 
-# Properties
+# Properties  
 
 **Watermark**: System.String  
 The watermark that is displayed for as long as no password has been entered.

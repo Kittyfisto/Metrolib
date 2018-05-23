@@ -1,6 +1,9 @@
-# ViewDashboardToggleButton
+# ViewDashboardToggleButton  
 
 A button to represent an ordered layout.
+
+Namespace: Metrolib.Controls  
+Assembly: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 
@@ -23,5 +26,5 @@ A button to represent an ordered layout.
 ```
 ![Image of ViewDashboardToggleButton, Disabled](Disabled.png)
 
-# Properties
+# Properties  
 

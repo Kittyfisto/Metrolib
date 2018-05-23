@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Metrolib.Controls;
+using NUnit.Framework;
 
 namespace Metrolib.Test.ProgressBar
 {
@@ -6,7 +7,7 @@ namespace Metrolib.Test.ProgressBar
 	public sealed class FlatProgressBarTest
 		: AbstractProgressBarTest
 	{
-		protected override AbstractProgressBar Create()
+		protected override AbstractProgressBar CreateProgressBar()
 		{
 			return new FlatProgressBar();
 		}

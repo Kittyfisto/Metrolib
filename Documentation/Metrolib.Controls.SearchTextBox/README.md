@@ -1,10 +1,13 @@
-# SearchTextBox
+# SearchTextBox  
 
 A text-box meant to input a search term.
                 * offers a dedicated button to perform the search
                 * offers a dedicated button to clear the search term
                 * offers a display of the number of matches
                 * offers buttons and shortcuts to advance to the next/previous location
+
+Namespace: Metrolib.Controls  
+Assembly: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 
@@ -27,7 +30,7 @@ A text-box meant to input a search term.
 ```
 ![Image of SearchTextBox, FilterText, Focused](FilterText__Focused.png)
 
-# Properties
+# Properties  
 
 **RequiresExplicitSearchStart**: System.Boolean  
 Whether or not the search must be started by the user explicitly by pressing enter or clicking the search button.

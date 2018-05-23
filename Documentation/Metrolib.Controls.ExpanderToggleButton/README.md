@@ -1,6 +1,9 @@
-# ExpanderToggleButton
+# ExpanderToggleButton  
 
 A toggle button that is typically used to expand/contract an area of the UI.
+
+Namespace: Metrolib.Controls  
+Assembly: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 
@@ -23,7 +26,7 @@ A toggle button that is typically used to expand/contract an area of the UI.
 ```
 ![Image of ExpanderToggleButton, Disabled](Disabled.png)
 
-# Properties
+# Properties  
 
 **IconHeight**: System.Double  
 The height of the icon.

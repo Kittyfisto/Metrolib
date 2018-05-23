@@ -73,6 +73,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractControlTest.cs" />
     <Compile Include="App.cs" />
     <Compile Include="AssemblySetup.cs" />
     <Compile Include="Charts\Line\AbstractLineChartCanvasTest.cs" />

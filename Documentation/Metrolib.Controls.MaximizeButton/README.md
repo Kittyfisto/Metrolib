@@ -1,6 +1,9 @@
-# MaximizeButton
+# MaximizeButton  
 
 A button to maximize something, for example a window.
+
+Namespace: Metrolib.Controls  
+Assembly: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 
@@ -9,6 +12,20 @@ A button to maximize something, for example a window.
 ```
 ![Image of MaximizeButton, Unfocused](Unfocused.png)
 
+### Hovered
+
+```xaml
+<Metrolib:MaximizeButton />
+```
+![Image of MaximizeButton, Hovered](Hovered.png)
+
+### Pressed
+
+```xaml
+<Metrolib:MaximizeButton />
+```
+![Image of MaximizeButton, Pressed](Pressed.png)
+
 ### Disabled
 
 ```xaml
@@ -16,7 +33,7 @@ A button to maximize something, for example a window.
 ```
 ![Image of MaximizeButton, Disabled](Disabled.png)
 
-# Properties
+# Properties  
 
 **IsMaximized**: System.Boolean  
 Whether or not this button shall represent the maximized state.

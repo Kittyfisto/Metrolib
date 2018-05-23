@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:Metrolib.Controls"
-                    xmlns:metrolib="clr-namespace:Metrolib"
                     xmlns:converters="clr-namespace:Metrolib.Converters">
 
     <converters:BoolFalseToHiddenConverter x:Key="BoolFalseToHiddenConverter" />
@@ -31,7 +30,7 @@
                                     <RowDefinition Height="8" />
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <metrolib:FlatProgressBar IsIndeterminate="True"
+                                <controls:FlatProgressBar IsIndeterminate="True"
                                                           Visibility="{Binding IsThinking, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolFalseToHiddenConverter}}"/>
                                 <controls:FlatListView Grid.Row="1"
                                                        ItemsSource="{TemplateBinding Suggestions}"

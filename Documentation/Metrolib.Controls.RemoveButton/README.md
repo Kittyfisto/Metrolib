@@ -1,8 +1,11 @@
-# RemoveButton
+# RemoveButton  
 
 A button used to remove something, for example an item in a list.
 
 Displays a (rotated) cross.
+
+Namespace: Metrolib.Controls  
+Assembly: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 
@@ -11,6 +14,20 @@ Displays a (rotated) cross.
 ```
 ![Image of RemoveButton, Unfocused](Unfocused.png)
 
+### Hovered
+
+```xaml
+<Metrolib:RemoveButton />
+```
+![Image of RemoveButton, Hovered](Hovered.png)
+
+### Pressed
+
+```xaml
+<Metrolib:RemoveButton />
+```
+![Image of RemoveButton, Pressed](Pressed.png)
+
 ### Disabled
 
 ```xaml
@@ -18,5 +35,5 @@ Displays a (rotated) cross.
 ```
 ![Image of RemoveButton, Disabled](Disabled.png)
 
-# Properties
+# Properties  
 

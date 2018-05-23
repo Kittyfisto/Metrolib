@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 
 // ReSharper disable CheckNamespace
-namespace Metrolib
+namespace Metrolib.Controls
 // ReSharper restore CheckNamespace
 {
 	/// <summary>

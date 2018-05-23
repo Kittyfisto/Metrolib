@@ -23,7 +23,7 @@
                                       Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:FlatButton}}, Mode=OneWay}" />
                             </Canvas>
                         </Viewbox>
-                        <metrolib:CircularProgressBar IsIndeterminate="True"
+                        <controls:CircularProgressBar IsIndeterminate="True"
                                                       Height="{Binding ActualHeight, ElementName=PART_Viewbox}"
                                                       Width="{Binding ActualWidth, ElementName=PART_Viewbox}"
                                                       Visibility="{Binding IsRefreshing,RelativeSource={RelativeSource AncestorType={x:Type controls:RefreshButton}}, Converter={StaticResource BoolFalseToHiddenConverter}}"

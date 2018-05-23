@@ -1,10 +1,13 @@
-# EditorTextBox
+# EditorTextBox  
 
 A textbox meant to edit text.
                 Displays a watermark while no text has been entered.
 
 Supports many markdown shortcuts, when EnableMarkdownShortcuts is set to true.
                 See https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet.
+
+Namespace: Metrolib.Controls  
+Assembly: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 
@@ -41,7 +44,7 @@ Supports many markdown shortcuts, when EnableMarkdownShortcuts is set to true.
 ```
 ![Image of EditorTextBox, Disabled](Disabled.png)
 
-# Properties
+# Properties  
 
 **EnableMarkdownShortcuts**: System.Boolean  
 Whether or not this control shall accept shortcuts (key gestures) which insert the appropriate markdown

@@ -63,10 +63,38 @@ namespace DocumentationCreator
 			CreateToggleButtonDoc<ViewQuiltToggleButton>(doc);
 			CreateToggleButtonDoc<VisibilityToggleButton>(doc);
 
+			CreateProgressBarDoc<FlatProgressBar>(doc, 128, 16);
+			CreateProgressBarDoc<CircularProgressBar>(doc, 64, 64);
+
 			CreateEditorTextBoxDoc(doc);
 			CreateFilterTextBoxDoc(doc);
 			CreateSearchTextBoxDoc(doc);
 			CreateFlatPasswordBoxDoc(doc);
+		}
+
+		private static void CreateProgressBarDoc<T>(Doc doc, int width, int height) where T : FrameworkElement, new()
+		{
+			var creator = doc.CreateDocumentationForFrameworkElement<T>();
+
+			var example1 = creator.AddExample("No progress");
+			example1.Resize(width, height);
+
+			var example2 = creator.AddExample("50% progress");
+			example2.Resize(width, height);
+			example2.SetValue(RangeBase.ValueProperty, 50);
+
+			var example3 = creator.AddExample("100% progress");
+			example3.Resize(width, height);
+			example3.SetValue(RangeBase.ValueProperty, 100);
+
+			var example4 = creator.AddExample("Indeterminate");
+			example4.Resize(width, height);
+			example4.SetValue(ProgressBar.IsIndeterminateProperty, true);
+
+			var example5 = creator.AddExample("Disabled");
+			example5.Resize(width, height);
+			example5.SetValue(RangeBase.ValueProperty, 50);
+			example5.SetValue(UIElement.IsEnabledProperty, false);
 		}
 
 		private static void CreateToggleButtonDoc<T>(Doc doc) where T : ToggleButton, new()
@@ -96,9 +124,17 @@ namespace DocumentationCreator
 			var example1 = creator.AddExample("Unfocused");
 			example1.Resize(width, height);
 
-			var example2 = creator.AddExample("Disabled");
+			var example2 = creator.AddExample("Hovered");
 			example2.Resize(width, height);
-			example2.SetValue(UIElement.IsEnabledProperty, false);
+			example2.Hover();
+
+			var example3 = creator.AddExample("Pressed");
+			example3.Resize(width, height);
+			example3.Press();
+
+			var example4 = creator.AddExample("Disabled");
+			example4.Resize(width, height);
+			example4.SetValue(UIElement.IsEnabledProperty, false);
 		}
 
 		private static void CreateSearchTextBoxDoc(Doc doc)

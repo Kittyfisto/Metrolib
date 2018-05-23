@@ -1,6 +1,9 @@
-# ViewQuiltToggleButton
+# ViewQuiltToggleButton  
 
 A button to represent an unorderly layout.
+
+Namespace: Metrolib.Controls  
+Assembly: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 
@@ -23,5 +26,5 @@ A button to represent an unorderly layout.
 ```
 ![Image of ViewQuiltToggleButton, Disabled](Disabled.png)
 
-# Properties
+# Properties  
 

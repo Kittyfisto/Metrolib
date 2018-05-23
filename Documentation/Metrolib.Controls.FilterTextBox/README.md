@@ -1,6 +1,9 @@
-# FilterTextBox
+# FilterTextBox  
 
 A textbox meant to input queries used for filtering.
+
+Namespace: Metrolib.Controls  
+Assembly: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 
@@ -44,7 +47,7 @@ A textbox meant to input queries used for filtering.
 ```
 ![Image of FilterTextBox, Disabled](Disabled.png)
 
-# Properties
+# Properties  
 
 **RemoveFilterTextButton**: System.Windows.Controls.Button  
 The button that appears to remove entered text.
