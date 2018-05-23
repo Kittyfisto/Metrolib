@@ -41,6 +41,7 @@ namespace DocumentationCreator
 		private static void CreateDocumentation(Doc doc)
 		{
 			GenerateCalculatorImage(doc);
+			GenerateSolutionExplorerImage(doc);
 
 			CreateButtonDoc<AddButton>(doc);
 			CreateButtonDoc<CollapseAllButton>(doc);
@@ -84,6 +85,15 @@ namespace DocumentationCreator
 			var creator = doc.CreateDocumentationForFrameworkElement<Calculator>();
 			var example = creator.AddExample("Calculator");
 			example.Resize(128, 256);
+		}
+
+		private static void GenerateSolutionExplorerImage(Doc doc)
+		{
+			// Actually I only want to generate the image, but dotnetdoc doesn't
+			// expose this...
+			var creator = doc.CreateDocumentationForFrameworkElement<SolutionExplorer>();
+			var example = creator.AddExample("Explorer");
+			example.Resize(256, 256);
 		}
 
 		private static void CreateCircularProgressBarDoc(Doc doc)

@@ -1,9 +1,10 @@
 <ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Metrolib;component/Converters/Converters.xaml" />
+
+        <ResourceDictionary Source="/Metrolib;component/Controls/FlatSeparator.xaml" />
 
         <ResourceDictionary Source="/Metrolib;component/Controls/AlertControl.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/BulletinItemsControl.xaml" />
