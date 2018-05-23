@@ -44,8 +44,8 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 * [SearchTextBox](Documentation/Metrolib.Controls.SearchTextBox/README.md)
 
 ## Progress Bars
-* [FlatProgressBar](Documentation/FlatProgressBar/README.md)
-* [CircularProgressBar](Documentation/CircularProgressBar/README.md)
+* [FlatProgressBar](Documentation/Metrolib.Controls.FlatProgressBar/README.md)
+* [CircularProgressBar](Documentation/Metrolib.Controls.CircularProgressBar/README.md)
 
 ## Item Controls
 * FlatListView
