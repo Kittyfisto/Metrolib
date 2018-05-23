@@ -17,8 +17,10 @@
                   Margin="8"
                   Padding="8">
             <StackPanel>
-                <CheckBox Content="IsIndeterminate" />
-                <CheckBox IsChecked="True"
+                <CheckBox x:Name="ProgressBarIsIndeterminate"
+                          Content="IsIndeterminate" />
+                <CheckBox x:Name="ProgressBarIsEnabled"
+                          IsChecked="True"
                           Content="IsEnabled" />
             </StackPanel>
         </GroupBox>
@@ -42,8 +44,8 @@
                        VerticalAlignment="Center" />
             <controls:CircularProgressBar
                 x:Name="CircularProgress"
-                IsIndeterminate="{Binding IsChecked, ElementName=IsIndeterminate}"
-                IsEnabled="{Binding IsChecked, ElementName=IsEnabled}"
+                IsIndeterminate="{Binding IsChecked, ElementName=ProgressBarIsIndeterminate}"
+                IsEnabled="{Binding IsChecked, ElementName=ProgressBarIsEnabled}"
                 Grid.Column="1"
                 Minimum="0"
                 Maximum="100"
@@ -57,8 +59,8 @@
                                       Grid.Column="1"
                                       Margin="8"
                                       SnapsToDevicePixels="True"
-                                      IsIndeterminate="{Binding IsChecked, ElementName=IsIndeterminate}"
-                                      IsEnabled="{Binding IsChecked, ElementName=IsEnabled}"
+                                      IsIndeterminate="{Binding IsChecked, ElementName=ProgressBarIsIndeterminate}"
+                                      IsEnabled="{Binding IsChecked, ElementName=ProgressBarIsEnabled}"
                                       Minimum="0"
                                       Maximum="100" />
 
@@ -66,8 +68,8 @@
                        VerticalAlignment="Center"
                        Grid.Row="2" />
             <ProgressBar x:Name="Progress"
-                         IsIndeterminate="{Binding IsChecked, ElementName=IsIndeterminate}"
-                         IsEnabled="{Binding IsChecked, ElementName=IsEnabled}"
+                         IsIndeterminate="{Binding IsChecked, ElementName=ProgressBarIsIndeterminate}"
+                         IsEnabled="{Binding IsChecked, ElementName=ProgressBarIsEnabled}"
                          Grid.Row="2"
                          Grid.Column="1"
                          Margin="8,0,8,8"

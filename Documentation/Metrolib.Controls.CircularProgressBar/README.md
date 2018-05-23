@@ -41,6 +41,13 @@ A circular progress bar (full circle).
 ```
 ![Image of CircularProgressBar, Disabled](Disabled.png)
 
+### Indeterminate, Content
+
+```xaml
+<Metrolib:CircularProgressBar Content="Busy" IsIndeterminate="True" />
+```
+![Image of CircularProgressBar, Indeterminate, Content](Indeterminate__Content.png)
+
 # Properties  
 
 **IndeterminateAngle**: System.Double  

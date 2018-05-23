@@ -64,7 +64,7 @@ namespace DocumentationCreator
 			CreateToggleButtonDoc<VisibilityToggleButton>(doc);
 
 			CreateProgressBarDoc<FlatProgressBar>(doc, 128, 16);
-			CreateProgressBarDoc<CircularProgressBar>(doc, 64, 64);
+			CreateCircularProgressBarDoc(doc);
 
 			CreateEditorTextBoxDoc(doc);
 			CreateFilterTextBoxDoc(doc);
@@ -72,7 +72,19 @@ namespace DocumentationCreator
 			CreateFlatPasswordBoxDoc(doc);
 		}
 
-		private static void CreateProgressBarDoc<T>(Doc doc, int width, int height) where T : ProgressBar, new()
+		private static void CreateCircularProgressBarDoc(Doc doc)
+		{
+			const int width = 64;
+			const int height = 64;
+
+			var creator = CreateProgressBarDoc<CircularProgressBar>(doc, width, height);
+			var example = creator.AddExample("Indeterminate, Content");
+			example.SetValue(CircularProgressBar.ContentProperty, "Busy");
+			example.SetValue(ProgressBar.IsIndeterminateProperty, true);
+			example.Resize(width, height);
+		}
+
+		private static IControlDocumentationCreator<T> CreateProgressBarDoc<T>(Doc doc, int width, int height) where T : ProgressBar, new()
 		{
 			var creator = doc.CreateDocumentationForFrameworkElement<T>();
 
@@ -95,6 +107,8 @@ namespace DocumentationCreator
 			example5.Resize(width, height);
 			example5.SetValue(RangeBase.ValueProperty, 50);
 			example5.SetValue(UIElement.IsEnabledProperty, false);
+
+			return creator;
 		}
 
 		private static void CreateToggleButtonDoc<T>(Doc doc) where T : ToggleButton, new()
