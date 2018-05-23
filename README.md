@@ -8,7 +8,7 @@ https://www.nuget.org/packages/Metrolib
 
 # Example
 
-The following examples show a calculator mockup using (some of) the controls of this library:
+The following examples show a calculator mockup using (only some of) the controls of this library:  
 ![Image of calculator mockup](Documentation/DocumentationCreator.Calculator/Calculator.png)
 
 # Controls
