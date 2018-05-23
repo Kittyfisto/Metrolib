@@ -5,8 +5,8 @@ A button used to jump to the next something, for example
 
 Displays a downwards arrow.
 
-Namespace: Metrolib.Controls  
-Assembly: Metrolib (in Metrolib.dll)  
+**Namespace**: Metrolib.Controls  
+**Assembly**: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 

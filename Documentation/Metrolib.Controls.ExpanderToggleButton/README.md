@@ -2,8 +2,8 @@
 
 A toggle button that is typically used to expand/contract an area of the UI.
 
-Namespace: Metrolib.Controls  
-Assembly: Metrolib (in Metrolib.dll)  
+**Namespace**: Metrolib.Controls  
+**Assembly**: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 

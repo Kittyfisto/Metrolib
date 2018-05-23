@@ -3,8 +3,8 @@
 A toggle button with a letter icon.
                 The icon displays an opened letter when toggled.
 
-Namespace: Metrolib.Controls  
-Assembly: Metrolib (in Metrolib.dll)  
+**Namespace**: Metrolib.Controls  
+**Assembly**: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 

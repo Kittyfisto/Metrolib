@@ -4,8 +4,8 @@ A button that should spawn a folder open dialog or a new explorer folder.
 
 Displays an open folder.
 
-Namespace: Metrolib.Controls  
-Assembly: Metrolib (in Metrolib.dll)  
+**Namespace**: Metrolib.Controls  
+**Assembly**: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 

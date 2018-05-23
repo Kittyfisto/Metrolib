@@ -72,7 +72,7 @@ namespace DocumentationCreator
 			CreateFlatPasswordBoxDoc(doc);
 		}
 
-		private static void CreateProgressBarDoc<T>(Doc doc, int width, int height) where T : FrameworkElement, new()
+		private static void CreateProgressBarDoc<T>(Doc doc, int width, int height) where T : ProgressBar, new()
 		{
 			var creator = doc.CreateDocumentationForFrameworkElement<T>();
 

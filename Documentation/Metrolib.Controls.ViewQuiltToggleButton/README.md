@@ -2,8 +2,8 @@
 
 A button to represent an unorderly layout.
 
-Namespace: Metrolib.Controls  
-Assembly: Metrolib (in Metrolib.dll)  
+**Namespace**: Metrolib.Controls  
+**Assembly**: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 

@@ -2,8 +2,8 @@
 
 FlatPasswordBox is a TextBox which allows a user to enter a password.
 
-Namespace: Metrolib.Controls  
-Assembly: Metrolib (in Metrolib.dll)  
+**Namespace**: Metrolib.Controls  
+**Assembly**: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 

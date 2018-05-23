@@ -1,9 +1,10 @@
 # CircularProgressBar  
 
 A circular progress bar (full circle).
+                Displays the current percentage (if determinate) as well as an optional content in the center.
 
-Namespace: Metrolib.Controls  
-Assembly: Metrolib (in Metrolib.dll)  
+**Namespace**: Metrolib.Controls  
+**Assembly**: Metrolib (in Metrolib.dll)  
 
 ### No progress
 
@@ -17,14 +18,14 @@ Assembly: Metrolib (in Metrolib.dll)
 ```xaml
 <Metrolib:CircularProgressBar Value="50" />
 ```
-![Image of CircularProgressBar, 50% progress](50%_progress.png)
+![Image of CircularProgressBar, 50% progress](50__progress.png)
 
 ### 100% progress
 
 ```xaml
 <Metrolib:CircularProgressBar Value="100" />
 ```
-![Image of CircularProgressBar, 100% progress](100%_progress.png)
+![Image of CircularProgressBar, 100% progress](100__progress.png)
 
 ### Indeterminate
 

@@ -3,8 +3,8 @@
 A progress bar in a "flat" style.
                 Displays the relative value as 'X%' in the progress bar.
 
-Namespace: Metrolib.Controls  
-Assembly: Metrolib (in Metrolib.dll)  
+**Namespace**: Metrolib.Controls  
+**Assembly**: Metrolib (in Metrolib.dll)  
 
 ### No progress
 
@@ -18,14 +18,14 @@ Assembly: Metrolib (in Metrolib.dll)
 ```xaml
 <Metrolib:FlatProgressBar Value="50" />
 ```
-![Image of FlatProgressBar, 50% progress](50%_progress.png)
+![Image of FlatProgressBar, 50% progress](50__progress.png)
 
 ### 100% progress
 
 ```xaml
 <Metrolib:FlatProgressBar Value="100" />
 ```
-![Image of FlatProgressBar, 100% progress](100%_progress.png)
+![Image of FlatProgressBar, 100% progress](100__progress.png)
 
 ### Indeterminate
 

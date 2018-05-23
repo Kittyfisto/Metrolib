@@ -4,8 +4,8 @@ A button that can be used to add things (files, items to a list, etc...).
 
 Displays a plus sign.
 
-Namespace: Metrolib.Controls  
-Assembly: Metrolib (in Metrolib.dll)  
+**Namespace**: Metrolib.Controls  
+**Assembly**: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 

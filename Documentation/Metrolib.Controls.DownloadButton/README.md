@@ -4,8 +4,8 @@ A button which can be used to download something.
 
 Displays a downward arrow with a line beneath.
 
-Namespace: Metrolib.Controls  
-Assembly: Metrolib (in Metrolib.dll)  
+**Namespace**: Metrolib.Controls  
+**Assembly**: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 

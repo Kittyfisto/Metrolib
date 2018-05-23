@@ -10,6 +10,7 @@ namespace Metrolib.Controls
 {
 	/// <summary>
 	///     A circular progress bar (full circle).
+	///     Displays the current percentage (if determinate) as well as an optional content in the center.
 	/// </summary>
 	[TemplatePart(Name = "PART_Indicator", Type = typeof (Ellipse))]
 	public class CircularProgressBar

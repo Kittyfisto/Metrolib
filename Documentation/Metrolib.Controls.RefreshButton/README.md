@@ -4,8 +4,8 @@ A button that can be used to refresh things.
 
 Shows a circular progress indicator while being refreshed.
 
-Namespace: Metrolib.Controls  
-Assembly: Metrolib (in Metrolib.dll)  
+**Namespace**: Metrolib.Controls  
+**Assembly**: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 

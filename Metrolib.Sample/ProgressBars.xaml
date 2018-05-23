@@ -17,10 +17,8 @@
                   Margin="8"
                   Padding="8">
             <StackPanel>
-                <CheckBox x:Name="IsIndeterminate"
-                          Content="IsIndeterminate" />
-                <CheckBox x:Name="IsEnabled"
-                          IsChecked="True"
+                <CheckBox Content="IsIndeterminate" />
+                <CheckBox IsChecked="True"
                           Content="IsEnabled" />
             </StackPanel>
         </GroupBox>

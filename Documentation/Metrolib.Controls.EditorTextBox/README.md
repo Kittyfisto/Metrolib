@@ -6,8 +6,8 @@ A textbox meant to edit text.
 Supports many markdown shortcuts, when EnableMarkdownShortcuts is set to true.
                 See https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet.
 
-Namespace: Metrolib.Controls  
-Assembly: Metrolib (in Metrolib.dll)  
+**Namespace**: Metrolib.Controls  
+**Assembly**: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 

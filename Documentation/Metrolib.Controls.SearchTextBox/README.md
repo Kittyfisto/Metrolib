@@ -6,8 +6,8 @@ A text-box meant to input a search term.
                 * offers a display of the number of matches
                 * offers buttons and shortcuts to advance to the next/previous location
 
-Namespace: Metrolib.Controls  
-Assembly: Metrolib (in Metrolib.dll)  
+**Namespace**: Metrolib.Controls  
+**Assembly**: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 

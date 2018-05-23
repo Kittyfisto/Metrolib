@@ -4,8 +4,8 @@ A simple button that allows for the exporting of data.
 
 Displays a file with an arrow to top right.
 
-Namespace: Metrolib.Controls  
-Assembly: Metrolib (in Metrolib.dll)  
+**Namespace**: Metrolib.Controls  
+**Assembly**: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 

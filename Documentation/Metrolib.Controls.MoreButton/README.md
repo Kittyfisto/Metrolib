@@ -5,8 +5,8 @@ A button that allows the user to show more content than is regularly visible, fo
 
 Displays three dots.
 
-Namespace: Metrolib.Controls  
-Assembly: Metrolib (in Metrolib.dll)  
+**Namespace**: Metrolib.Controls  
+**Assembly**: Metrolib (in Metrolib.dll)  
 
 ### Unfocused
 
