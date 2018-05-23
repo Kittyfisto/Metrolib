@@ -46,7 +46,9 @@
 
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/AddButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/CloseButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/CollapseAllButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/DownloadButton.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/ExpandAllButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/ExportButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/FlatButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/FolderOpenButton.xaml" />

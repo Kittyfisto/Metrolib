@@ -53,7 +53,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Buttons\CollapseAllButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Buttons\DownloadButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Buttons\ExpandAllButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -315,7 +323,9 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Controls\BulletinItemsControl.cs" />
     <Compile Include="Controls\Buttons\CloseButton.cs" />
+    <Compile Include="Controls\Buttons\CollapseAllButton.cs" />
     <Compile Include="Controls\Buttons\DownloadButton.cs" />
+    <Compile Include="Controls\Buttons\ExpandAllButton.cs" />
     <Compile Include="Controls\Buttons\MaximizeButton.cs" />
     <Compile Include="Controls\Buttons\MinimizeButton.cs" />
     <Compile Include="Controls\Buttons\FolderOpenButton.cs" />

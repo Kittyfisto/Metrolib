@@ -160,6 +160,16 @@
 		/// <summary>
 		/// 
 		/// </summary>
+		public static readonly System.Windows.Media.Geometry PlusBoxOutline;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry MinusBoxOutline;
+
+		/// <summary>
+		/// 
+		/// </summary>
 		public static readonly System.Windows.Media.Geometry Delete;
 
 		/// <summary>
@@ -816,6 +826,8 @@
 
 			Plus = CreateGeometry("M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z");
 			Minus = CreateGeometry("M19,13H5V11H19V13Z");
+			PlusBoxOutline = CreateGeometry("M19,19V5H5V19H19M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5C3,3.89 3.9,3 5,3H19M11,7H13V11H17V13H13V17H11V13H7V11H11V7Z");
+			MinusBoxOutline = CreateGeometry("M19,19V5H5V19H19M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5C3,3.89 3.9,3 5,3H19M17,11V13H7V11H17Z");
 
 			Delete = CreateGeometry("M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z");
 			Pen = CreateGeometry("M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z");

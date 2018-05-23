@@ -43,8 +43,10 @@ namespace DocumentationCreator
 			GenerateCalculatorImage(doc);
 
 			CreateButtonDoc<AddButton>(doc);
+			CreateButtonDoc<CollapseAllButton>(doc);
 			CreateButtonDoc<CloseButton>(doc);
 			CreateButtonDoc<DownloadButton>(doc);
+			CreateButtonDoc<ExpandAllButton>(doc);
 			CreateButtonDoc<ExportButton>(doc);
 			CreateButtonDoc<FolderOpenButton>(doc);
 			CreateButtonDoc<MaximizeButton>(doc);
