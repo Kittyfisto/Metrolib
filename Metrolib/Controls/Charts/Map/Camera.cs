@@ -25,6 +25,9 @@ namespace Metrolib
 		/// </summary>
 		public MercatorLocation Position { get; set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public double ZoomLevel { get; set; }
 
 		/// <summary>
@@ -32,8 +35,8 @@ namespace Metrolib
 		/// </summary>
 		public System.Windows.Size ViewSize
 		{
-			get { return _viewSize; }
-			set { _viewSize = value; }
+			get => _viewSize;
+			set => _viewSize = value;
 		}
 
 		/// <summary>
@@ -41,8 +44,8 @@ namespace Metrolib
 		/// </summary>
 		public double Width
 		{
-			get { return ViewSize.Width; }
-			set { _viewSize.Width = value; }
+			get => ViewSize.Width;
+			set => _viewSize.Width = value;
 		}
 
 		/// <summary>
@@ -50,35 +53,33 @@ namespace Metrolib
 		/// </summary>
 		public double Height
 		{
-			get { return _viewSize.Height; }
-			set { _viewSize.Height = value; }
+			get => _viewSize.Height;
+			set => _viewSize.Height = value;
 		}
 
 		/// <summary>
 		///     Rectangle defining visible view space.
 		/// </summary>
-		public Rect VisibleViewRectangle
-		{
-			get { return new Rect(0, 0, Width, Height); }
-		}
+		public Rect VisibleViewRectangle => new Rect(0, 0, Width, Height);
 
 		/// <summary>
 		///     Rectangle definining visible portion of mercator space.
 		/// </summary>
-		public MercatorRectangle VisibleMercatorRectangle
-		{
-			get { return _visibleMercatorRectangle; }
-		}
+		public MercatorRectangle VisibleMercatorRectangle => _visibleMercatorRectangle;
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public event EventHandler<CameraChangedEventArgs> Changed;
 
 		private void EmitChanged()
 		{
-			EventHandler<CameraChangedEventArgs> fn = Changed;
-			if (fn != null)
-				fn(this, new CameraChangedEventArgs());
+			Changed?.Invoke(this, new CameraChangedEventArgs());
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public void Update()
 		{
 			double oldMercatorToViewScale = _mercatorToViewScale;
@@ -193,6 +194,18 @@ namespace Metrolib
 					Width = width,
 					Height = height
 				};
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="width"></param>
+		/// <param name="height"></param>
+		public void Resize(double width, double height)
+		{
+			Width = width;
+			Height = height;
+			Update();
 		}
 	}
 }

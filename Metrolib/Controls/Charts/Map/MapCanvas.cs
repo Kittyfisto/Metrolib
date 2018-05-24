@@ -12,17 +12,6 @@ namespace Metrolib
 	public class MapCanvas
 		: Grid
 	{
-		/// <summary>
-		///     Adds the given layers to this canvas.
-		/// </summary>
-		/// <param name="newStartingIndex"></param>
-		/// <param name="newItems"></param>
-		public void AddLayers(int newStartingIndex, IEnumerable<Layer> newItems)
-		{
-			foreach (Layer layer in newItems)
-			{
-				Children.Add(layer);
-			}
-		}
+
 	}
 }

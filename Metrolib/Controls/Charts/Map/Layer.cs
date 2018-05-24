@@ -19,7 +19,7 @@ namespace Metrolib
 
 		internal Camera Camera
 		{
-			get { return _camera; }
+			get => _camera;
 			set
 			{
 				if (value == _camera)
@@ -46,13 +46,14 @@ namespace Metrolib
 			EmitCameraChanged(_camera);
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public event Action<Camera> CameraChanged;
 
 		private void EmitCameraChanged(Camera value)
 		{
-			Action<Camera> fn = CameraChanged;
-			if (fn != null)
-				fn(value);
+			CameraChanged?.Invoke(value);
 		}
 	}
 }

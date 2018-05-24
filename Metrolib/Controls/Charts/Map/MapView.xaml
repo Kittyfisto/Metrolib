@@ -2,11 +2,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:metrolib="clr-namespace:Metrolib">
     
     <Style TargetType="{x:Type metrolib:MapView}">
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type metrolib:MapView}">
                     <Border BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}">
                         <metrolib:MapCanvas x:Name="PART_Canvas">
                             
                         </metrolib:MapCanvas>

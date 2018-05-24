@@ -86,6 +86,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FlatPasswordBox", "FlatPass
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentationCreator", "DocumentationCreator\DocumentationCreator.csproj", "{D8464F07-F134-4F4D-ABCD-B0D4F4988DAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterLiveStream", "TwitterLiveStream\TwitterLiveStream.csproj", "{289373A0-40F6-4421-941C-487F8431DCDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -112,6 +114,10 @@ Global
 		{D8464F07-F134-4F4D-ABCD-B0D4F4988DAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8464F07-F134-4F4D-ABCD-B0D4F4988DAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8464F07-F134-4F4D-ABCD-B0D4F4988DAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{289373A0-40F6-4421-941C-487F8431DCDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{289373A0-40F6-4421-941C-487F8431DCDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{289373A0-40F6-4421-941C-487F8431DCDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{289373A0-40F6-4421-941C-487F8431DCDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -131,6 +137,7 @@ Global
 		{24D8EF25-A741-4B69-A628-44EBE7C56083} = {BCB5CCBC-F95F-4055-A2E4-8633EA17002A}
 		{10D39784-30F8-4155-BFFF-583CC7BE3D7D} = {BCB5CCBC-F95F-4055-A2E4-8633EA17002A}
 		{D8464F07-F134-4F4D-ABCD-B0D4F4988DAA} = {C32FCBBE-2066-4B41-B19A-9D7106792A18}
+		{289373A0-40F6-4421-941C-487F8431DCDF} = {BFEDFEA6-9998-468A-89B4-EDADFFEF6EA4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9BA605CB-6F7E-48CB-BB6A-0AD24C1E496C}

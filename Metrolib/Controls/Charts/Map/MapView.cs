@@ -1,36 +1,39 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 // ReSharper disable CheckNamespace
-
 namespace Metrolib
 // ReSharper restore CheckNamespace
 {
 	/// <summary>
 	/// </summary>
-	[TemplatePart(Name = "PART_Canvas", Type = typeof (MapCanvas))]
+	[TemplatePart(Name = "PART_Canvas", Type = typeof(MapCanvas))]
 	public class MapView
-		: Control
+		: ItemsControl
 	{
-		private static readonly DependencyPropertyKey LayersPropertyKey
-			= DependencyProperty.RegisterReadOnly("Layers", typeof (LayerCollection), typeof (MapView),
-			                                      new FrameworkPropertyMetadata(default(LayerCollection),
-			                                                                    FrameworkPropertyMetadataOptions.None));
-
 		/// <summary>
-		///     Definition of the <see cref="Layers" /> dependency property.
+		/// 
 		/// </summary>
-		public static readonly DependencyProperty LayersProperty
-			= LayersPropertyKey.DependencyProperty;
+		public static readonly DependencyProperty CameraProperty = DependencyProperty.Register(
+		                                                                                       "Camera", typeof(Camera),
+		                                                                                       typeof(MapView),
+		                                                                                       new PropertyMetadata(null,
+		                                                                                                            OnCameraChanged));
 
 		private MapCanvas _canvas;
+		private Point? _mouseDragStart;
+		private Point _lastMousePosition;
+		private Point _lastMouseDragPosition;
+		private bool _isLoaded;
 
 		static MapView()
 		{
-			DefaultStyleKeyProperty.OverrideMetadata(typeof (MapView), new FrameworkPropertyMetadata(typeof (MapView)));
+			DefaultStyleKeyProperty.OverrideMetadata(typeof(MapView), new FrameworkPropertyMetadata(typeof(MapView)));
 		}
 
 		/// <summary>
@@ -38,17 +41,74 @@ namespace Metrolib
 		/// </summary>
 		public MapView()
 		{
-			Layers = new LayerCollection();
-			Layers.CollectionChanged += LayersOnCollectionChanged;
+			Camera = new Camera();
+
+			Loaded += OnLoaded;
+			Unloaded += OnUnloaded;
+
+			SizeChanged += OnSizeChanged;
+			MouseDown += OnMouseDown;
+			MouseEnter += OnMouseEnter;
+			MouseMove += OnMouseMove;
+		}
+
+		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+		{
+			_isLoaded = true;
+			foreach (Layer layer in Items)
+			{
+				if (layer != null)
+					layer.Camera = Camera;
+			}
+		}
+
+		private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
+		{
+			_isLoaded = false;
+		}
+
+		private void OnMouseEnter(object sender, MouseEventArgs args)
+		{
+			_lastMousePosition = args.GetPosition(this);
+		}
+
+		private void OnMouseDown(object sender, MouseButtonEventArgs args)
+		{
+			_mouseDragStart = args.GetPosition(this);
+		}
+
+		private void OnMouseMove(object sender, MouseEventArgs args)
+		{
+			var currentPosition = args.GetPosition(this);
+			if (args.LeftButton == MouseButtonState.Pressed)
+			{
+				if (Camera != null)
+				{
+					var delta = currentPosition - _lastMousePosition;
+					if (delta != new Vector(0, 0))
+					{
+						var currentViewPosition = Camera.ToView(Camera.Position);
+						var newViewPosition = currentViewPosition + delta;
+						var newPosition = Camera.ToScene(newViewPosition);
+
+						Camera.Position = newPosition;
+						Camera.Update();
+					}
+				}
+
+				_lastMouseDragPosition = currentPosition;
+			}
+
+			_lastMousePosition = currentPosition;
 		}
 
 		/// <summary>
-		///     The layers being displayed by this map view.
+		/// 
 		/// </summary>
-		public LayerCollection Layers
+		public Camera Camera
 		{
-			get { return (LayerCollection) GetValue(LayersProperty); }
-			protected set { SetValue(LayersPropertyKey, value); }
+			get => (Camera) GetValue(CameraProperty);
+			set => SetValue(CameraProperty, value);
 		}
 
 		/// <summary>
@@ -61,28 +121,25 @@ namespace Metrolib
 			_canvas = (MapCanvas) GetTemplateChild("PART_Canvas");
 		}
 
-		private void LayersOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
+		private void OnSizeChanged(object sender, SizeChangedEventArgs args)
 		{
-			switch (args.Action)
-			{
-				case NotifyCollectionChangedAction.Add:
-					AddLayers(args.NewStartingIndex, args.NewItems.Cast<Layer>());
-					break;
-				case NotifyCollectionChangedAction.Move:
-					break;
-				case NotifyCollectionChangedAction.Remove:
-					break;
-				case NotifyCollectionChangedAction.Replace:
-					break;
-				case NotifyCollectionChangedAction.Reset:
-					break;
-			}
+			Camera?.Resize(args.NewSize.Width, args.NewSize.Height);
 		}
 
-		private void AddLayers(int newStartingIndex, IEnumerable<Layer> newItems)
+		private static void OnCameraChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
-			if (_canvas != null)
-				_canvas.AddLayers(newStartingIndex, newItems);
+			((MapView) d).OnCameraChanged((Camera) e.NewValue);
+		}
+
+		private void OnCameraChanged(Camera camera)
+		{
+			camera?.Resize(ActualWidth, ActualHeight);
+
+			foreach (Layer layer in Items)
+			{
+				if (layer != null)
+					layer.Camera = camera;
+			}
 		}
 	}
 }

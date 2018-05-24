@@ -12,6 +12,7 @@ namespace GeoVis
 	public struct MercatorRectangle : IEquatable<MercatorRectangle>
 	{
 		/// <summary>
+		///     The greatest rectangle which can be displayed with this map.
 		/// </summary>
 		public static readonly MercatorRectangle Earth;
 
@@ -26,27 +27,21 @@ namespace GeoVis
 		static MercatorRectangle()
 		{
 			Earth = new MercatorRectangle
-				{
-					Min = MercatorLocation.Min,
-					Max = MercatorLocation.Max
-				};
+			{
+				Min = MercatorLocation.Min,
+				Max = MercatorLocation.Max
+			};
 		}
 
 		/// <summary>
 		///     Width of this rectangle.
 		/// </summary>
-		public double Width
-		{
-			get { return Max.X - Min.X; }
-		}
+		public double Width => Max.X - Min.X;
 
 		/// <summary>
 		///     Height of this rectangle.
 		/// </summary>
-		public double Height
-		{
-			get { return Max.Y - Min.Y; }
-		}
+		public double Height => Max.Y - Min.Y;
 
 		/// <summary>
 		///     Tests if this rectangle equals the given one.
@@ -74,7 +69,7 @@ namespace GeoVis
 		/// <returns></returns>
 		public override bool Equals(object obj)
 		{
-			if (ReferenceEquals(null, obj)) return false;
+			if (ReferenceEquals(objA: null, objB: obj)) return false;
 			return obj is MercatorRectangle && Equals((MercatorRectangle) obj);
 		}
 
@@ -86,7 +81,7 @@ namespace GeoVis
 		{
 			unchecked
 			{
-				return (Min.GetHashCode()*397) ^ Max.GetHashCode();
+				return (Min.GetHashCode() * 397) ^ Max.GetHashCode();
 			}
 		}
 
@@ -123,10 +118,10 @@ namespace GeoVis
 		public static MercatorRectangle FromMinMax(double minX, double maxY, double maxX, double minY)
 		{
 			return new MercatorRectangle
-				{
-					Min = new MercatorLocation(minX, minY),
-					Max = new MercatorLocation(maxX, maxY)
-				};
+			{
+				Min = new MercatorLocation(minX, minY),
+				Max = new MercatorLocation(maxX, maxY)
+			};
 		}
 	}
 }

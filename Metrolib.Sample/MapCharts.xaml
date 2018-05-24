@@ -5,22 +5,22 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:metrolib="clr-namespace:Metrolib;assembly=Metrolib"
              xmlns:sample="clr-namespace:Metrolib.Sample"
+             xmlns:controls="clr-namespace:Metrolib.Controls;assembly=Metrolib"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <metrolib:MapView>
-            <metrolib:MapView.Layers>
-                <metrolib:ItemsLayer>
-                    <metrolib:ItemsLayer.ItemsSource>
-                        <x:Array Type="sample:CityViewModel">
-                            <sample:CityViewModel Name="Berlin" />
-                            <sample:CityViewModel Name="Paris" />
-                            <sample:CityViewModel Name="New York" />
-                            <sample:CityViewModel Name="Tokyo" />
-                        </x:Array>
-                    </metrolib:ItemsLayer.ItemsSource>
-                </metrolib:ItemsLayer>
-            </metrolib:MapView.Layers>
+            <metrolib:ItemsLayer>
+                <metrolib:ItemsLayer.ItemsSource>
+                    <x:Array Type="sample:CityViewModel">
+                        <sample:CityViewModel Name="Berlin" />
+                        <sample:CityViewModel Name="Paris" />
+                        <sample:CityViewModel Name="New York" />
+                        <sample:CityViewModel Name="Tokyo" />
+                    </x:Array>
+                </metrolib:ItemsLayer.ItemsSource>
+            </metrolib:ItemsLayer>
+            <controls:TileLayer />
         </metrolib:MapView>
     </Grid>
 </UserControl>
