@@ -241,6 +241,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ToggleButtons\ItemsToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ToggleButtons\ToggleButtonBase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -373,6 +377,8 @@
     <Compile Include="Controls\TextBlocks\EditableTextBlock.cs" />
     <Compile Include="Controls\Input\SuggestionInputControl.cs" />
     <Compile Include="Controls\ToggleButtons\AlarmToggleButton.cs" />
+    <Compile Include="Controls\ToggleButtons\ItemsToggleButton.cs" />
+    <Compile Include="Controls\ToggleButtons\ToggleButtonItemViewModel.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="DelegateCommand2.cs" />
     <Compile Include="ListSliceDebugView.cs" />

@@ -5,6 +5,7 @@
 		public ToggleButtons()
 		{
 			InitializeComponent();
+			DataContext = new ToggleButtonsViewModel();
 		}
 	}
 }

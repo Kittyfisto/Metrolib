@@ -71,6 +71,7 @@
         <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/ExpanderToggleButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/OneWayToggle.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/ToggleButtonBase.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/ItemsToggleButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/VisibilityToggleButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/ViewDashboardToggleButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/ViewQuiltToggleButton.xaml" />

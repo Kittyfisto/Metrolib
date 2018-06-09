@@ -34,6 +34,7 @@
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -103,6 +104,11 @@
         <controls:AlarmToggleButton Grid.Column="2" Grid.Row="9" />
         <controls:AlarmToggleButton Grid.Column="6" Grid.Row="9" IsEnabled="False" />
         <controls:AlarmToggleButton Grid.Column="8" Grid.Row="9" IsEnabled="False" IsChecked="True" />
+
+        <TextBlock Text="ItemsToggleButton" Grid.Row="10" VerticalAlignment="Center" />
+        <controls:ItemsToggleButton Grid.Column="2" Grid.Row="10" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
+        <controls:ItemsToggleButton Grid.Column="6" Grid.Row="10" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" IsEnabled="False" />
+        <controls:ItemsToggleButton Grid.Column="8" Grid.Row="10" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" IsEnabled="False" />
 
     </Grid>
 </UserControl>

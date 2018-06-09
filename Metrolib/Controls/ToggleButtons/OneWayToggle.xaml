@@ -88,6 +88,14 @@
                 <Setter Property="BorderBrush" Value="{StaticResource BorderBrushSelected}" />
                 <Setter Property="TextElement.Foreground" Value="{StaticResource ForegroundBrushInverted}" />
             </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEnabled" Value="False" />
+                    <Condition Property="IsChecked" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{StaticResource BorderBrushDisabled}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BorderBrushDisabled}" />
+            </MultiTrigger>
         </Style.Triggers>
     </Style>
 </ResourceDictionary>
