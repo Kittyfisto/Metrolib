@@ -26,5 +26,12 @@ A toggle button that allows the user to control whether a filter is being used t
 ```
 ![Image of VisibilityToggleButton, Disabled](Disabled.png)
 
+### Disabled Checked
+
+```xaml
+<Metrolib:VisibilityToggleButton IsEnabled="False" />
+```
+![Image of VisibilityToggleButton, Disabled Checked](Disabled_Checked.png)
+
 # Properties  
 

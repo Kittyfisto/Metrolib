@@ -27,5 +27,12 @@ A toggle button with a letter icon.
 ```
 ![Image of EmailToggleButton, Disabled](Disabled.png)
 
+### Disabled Checked
+
+```xaml
+<Metrolib:EmailToggleButton IsEnabled="False" />
+```
+![Image of EmailToggleButton, Disabled Checked](Disabled_Checked.png)
+
 # Properties  
 

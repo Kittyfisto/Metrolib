@@ -62,6 +62,7 @@ namespace DocumentationCreator
 			CreateButtonDoc<UndoButton>(doc);
 			CreateButtonDoc<UploadButton>(doc);
 
+			CreateToggleButtonDoc<AlarmToggleButton>(doc);
 			CreateToggleButtonDoc<EditToggleButton>(doc);
 			CreateToggleButtonDoc<EmailToggleButton>(doc);
 			CreateToggleButtonDoc<ExpanderToggleButton>(doc);
@@ -151,6 +152,11 @@ namespace DocumentationCreator
 			var example3 = creator.AddExample("Disabled");
 			example3.Resize(width, height);
 			example3.SetValue(UIElement.IsEnabledProperty, false);
+
+			var example4 = creator.AddExample("Disabled Checked");
+			example4.Resize(width, height);
+			example4.SetValue(UIElement.IsEnabledProperty, false);
+			example2.SetValue(ToggleButton.IsCheckedProperty, true);
 		}
 
 		private static void CreateButtonDoc<T>(Doc doc) where T : Button, new()

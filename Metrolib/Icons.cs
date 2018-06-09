@@ -35,6 +35,41 @@
 		/// </summary>
 		public static readonly System.Windows.Media.Geometry ChevronUp;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry Bell;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry BellOff;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry BellOutline;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry BellPlus;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry BellRing;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry BellRingOutline;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry BellSleep;
+
 		#region Arrows
 
 		/// <summary>
@@ -820,6 +855,14 @@
 			Apps = CreateGeometry("M16,20H20V16H16M16,14H20V10H16M10,8H14V4H10M16,8H20V4H16M10,14H14V10H10M4,14H8V10H4M4,20H8V16H4M10,20H14V16H10M4,8H8V4H4V8Z");
 
 			ArrowCollapseDown = CreateGeometry("M19.92,12.08L12,20L4.08,12.08L5.5,10.67L11,16.17V2H13V16.17L18.5,10.66L19.92,12.08M12,20H2V22H22V20H12Z");
+
+			Bell = CreateGeometry("M12,22A2,2 0 0,0 14,20H10A2,2 0 0,0 12,22M18,16V11C18,7.93 16.36,5.36 13.5,4.68V4A1.5,1.5 0 0,0 12,2.5A1.5,1.5 0 0,0 10.5,4V4.68C7.63,5.36 6,7.92 6,11V16L4,18V19H20V18L18,16Z");
+			BellOff = CreateGeometry("M20,18.69L7.84,6.14L5.27,3.5L4,4.76L6.8,7.56V7.57C6.28,8.56 6,9.73 6,11V16L4,18V19H17.73L19.73,21L21,19.72L20,18.69M12,22C13.11,22 14,21.11 14,20H10C10,21.11 10.89,22 12,22M18,14.68V11C18,7.92 16.36,5.36 13.5,4.68V4A1.5,1.5 0 0,0 12,2.5A1.5,1.5 0 0,0 10.5,4V4.68C10.35,4.71 10.21,4.76 10.08,4.8C10,4.83 9.88,4.87 9.78,4.91L9.75,4.92C9.5,5 9.29,5.12 9.06,5.24L18,14.68Z");
+			BellOutline = CreateGeometry("M16,17H7V10.5C7,8 9,6 11.5,6C14,6 16,8 16,10.5M18,16V10.5C18,7.43 15.86,4.86 13,4.18V3.5A1.5,1.5 0 0,0 11.5,2A1.5,1.5 0 0,0 10,3.5V4.18C7.13,4.86 5,7.43 5,10.5V16L3,18V19H20V18M11.5,22A2,2 0 0,0 13.5,20H9.5A2,2 0 0,0 11.5,22Z");
+			BellPlus = CreateGeometry("M10,21C10,22.11 10.9,23 12,23A2,2 0 0,0 14,21M18.88,16.82V11C18.88,7.75 16.63,5.03 13.59,4.31V3.59A1.59,1.59 0 0,0 12,2A1.59,1.59 0 0,0 10.41,3.59V4.31C7.37,5.03 5.12,7.75 5.12,11V16.82L3,18.94V20H21V18.94M16,13H13V16H11V13H8V11H11V8H13V11H16");
+			BellRing = CreateGeometry("M11.5,22C11.64,22 11.77,22 11.9,21.96C12.55,21.82 13.09,21.38 13.34,20.78C13.44,20.54 13.5,20.27 13.5,20H9.5A2,2 0 0,0 11.5,22M18,10.5C18,7.43 15.86,4.86 13,4.18V3.5A1.5,1.5 0 0,0 11.5,2A1.5,1.5 0 0,0 10,3.5V4.18C7.13,4.86 5,7.43 5,10.5V16L3,18V19H20V18L18,16M19.97,10H21.97C21.82,6.79 20.24,3.97 17.85,2.15L16.42,3.58C18.46,5 19.82,7.35 19.97,10M6.58,3.58L5.15,2.15C2.76,3.97 1.18,6.79 1,10H3C3.18,7.35 4.54,5 6.58,3.58Z");
+			BellRingOutline = CreateGeometry("M16,17V10.5C16,8 14,6 11.5,6C9,6 7,8 7,10.5V17H16M18,16L20,18V19H3V18L5,16V10.5C5,7.43 7.13,4.86 10,4.18V3.5A1.5,1.5 0 0,1 11.5,2A1.5,1.5 0 0,1 13,3.5V4.18C15.86,4.86 18,7.43 18,10.5V16M11.5,22A2,2 0 0,1 9.5,20H13.5A2,2 0 0,1 11.5,22M19.97,10C19.82,7.35 18.46,5 16.42,3.58L17.85,2.15C20.24,3.97 21.82,6.79 21.97,10H19.97M6.58,3.58C4.54,5 3.18,7.35 3,10H1C1.18,6.79 2.76,3.97 5.15,2.15L6.58,3.58Z");
+			BellSleep = CreateGeometry("M14,9.8L11.2,13.2H14V15H9V13.2L11.8,9.8H9V8H14M18,16V10.5C18,7.43 15.86,4.86 13,4.18V3.5A1.5,1.5 0 0,0 11.5,2A1.5,1.5 0 0,0 10,3.5V4.18C7.13,4.86 5,7.43 5,10.5V16L3,18V19H20V18M11.5,22A2,2 0 0,0 13.5,20H9.5A2,2 0 0,0 11.5,22Z");
 
 			Download = CreateGeometry("M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z");
 			Upload = CreateGeometry("M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z");

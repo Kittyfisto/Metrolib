@@ -26,5 +26,12 @@ A button to represent an unorderly layout.
 ```
 ![Image of ViewQuiltToggleButton, Disabled](Disabled.png)
 
+### Disabled Checked
+
+```xaml
+<Metrolib:ViewQuiltToggleButton IsEnabled="False" />
+```
+![Image of ViewQuiltToggleButton, Disabled Checked](Disabled_Checked.png)
+
 # Properties  
 

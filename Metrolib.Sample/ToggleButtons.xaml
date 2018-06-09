@@ -33,6 +33,7 @@
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -97,6 +98,11 @@
         <controls:ViewQuiltToggleButton Grid.Column="2" Grid.Row="8" />
         <controls:ViewQuiltToggleButton Grid.Column="6" Grid.Row="8" IsEnabled="False" />
         <controls:ViewQuiltToggleButton Grid.Column="8" Grid.Row="8" IsEnabled="False" IsChecked="True" />
+
+        <TextBlock Text="AlarmToggleButton" Grid.Row="9" VerticalAlignment="Center" />
+        <controls:AlarmToggleButton Grid.Column="2" Grid.Row="9" />
+        <controls:AlarmToggleButton Grid.Column="6" Grid.Row="9" IsEnabled="False" />
+        <controls:AlarmToggleButton Grid.Column="8" Grid.Row="9" IsEnabled="False" IsChecked="True" />
 
     </Grid>
 </UserControl>

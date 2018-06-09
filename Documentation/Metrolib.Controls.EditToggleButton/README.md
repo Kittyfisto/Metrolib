@@ -26,5 +26,12 @@ A toggle button that allows to toggle between editing and not-.
 ```
 ![Image of EditToggleButton, Disabled](Disabled.png)
 
+### Disabled Checked
+
+```xaml
+<Metrolib:EditToggleButton IsEnabled="False" />
+```
+![Image of EditToggleButton, Disabled Checked](Disabled_Checked.png)
+
 # Properties  
 

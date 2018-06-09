@@ -26,6 +26,13 @@ A toggle button that is typically used to expand/contract an area of the UI.
 ```
 ![Image of ExpanderToggleButton, Disabled](Disabled.png)
 
+### Disabled Checked
+
+```xaml
+<Metrolib:ExpanderToggleButton IsEnabled="False" />
+```
+![Image of ExpanderToggleButton, Disabled Checked](Disabled_Checked.png)
+
 # Properties  
 
 **IconHeight**: System.Double  

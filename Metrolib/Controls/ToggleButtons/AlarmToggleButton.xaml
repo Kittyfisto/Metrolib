@@ -2,19 +2,19 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:Metrolib.Controls"
                     xmlns:metrolib="clr-namespace:Metrolib">
-
+    
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ToggleButtonBase.xaml" />
+        <ResourceDictionary Source="FlatToggleButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="{x:Type controls:VisibilityToggleButton}" BasedOn="{StaticResource {x:Type controls:ToggleButtonBase}}">
+    <Style TargetType="{x:Type controls:AlarmToggleButton}" BasedOn="{StaticResource {x:Type controls:ToggleButtonBase}}">
         <Setter Property="CheckedBackground" Value="Transparent" />
         <Setter Property="InvertedForeground" Value="{StaticResource BackgroundBrushSelected}" />
         <Setter Property="CheckedForeground" Value="{StaticResource ForegroundBrushSelected}" />
         <Setter Property="HoveredAndCheckedForeground" Value="{StaticResource ForegroundBrushSelectedAndHovered}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type controls:VisibilityToggleButton}">
+                <ControlTemplate TargetType="{x:Type controls:AlarmToggleButton}">
                     <Grid x:Name="PART_MainGrid" Background="{TemplateBinding Background}">
                         <Viewbox>
                             <Canvas Width="24" Height="24">
@@ -23,12 +23,12 @@
                         </Viewbox>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <!-- Eye/off depending on IsChecked -->
+                        <!-- Bell/off depending on IsChecked -->
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Data" TargetName="PART_Icon" Value="{x:Static metrolib:Icons.Eye}" />
+                            <Setter Property="Data" TargetName="PART_Icon" Value="{x:Static metrolib:Icons.Bell}" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="False">
-                            <Setter Property="Data" TargetName="PART_Icon" Value="{x:Static metrolib:Icons.EyeOff}" />
+                            <Setter Property="Data" TargetName="PART_Icon" Value="{x:Static metrolib:Icons.BellOff}" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>

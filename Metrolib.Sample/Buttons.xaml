@@ -59,7 +59,7 @@
         </Border>
         <controls:RemoveButton Grid.Column="6" Grid.Row="4" IsEnabled="False" />
 
-        <TextBlock Text="DeleteButton" Grid.Row="5" VerticalAlignment="Center" />
+        <TextBlock Text="CloseButton" Grid.Row="5" VerticalAlignment="Center" />
         <controls:CloseButton Grid.Column="2" Grid.Row="5" />
         <Border Background="Black" Grid.Column="4" Grid.Row="5">
             <controls:CloseButton controls:Properties.IsInverted="True" />

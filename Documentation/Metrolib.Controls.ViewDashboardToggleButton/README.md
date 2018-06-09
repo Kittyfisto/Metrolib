@@ -26,5 +26,12 @@ A button to represent an ordered layout.
 ```
 ![Image of ViewDashboardToggleButton, Disabled](Disabled.png)
 
+### Disabled Checked
+
+```xaml
+<Metrolib:ViewDashboardToggleButton IsEnabled="False" />
+```
+![Image of ViewDashboardToggleButton, Disabled Checked](Disabled_Checked.png)
+
 # Properties  
 

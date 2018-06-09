@@ -65,6 +65,7 @@
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/UndoButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/Buttons/UploadButton.xaml" />
 
+        <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/AlarmToggleButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/EditToggleButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/EmailToggleButton.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/ExpanderToggleButton.xaml" />

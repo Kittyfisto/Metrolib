@@ -233,6 +233,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ToggleButtons\AlarmToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ToggleButtons\EmailToggleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -368,6 +372,7 @@
     <Compile Include="Controls\ProgressBar\FlatProgressBar.cs" />
     <Compile Include="Controls\TextBlocks\EditableTextBlock.cs" />
     <Compile Include="Controls\Input\SuggestionInputControl.cs" />
+    <Compile Include="Controls\ToggleButtons\AlarmToggleButton.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="DelegateCommand2.cs" />
     <Compile Include="ListSliceDebugView.cs" />
