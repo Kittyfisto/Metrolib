@@ -16,7 +16,9 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate DataType="{x:Type toggleButtons:ToggleButtonItemViewModel}">
                                 <controls:OneWayToggle IsChecked="{Binding IsSelected, Mode=TwoWay}">
-                                    <ContentPresenter Content="{Binding Item}" />
+                                    <ContentPresenter Content="{Binding Item}"
+                                                      ContentTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource AncestorType={x:Type controls:ItemsToggleButton}}}"
+                                                      ContentTemplateSelector="{Binding ItemTemplateSelector, RelativeSource={RelativeSource AncestorType={x:Type controls:ItemsToggleButton}}}" />
                                 </controls:OneWayToggle>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
