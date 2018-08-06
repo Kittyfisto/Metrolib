@@ -116,6 +116,7 @@
     <Compile Include="Geometry\CircleTest.cs" />
     <Compile Include="Input\SuggestionInputControlTest.cs" />
     <Compile Include="InvertBoolConverterTest.cs" />
+    <Compile Include="ItemsToggleButton\ItemsToggleButtonTest.cs" />
     <Compile Include="ListSliceTest.cs" />
     <Compile Include="Panel\GridPanelTest.cs" />
     <Compile Include="Geometry\TriangleTest.cs" />

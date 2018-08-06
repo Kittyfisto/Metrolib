@@ -179,7 +179,8 @@ namespace Metrolib.Controls
 			}
 
 			Clear();
-			Add(newValue);
+			if (newValue != null)
+				Add(newValue);
 
 			observable = newValue as INotifyCollectionChanged;
 			if (observable != null)

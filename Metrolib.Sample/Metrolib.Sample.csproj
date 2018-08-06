@@ -58,6 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CityViewModel.cs" />
+    <Compile Include="Dialogs.xaml.cs">
+      <DependentUpon>Dialogs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogsViewModel.cs" />
     <Compile Include="EdgeType.cs" />
     <Compile Include="HistogramCharts.xaml.cs">
       <DependentUpon>HistogramCharts.xaml</DependentUpon>
@@ -113,6 +117,10 @@
       <DependentUpon>Tree.xaml</DependentUpon>
     </Compile>
     <Page Include="Buttons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

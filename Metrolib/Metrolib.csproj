@@ -129,6 +129,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\FlatBanner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\FlatSeparator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -371,6 +375,7 @@
     <Compile Include="Controls\Charts\Map\TileLayer.cs" />
     <Compile Include="Controls\Charts\Map\TileRectangle.cs" />
     <Compile Include="Controls\Charts\Map\WebTileLayer.cs" />
+    <Compile Include="Controls\FlatBanner.cs" />
     <Compile Include="Controls\FlatSeparator.cs" />
     <Compile Include="Controls\ProgressBar\AbstractProgressBar.cs" />
     <Compile Include="Controls\ProgressBar\FlatProgressBar.cs" />
@@ -381,6 +386,7 @@
     <Compile Include="Controls\ToggleButtons\ToggleButtonItemViewModel.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="DelegateCommand2.cs" />
+    <Compile Include="FrameworkElementExtensions.cs" />
     <Compile Include="ListSliceDebugView.cs" />
     <Compile Include="ReadOnlyListExtensions.cs" />
     <Compile Include="ListSlice.cs" />
