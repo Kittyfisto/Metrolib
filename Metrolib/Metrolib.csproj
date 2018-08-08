@@ -385,6 +385,7 @@
     <Compile Include="Controls\ToggleButtons\ItemsToggleButton.cs" />
     <Compile Include="Controls\ToggleButtons\ToggleButtonItemViewModel.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
+    <Compile Include="Converters\Unit.cs" />
     <Compile Include="DelegateCommand2.cs" />
     <Compile Include="FrameworkElementExtensions.cs" />
     <Compile Include="ListSliceDebugView.cs" />

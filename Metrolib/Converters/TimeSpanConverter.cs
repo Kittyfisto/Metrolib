@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Data;
 
 // ReSharper disable CheckNamespace
-
 namespace Metrolib.Converters
 // ReSharper restore CheckNamespace
 {
@@ -22,6 +23,87 @@ namespace Metrolib.Converters
 	public sealed class TimeSpanConverter
 		: IValueConverter
 	{
+		struct TimeUnit
+		{
+			private readonly string _singular;
+			private readonly string _plural;
+			public readonly TimeSpan Duration;
+			public readonly Unit Unit;
+
+			public TimeUnit(Unit unit, TimeSpan duration, string singular)
+			: this(unit, duration, singular, singular+"s")
+			{}
+
+			public TimeUnit(Unit unit, TimeSpan duration, string singular, string plural)
+			{
+				Unit = unit;
+				Duration = duration;
+				_singular = singular;
+				_plural = plural;
+			}
+
+			public string Format(TimeSpan value)
+			{
+				int number;
+				if (value < Duration)
+					number = 1;
+				else
+					number = (int) (value.TotalMilliseconds/Duration.TotalMilliseconds);
+
+				return string.Format("{0} {1}", number, number == 1 ? _singular : _plural);
+			}
+		}
+
+		private readonly IReadOnlyList<TimeUnit> _allUnits;
+		private IReadOnlyList<TimeUnit> _usedUnits;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public TimeSpanConverter()
+		{
+			_allUnits = new[]
+			{
+				new TimeUnit(Unit.Century, TimeSpan.FromDays(36525), "century", "centuries"),
+				new TimeUnit(Unit.Decade, TimeSpan.FromDays(3652.5), "decade"),
+				new TimeUnit(Unit.Year, TimeSpan.FromDays(365.25), "year"),
+				new TimeUnit(Unit.Month, TimeSpan.FromDays(30.5), "month"),
+				new TimeUnit(Unit.Week, TimeSpan.FromDays(7), "week"),
+				new TimeUnit(Unit.Day, TimeSpan.FromDays(1), "day"),
+				new TimeUnit(Unit.Hour, TimeSpan.FromHours(1), "hour"),
+				new TimeUnit(Unit.Minute, TimeSpan.FromMinutes(1), "minute"),
+				new TimeUnit(Unit.Second, TimeSpan.FromSeconds(1), "second"),
+				new TimeUnit(Unit.Millisecond, TimeSpan.FromMilliseconds(1), "millisecond")
+			};
+			_usedUnits = _allUnits;
+		}
+
+		public IReadOnlyList<Unit> UsedUnits
+		{
+			get { return _usedUnits?.Select(x => x.Unit).ToList();}
+			set
+			{
+				_usedUnits = value != null
+					? _allUnits.Where(x => value.Contains(x.Unit)).ToList()
+					: null;
+			}
+		}
+
+		public IReadOnlyList<Unit> IgnoredUnits
+		{
+			get
+			{
+				var used = UsedUnits;
+				return used != null
+					? _allUnits.Select(x => x.Unit).Except(UsedUnits).ToList()
+					: _allUnits.Select(x => x.Unit).ToList();
+			}
+			set
+			{
+				UsedUnits = _allUnits.Select(x => x.Unit).Except(value).ToList();
+			}
+		}
+
 		/// <inheritdoc />
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
@@ -29,54 +111,23 @@ namespace Metrolib.Converters
 				return null;
 
 			var age = (TimeSpan) value;
-			TimeSpan oneCentury = TimeSpan.FromDays(36525);
-			TimeSpan oneDecade = TimeSpan.FromDays(3652.5);
-			TimeSpan oneYear = TimeSpan.FromDays(365.25);
-			TimeSpan oneMonth = TimeSpan.FromDays(30.5);
-			TimeSpan oneWeek = TimeSpan.FromDays(7);
-			TimeSpan oneDay = TimeSpan.FromDays(1);
-			TimeSpan oneHour = TimeSpan.FromHours(1);
-			TimeSpan oneMinute = TimeSpan.FromMinutes(1);
-			TimeSpan oneSecond = TimeSpan.FromSeconds(1);
-			TimeSpan oneMillisecond = TimeSpan.FromMilliseconds(1);
+			if (_usedUnits.Count == 0)
+				return null;
 
-			if (age >= oneCentury)
-				return Format(age, oneCentury, "century", "centuries");
-			if (age >= oneDecade)
-				return Format(age, oneDecade, "decade");
-			if (age >= oneYear)
-				return Format(age, oneYear, "year");
-			if (age >= oneMonth)
-				return Format(age, oneMonth, "month");
-			if (age >= oneWeek)
-				return Format(age, oneWeek, "week");
-			if (age >= oneDay)
-				return Format(age, oneDay, "day");
-			if (age >= oneHour)
-				return Format(age, oneHour, "hour");
-			if (age >= oneMinute)
-				return Format(age, oneMinute, "minute");
-			if (age >= oneSecond)
-				return Format(age, oneSecond, "second");
+			for(int i = 0; i < _usedUnits.Count -1; ++i)
+			{
+				var unit = _usedUnits[i];
+				if (age >= unit.Duration)
+					return unit.Format(age);
+			}
 
-			return Format(age, oneMillisecond, "millisecond");
+			return _usedUnits[_usedUnits.Count - 1].Format(age);
 		}
 
 		/// <inheritdoc />
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			return Binding.DoNothing;
-		}
-
-		private object Format(TimeSpan value, TimeSpan divider, string caption)
-		{
-			return Format(value, divider, caption, caption + "s");
-		}
-
-		private object Format(TimeSpan value, TimeSpan divider, string singular, string plural)
-		{
-			var number = (int) (value.TotalMilliseconds/divider.TotalMilliseconds);
-			return string.Format("{0} {1}", number, number == 1 ? singular : plural);
 		}
 	}
 }

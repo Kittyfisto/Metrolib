@@ -18,9 +18,17 @@ namespace Metrolib.Test
 		private TimeSpanConverter _converter;
 
 		[Test]
+		public void TestSetOneIgnoredUnit()
+		{
+			_converter.IgnoredUnits = new[] {Unit.Millisecond};
+			_converter.Convert(TimeSpan.FromMilliseconds(10), typeof(string), null, CultureInfo.CurrentUICulture)
+			          .Should().Be("1 second");
+		}
+
+		[Test]
 		public void TestConvert1()
 		{
-			_converter.Convert(TimeSpan.Zero, typeof(string), null, CultureInfo.CurrentUICulture).Should().Be("0 milliseconds");
+			_converter.Convert(TimeSpan.FromTicks(1000), typeof(string), null, CultureInfo.CurrentUICulture).Should().Be("1 millisecond");
 			_converter.Convert(TimeSpan.FromMilliseconds(1), typeof (string), null, CultureInfo.CurrentUICulture).Should().Be("1 millisecond");
 			_converter.Convert(TimeSpan.FromMilliseconds(2), typeof(string), null, CultureInfo.CurrentUICulture).Should().Be("2 milliseconds");
 			_converter.Convert(TimeSpan.FromMilliseconds(999), typeof(string), null, CultureInfo.CurrentUICulture).Should().Be("999 milliseconds");
