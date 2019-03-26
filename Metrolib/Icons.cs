@@ -257,6 +257,45 @@
 		/// </summary>
 		public static readonly System.Windows.Media.Geometry Upload;
 
+		#region Signs
+
+		/// <summary>
+		/// Equality sign.
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry Equal;
+
+		/// <summary>
+		/// Inequality sign (!=).
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry NotEqual;
+
+		/// <summary>
+		/// Inequality sign (diagonal strikethrough).
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry NotEqualVariant;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry GreaterThanOrEqual;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry LessThanOrEqual;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry GreaterThan;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly System.Windows.Media.Geometry LessThan;
+
+		#endregion
+
 		#region Filter
 
 		/// <summary>
@@ -866,6 +905,14 @@
 
 			Download = CreateGeometry("M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z");
 			Upload = CreateGeometry("M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z");
+
+			Equal = CreateGeometry("M19,10H5V8H19V10M19,16H5V14H19V16Z");
+			NotEqual = CreateGeometry("M21,10H9V8H21V10M21,16H9V14H21V16M4,5H6V16H4V5M6,18V20H4V18H6Z");
+			NotEqualVariant = CreateGeometry("M14.08,4.61L15.92,5.4L14.8,8H19V10H13.95L12.23,14H19V16H11.38L9.92,19.4L8.08,18.61L9.2,16H5V14H10.06L11.77,10H5V8H12.63L14.08,4.61Z");
+			GreaterThanOrEqual = CreateGeometry("M6.5,2.27L20,10.14L6.5,18L5.5,16.27L16.03,10.14L5.5,4L6.5,2.27M20,20V22H5V20H20Z");
+			GreaterThan = CreateGeometry("M5.5,4.14L4.5,5.86L15,12L4.5,18.14L5.5,19.86L19,12L5.5,4.14Z");
+			LessThanOrEqual = CreateGeometry("M18.5,2.27L5,10.14L18.5,18L19.5,16.27L8.97,10.14L19.5,4L18.5,2.27M5,20V22H20V20H5Z");
+			LessThan = CreateGeometry("M18.5,4.14L19.5,5.86L8.97,12L19.5,18.14L18.5,19.86L5,12L18.5,4.14Z");
 
 			Plus = CreateGeometry("M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z");
 			Minus = CreateGeometry("M19,13H5V11H19V13Z");
