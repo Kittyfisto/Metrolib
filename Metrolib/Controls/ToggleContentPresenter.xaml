@@ -1,0 +1,123 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Metrolib.Controls">
+
+    <Style TargetType="{x:Type local:ToggleContentPresenter}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ToggleContentPresenter}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ShowSide">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="ShowSideAState">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="PART_SideB_Scale"
+                                                             Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
+                                                             To="0" Duration="0:0:0.3">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseInOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetName="PART_ContentPresenter_SideA"
+                                                Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{x:Static Visibility.Visible}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetName="PART_ContentPresenter_SideB"
+                                                Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{x:Static Visibility.Visible}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition To="ShowSideBState">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="PART_SideB_Scale"
+                                                             Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
+                                                             To="1" Duration="0:0:0.3">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseInOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetName="PART_ContentPresenter_SideA"
+                                                Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{x:Static Visibility.Visible}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetName="PART_ContentPresenter_SideB"
+                                                Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{x:Static Visibility.Visible}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="ShowSideAState">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PART_SideB_Scale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         To="0" />
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="PART_ContentPresenter_SideA"
+                                            Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="PART_ContentPresenter_SideB"
+                                            Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{x:Static Visibility.Hidden}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="ShowSideBState">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PART_SideB_Scale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         To="1" />
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="PART_ContentPresenter_SideA"
+                                            Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{x:Static Visibility.Hidden}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="PART_ContentPresenter_SideB"
+                                            Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid>
+                            <ContentPresenter x:Name="PART_ContentPresenter_SideA"
+                                              Content="{TemplateBinding SideAContent}"
+                                              ContentTemplate="{TemplateBinding SideAContentTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding SideAContentTemplateSelector}" />
+                            <ContentPresenter x:Name="PART_ContentPresenter_SideB"
+                                              Content="{TemplateBinding SideBContent}"
+                                              ContentTemplate="{TemplateBinding SideBContentTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding SideBContentTemplateSelector}"
+                                              RenderTransformOrigin="0.5, 0.0">
+                                <ContentPresenter.RenderTransform>
+                                    <ScaleTransform x:Name="PART_SideB_Scale" />
+                                </ContentPresenter.RenderTransform>
+                            </ContentPresenter>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

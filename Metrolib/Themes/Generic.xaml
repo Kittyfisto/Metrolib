@@ -77,6 +77,8 @@
         <ResourceDictionary Source="/Metrolib;component/Controls/ToggleButtons/ViewQuiltToggleButton.xaml" />
 
         <ResourceDictionary Source="/Metrolib;component/Controls/FlatBanner.xaml" />
+        
+        <ResourceDictionary Source="/Metrolib;component/Controls/ToggleContentPresenter.xaml" />
 
         <ResourceDictionary Source="/Metrolib;component/Controls/Input/SuggestionInputControl.xaml" />
 

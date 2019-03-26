@@ -65,7 +65,7 @@
             <controls:FlatTabItem Header="ContentControls">
                 <sample:ContentControls />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="Dialogs" IsSelected="True">
+            <controls:FlatTabItem Header="Dialogs">
                 <sample:Dialogs />
             </controls:FlatTabItem>
             <controls:FlatTabItem Header="Line Charts">
@@ -79,6 +79,9 @@
             </controls:FlatTabItem>
             <controls:FlatTabItem Header="Map Charts">
                 <sample:MapCharts />
+            </controls:FlatTabItem>
+            <controls:FlatTabItem Header="Content Presenters" IsSelected="True">
+                <sample:ContentPresenters />
             </controls:FlatTabItem>
         </tab:FlatTabControl>
 

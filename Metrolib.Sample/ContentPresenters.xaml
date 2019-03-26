@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Metrolib.Sample.ContentPresenters"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:Metrolib.Controls;assembly=Metrolib"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+        <controls:FlatGroupBox Header="ToggleContentPresenter">
+            <Grid Height="200">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <ToggleButton Content="Toggle Sides!"
+                              Margin="4"
+                              Padding="4"
+                              HorizontalAlignment="Center"
+                              IsChecked="{Binding Path=ShowSideA, ElementName=PART_ToggleContentPresenter, Mode=TwoWay}"/>
+
+                <controls:ToggleContentPresenter x:Name="PART_ToggleContentPresenter"  Grid.Row="1">
+                    <controls:ToggleContentPresenter.SideAContent>
+                        <controls:EditorTextBox Text="This is the Side A content" VerticalAlignment="Center" />
+                    </controls:ToggleContentPresenter.SideAContent>
+                    <controls:ToggleContentPresenter.SideBContent>
+                        <controls:EditorTextBox Text="This is the Side B content, very cool!" VerticalAlignment="Center" />
+                    </controls:ToggleContentPresenter.SideBContent>
+                </controls:ToggleContentPresenter>
+
+            </Grid>
+        </controls:FlatGroupBox>
+    </StackPanel>
+</UserControl>
