@@ -65,7 +65,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Buttons\FileAddButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Buttons\FolderAddButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Buttons\FolderOpenButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Buttons\ImportButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -346,6 +358,9 @@
     <Compile Include="Controls\Buttons\CollapseAllButton.cs" />
     <Compile Include="Controls\Buttons\DownloadButton.cs" />
     <Compile Include="Controls\Buttons\ExpandAllButton.cs" />
+    <Compile Include="Controls\Buttons\FileAddButton.cs" />
+    <Compile Include="Controls\Buttons\FolderAddButton.cs" />
+    <Compile Include="Controls\Buttons\ImportButton.cs" />
     <Compile Include="Controls\Buttons\MaximizeButton.cs" />
     <Compile Include="Controls\Buttons\MinimizeButton.cs" />
     <Compile Include="Controls\Buttons\FolderOpenButton.cs" />

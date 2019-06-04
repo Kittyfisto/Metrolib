@@ -30,6 +30,9 @@
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -107,5 +110,26 @@
             <controls:FolderOpenButton controls:Properties.IsInverted="True" />
         </Border>
         <controls:FolderOpenButton Grid.Column="6" Grid.Row="11" IsEnabled="False" />
+
+        <TextBlock Text="ImportButton" Grid.Row="12" VerticalAlignment="Center" />
+        <controls:ImportButton Grid.Column="2" Grid.Row="12" />
+        <Border Background="Black" Grid.Column="4" Grid.Row="12">
+            <controls:ImportButton controls:Properties.IsInverted="True" />
+        </Border>
+        <controls:ImportButton Grid.Column="6" Grid.Row="12" IsEnabled="False" />
+
+        <TextBlock Text="FileAddButton" Grid.Row="13" VerticalAlignment="Center" />
+        <controls:FileAddButton Grid.Column="2" Grid.Row="13" />
+        <Border Background="Black" Grid.Column="4" Grid.Row="13">
+            <controls:FileAddButton controls:Properties.IsInverted="True" />
+        </Border>
+        <controls:FileAddButton Grid.Column="6" Grid.Row="13" IsEnabled="False" />
+
+        <TextBlock Text="FolderAddButton" Grid.Row="14" VerticalAlignment="Center" />
+        <controls:FolderAddButton Grid.Column="2" Grid.Row="14" />
+        <Border Background="Black" Grid.Column="4" Grid.Row="14">
+            <controls:FolderAddButton controls:Properties.IsInverted="True" />
+        </Border>
+        <controls:FolderAddButton Grid.Column="6" Grid.Row="14" IsEnabled="False" />
     </Grid>
 </UserControl>
