@@ -32,7 +32,7 @@
             <controls:FlatTabItem Header="TextBlocks">
                 <sample:TextBlocks />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="TextBoxes">
+            <controls:FlatTabItem Header="TextBoxes" IsSelected="True">
                 <sample:TextBoxes />
             </controls:FlatTabItem>
             <controls:FlatTabItem Header="TextEditor">
@@ -80,7 +80,7 @@
             <controls:FlatTabItem Header="Map Charts">
                 <sample:MapCharts />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="Content Presenters" IsSelected="True">
+            <controls:FlatTabItem Header="Content Presenters">
                 <sample:ContentPresenters />
             </controls:FlatTabItem>
         </tab:FlatTabControl>

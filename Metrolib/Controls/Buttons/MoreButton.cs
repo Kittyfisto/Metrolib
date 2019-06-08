@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 // ReSharper disable CheckNamespace
 namespace Metrolib.Controls
@@ -14,9 +15,32 @@ namespace Metrolib.Controls
 	public class MoreButton
 		: FlatButton
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(
+		                                                                                            "Orientation",
+		                                                                                            typeof(Orientation),
+		                                                                                            typeof(MoreButton),
+		                                                                                            new
+			                                                                                            PropertyMetadata(default
+			                                                                                                             (
+				                                                                                                             Orientation
+			                                                                                                             )));
+
 		static MoreButton()
 		{
-			DefaultStyleKeyProperty.OverrideMetadata(typeof (MoreButton), new FrameworkPropertyMetadata(typeof (MoreButton)));
+			DefaultStyleKeyProperty.OverrideMetadata(typeof(MoreButton),
+			                                         new FrameworkPropertyMetadata(typeof(MoreButton)));
+		}
+
+		/// <summary>
+		///     The orientation of the dots, defaults to horizontal.
+		/// </summary>
+		public Orientation Orientation
+		{
+			get { return (Orientation) GetValue(OrientationProperty); }
+			set { SetValue(OrientationProperty, value); }
 		}
 	}
 }

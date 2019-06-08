@@ -241,6 +241,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\TextBoxes\PathChooserTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\TextBoxes\SearchTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -400,12 +404,15 @@
     <Compile Include="Controls\ProgressBar\FlatProgressBar.cs" />
     <Compile Include="Controls\TextBlocks\EditableTextBlock.cs" />
     <Compile Include="Controls\Input\SuggestionInputControl.cs" />
+    <Compile Include="Controls\TextBoxes\PathChooserTextBox.cs" />
     <Compile Include="Controls\ToggleButtons\AlarmToggleButton.cs" />
     <Compile Include="Controls\ToggleButtons\ItemsToggleButton.cs" />
     <Compile Include="Controls\ToggleButtons\ToggleButtonItemViewModel.cs" />
     <Compile Include="Controls\ToggleContentPresenter.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
+    <Compile Include="Converters\HorizontalToCollapsedConverter.cs" />
     <Compile Include="Converters\Unit.cs" />
+    <Compile Include="Converters\VerticalToCollapsedConverter.cs" />
     <Compile Include="DelegateCommand2.cs" />
     <Compile Include="FrameworkElementExtensions.cs" />
     <Compile Include="ListSliceDebugView.cs" />

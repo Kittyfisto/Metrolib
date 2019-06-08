@@ -39,6 +39,7 @@
 
         <ResourceDictionary Source="/Metrolib;component/Controls/TextBoxes/EditorTextBox.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/TextBoxes/FilterTextBox.xaml" />
+        <ResourceDictionary Source="/Metrolib;component/Controls/TextBoxes/PathChooserTextBox.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/TextBoxes/SearchTextBox.xaml" />
         <ResourceDictionary Source="/Metrolib;component/Controls/TextBoxes/FlatPasswordBox.xaml" />
 

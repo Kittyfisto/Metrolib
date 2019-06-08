@@ -1,0 +1,139 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:Metrolib.Converters"
+                    xmlns:controls="clr-namespace:Metrolib.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Metrolib;component/Themes/Constants.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <converters:NullOrEmptyStringToVisibleConverter x:Key="EmptyToVisibleConverter" />
+    <converters:NonEmptyStringToVisibleConverter x:Key="NonEmptyStringToVisibleConverter" />
+    <converters:BoolFalseToCollapsedConverter x:Key="BoolFalseToCollapsedConverter" />
+    <converters:IncrementByOneConverter x:Key="IncrementByOneConverter" />
+
+    <Style TargetType="{x:Type controls:PathChooserTextBox}">
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrushHovered}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Padding" Value="4,4,4,4" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:PathChooserTextBox}">
+                    <Grid x:Name="root" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+                        <!-- managing visual states to change controls styles on different states -->
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <DoubleAnimation BeginTime="0:0:0.000" Duration="0:0:0.500"
+                                                         From="1" To="0"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Storyboard.TargetName="hoverBorder" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation BeginTime="0:0:0.000" Duration="0:0:0.500"
+                                                         From="0" To="1"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Storyboard.TargetName="hoverBorder" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="ReadOnly">
+                                    <Storyboard>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation BeginTime="0:0:0.000" Duration="0:0:0.300"
+                                                         From="0" To="1"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Storyboard.TargetName="focusBorder" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused">
+                                    <Storyboard>
+                                        <DoubleAnimation BeginTime="0:0:0.000" Duration="0:0:0.700"
+                                                         From="1" To="0"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Storyboard.TargetName="focusBorder" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <!-- main border, styling the border-brush and background for Normal state -->
+                        <Border x:Name="normalBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" />
+
+                        <!-- styling border-brush and background-color for MouseOver state -->
+                        <Border x:Name="hoverBorder" Opacity="0"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{StaticResource BorderBrushHovered}" />
+
+                        <!-- styling border-brush and background-color for Focused state -->
+                        <Border x:Name="focusBorder" Opacity="0"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{StaticResource BorderBrushSelected}" />
+
+                        <Grid x:Name="PART_MainGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Margin="{TemplateBinding Padding}"
+                                  Grid.Column="0">
+                                <TextBlock Text="{TemplateBinding Watermark}"
+                                           Foreground="{StaticResource ForegroundBrushDisabled}"
+                                           Margin="6,0,6,0"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"
+                                           Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyToVisibleConverter}}" />
+
+                                <!-- TextBox uses a ScrollViewer named PART_ContentHost as its content-presenter -->
+                                <ScrollViewer x:Name="PART_ContentHost"
+                                              BorderThickness="0"
+                                              IsTabStop="False"
+                                              Background="{x:Null}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              TextElement.Foreground="{TemplateBinding Foreground}" />
+                            </Grid>
+
+                            <controls:MoreButton Grid.Column="1"
+                                                 Orientation="Horizontal"
+                                                 Command="{Binding PathChooserCommand, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource BorderBrushPressed}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{StaticResource ForegroundBrushDisabled}" />
+                        </Trigger>
+                        <Trigger Property="IsReadOnly" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource ForegroundBrushDisabled}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+</ResourceDictionary>

@@ -106,7 +106,7 @@ namespace Metrolib.Controls
 		/// </summary>
 		protected override void OnIsKeyboardFocusWithinChanged(DependencyPropertyChangedEventArgs args)
 		{
-			_passwordBox?.Focus();
+			
 		}
 
 		private void OnGotFocus(object sender, RoutedEventArgs routedEventArgs)

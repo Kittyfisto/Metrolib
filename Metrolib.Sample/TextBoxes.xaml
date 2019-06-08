@@ -27,6 +27,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="8" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="8" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <TextBlock Text="Control" />
@@ -60,5 +62,9 @@
                                          SuggestionChosenCommand="{Binding SuggestionsViewModel.SelectSuggestionCommand, ElementName=This}"
                                          IsThinking="{Binding SuggestionsViewModel.IsThinking, ElementName=This}"/>
         <controls:SuggestionInputControl Grid.Column="4" Grid.Row="10" Text="password" IsEnabled="False" />
+
+        <TextBlock Text="PathChooserTextBox" Grid.Row="12" VerticalAlignment="Center" />
+        <controls:PathChooserTextBox Grid.Column="2" Grid.Row="12" Text="C:\foo\bar" Watermark="Pick a path you dummy" />
+        <controls:PathChooserTextBox Grid.Column="4" Grid.Row="12" Text="C:\foo\bar" IsEnabled="False" />
     </Grid>
 </UserControl>
