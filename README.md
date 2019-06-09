@@ -45,6 +45,7 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 * [UploadButton](Documentation/Metrolib.Controls.UploadButton/README.md)
 
 ## Toggle Buttons
+* [AlarmToggleButton](Documentation/Metrolib.Controls.AlarmToggleButton/README.md)
 * [EditToggleButton](Documentation/Metrolib.Controls.EditToggleButton/README.md)
 * [EmailToggleButton](Documentation/Metrolib.Controls.EmailToggleButton/README.md)
 * [ExpanderToggleButton](Documentation/Metrolib.Controls.ExpanderToggleButton/README.md)
