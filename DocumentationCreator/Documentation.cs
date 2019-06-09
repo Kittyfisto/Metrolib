@@ -44,12 +44,15 @@ namespace DocumentationCreator
 			GenerateSolutionExplorerImage(doc);
 
 			CreateButtonDoc<AddButton>(doc);
-			CreateButtonDoc<CollapseAllButton>(doc);
 			CreateButtonDoc<CloseButton>(doc);
+			CreateButtonDoc<CollapseAllButton>(doc);
 			CreateButtonDoc<DownloadButton>(doc);
 			CreateButtonDoc<ExpandAllButton>(doc);
 			CreateButtonDoc<ExportButton>(doc);
+			CreateButtonDoc<FileAddButton>(doc);
+			CreateButtonDoc<FolderAddButton>(doc);
 			CreateButtonDoc<FolderOpenButton>(doc);
+			CreateButtonDoc<ImportButton>(doc);
 			CreateButtonDoc<MaximizeButton>(doc);
 			CreateButtonDoc<MinimizeButton>(doc);
 			CreateButtonDoc<MoreButton>(doc);
@@ -77,6 +80,7 @@ namespace DocumentationCreator
 			CreateFilterTextBoxDoc(doc);
 			CreateSearchTextBoxDoc(doc);
 			CreateFlatPasswordBoxDoc(doc);
+			CreatePathChooserTextBoxDoc(doc);
 		}
 
 		private static void GenerateCalculatorImage(Doc doc)
@@ -308,6 +312,39 @@ namespace DocumentationCreator
 			example5.Resize(width, height);
 			example5.SetValue(FlatPasswordBox.PasswordProperty, "Secret");
 			example5.SetValue(FlatPasswordBox.WatermarkProperty, "Enter password...");
+			example5.SetValue(UIElement.IsEnabledProperty, false);
+		}
+
+		private static void CreatePathChooserTextBoxDoc(Doc doc)
+		{
+			var creator = doc.CreateDocumentationForFrameworkElement<PathChooserTextBox>();
+			const int width = 128;
+			const int height = 32;
+
+			var example1 = creator.AddExample("Unfocused");
+			example1.Resize(width, height);
+			example1.SetValue(PathChooserTextBox.WatermarkProperty, "Enter path");
+
+			var example2 = creator.AddExample("Focused");
+			example2.Resize(width, height);
+			example2.SetValue(PathChooserTextBox.WatermarkProperty, "Enter path");
+			example2.Focus();
+
+			var example3 = creator.AddExample("Text, Focused");
+			example3.Resize(width, height);
+			example3.SetValue(TextBox.TextProperty, @"C:\foo\bar");
+			example3.SetValue(PathChooserTextBox.WatermarkProperty, "Enter path");
+			example3.Focus();
+
+			var example4 = creator.AddExample("Text, Unfocused");
+			example4.Resize(width, height);
+			example4.SetValue(TextBox.TextProperty, @"C:\foo\bar");
+			example4.SetValue(PathChooserTextBox.WatermarkProperty, "Enter path");
+
+			var example5 = creator.AddExample("Disabled");
+			example5.Resize(width, height);
+			example5.SetValue(TextBox.TextProperty, @"C:\foo\bar");
+			example5.SetValue(PathChooserTextBox.WatermarkProperty, "Enter path");
 			example5.SetValue(UIElement.IsEnabledProperty, false);
 		}
 	}

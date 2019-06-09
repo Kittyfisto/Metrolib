@@ -1,6 +1,6 @@
 # ExportButton  
 
-A simple button that allows for the exporting of data.
+A simple button that allows for the export of data.
 
 Displays a file with an arrow to top right.
 

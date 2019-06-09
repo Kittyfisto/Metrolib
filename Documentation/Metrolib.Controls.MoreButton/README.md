@@ -38,3 +38,6 @@ Displays three dots.
 
 # Properties  
 
+**Orientation**: System.Windows.Controls.Orientation  
+The orientation of the dots, defaults to horizontal.
+
