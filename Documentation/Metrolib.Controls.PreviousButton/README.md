@@ -8,10 +8,16 @@ Displays an upwards arrow.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public class PreviousButton : Metrolib.Controls.FlatButton
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> PreviousButton
 ### Unfocused
 
 ```xaml
 <Metrolib:PreviousButton />
+
 ```
 ![Image of PreviousButton, Unfocused](Unfocused.png)
 
@@ -19,6 +25,7 @@ Displays an upwards arrow.
 
 ```xaml
 <Metrolib:PreviousButton />
+
 ```
 ![Image of PreviousButton, Hovered](Hovered.png)
 
@@ -26,6 +33,7 @@ Displays an upwards arrow.
 
 ```xaml
 <Metrolib:PreviousButton />
+
 ```
 ![Image of PreviousButton, Pressed](Pressed.png)
 
@@ -33,6 +41,7 @@ Displays an upwards arrow.
 
 ```xaml
 <Metrolib:PreviousButton IsEnabled="False" />
+
 ```
 ![Image of PreviousButton, Disabled](Disabled.png)
 

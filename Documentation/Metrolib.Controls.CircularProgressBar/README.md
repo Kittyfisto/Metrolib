@@ -6,10 +6,17 @@ A circular progress bar (full circle).
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+[System.Windows.TemplatePart]
+public class CircularProgressBar : Metrolib.Controls.AbstractProgressBar
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> RangeBase -> ProgressBar -> AbstractProgressBar -> CircularProgressBar
 ### No progress
 
 ```xaml
 <Metrolib:CircularProgressBar />
+
 ```
 ![Image of CircularProgressBar, No progress](No_progress.png)
 
@@ -17,6 +24,7 @@ A circular progress bar (full circle).
 
 ```xaml
 <Metrolib:CircularProgressBar Value="50" />
+
 ```
 ![Image of CircularProgressBar, 50% progress](50__progress.png)
 
@@ -24,6 +32,7 @@ A circular progress bar (full circle).
 
 ```xaml
 <Metrolib:CircularProgressBar Value="100" />
+
 ```
 ![Image of CircularProgressBar, 100% progress](100__progress.png)
 
@@ -31,6 +40,7 @@ A circular progress bar (full circle).
 
 ```xaml
 <Metrolib:CircularProgressBar IsIndeterminate="True" />
+
 ```
 ![Image of CircularProgressBar, Indeterminate](Indeterminate.png)
 
@@ -38,6 +48,7 @@ A circular progress bar (full circle).
 
 ```xaml
 <Metrolib:CircularProgressBar Value="50" IsEnabled="False" />
+
 ```
 ![Image of CircularProgressBar, Disabled](Disabled.png)
 
@@ -45,6 +56,7 @@ A circular progress bar (full circle).
 
 ```xaml
 <Metrolib:CircularProgressBar Content="Busy" IsIndeterminate="True" />
+
 ```
 ![Image of CircularProgressBar, Indeterminate, Content](Indeterminate__Content.png)
 

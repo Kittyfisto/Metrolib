@@ -7,10 +7,16 @@ Displays a folder with a plus.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public class FolderAddButton : Metrolib.Controls.FlatButton
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FolderAddButton
 ### Unfocused
 
 ```xaml
 <Metrolib:FolderAddButton />
+
 ```
 ![Image of FolderAddButton, Unfocused](Unfocused.png)
 
@@ -18,6 +24,7 @@ Displays a folder with a plus.
 
 ```xaml
 <Metrolib:FolderAddButton />
+
 ```
 ![Image of FolderAddButton, Hovered](Hovered.png)
 
@@ -25,6 +32,7 @@ Displays a folder with a plus.
 
 ```xaml
 <Metrolib:FolderAddButton />
+
 ```
 ![Image of FolderAddButton, Pressed](Pressed.png)
 
@@ -32,6 +40,7 @@ Displays a folder with a plus.
 
 ```xaml
 <Metrolib:FolderAddButton IsEnabled="False" />
+
 ```
 ![Image of FolderAddButton, Disabled](Disabled.png)
 

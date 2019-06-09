@@ -5,10 +5,16 @@ A toggle button that is typically used to expand/contract an area of the UI.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public class ExpanderToggleButton : System.Windows.Controls.Primitives.ToggleButton
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> ToggleButton -> ExpanderToggleButton
 ### Unfocused
 
 ```xaml
 <Metrolib:ExpanderToggleButton />
+
 ```
 ![Image of ExpanderToggleButton, Unfocused](Unfocused.png)
 
@@ -16,6 +22,7 @@ A toggle button that is typically used to expand/contract an area of the UI.
 
 ```xaml
 <Metrolib:ExpanderToggleButton IsChecked="True" />
+
 ```
 ![Image of ExpanderToggleButton, Checked](Checked.png)
 
@@ -23,6 +30,7 @@ A toggle button that is typically used to expand/contract an area of the UI.
 
 ```xaml
 <Metrolib:ExpanderToggleButton IsEnabled="False" />
+
 ```
 ![Image of ExpanderToggleButton, Disabled](Disabled.png)
 
@@ -30,6 +38,7 @@ A toggle button that is typically used to expand/contract an area of the UI.
 
 ```xaml
 <Metrolib:ExpanderToggleButton IsEnabled="False" />
+
 ```
 ![Image of ExpanderToggleButton, Disabled Checked](Disabled_Checked.png)
 

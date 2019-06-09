@@ -6,10 +6,17 @@ This textbox allows a user to manually enter a path to a folder/file or click on
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+[System.Windows.TemplatePart]
+public class PathChooserTextBox : System.Windows.Controls.TextBox
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> TextBoxBase -> TextBox -> PathChooserTextBox
 ### Unfocused
 
 ```xaml
 <Metrolib:PathChooserTextBox Watermark="Enter path" />
+
 ```
 ![Image of PathChooserTextBox, Unfocused](Unfocused.png)
 
@@ -17,6 +24,7 @@ This textbox allows a user to manually enter a path to a folder/file or click on
 
 ```xaml
 <Metrolib:PathChooserTextBox Watermark="Enter path" />
+
 ```
 ![Image of PathChooserTextBox, Focused](Focused.png)
 
@@ -24,6 +32,7 @@ This textbox allows a user to manually enter a path to a folder/file or click on
 
 ```xaml
 <Metrolib:PathChooserTextBox Text="C:\foo\bar" Watermark="Enter path" />
+
 ```
 ![Image of PathChooserTextBox, Text, Focused](Text__Focused.png)
 
@@ -31,6 +40,7 @@ This textbox allows a user to manually enter a path to a folder/file or click on
 
 ```xaml
 <Metrolib:PathChooserTextBox Text="C:\foo\bar" Watermark="Enter path" />
+
 ```
 ![Image of PathChooserTextBox, Text, Unfocused](Text__Unfocused.png)
 
@@ -38,6 +48,7 @@ This textbox allows a user to manually enter a path to a folder/file or click on
 
 ```xaml
 <Metrolib:PathChooserTextBox Text="C:\foo\bar" Watermark="Enter path" IsEnabled="False" />
+
 ```
 ![Image of PathChooserTextBox, Disabled](Disabled.png)
 

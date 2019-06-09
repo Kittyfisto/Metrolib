@@ -7,10 +7,16 @@ Displays a trashcan.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public class TrashButton : Metrolib.Controls.FlatButton
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> TrashButton
 ### Unfocused
 
 ```xaml
 <Metrolib:TrashButton />
+
 ```
 ![Image of TrashButton, Unfocused](Unfocused.png)
 
@@ -18,6 +24,7 @@ Displays a trashcan.
 
 ```xaml
 <Metrolib:TrashButton />
+
 ```
 ![Image of TrashButton, Hovered](Hovered.png)
 
@@ -25,6 +32,7 @@ Displays a trashcan.
 
 ```xaml
 <Metrolib:TrashButton />
+
 ```
 ![Image of TrashButton, Pressed](Pressed.png)
 
@@ -32,6 +40,7 @@ Displays a trashcan.
 
 ```xaml
 <Metrolib:TrashButton IsEnabled="False" />
+
 ```
 ![Image of TrashButton, Disabled](Disabled.png)
 

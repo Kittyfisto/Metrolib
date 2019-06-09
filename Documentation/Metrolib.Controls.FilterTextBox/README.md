@@ -5,10 +5,16 @@ A textbox meant to input queries used for filtering.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public class FilterTextBox : System.Windows.Controls.Control
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> FilterTextBox
 ### Unfocused
 
 ```xaml
 <Metrolib:FilterTextBox Watermark="Enter filter..." />
+
 ```
 ![Image of FilterTextBox, Unfocused](Unfocused.png)
 
@@ -16,6 +22,7 @@ A textbox meant to input queries used for filtering.
 
 ```xaml
 <Metrolib:FilterTextBox Watermark="Enter filter..." />
+
 ```
 ![Image of FilterTextBox, Focused](Focused.png)
 
@@ -23,6 +30,7 @@ A textbox meant to input queries used for filtering.
 
 ```xaml
 <Metrolib:FilterTextBox FilterText="[0-9]+" Watermark="Enter filter..." />
+
 ```
 ![Image of FilterTextBox, FilterText, Focused](FilterText__Focused.png)
 
@@ -30,6 +38,7 @@ A textbox meant to input queries used for filtering.
 
 ```xaml
 <Metrolib:FilterTextBox FilterText="[0-9]+" Watermark="Enter filter..." />
+
 ```
 ![Image of FilterTextBox, FilterText, Unfocused](FilterText__Unfocused.png)
 
@@ -37,6 +46,7 @@ A textbox meant to input queries used for filtering.
 
 ```xaml
 <Metrolib:FilterTextBox FilterText="[0-9]+" Watermark="Enter filter..." IsValid="False" />
+
 ```
 ![Image of FilterTextBox, Invalid FilterText](Invalid_FilterText.png)
 
@@ -44,6 +54,7 @@ A textbox meant to input queries used for filtering.
 
 ```xaml
 <Metrolib:FilterTextBox FilterText="[0-9]+" Watermark="Enter filter..." IsEnabled="False" />
+
 ```
 ![Image of FilterTextBox, Disabled](Disabled.png)
 

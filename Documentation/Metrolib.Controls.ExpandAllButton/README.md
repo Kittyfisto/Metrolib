@@ -7,10 +7,16 @@ Displays a plus sign in a box.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public class ExpandAllButton : Metrolib.Controls.FlatButton
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> ExpandAllButton
 ### Unfocused
 
 ```xaml
 <Metrolib:ExpandAllButton />
+
 ```
 ![Image of ExpandAllButton, Unfocused](Unfocused.png)
 
@@ -18,6 +24,7 @@ Displays a plus sign in a box.
 
 ```xaml
 <Metrolib:ExpandAllButton />
+
 ```
 ![Image of ExpandAllButton, Hovered](Hovered.png)
 
@@ -25,6 +32,7 @@ Displays a plus sign in a box.
 
 ```xaml
 <Metrolib:ExpandAllButton />
+
 ```
 ![Image of ExpandAllButton, Pressed](Pressed.png)
 
@@ -32,6 +40,7 @@ Displays a plus sign in a box.
 
 ```xaml
 <Metrolib:ExpandAllButton IsEnabled="False" />
+
 ```
 ![Image of ExpandAllButton, Disabled](Disabled.png)
 

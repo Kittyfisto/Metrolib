@@ -7,10 +7,16 @@ Displays a magnifying glass.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public class SearchButton : Metrolib.Controls.FlatButton
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> SearchButton
 ### Unfocused
 
 ```xaml
 <Metrolib:SearchButton />
+
 ```
 ![Image of SearchButton, Unfocused](Unfocused.png)
 
@@ -18,6 +24,7 @@ Displays a magnifying glass.
 
 ```xaml
 <Metrolib:SearchButton />
+
 ```
 ![Image of SearchButton, Hovered](Hovered.png)
 
@@ -25,6 +32,7 @@ Displays a magnifying glass.
 
 ```xaml
 <Metrolib:SearchButton />
+
 ```
 ![Image of SearchButton, Pressed](Pressed.png)
 
@@ -32,6 +40,7 @@ Displays a magnifying glass.
 
 ```xaml
 <Metrolib:SearchButton IsEnabled="False" />
+
 ```
 ![Image of SearchButton, Disabled](Disabled.png)
 

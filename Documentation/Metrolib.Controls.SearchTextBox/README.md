@@ -9,10 +9,20 @@ A text-box meant to input a search term.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+[System.Windows.TemplatePart]
+[System.Windows.TemplatePart]
+[System.Windows.TemplatePart]
+[System.Windows.TemplatePart]
+public class SearchTextBox : System.Windows.Controls.TextBox
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> TextBoxBase -> TextBox -> SearchTextBox
 ### Unfocused
 
 ```xaml
 <Metrolib:SearchTextBox Watermark="Enter search term..." />
+
 ```
 ![Image of SearchTextBox, Unfocused](Unfocused.png)
 
@@ -20,6 +30,7 @@ A text-box meant to input a search term.
 
 ```xaml
 <Metrolib:SearchTextBox Watermark="Enter search term..." />
+
 ```
 ![Image of SearchTextBox, Focused](Focused.png)
 
@@ -27,6 +38,7 @@ A text-box meant to input a search term.
 
 ```xaml
 <Metrolib:SearchTextBox Text="Luke" Watermark="Enter search term..." />
+
 ```
 ![Image of SearchTextBox, FilterText, Focused](FilterText__Focused.png)
 

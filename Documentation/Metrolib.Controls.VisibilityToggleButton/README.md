@@ -5,10 +5,16 @@ A toggle button that allows the user to control whether a filter is being used t
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public class VisibilityToggleButton : Metrolib.Controls.FlatToggleButton
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> ToggleButton -> ToggleButtonBase -> FlatToggleButton -> VisibilityToggleButton
 ### Unfocused
 
 ```xaml
 <Metrolib:VisibilityToggleButton />
+
 ```
 ![Image of VisibilityToggleButton, Unfocused](Unfocused.png)
 
@@ -16,6 +22,7 @@ A toggle button that allows the user to control whether a filter is being used t
 
 ```xaml
 <Metrolib:VisibilityToggleButton IsChecked="True" />
+
 ```
 ![Image of VisibilityToggleButton, Checked](Checked.png)
 
@@ -23,6 +30,7 @@ A toggle button that allows the user to control whether a filter is being used t
 
 ```xaml
 <Metrolib:VisibilityToggleButton IsEnabled="False" />
+
 ```
 ![Image of VisibilityToggleButton, Disabled](Disabled.png)
 
@@ -30,6 +38,7 @@ A toggle button that allows the user to control whether a filter is being used t
 
 ```xaml
 <Metrolib:VisibilityToggleButton IsEnabled="False" />
+
 ```
 ![Image of VisibilityToggleButton, Disabled Checked](Disabled_Checked.png)
 

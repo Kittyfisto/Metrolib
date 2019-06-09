@@ -6,10 +6,19 @@ A progress bar in a "flat" style.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+[System.Windows.TemplatePart]
+[System.Windows.TemplatePart]
+[System.Windows.TemplatePart]
+public class FlatProgressBar : Metrolib.Controls.AbstractProgressBar
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> RangeBase -> ProgressBar -> AbstractProgressBar -> FlatProgressBar
 ### No progress
 
 ```xaml
 <Metrolib:FlatProgressBar />
+
 ```
 ![Image of FlatProgressBar, No progress](No_progress.png)
 
@@ -17,6 +26,7 @@ A progress bar in a "flat" style.
 
 ```xaml
 <Metrolib:FlatProgressBar Value="50" />
+
 ```
 ![Image of FlatProgressBar, 50% progress](50__progress.png)
 
@@ -24,6 +34,7 @@ A progress bar in a "flat" style.
 
 ```xaml
 <Metrolib:FlatProgressBar Value="100" />
+
 ```
 ![Image of FlatProgressBar, 100% progress](100__progress.png)
 
@@ -31,6 +42,7 @@ A progress bar in a "flat" style.
 
 ```xaml
 <Metrolib:FlatProgressBar IsIndeterminate="True" />
+
 ```
 ![Image of FlatProgressBar, Indeterminate](Indeterminate.png)
 
@@ -38,6 +50,7 @@ A progress bar in a "flat" style.
 
 ```xaml
 <Metrolib:FlatProgressBar Value="50" IsEnabled="False" />
+
 ```
 ![Image of FlatProgressBar, Disabled](Disabled.png)
 

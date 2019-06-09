@@ -7,10 +7,16 @@ Displays a plus sign.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public class AddButton : Metrolib.Controls.FlatButton
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> AddButton
 ### Unfocused
 
 ```xaml
 <Metrolib:AddButton />
+
 ```
 ![Image of AddButton, Unfocused](Unfocused.png)
 
@@ -18,6 +24,7 @@ Displays a plus sign.
 
 ```xaml
 <Metrolib:AddButton />
+
 ```
 ![Image of AddButton, Hovered](Hovered.png)
 
@@ -25,6 +32,7 @@ Displays a plus sign.
 
 ```xaml
 <Metrolib:AddButton />
+
 ```
 ![Image of AddButton, Pressed](Pressed.png)
 
@@ -32,6 +40,7 @@ Displays a plus sign.
 
 ```xaml
 <Metrolib:AddButton IsEnabled="False" />
+
 ```
 ![Image of AddButton, Disabled](Disabled.png)
 

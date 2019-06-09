@@ -7,10 +7,16 @@ Displays an curved arrow to the left.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public class UndoButton : Metrolib.Controls.FlatButton
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> UndoButton
 ### Unfocused
 
 ```xaml
 <Metrolib:UndoButton />
+
 ```
 ![Image of UndoButton, Unfocused](Unfocused.png)
 
@@ -18,6 +24,7 @@ Displays an curved arrow to the left.
 
 ```xaml
 <Metrolib:UndoButton />
+
 ```
 ![Image of UndoButton, Hovered](Hovered.png)
 
@@ -25,6 +32,7 @@ Displays an curved arrow to the left.
 
 ```xaml
 <Metrolib:UndoButton />
+
 ```
 ![Image of UndoButton, Pressed](Pressed.png)
 
@@ -32,6 +40,7 @@ Displays an curved arrow to the left.
 
 ```xaml
 <Metrolib:UndoButton IsEnabled="False" />
+
 ```
 ![Image of UndoButton, Disabled](Disabled.png)
 

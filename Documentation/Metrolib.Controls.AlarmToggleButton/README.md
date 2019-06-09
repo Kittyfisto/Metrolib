@@ -5,10 +5,16 @@ A toggle button that allows an alarm to be on or off.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public class AlarmToggleButton : Metrolib.Controls.ToggleButtonBase
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> ToggleButton -> ToggleButtonBase -> AlarmToggleButton
 ### Unfocused
 
 ```xaml
 <Metrolib:AlarmToggleButton />
+
 ```
 ![Image of AlarmToggleButton, Unfocused](Unfocused.png)
 
@@ -16,6 +22,7 @@ A toggle button that allows an alarm to be on or off.
 
 ```xaml
 <Metrolib:AlarmToggleButton IsChecked="True" />
+
 ```
 ![Image of AlarmToggleButton, Checked](Checked.png)
 
@@ -23,6 +30,7 @@ A toggle button that allows an alarm to be on or off.
 
 ```xaml
 <Metrolib:AlarmToggleButton IsEnabled="False" />
+
 ```
 ![Image of AlarmToggleButton, Disabled](Disabled.png)
 
@@ -30,6 +38,7 @@ A toggle button that allows an alarm to be on or off.
 
 ```xaml
 <Metrolib:AlarmToggleButton IsEnabled="False" />
+
 ```
 ![Image of AlarmToggleButton, Disabled Checked](Disabled_Checked.png)
 

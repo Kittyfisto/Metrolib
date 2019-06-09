@@ -6,10 +6,16 @@ A toggle button with a letter icon.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public class EmailToggleButton : Metrolib.Controls.FlatToggleButton
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> ToggleButton -> ToggleButtonBase -> FlatToggleButton -> EmailToggleButton
 ### Unfocused
 
 ```xaml
 <Metrolib:EmailToggleButton />
+
 ```
 ![Image of EmailToggleButton, Unfocused](Unfocused.png)
 
@@ -17,6 +23,7 @@ A toggle button with a letter icon.
 
 ```xaml
 <Metrolib:EmailToggleButton IsChecked="True" />
+
 ```
 ![Image of EmailToggleButton, Checked](Checked.png)
 
@@ -24,6 +31,7 @@ A toggle button with a letter icon.
 
 ```xaml
 <Metrolib:EmailToggleButton IsEnabled="False" />
+
 ```
 ![Image of EmailToggleButton, Disabled](Disabled.png)
 
@@ -31,6 +39,7 @@ A toggle button with a letter icon.
 
 ```xaml
 <Metrolib:EmailToggleButton IsEnabled="False" />
+
 ```
 ![Image of EmailToggleButton, Disabled Checked](Disabled_Checked.png)
 

@@ -7,10 +7,16 @@ Displays a downward arrow with a line beneath.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public class DownloadButton : Metrolib.Controls.FlatButton
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> DownloadButton
 ### Unfocused
 
 ```xaml
 <Metrolib:DownloadButton />
+
 ```
 ![Image of DownloadButton, Unfocused](Unfocused.png)
 
@@ -18,6 +24,7 @@ Displays a downward arrow with a line beneath.
 
 ```xaml
 <Metrolib:DownloadButton />
+
 ```
 ![Image of DownloadButton, Hovered](Hovered.png)
 
@@ -25,6 +32,7 @@ Displays a downward arrow with a line beneath.
 
 ```xaml
 <Metrolib:DownloadButton />
+
 ```
 ![Image of DownloadButton, Pressed](Pressed.png)
 
@@ -32,6 +40,7 @@ Displays a downward arrow with a line beneath.
 
 ```xaml
 <Metrolib:DownloadButton IsEnabled="False" />
+
 ```
 ![Image of DownloadButton, Disabled](Disabled.png)
 

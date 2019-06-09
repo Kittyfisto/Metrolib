@@ -7,10 +7,16 @@ Shows a circular progress indicator while being refreshed.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public class RefreshButton : Metrolib.Controls.FlatButton
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> RefreshButton
 ### Unfocused
 
 ```xaml
 <Metrolib:RefreshButton />
+
 ```
 ![Image of RefreshButton, Unfocused](Unfocused.png)
 
@@ -18,6 +24,7 @@ Shows a circular progress indicator while being refreshed.
 
 ```xaml
 <Metrolib:RefreshButton />
+
 ```
 ![Image of RefreshButton, Hovered](Hovered.png)
 
@@ -25,6 +32,7 @@ Shows a circular progress indicator while being refreshed.
 
 ```xaml
 <Metrolib:RefreshButton />
+
 ```
 ![Image of RefreshButton, Pressed](Pressed.png)
 
@@ -32,6 +40,7 @@ Shows a circular progress indicator while being refreshed.
 
 ```xaml
 <Metrolib:RefreshButton IsEnabled="False" />
+
 ```
 ![Image of RefreshButton, Disabled](Disabled.png)
 

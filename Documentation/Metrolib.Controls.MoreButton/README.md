@@ -8,10 +8,16 @@ Displays three dots.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public class MoreButton : Metrolib.Controls.FlatButton
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> MoreButton
 ### Unfocused
 
 ```xaml
 <Metrolib:MoreButton />
+
 ```
 ![Image of MoreButton, Unfocused](Unfocused.png)
 
@@ -19,6 +25,7 @@ Displays three dots.
 
 ```xaml
 <Metrolib:MoreButton />
+
 ```
 ![Image of MoreButton, Hovered](Hovered.png)
 
@@ -26,6 +33,7 @@ Displays three dots.
 
 ```xaml
 <Metrolib:MoreButton />
+
 ```
 ![Image of MoreButton, Pressed](Pressed.png)
 
@@ -33,6 +41,7 @@ Displays three dots.
 
 ```xaml
 <Metrolib:MoreButton IsEnabled="False" />
+
 ```
 ![Image of MoreButton, Disabled](Disabled.png)
 

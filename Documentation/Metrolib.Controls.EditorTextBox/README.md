@@ -9,10 +9,16 @@ Supports many markdown shortcuts, when EnableMarkdownShortcuts is set to true.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public sealed class EditorTextBox : System.Windows.Controls.TextBox
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> TextBoxBase -> TextBox -> EditorTextBox
 ### Unfocused
 
 ```xaml
 <Metrolib:EditorTextBox Watermark="Enter comment..." />
+
 ```
 ![Image of EditorTextBox, Unfocused](Unfocused.png)
 
@@ -20,6 +26,7 @@ Supports many markdown shortcuts, when EnableMarkdownShortcuts is set to true.
 
 ```xaml
 <Metrolib:EditorTextBox Watermark="Enter comment..." />
+
 ```
 ![Image of EditorTextBox, Focused](Focused.png)
 
@@ -27,6 +34,7 @@ Supports many markdown shortcuts, when EnableMarkdownShortcuts is set to true.
 
 ```xaml
 <Metrolib:EditorTextBox Text="The quick brown fox jumps over the lazy dog" Watermark="Enter comment..." TextWrapping="Wrap" />
+
 ```
 ![Image of EditorTextBox, Text, Focused](Text__Focused.png)
 
@@ -34,6 +42,7 @@ Supports many markdown shortcuts, when EnableMarkdownShortcuts is set to true.
 
 ```xaml
 <Metrolib:EditorTextBox Text="The quick brown fox jumps over the lazy dog" Watermark="Enter comment..." TextWrapping="Wrap" />
+
 ```
 ![Image of EditorTextBox, Text, Unfocused](Text__Unfocused.png)
 
@@ -41,6 +50,7 @@ Supports many markdown shortcuts, when EnableMarkdownShortcuts is set to true.
 
 ```xaml
 <Metrolib:EditorTextBox Text="The quick brown fox jumps over the lazy dog" Watermark="Enter comment..." TextWrapping="Wrap" IsEnabled="False" />
+
 ```
 ![Image of EditorTextBox, Disabled](Disabled.png)
 

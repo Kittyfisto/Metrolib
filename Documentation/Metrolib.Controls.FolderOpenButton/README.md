@@ -7,10 +7,16 @@ Displays an open folder.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public class FolderOpenButton : Metrolib.Controls.FlatButton
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FolderOpenButton
 ### Unfocused
 
 ```xaml
 <Metrolib:FolderOpenButton />
+
 ```
 ![Image of FolderOpenButton, Unfocused](Unfocused.png)
 
@@ -18,6 +24,7 @@ Displays an open folder.
 
 ```xaml
 <Metrolib:FolderOpenButton />
+
 ```
 ![Image of FolderOpenButton, Hovered](Hovered.png)
 
@@ -25,6 +32,7 @@ Displays an open folder.
 
 ```xaml
 <Metrolib:FolderOpenButton />
+
 ```
 ![Image of FolderOpenButton, Pressed](Pressed.png)
 
@@ -32,6 +40,7 @@ Displays an open folder.
 
 ```xaml
 <Metrolib:FolderOpenButton IsEnabled="False" />
+
 ```
 ![Image of FolderOpenButton, Disabled](Disabled.png)
 

@@ -5,10 +5,16 @@ A button to maximize something, for example a window.
 **Namespace**: Metrolib.Controls  
 **Assembly**: Metrolib (in Metrolib.dll)  
 
+```C#
+public class MaximizeButton : Metrolib.Controls.FlatButton
+```
+
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> MaximizeButton
 ### Unfocused
 
 ```xaml
 <Metrolib:MaximizeButton />
+
 ```
 ![Image of MaximizeButton, Unfocused](Unfocused.png)
 
@@ -16,6 +22,7 @@ A button to maximize something, for example a window.
 
 ```xaml
 <Metrolib:MaximizeButton />
+
 ```
 ![Image of MaximizeButton, Hovered](Hovered.png)
 
@@ -23,6 +30,7 @@ A button to maximize something, for example a window.
 
 ```xaml
 <Metrolib:MaximizeButton />
+
 ```
 ![Image of MaximizeButton, Pressed](Pressed.png)
 
@@ -30,6 +38,7 @@ A button to maximize something, for example a window.
 
 ```xaml
 <Metrolib:MaximizeButton IsEnabled="False" />
+
 ```
 ![Image of MaximizeButton, Disabled](Disabled.png)
 
