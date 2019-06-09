@@ -28,7 +28,10 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 * [ExpandAllButton](Documentation/Metrolib.Controls.ExpandAllButton/README.md)
 * [ExportButton](Documentation/Metrolib.Controls.ExportButton/README.md)
 * [FlatButton](Documentation/Metrolib.Controls.FlatButton/README.md)
+* [FileAddButton](Documentation/Metrolib.Controls.FileAddButton/README.md)
+* [FolderAddButton](Documentation/Metrolib.Controls.FolderAddButton/README.md)
 * [FolderOpenButton](Documentation/Metrolib.Controls.FolderOpenButton/README.md)
+* [ImportButton](Documentation/Metrolib.Controls.ImportButton/README.md)
 * [MaximizeButton](Documentation/Metrolib.Controls.MaximizeButton/README.md)
 * [MinimizeButton](Documentation/Metrolib.Controls.MinimizeButton/README.md)
 * [MoreButton](Documentation/Metrolib.Controls.MoreButton/README.md)
@@ -54,6 +57,7 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 * [EditorTextBox](Documentation/Metrolib.Controls.EditorTextBox/README.md)
 * [FilterTextBox](Documentation/Metrolib.Controls.FilterTextBox/README.md)
 * [FlatPasswordBox](Documentation/Metrolib.Controls.FlatPasswordBox/README.md)
+* [PathChooserTextBox](Documentation/Metrolib.Controls.PathChooserTextBox/README.md)
 * [SearchTextBox](Documentation/Metrolib.Controls.SearchTextBox/README.md)
 
 ## Progress Bars
