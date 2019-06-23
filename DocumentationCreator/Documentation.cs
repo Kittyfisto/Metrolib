@@ -69,6 +69,7 @@ namespace DocumentationCreator
 			CreateToggleButtonDoc<EditToggleButton>(doc);
 			CreateToggleButtonDoc<EmailToggleButton>(doc);
 			CreateToggleButtonDoc<ExpanderToggleButton>(doc);
+			CreateToggleButtonDoc<PluginToggleButton>(doc);
 			CreateToggleButtonDoc<ViewDashboardToggleButton>(doc);
 			CreateToggleButtonDoc<ViewQuiltToggleButton>(doc);
 			CreateToggleButtonDoc<VisibilityToggleButton>(doc);

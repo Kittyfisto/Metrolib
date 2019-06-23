@@ -265,6 +265,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ToggleButtons\PluginToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ToggleButtons\ToggleButtonBase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -407,6 +411,7 @@
     <Compile Include="Controls\TextBoxes\PathChooserTextBox.cs" />
     <Compile Include="Controls\ToggleButtons\AlarmToggleButton.cs" />
     <Compile Include="Controls\ToggleButtons\ItemsToggleButton.cs" />
+    <Compile Include="Controls\ToggleButtons\PluginToggleButton.cs" />
     <Compile Include="Controls\ToggleButtons\ToggleButtonItemViewModel.cs" />
     <Compile Include="Controls\ToggleContentPresenter.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />

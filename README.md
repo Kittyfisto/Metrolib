@@ -50,6 +50,7 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 * [EmailToggleButton](Documentation/Metrolib.Controls.EmailToggleButton/README.md)
 * [ExpanderToggleButton](Documentation/Metrolib.Controls.ExpanderToggleButton/README.md)
 * OneWayToggle
+* [PluginToggleButton](Documentation/Metrolib.Controls.PluginToggleButton/README.md)
 * [ViewDashboardToggleButton](Documentation/Metrolib.Controls.ViewDashboardToggleButton/README.md)
 * [ViewQuiltToggleButton](Documentation/Metrolib.Controls.ViewQuiltToggleButton/README.md)
 * [VisibilityToggleButton](Documentation/Metrolib.Controls.VisibilityToggleButton/README.md)
