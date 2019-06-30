@@ -1,6 +1,8 @@
 # Metrolib
 
 [![Build status](https://ci.appveyor.com/api/projects/status/diccm1fst35n9xy7?svg=true)](https://ci.appveyor.com/project/Kittyfisto/metrolib)
+[![NuGet](https://img.shields.io/nuget/dt/metrolib.svg)](http://nuget.org/packages/metrolib)
+[![NuGet](https://img.shields.io/nuget/v/metrolib.svg)](http://nuget.org/packages/metrolib)
 
 This library offers many restyled controls that help building a slick WPF app.
 
