@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
@@ -26,6 +27,12 @@ namespace Metrolib.Controls
 		public static readonly DependencyProperty IconHeightProperty =
 			DependencyProperty.Register("IconHeight", typeof (double), typeof (ExpanderToggleButton),
 			                            new PropertyMetadata(default(double)));
+		
+		/// <summary>
+		///     Definition of the <see cref="Orientation" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(
+		                                                "Orientation", typeof(Orientation), typeof(ExpanderToggleButton), new PropertyMetadata(default(Orientation)));
 
 		static ExpanderToggleButton()
 		{
@@ -49,6 +56,15 @@ namespace Metrolib.Controls
 		{
 			get { return (Brush) GetValue(InvertedForegroundProperty); }
 			set { SetValue(InvertedForegroundProperty, value); }
+		}
+
+		/// <summary>
+		///     The orientation of the button, defaults to <see cref="System.Windows.Controls.Orientation.Horizontal"/>.
+		/// </summary>
+		public Orientation Orientation
+		{
+			get { return (Orientation) GetValue(OrientationProperty); }
+			set { SetValue(OrientationProperty, value); }
 		}
 	}
 }

@@ -51,11 +51,13 @@
         <controls:FlatToggleButton Grid.Column="8" Grid.Row="2" Content="Toggle" IsEnabled="False" IsChecked="True" />
 
         <TextBlock Text="ExpanderToggleButton" Grid.Row="3" VerticalAlignment="Center" />
-        <controls:ExpanderToggleButton Grid.Column="2" Grid.Row="3" Padding="4" />
+        <controls:ExpanderToggleButton Grid.Column="2" Grid.Row="3" Padding="4"
+                                       Orientation="Vertical" />
         <Border Background="Black" Grid.Column="4" Grid.Row="3">
             <controls:ExpanderToggleButton controls:Properties.IsInverted="True" Padding="4" />
         </Border>
-        <controls:ExpanderToggleButton Grid.Column="6" Grid.Row="3" Padding="4" IsEnabled="False" />
+        <controls:ExpanderToggleButton Grid.Column="6" Grid.Row="3" Padding="4" IsEnabled="False"
+                                       Orientation="Horizontal" />
 
         <TextBlock Text="VisibilityToggleButton" Grid.Row="4" VerticalAlignment="Center" />
         <controls:VisibilityToggleButton Grid.Column="2" Grid.Row="4" Padding="4" ToolTip="An eye" />

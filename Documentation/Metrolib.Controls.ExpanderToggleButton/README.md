@@ -50,3 +50,6 @@ The height of the icon.
 **InvertedForeground**: System.Windows.Media.Brush  
 The foreground color, used when IsInvertedProperty is set to true.
 
+**Orientation**: System.Windows.Controls.Orientation  
+The orientation of the button, defaults to Horizontal.
+
