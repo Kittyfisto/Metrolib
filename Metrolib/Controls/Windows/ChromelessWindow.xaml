@@ -78,6 +78,13 @@
                                 <controls:CloseButton Grid.Column="5"
                                                       x:Name="PART_CloseWindow"
                                                       WindowChrome.IsHitTestVisibleInChrome="True" />
+
+                                <Rectangle Grid.Column="0"
+                                           Grid.ColumnSpan="6"
+                                           Fill="#50FFFFFF"
+                                           IsHitTestVisible="False"
+                                           Visibility="{Binding IsActive, RelativeSource={RelativeSource AncestorType={x:Type controls:ChromelessWindow}},
+                                                        Converter={StaticResource BoolTrueToCollapsedConverter}}" />
                             </Grid>
 
                             <ContentPresenter Grid.Row="1"
