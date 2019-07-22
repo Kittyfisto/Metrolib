@@ -133,16 +133,16 @@ namespace Metrolib.Controls.TextBlocks
 			}
 
 			if (MatchTwoStar(tokens, out totalMatchCount,
-				    start1: TokenPattern.Required(MarkdownTokenType.SquareBracketOpen),
-					end1: TokenPattern.Required(MarkdownTokenType.SquareBracketClose),
-					start2: TokenPattern.Required(MarkdownTokenType.BracketOpen),
-				    end2: TokenPattern.Required(MarkdownTokenType.BracketClose),
-					match1: out var match1,
-					match2: out var match2))
+			                 match1: out var match1,
+			                 match2: out var match2,
+				             start1: TokenPattern.Required(MarkdownTokenType.SquareBracketOpen),
+				             end1: TokenPattern.Required(MarkdownTokenType.SquareBracketClose),
+				             start2: TokenPattern.Required(MarkdownTokenType.BracketOpen),
+				             end2: TokenPattern.Required(MarkdownTokenType.BracketClose)))
 			{
 				consumedCount = totalMatchCount;
 				var uri = new Uri(ToString(match2));
-				var hyperlink = new Hyperlink()
+				var hyperlink = new Hyperlink
 				{
 					NavigateUri = uri
 				};

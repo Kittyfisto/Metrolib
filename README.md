@@ -57,6 +57,9 @@ This library ships a lot of restyled controls, from buttons to full blown charts
 * [ViewQuiltToggleButton](Documentation/Metrolib.Controls.ViewQuiltToggleButton/README.md)
 * [VisibilityToggleButton](Documentation/Metrolib.Controls.VisibilityToggleButton/README.md)
 
+## Text Blocks
+* [MarkdownPresenter](Documentation/Metrolib.Controls.MarkdownPresenter/README.md)
+
 ## Text Boxes
 * [EditorTextBox](Documentation/Metrolib.Controls.EditorTextBox/README.md)
 * [FilterTextBox](Documentation/Metrolib.Controls.FilterTextBox/README.md)

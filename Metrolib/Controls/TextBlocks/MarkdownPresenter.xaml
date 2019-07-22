@@ -3,10 +3,12 @@
                     xmlns:controls="clr-namespace:Metrolib.Controls">
 
     <Style TargetType="{x:Type controls:MarkdownPresenter}">
+        <Setter Property="Background" Value="White" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:MarkdownPresenter}">
                     <controls:FlatTextBlock x:Name="PART_TextBlock"
+                                            Background="{TemplateBinding Background}"
                                             TextWrapping="{TemplateBinding TextWrapping}"/>
                 </ControlTemplate>
             </Setter.Value>

@@ -354,12 +354,28 @@ namespace DocumentationCreator
 		private static void CreateMarkdownDoc(Doc doc)
 		{
 			var creator = doc.CreateDocumentationForFrameworkElement<MarkdownPresenter>();
-			const int width = 128;
-			const int height = 32;
+			const int width = 200;
+			const int height = 18;
 
 			var example1 = creator.AddExample("Bold");
 			example1.Resize(width, height);
-			example1.SetValue(PathChooserTextBox.WatermarkProperty, "What's up **danger**");
+			example1.SetValue(MarkdownPresenter.MarkdownProperty, "**NO** expectations");
+
+			var example2 = creator.AddExample("Italic");
+			example2.Resize(width, height);
+			example2.SetValue(MarkdownPresenter.MarkdownProperty, "What's up *danger*");
+
+			var example3 = creator.AddExample("Bold and Italic");
+			example3.Resize(width, height);
+			example3.SetValue(MarkdownPresenter.MarkdownProperty, "Spider Man Into the __*Spider-Verse*__");
+
+			var example4 = creator.AddExample("Strikethrough");
+			example4.Resize(width, height);
+			example4.SetValue(MarkdownPresenter.MarkdownProperty, "This movie is ~~awful~~ **awesome**!");
+
+			var example5 = creator.AddExample("Hyperlink");
+			example5.Resize(width, height);
+			example5.SetValue(MarkdownPresenter.MarkdownProperty, "Check out [this](https://www.youtube.com/watch?v=4-5WwgTnXnA)");
 		}
 	}
 }
