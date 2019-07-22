@@ -39,6 +39,21 @@ namespace Metrolib.Controls
 		                                                "TextWrapping", typeof(TextWrapping), typeof(MarkdownPresenter), new PropertyMetadata(TextWrapping.Wrap));
 
 		/// <summary>
+		///     Definition of the <see cref="TextTrimming"/> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty TextTrimmingProperty = DependencyProperty.Register(
+		                                                "TextTrimming", typeof(TextTrimming), typeof(MarkdownPresenter), new PropertyMetadata(default(TextTrimming)));
+
+		/// <summary>
+		///     Gets or sets how this control should trim text.
+		/// </summary>
+		public TextTrimming TextTrimming
+		{
+			get { return (TextTrimming) GetValue(TextTrimmingProperty); }
+			set { SetValue(TextTrimmingProperty, value); }
+		}
+
+		/// <summary>
 		///     Gets or sets how this control should wrap text.
 		/// </summary>
 		public TextWrapping TextWrapping

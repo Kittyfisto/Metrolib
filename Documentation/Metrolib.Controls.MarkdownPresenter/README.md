@@ -48,7 +48,7 @@ Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElemen
 ### Strikethrough
 
 ```xaml
-<Metrolib:MarkdownPresenter Markdown="This movie is ~~awful~~ **awesome**" />
+<Metrolib:MarkdownPresenter Markdown="This movie is ~~awful~~ **awesome**!" />
 
 ```
 ![Image of MarkdownPresenter, Strikethrough](Strikethrough.png)
@@ -62,6 +62,9 @@ Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElemen
 ![Image of MarkdownPresenter, Hyperlink](Hyperlink.png)
 
 # Properties  
+
+**TextTrimming**: System.Windows.TextTrimming  
+Gets or sets how this control should trim text.
 
 **TextWrapping**: System.Windows.TextWrapping  
 Gets or sets how this control should wrap text.

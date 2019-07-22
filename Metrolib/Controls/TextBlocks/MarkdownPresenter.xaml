@@ -9,7 +9,8 @@
                 <ControlTemplate TargetType="{x:Type controls:MarkdownPresenter}">
                     <controls:FlatTextBlock x:Name="PART_TextBlock"
                                             Background="{TemplateBinding Background}"
-                                            TextWrapping="{TemplateBinding TextWrapping}"/>
+                                            TextWrapping="{TemplateBinding TextWrapping}"
+                                            TextTrimming="{TemplateBinding TextTrimming}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
