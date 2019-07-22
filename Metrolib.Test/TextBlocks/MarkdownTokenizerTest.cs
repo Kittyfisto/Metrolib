@@ -75,6 +75,19 @@ namespace Metrolib.Test.TextBlocks
 		}
 
 		[Test]
+		public void TestBrackets()
+		{
+			var tokenizer = new MarkdownTokenizer();
+			tokenizer.Tokenize("[(])")
+				.Should().Equal(
+					new MarkdownToken(MarkdownTokenType.SquareBracketOpen),
+					new MarkdownToken(MarkdownTokenType.BracketOpen),
+					new MarkdownToken(MarkdownTokenType.SquareBracketClose),
+					new MarkdownToken(MarkdownTokenType.BracketClose)
+				);
+		}
+
+		[Test]
 		public void TestTilde1()
 		{
 			var tokenizer = new MarkdownTokenizer();

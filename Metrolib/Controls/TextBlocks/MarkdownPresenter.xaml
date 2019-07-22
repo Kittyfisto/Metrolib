@@ -6,7 +6,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:MarkdownPresenter}">
-                    <controls:FlatTextBlock x:Name="PART_TextBlock" />
+                    <controls:FlatTextBlock x:Name="PART_TextBlock"
+                                            TextWrapping="{TemplateBinding TextWrapping}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

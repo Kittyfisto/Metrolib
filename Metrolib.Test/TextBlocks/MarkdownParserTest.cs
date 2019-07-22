@@ -212,5 +212,20 @@ namespace Metrolib.Test.TextBlocks
 			((Span) values[0]).TextDecorations.Should().HaveCount(1);
 			((Span) values[0]).TextDecorations[0].Location.Should().Be(TextDecorationLocation.Strikethrough);
 		}
+
+		[Test]
+		public void TestUri()
+		{
+			var parser = new MarkdownParser();
+			var values = parser.Parse("[Google](https://www.youtube.com/watch?v=dQw4w9WgXcQ)");
+			values.Should().HaveCount(1);
+			values[0].Should().BeOfType<Hyperlink>();
+			var hyperlink = (Hyperlink)values[0];
+			hyperlink.NavigateUri.Should().Be("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+			hyperlink.Inlines.Should().HaveCount(1);
+			hyperlink.Inlines.FirstInline.Should().BeOfType<Run>();
+			var run = (Run)hyperlink.Inlines.FirstInline;
+			run.Text.Should().Be("Google");
+		}
 	}
 }

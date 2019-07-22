@@ -161,25 +161,34 @@ namespace Metrolib.Controls.TextBlocks
 
 		private void Navigate()
 		{
-			Uri uri = NavigateUri;
-			string processName = ProcessName;
+			NavigateTo(NavigateUri, ProcessName, ProcessStartArguments);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="uri"></param>
+		/// <param name="processName"></param>
+		/// <param name="processStartArguments"></param>
+		internal static void NavigateTo(Uri uri, string processName, string processStartArguments)
+		{
 			if (uri != null)
 			{
-				var args = new ProcessStartInfo(NavigateUri.ToString());
+				var args = new ProcessStartInfo(uri.ToString());
 				Start(args);
 			}
 			else if (processName != null)
 			{
-				var args = new ProcessStartInfo(processName, ProcessStartArguments);
+				var args = new ProcessStartInfo(processName, processStartArguments);
 				Start(args);
 			}
 			else
 			{
-				
+
 			}
 		}
 
-		private void Start(ProcessStartInfo info)
+		private static void Start(ProcessStartInfo info)
 		{
 			try
 			{

@@ -9,15 +9,43 @@ namespace Metrolib.Controls
 	///     This control is responsible for presenting markdown text.
 	///     <see cref="https://stackoverflow.com/editing-help" /> for a description of markdown.
 	/// </summary>
+	/// <remarks>
+	///     Currently, this control *only* supports the following constructs:
+	///     - Bold
+	///     - Italic
+	///     - Strikethrough
+	///     - Hyperlinks
+	///
+	///     If there's a construct you're interested in, please open an issue and I will reprioritize
+	///     accordingly.
+	/// </remarks>
 	[TemplatePart(Name = PART_TextBlock, Type = typeof(TextBlock))]
 	public sealed class MarkdownPresenter
 		: Control
 	{
 		public const string PART_TextBlock = "PART_TextBlock";
 
+		/// <summary>
+		///     Definition of the <see cref="Markdown"/> dependency property.
+		/// </summary>
 		public static readonly DependencyProperty MarkdownProperty = DependencyProperty.Register(
 			"Markdown", typeof(string), typeof(MarkdownPresenter),
 			new PropertyMetadata(defaultValue: null, propertyChangedCallback: OnMarkdownChanged));
+
+		/// <summary>
+		///     Definition of the <see cref="TextWrapping"/> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty TextWrappingProperty = DependencyProperty.Register(
+		                                                "TextWrapping", typeof(TextWrapping), typeof(MarkdownPresenter), new PropertyMetadata(TextWrapping.Wrap));
+
+		/// <summary>
+		///     Gets or sets how this control should wrap text.
+		/// </summary>
+		public TextWrapping TextWrapping
+		{
+			get { return (TextWrapping) GetValue(TextWrappingProperty); }
+			set { SetValue(TextWrappingProperty, value); }
+		}
 
 		private TextBlock _textBlock;
 
@@ -27,6 +55,9 @@ namespace Metrolib.Controls
 				new FrameworkPropertyMetadata(typeof(MarkdownPresenter)));
 		}
 
+		/// <summary>
+		///     Gets or sets the markdown text this control should display.
+		/// </summary>
 		public string Markdown
 		{
 			get { return (string) GetValue(MarkdownProperty); }

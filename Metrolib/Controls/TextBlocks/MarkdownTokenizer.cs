@@ -23,6 +23,11 @@ namespace Metrolib.Controls.TextBlocks
 
 				{"~", MarkdownTokenType.Tilde},
 
+				{"[", MarkdownTokenType.SquareBracketOpen },
+				{"]", MarkdownTokenType.SquareBracketClose },
+				{"(", MarkdownTokenType.BracketOpen },
+				{")", MarkdownTokenType.BracketClose },
+
 				// Line breaks are only ever acknowledged if they are preceeded by at least two spaces
 				{"  \r\n", MarkdownTokenType.LineBreak},
 				{"  \n", MarkdownTokenType.LineBreak},

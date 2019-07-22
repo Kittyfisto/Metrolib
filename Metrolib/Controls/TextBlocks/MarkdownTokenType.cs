@@ -13,6 +13,12 @@
 		Whitespace,
 		Tilde,
 
+		SquareBracketOpen,
+		SquareBracketClose,
+
+		BracketOpen,
+		BracketClose,
+
 		Text = 255
 	}
 }

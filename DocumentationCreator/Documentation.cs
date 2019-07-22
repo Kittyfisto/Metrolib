@@ -82,6 +82,8 @@ namespace DocumentationCreator
 			CreateSearchTextBoxDoc(doc);
 			CreateFlatPasswordBoxDoc(doc);
 			CreatePathChooserTextBoxDoc(doc);
+
+			CreateMarkdownDoc(doc);
 		}
 
 		private static void GenerateCalculatorImage(Doc doc)
@@ -347,6 +349,17 @@ namespace DocumentationCreator
 			example5.SetValue(TextBox.TextProperty, @"C:\foo\bar");
 			example5.SetValue(PathChooserTextBox.WatermarkProperty, "Enter path");
 			example5.SetValue(UIElement.IsEnabledProperty, false);
+		}
+
+		private static void CreateMarkdownDoc(Doc doc)
+		{
+			var creator = doc.CreateDocumentationForFrameworkElement<MarkdownPresenter>();
+			const int width = 128;
+			const int height = 32;
+
+			var example1 = creator.AddExample("Bold");
+			example1.Resize(width, height);
+			example1.SetValue(PathChooserTextBox.WatermarkProperty, "What's up **danger**");
 		}
 	}
 }
