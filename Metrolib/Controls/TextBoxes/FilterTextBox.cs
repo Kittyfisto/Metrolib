@@ -43,6 +43,18 @@ namespace Metrolib.Controls
 		public static readonly DependencyProperty HasFilterTextProperty
 			= HasFilterTextPropertyKey.DependencyProperty;
 
+		/// <summary>
+		///     Definition of the <see cref="AcceptsTab"/> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty AcceptsTabProperty = DependencyProperty.Register(
+			"AcceptsTab", typeof(bool), typeof(FilterTextBox), new PropertyMetadata(false));
+
+		/// <summary>
+		///     Definition of the <see cref="AcceptsReturn"/> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty AcceptsReturnProperty = DependencyProperty.Register(
+			"AcceptsReturn", typeof(bool), typeof(FilterTextBox), new PropertyMetadata(false));
+
 		private TextBox _filterInput;
 		private Button _removeFilterTextButton;
 
@@ -110,6 +122,24 @@ namespace Metrolib.Controls
 		{
 			get { return (string) GetValue(FilterTextProperty); }
 			set { SetValue(FilterTextProperty, value); }
+		}
+
+		/// <summary>
+		///     Gets or sets a value indicating whether pressing the TAB key in a multiline text box control types a TAB character in the control instead of moving the focus to the next control in the tab order.
+		/// </summary>
+		public bool AcceptsTab
+		{
+			get { return (bool)GetValue(AcceptsTabProperty); }
+			set { SetValue(AcceptsTabProperty, value); }
+		}
+
+		/// <summary>
+		///     Gets or sets a value indicating whether pressing ENTER in a multiline TextBox control creates a new line of text in the control or activates the default button for the form.
+		/// </summary>
+		public bool AcceptsReturn
+		{
+			get { return (bool)GetValue(AcceptsReturnProperty); }
+			set { SetValue(AcceptsReturnProperty, value); }
 		}
 
 		private static void OnFilterTextChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)

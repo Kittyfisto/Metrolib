@@ -50,6 +50,8 @@
                                 BorderThickness="0"
                                 Margin="8,0,4,0"
                                 VerticalAlignment="Center"
+                                AcceptsTab="{TemplateBinding AcceptsTab}"
+                                AcceptsReturn="{TemplateBinding AcceptsReturn}"
                                 Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource TemplatedParent}}" />
 
                             <TextBlock

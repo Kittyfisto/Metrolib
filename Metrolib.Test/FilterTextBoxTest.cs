@@ -40,6 +40,13 @@ namespace Metrolib.Test
 		}
 
 		[Test]
+		public void TestConstruction()
+		{
+			_control.AcceptsReturn.Should().BeFalse("Because FilterTextBox must behave like an ordinary TextBox and thus the AcceptsReturn property must default to false");
+			_control.AcceptsTab.Should().BeFalse("Because FilterTextBox must behave like an ordinary TextBox and thus the AcceptsTab property must default to false");
+		}
+
+		[Test]
 		public void TestRemoveFilterText1()
 		{
 			_control.FilterText = null;

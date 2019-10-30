@@ -75,3 +75,9 @@ The watermark text that shall be displayed when the user hasn't entered any Filt
 **FilterText**: System.String  
 The filter text input by the user.
 
+**AcceptsTab**: System.Boolean  
+Gets or sets a value indicating whether pressing the TAB key in a multiline text box control types a TAB character in the control instead of moving the focus to the next control in the tab order.
+
+**AcceptsReturn**: System.Boolean  
+Gets or sets a value indicating whether pressing ENTER in a multiline TextBox control creates a new line of text in the control or activates the default button for the form.
+
