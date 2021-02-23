@@ -36,6 +36,8 @@
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -117,6 +119,16 @@
         <controls:PluginToggleButton Grid.Column="2" Grid.Row="11" />
         <controls:PluginToggleButton Grid.Column="6" Grid.Row="11" IsEnabled="False" />
         <controls:PluginToggleButton Grid.Column="8" Grid.Row="11" IsEnabled="False" />
+
+        <TextBlock Text="PinToggleButton" Grid.Row="12" VerticalAlignment="Center" />
+        <controls:PinToggleButton Grid.Column="2" Grid.Row="12" RotateWhenUnchecked="True" Width="32" />
+        <controls:PinToggleButton Grid.Column="6" Grid.Row="12" IsEnabled="False" />
+        <controls:PinToggleButton Grid.Column="8" Grid.Row="12" IsEnabled="False" />
+
+        <TextBlock Text="SwitchToggleButton" Grid.Row="13" VerticalAlignment="Center" />
+        <controls:SwitchToggleButton Grid.Column="2" Grid.Row="13" />
+        <controls:SwitchToggleButton Grid.Column="6" Grid.Row="13" IsEnabled="False" />
+        <controls:SwitchToggleButton Grid.Column="8" Grid.Row="13" IsEnabled="False" />
 
     </Grid>
 </UserControl>

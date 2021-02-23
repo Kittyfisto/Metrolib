@@ -69,7 +69,9 @@ namespace DocumentationCreator
 			CreateToggleButtonDoc<EditToggleButton>(doc);
 			CreateToggleButtonDoc<EmailToggleButton>(doc);
 			CreateToggleButtonDoc<ExpanderToggleButton>(doc);
+			CreatePinToggleButtonDoc<PinToggleButton>(doc);
 			CreateToggleButtonDoc<PluginToggleButton>(doc);
+			CreateToggleButtonDoc<SwitchToggleButton>(doc);
 			CreateToggleButtonDoc<ViewDashboardToggleButton>(doc);
 			CreateToggleButtonDoc<ViewQuiltToggleButton>(doc);
 			CreateToggleButtonDoc<VisibilityToggleButton>(doc);
@@ -143,7 +145,7 @@ namespace DocumentationCreator
 			return creator;
 		}
 
-		private static void CreateToggleButtonDoc<T>(Doc doc) where T : ToggleButton, new()
+		private static IControlDocumentationCreator<T> CreateToggleButtonDoc<T>(Doc doc) where T : ToggleButton, new()
 		{
 			var creator = doc.CreateDocumentationForFrameworkElement<T>();
 			const int width = 32;
@@ -164,6 +166,25 @@ namespace DocumentationCreator
 			example4.Resize(width, height);
 			example4.SetValue(UIElement.IsEnabledProperty, false);
 			example2.SetValue(ToggleButton.IsCheckedProperty, true);
+
+			return creator;
+		}
+
+		private static void CreatePinToggleButtonDoc<T>(Doc doc) where T : PinToggleButton, new()
+		{
+			var creator = CreateToggleButtonDoc<PinToggleButton>(doc);
+			
+			const int width = 32;
+			const int height = 32;
+			var example5 = creator.AddExample("RotateWhenUnchecked Checked");
+			example5.Resize(width, height);
+			example5.SetValue(PinToggleButton.RotateWhenUncheckedProperty, true);
+			example5.SetValue(ToggleButton.IsCheckedProperty, true);
+
+			var example6 = creator.AddExample("RotateWhenUnchecked Unchecked");
+			example6.Resize(width, height);
+			example6.SetValue(PinToggleButton.RotateWhenUncheckedProperty, true);
+			example6.SetValue(ToggleButton.IsCheckedProperty, false);
 		}
 
 		private static void CreateButtonDoc<T>(Doc doc) where T : Button, new()
