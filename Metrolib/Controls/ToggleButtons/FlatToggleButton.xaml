@@ -18,7 +18,7 @@
                 <ControlTemplate TargetType="{x:Type controls:FlatToggleButton}">
                     <Border BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid>
+                        <Grid Background="{TemplateBinding Background}">
                             <Rectangle x:Name="PART_HoveredRect" Fill="{TemplateBinding HoveredBackground}"
                                        Visibility="Hidden"/>
                             <Rectangle x:Name="PART_CheckedRect" Fill="{TemplateBinding CheckedBackground}"
@@ -68,8 +68,9 @@
                             </Trigger.ExitActions>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="PART_DisabledRect" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_HoveredRect" Property="Visibility" Value="Hidden" />
                             <Setter TargetName="PART_CheckedRect" Property="Visibility" Value="Hidden" />
+                            <Setter TargetName="PART_DisabledRect" Property="Visibility" Value="Visible" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

@@ -51,13 +51,6 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="Foreground" Value="{StaticResource BorderBrushDisabled}" />
             </MultiTrigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsEnabled" Value="False" />
-                    <Condition Property="IsChecked" Value="True" />
-                </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="{StaticResource BorderBrushDisabled}" />
-            </MultiTrigger>
         </Style.Triggers>
     </Style>
 </ResourceDictionary>
