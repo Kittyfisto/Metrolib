@@ -81,6 +81,13 @@ namespace Metrolib.Controls
 			DependencyProperty.Register("CheckedBackground", typeof (Brush), typeof (ToggleButtonBase),
 			                            new PropertyMetadata(default(Brush)));
 
+		/// <summary>
+		///     Definition of the <see cref="DisabledBackground" /> dependency property.
+		/// </summary>
+		public static readonly DependencyProperty DisabledBackgroundProperty =
+			DependencyProperty.Register("DisabledBackground", typeof (Brush), typeof (ToggleButtonBase),
+			                            new PropertyMetadata(default(Brush)));
+
 		static ToggleButtonBase()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (ToggleButtonBase),
@@ -167,6 +174,15 @@ namespace Metrolib.Controls
 		{
 			get { return (Brush) GetValue(HoveredBackgroundProperty); }
 			set { SetValue(HoveredBackgroundProperty, value); }
+		}
+
+		/// <summary>
+		///     The background of this button when it's disabled.
+		/// </summary>
+		public Brush DisabledBackground
+		{
+			get { return (Brush) GetValue(DisabledBackgroundProperty); }
+			set { SetValue(DisabledBackgroundProperty, value); }
 		}
 
 		/// <summary>
