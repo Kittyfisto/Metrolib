@@ -82,10 +82,10 @@ namespace Metrolib.Controls
 			                            new PropertyMetadata(default(Brush)));
 
 		/// <summary>
-		///     Definition of the <see cref="DisabledBackground" /> dependency property.
+		///     Definition of the <see cref="DisabledOverlayBrush" /> dependency property.
 		/// </summary>
-		public static readonly DependencyProperty DisabledBackgroundProperty =
-			DependencyProperty.Register("DisabledBackground", typeof (Brush), typeof (ToggleButtonBase),
+		public static readonly DependencyProperty DisabledOverlayBrushProperty =
+			DependencyProperty.Register("DisabledOverlayBrush", typeof (Brush), typeof (ToggleButtonBase),
 			                            new PropertyMetadata(default(Brush)));
 
 		static ToggleButtonBase()
@@ -177,12 +177,12 @@ namespace Metrolib.Controls
 		}
 
 		/// <summary>
-		///     The background of this button when it's disabled.
+		///     The brush for the overlay of this button when it's disabled.
 		/// </summary>
-		public Brush DisabledBackground
+		public Brush DisabledOverlayBrush
 		{
-			get { return (Brush) GetValue(DisabledBackgroundProperty); }
-			set { SetValue(DisabledBackgroundProperty, value); }
+			get { return (Brush) GetValue(DisabledOverlayBrushProperty); }
+			set { SetValue(DisabledOverlayBrushProperty, value); }
 		}
 
 		/// <summary>
