@@ -426,6 +426,7 @@
     <Compile Include="Controls\ToggleContentPresenter.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="Converters\HorizontalToCollapsedConverter.cs" />
+    <Compile Include="Converters\NullToFalseConverter.cs" />
     <Compile Include="Converters\Unit.cs" />
     <Compile Include="Converters\VerticalToCollapsedConverter.cs" />
     <Compile Include="DelegateCommand2.cs" />

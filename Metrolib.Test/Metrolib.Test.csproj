@@ -108,6 +108,7 @@
     <Compile Include="Converters\Int32ListToStringConverterTest.cs" />
     <Compile Include="Converters\NonEmptyToCollapsedConverterTest.cs" />
     <Compile Include="Converters\NonEmptyToHiddenConverterTest.cs" />
+    <Compile Include="Converters\NullToFalseConverterTest.cs" />
     <Compile Include="Converters\UInt16ToStringConverterTest.cs" />
     <Compile Include="Converters\UInt32ListToStringConverterTest.cs" />
     <Compile Include="Converters\UInt32ToStringConverterTest.cs" />
