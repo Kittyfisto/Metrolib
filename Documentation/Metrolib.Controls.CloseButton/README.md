@@ -8,10 +8,10 @@ Displays a (rotated) cross.
 **Assembly**: Metrolib (in Metrolib.dll)  
 
 ```C#
-public class CloseButton : Metrolib.Controls.FlatButton
+public class CloseButton : Metrolib.Controls.FlatIconButton
 ```
 
-Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> CloseButton
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FlatIconButton -> CloseButton
 ### Unfocused
 
 ```xaml

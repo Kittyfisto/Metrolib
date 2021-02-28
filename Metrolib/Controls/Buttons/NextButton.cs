@@ -7,13 +7,13 @@ namespace Metrolib.Controls
 {
 	/// <summary>
 	///     A button used to jump to the next something, for example
-	///     the next occurence of a search term in a document.
+	///     the next occurrence of a search term in a document.
 	/// </summary>
 	/// <remarks>
 	///     Displays a downwards arrow.
 	/// </remarks>
 	public class NextButton
-		: FlatButton
+		: FlatIconButton
 	{
 		static NextButton()
 		{

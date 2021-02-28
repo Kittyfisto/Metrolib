@@ -8,10 +8,10 @@ Displays a minus sign.
 **Assembly**: Metrolib (in Metrolib.dll)  
 
 ```C#
-public class RemoveButton : Metrolib.Controls.FlatButton
+public class RemoveButton : Metrolib.Controls.FlatIconButton
 ```
 
-Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> RemoveButton
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FlatIconButton -> RemoveButton
 ### Unfocused
 
 ```xaml

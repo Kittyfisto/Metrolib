@@ -10,7 +10,7 @@ namespace Metrolib.Controls
 	/// <remarks>
 	///     Displays a trashcan.
 	/// </remarks>
-	public class TrashButton : FlatButton
+	public class TrashButton : FlatIconButton
 	{
 		static TrashButton()
 		{

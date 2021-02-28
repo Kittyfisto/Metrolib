@@ -8,10 +8,10 @@ Displays an curved arrow to the left.
 **Assembly**: Metrolib (in Metrolib.dll)  
 
 ```C#
-public class UndoButton : Metrolib.Controls.FlatButton
+public class UndoButton : Metrolib.Controls.FlatIconButton
 ```
 
-Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> UndoButton
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FlatIconButton -> UndoButton
 ### Unfocused
 
 ```xaml

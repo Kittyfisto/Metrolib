@@ -8,10 +8,10 @@ Displays a magnifying glass.
 **Assembly**: Metrolib (in Metrolib.dll)  
 
 ```C#
-public class SearchButton : Metrolib.Controls.FlatButton
+public class SearchButton : Metrolib.Controls.FlatIconButton
 ```
 
-Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> SearchButton
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FlatIconButton -> SearchButton
 ### Unfocused
 
 ```xaml

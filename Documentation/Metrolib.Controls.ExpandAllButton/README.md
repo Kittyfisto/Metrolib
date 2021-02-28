@@ -8,10 +8,10 @@ Displays a plus sign in a box.
 **Assembly**: Metrolib (in Metrolib.dll)  
 
 ```C#
-public class ExpandAllButton : Metrolib.Controls.FlatButton
+public class ExpandAllButton : Metrolib.Controls.FlatIconButton
 ```
 
-Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> ExpandAllButton
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FlatIconButton -> ExpandAllButton
 ### Unfocused
 
 ```xaml

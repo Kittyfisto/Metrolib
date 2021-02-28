@@ -10,7 +10,7 @@ namespace Metrolib.Controls
 	///     Displays an curved arrow to the left.
 	/// </remarks>
 	public class UndoButton
-		: FlatButton
+		: FlatIconButton
 	{
 		static UndoButton()
 		{

@@ -1,7 +1,7 @@
 # PreviousButton  
 
 A button used to jump to the previous something, for example
-                the previous occurence of a search term in a document.
+                the previous occurrence of a search term in a document.
 
 Displays an upwards arrow.
 
@@ -9,10 +9,10 @@ Displays an upwards arrow.
 **Assembly**: Metrolib (in Metrolib.dll)  
 
 ```C#
-public class PreviousButton : Metrolib.Controls.FlatButton
+public class PreviousButton : Metrolib.Controls.FlatIconButton
 ```
 
-Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> PreviousButton
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FlatIconButton -> PreviousButton
 ### Unfocused
 
 ```xaml

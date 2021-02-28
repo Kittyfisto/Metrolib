@@ -69,6 +69,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Buttons\FlatIconButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Buttons\FolderAddButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -376,6 +380,7 @@
     <Compile Include="Controls\Buttons\ExpandAllButton.cs" />
     <Compile Include="Controls\Buttons\FileAddButton.cs" />
     <Compile Include="Controls\Buttons\FolderAddButton.cs" />
+    <Compile Include="Controls\Buttons\FlatIconButton.cs" />
     <Compile Include="Controls\Buttons\ImportButton.cs" />
     <Compile Include="Controls\Buttons\MaximizeButton.cs" />
     <Compile Include="Controls\Buttons\MinimizeButton.cs" />

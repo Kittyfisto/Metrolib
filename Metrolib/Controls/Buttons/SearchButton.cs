@@ -12,7 +12,7 @@ namespace Metrolib.Controls
 	///     Displays a magnifying glass.
 	/// </remarks>
 	public class SearchButton
-		: FlatButton
+		: FlatIconButton
 	{
 		static SearchButton()
 		{

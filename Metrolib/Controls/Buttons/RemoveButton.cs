@@ -11,7 +11,7 @@ namespace Metrolib.Controls
 	/// <remarks>
 	///     Displays a minus sign.
 	/// </remarks>
-	public class RemoveButton : FlatButton
+	public class RemoveButton : FlatIconButton
 	{
 		static RemoveButton()
 		{

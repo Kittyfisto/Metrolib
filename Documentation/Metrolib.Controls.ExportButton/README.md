@@ -8,10 +8,10 @@ Displays a file with an arrow to top right.
 **Assembly**: Metrolib (in Metrolib.dll)  
 
 ```C#
-public class ExportButton : Metrolib.Controls.FlatButton
+public class ExportButton : Metrolib.Controls.FlatIconButton
 ```
 
-Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> ExportButton
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FlatIconButton -> ExportButton
 ### Unfocused
 
 ```xaml

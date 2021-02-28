@@ -8,10 +8,10 @@ Displays a downward arrow with a line beneath.
 **Assembly**: Metrolib (in Metrolib.dll)  
 
 ```C#
-public class DownloadButton : Metrolib.Controls.FlatButton
+public class DownloadButton : Metrolib.Controls.FlatIconButton
 ```
 
-Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> DownloadButton
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FlatIconButton -> DownloadButton
 ### Unfocused
 
 ```xaml

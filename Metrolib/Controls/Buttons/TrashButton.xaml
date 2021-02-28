@@ -4,23 +4,12 @@
                     xmlns:metrolib="clr-namespace:Metrolib">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="FlatButton.xaml" />
+        <ResourceDictionary Source="FlatIconButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="{x:Type controls:TrashButton}" BasedOn="{StaticResource {x:Type controls:FlatButton}}">
+    <Style TargetType="{x:Type controls:TrashButton}" BasedOn="{StaticResource {x:Type controls:FlatIconButton}}">
         <Setter Property="HoveredForeground" Value="#E81123" />
         <Setter Property="PressedForeground" Value="#F1707A" />
-        <Setter Property="ContentTemplate">
-            <Setter.Value>
-                <DataTemplate>
-                    <Viewbox>
-                        <Canvas Width="24" Height="24">
-                            <Path x:Name="PART_Icon" Data="{x:Static metrolib:Icons.Delete}"
-                                  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:FlatButton}}, Mode=OneWay}" />
-                        </Canvas>
-                    </Viewbox>
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Icon" Value="{x:Static metrolib:Icons.Delete}" />
     </Style>
 </ResourceDictionary>

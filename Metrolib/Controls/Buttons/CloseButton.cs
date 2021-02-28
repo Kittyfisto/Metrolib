@@ -10,7 +10,7 @@ namespace Metrolib.Controls
 	///     Displays a (rotated) cross.
 	/// </remarks>
 	public class CloseButton
-		 : FlatButton
+		 : FlatIconButton
 	{
 		static CloseButton()
 		{

@@ -10,7 +10,7 @@ namespace Metrolib.Controls
 	/// <remarks>
 	///     Displays a minus sign in a box.
 	/// </remarks>
-	public class CollapseAllButton : FlatButton
+	public class CollapseAllButton : FlatIconButton
 	{
 		static CollapseAllButton()
 		{

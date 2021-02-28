@@ -1,7 +1,7 @@
 # NextButton  
 
 A button used to jump to the next something, for example
-                the next occurence of a search term in a document.
+                the next occurrence of a search term in a document.
 
 Displays a downwards arrow.
 
@@ -9,10 +9,10 @@ Displays a downwards arrow.
 **Assembly**: Metrolib (in Metrolib.dll)  
 
 ```C#
-public class NextButton : Metrolib.Controls.FlatButton
+public class NextButton : Metrolib.Controls.FlatIconButton
 ```
 
-Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> NextButton
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FlatIconButton -> NextButton
 ### Unfocused
 
 ```xaml

@@ -10,7 +10,7 @@ namespace Metrolib.Controls
 	/// <remarks>
 	///     Displays a plus sign in a box.
 	/// </remarks>
-	public class ExpandAllButton : FlatButton
+	public class ExpandAllButton : FlatIconButton
 	{
 		static ExpandAllButton()
 		{

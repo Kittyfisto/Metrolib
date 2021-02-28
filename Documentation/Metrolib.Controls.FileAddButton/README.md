@@ -8,10 +8,10 @@ Displays a file with a plus.
 **Assembly**: Metrolib (in Metrolib.dll)  
 
 ```C#
-public class FileAddButton : Metrolib.Controls.FlatButton
+public class FileAddButton : Metrolib.Controls.FlatIconButton
 ```
 
-Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FileAddButton
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FlatIconButton -> FileAddButton
 ### Unfocused
 
 ```xaml

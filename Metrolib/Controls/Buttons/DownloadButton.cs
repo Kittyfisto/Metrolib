@@ -10,7 +10,7 @@ namespace Metrolib.Controls
 	///     Displays a downward arrow with a line beneath.
 	/// </remarks>
 	public class DownloadButton
-		: FlatButton
+		: FlatIconButton
 	{
 		static DownloadButton()
 		{

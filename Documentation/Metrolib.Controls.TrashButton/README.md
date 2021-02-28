@@ -8,10 +8,10 @@ Displays a trashcan.
 **Assembly**: Metrolib (in Metrolib.dll)  
 
 ```C#
-public class TrashButton : Metrolib.Controls.FlatButton
+public class TrashButton : Metrolib.Controls.FlatIconButton
 ```
 
-Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> TrashButton
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FlatIconButton -> TrashButton
 ### Unfocused
 
 ```xaml

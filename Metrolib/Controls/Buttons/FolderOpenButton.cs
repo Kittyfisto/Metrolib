@@ -9,7 +9,7 @@ namespace Metrolib.Controls
 	/// <remarks>
 	///     Displays an open folder.
 	/// </remarks>
-	public class FolderOpenButton : FlatButton
+	public class FolderOpenButton : FlatIconButton
 	{
 		static FolderOpenButton()
 		{

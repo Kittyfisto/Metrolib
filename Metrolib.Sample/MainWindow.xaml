@@ -32,13 +32,13 @@
             <controls:FlatTabItem Header="TextBlocks">
                 <sample:TextBlocks />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="TextBoxes" IsSelected="True">
+            <controls:FlatTabItem Header="TextBoxes">
                 <sample:TextBoxes />
             </controls:FlatTabItem>
             <controls:FlatTabItem Header="TextEditor">
                 <sample:TextEditor />
             </controls:FlatTabItem>
-            <controls:FlatTabItem Header="Buttons">
+            <controls:FlatTabItem Header="Buttons" IsSelected="True">
                 <sample:Buttons />
             </controls:FlatTabItem>
             <controls:FlatTabItem Header="Toggle Buttons">

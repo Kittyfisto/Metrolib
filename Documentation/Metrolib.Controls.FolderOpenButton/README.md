@@ -8,10 +8,10 @@ Displays an open folder.
 **Assembly**: Metrolib (in Metrolib.dll)  
 
 ```C#
-public class FolderOpenButton : Metrolib.Controls.FlatButton
+public class FolderOpenButton : Metrolib.Controls.FlatIconButton
 ```
 
-Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FolderOpenButton
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FlatIconButton -> FolderOpenButton
 ### Unfocused
 
 ```xaml

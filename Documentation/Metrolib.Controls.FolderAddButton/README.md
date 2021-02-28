@@ -8,10 +8,10 @@ Displays a folder with a plus.
 **Assembly**: Metrolib (in Metrolib.dll)  
 
 ```C#
-public class FolderAddButton : Metrolib.Controls.FlatButton
+public class FolderAddButton : Metrolib.Controls.FlatIconButton
 ```
 
-Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FolderAddButton
+Inheritance Object -> DispatcherObject -> DependencyObject -> Visual -> UIElement -> FrameworkElement -> Control -> ContentControl -> ButtonBase -> Button -> FlatButton -> FlatIconButton -> FolderAddButton
 ### Unfocused
 
 ```xaml

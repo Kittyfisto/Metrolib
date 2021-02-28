@@ -11,7 +11,7 @@ namespace Metrolib.Controls
 	///     Displays a file with a plus.
 	/// </remarks>
 	public class FileAddButton
-		: FlatButton
+		: FlatIconButton
 	{
 		static FileAddButton()
 		{

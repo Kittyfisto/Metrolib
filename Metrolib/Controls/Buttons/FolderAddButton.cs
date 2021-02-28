@@ -11,7 +11,7 @@ namespace Metrolib.Controls
 	///     Displays a folder with a plus.
 	/// </remarks>
 	public class FolderAddButton
-		: FlatButton
+		: FlatIconButton
 	{
 		static FolderAddButton()
 		{

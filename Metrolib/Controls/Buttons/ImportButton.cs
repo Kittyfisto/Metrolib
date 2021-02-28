@@ -11,7 +11,7 @@ namespace Metrolib.Controls
 	///     Displays a file with an arrow to bottom right.
 	/// </remarks>
 	public class ImportButton
-		: FlatButton
+		: FlatIconButton
 	{
 		static ImportButton()
 		{
