@@ -37,6 +37,7 @@ namespace Metrolib.Test.TextBoxes
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestToggleBoldness1()
 		{
 			_textBox.EnableMarkdownShortcuts = true;
@@ -50,6 +51,7 @@ namespace Metrolib.Test.TextBoxes
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestToggleBoldness2()
 		{
 			_textBox.EnableMarkdownShortcuts = true;
@@ -63,6 +65,7 @@ namespace Metrolib.Test.TextBoxes
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestToggleBoldness3()
 		{
 			_textBox.EnableMarkdownShortcuts = true;
@@ -76,6 +79,7 @@ namespace Metrolib.Test.TextBoxes
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestToggleBoldness4()
 		{
 			_textBox.Text = "Foobar";
@@ -88,6 +92,7 @@ namespace Metrolib.Test.TextBoxes
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestToggleBoldness5()
 		{
 			_textBox.Text = "**Foobar**";
@@ -100,6 +105,7 @@ namespace Metrolib.Test.TextBoxes
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestToggleItalic1()
 		{
 			_textBox.EnableMarkdownShortcuts = true;
@@ -113,6 +119,7 @@ namespace Metrolib.Test.TextBoxes
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestToggleItalic2()
 		{
 			_textBox.EnableMarkdownShortcuts = true;
@@ -126,6 +133,7 @@ namespace Metrolib.Test.TextBoxes
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestToggleItalic3()
 		{
 			_textBox.EnableMarkdownShortcuts = true;
@@ -139,6 +147,7 @@ namespace Metrolib.Test.TextBoxes
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestToggleItalic4()
 		{
 			_textBox.EnableMarkdownShortcuts = false;
@@ -152,6 +161,7 @@ namespace Metrolib.Test.TextBoxes
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestToggleItalic5()
 		{
 			_textBox.EnableMarkdownShortcuts = false;

@@ -13,7 +13,7 @@ namespace Metrolib.Test.ItemsToggleButton
 		{
 			var control = new Controls.ItemsToggleButton();
 			control.ItemsSource = new object[] {42};
-			control.ItemsSource.Should().BeEquivalentTo(42);
+			control.ItemsSource.Should().BeEquivalentTo(new object[]{42});
 
 			control.ItemsSource = null;
 			control.ItemsSource.Should().BeNull();

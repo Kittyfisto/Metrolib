@@ -145,6 +145,7 @@ namespace Metrolib.Test.Input
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestChooseSuggestion2([Values(arg1: 0, arg2: 1)] int selectedIndex)
 		{
 			_control.Text = "I";
@@ -165,6 +166,7 @@ namespace Metrolib.Test.Input
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestChooseSuggestion3([Values(arg1: 0, arg2: 1)] int selectedIndex)
 		{
 			_control.Text = "I";
@@ -185,6 +187,7 @@ namespace Metrolib.Test.Input
 		}
 
 		[Test]
+		[Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestSelectNextSuggestion1()
 		{
 			_control.Text = "I";
@@ -207,6 +210,7 @@ namespace Metrolib.Test.Input
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestSelectNextSuggestion2()
 		{
 			_control.Text = "I";
@@ -229,6 +233,7 @@ namespace Metrolib.Test.Input
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestSelectPreviousSuggestion1()
 		{
 			_control.Text = "I";
@@ -251,6 +256,7 @@ namespace Metrolib.Test.Input
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestSelectPreviousSuggestion2()
 		{
 			_control.Text = "I";

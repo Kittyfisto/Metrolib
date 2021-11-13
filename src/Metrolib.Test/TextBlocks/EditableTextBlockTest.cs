@@ -157,6 +157,7 @@ namespace Metrolib.Test.TextBlocks
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestDisableEditing2()
 		{
 			_control.IsEditing = true;
@@ -166,6 +167,7 @@ namespace Metrolib.Test.TextBlocks
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		public void TestDisableEditing3()
 		{
 			_control.IsEditing = true;
@@ -190,6 +192,7 @@ namespace Metrolib.Test.TextBlocks
 		}
 
 		[Test]
+        [Ignore("WPF Unit hasn't been ported to dotnet")]
 		[Description("Verifies that changes to the textbox are only ever reflected back to the text property when editing has concluded")]
 		public void TestEdit2()
 		{
