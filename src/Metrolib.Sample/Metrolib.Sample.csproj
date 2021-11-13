@@ -22,6 +22,20 @@
 		<OutputPath>..\..\bin\Debug\</OutputPath>
 	</PropertyGroup>
 	<ItemGroup>
+	  <None Remove="Resources\BlackWidow.png" />
+	  <None Remove="Resources\CaptainAmerica.png" />
+	  <None Remove="Resources\Falcon.png" />
+	  <None Remove="Resources\Hulk.png" />
+	  <None Remove="Resources\IronMan.png" />
+	  <None Remove="Resources\MariaHill.png" />
+	  <None Remove="Resources\NickFury.png" />
+	  <None Remove="Resources\ScarletWitch.png" />
+	  <None Remove="Resources\SharonCarter.png" />
+	  <None Remove="Resources\Thor.png" />
+	  <None Remove="Resources\Vision.png" />
+	  <None Remove="Resources\WinterSoldier.png" />
+	</ItemGroup>
+	<ItemGroup>
 		<PackageReference Include="log4net" Version="2.0.13" />
 		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2">
 			<PrivateAssets>all</PrivateAssets>
@@ -31,5 +45,19 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Metrolib\Metrolib.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Resource Include="Resources\BlackWidow.png" />
+	  <Resource Include="Resources\CaptainAmerica.png" />
+	  <Resource Include="Resources\Falcon.png" />
+	  <Resource Include="Resources\Hulk.png" />
+	  <Resource Include="Resources\IronMan.png" />
+	  <Resource Include="Resources\MariaHill.png" />
+	  <Resource Include="Resources\NickFury.png" />
+	  <Resource Include="Resources\ScarletWitch.png" />
+	  <Resource Include="Resources\SharonCarter.png" />
+	  <Resource Include="Resources\Thor.png" />
+	  <Resource Include="Resources\Vision.png" />
+	  <Resource Include="Resources\WinterSoldier.png" />
 	</ItemGroup>
 </Project>
