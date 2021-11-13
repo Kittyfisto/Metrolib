@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using FluentAssertions;
 using Metrolib.Controls;
-using Moq;
 using NUnit.Framework;
 
 namespace Metrolib.Test.Tree

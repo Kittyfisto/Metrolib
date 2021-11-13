@@ -1,5 +1,4 @@
 ﻿using System.Threading;
-using System.Windows.Input;
 using FluentAssertions;
 using Metrolib.Controls;
 using NUnit.Framework;

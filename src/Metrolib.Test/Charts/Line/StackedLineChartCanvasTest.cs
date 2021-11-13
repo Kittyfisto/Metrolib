@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Windows;
 using FluentAssertions;
 using Metrolib.Controls.Charts.Line.Canvas;

@@ -3,7 +3,6 @@ using System.Windows;
 using FluentAssertions;
 using Metrolib.Controls.Charts.Line.Canvas;
 using Metrolib.Controls.Charts.Line.Canvas.Line;
-using Moq;
 using NUnit.Framework;
 
 namespace Metrolib.Test.Charts.Line

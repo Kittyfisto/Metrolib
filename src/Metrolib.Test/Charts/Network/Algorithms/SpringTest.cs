@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using FluentAssertions;
-using Metrolib.Controls.Charts.Network.Algorithms;
 using Metrolib.Physics;
 using NUnit.Framework;
 

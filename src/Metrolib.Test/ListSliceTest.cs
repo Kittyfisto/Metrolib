@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentAssertions;
-using Metrolib.Controls.TextBlocks;
 using NUnit.Framework;
 
 namespace Metrolib.Test

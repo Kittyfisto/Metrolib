@@ -1,9 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net5-windows</TargetFrameworks>
+		<TargetFrameworks>net5.0-windows7.0</TargetFrameworks>
 		<AssemblyName>DocumentationCreator</AssemblyName>
 		<RootNamespace>DocumentationCreator</RootNamespace>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<UseWPF>true</UseWPF>
 		<Version>0.3.0.65</Version>
 		<AssemblyVersion>0.3.0.65</AssemblyVersion>

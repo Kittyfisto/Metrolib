@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Threading;
 using System.Windows;
-using System.Windows.Input;
 using FluentAssertions;
 using Metrolib.Controls;
 using NUnit.Framework;
