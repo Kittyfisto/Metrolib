@@ -11,6 +11,7 @@
 		<UseWPF>true</UseWPF>
 		<IsPackable>false</IsPackable>
 		<NoWarn>CA1416</NoWarn>
+		<Copyright>Copyright © Simon Mießler 2021</Copyright>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>

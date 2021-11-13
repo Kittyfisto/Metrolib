@@ -11,6 +11,8 @@
 		<OutputType>WinExe</OutputType>
 		<UseWPF>true</UseWPF>
 		<IsPackable>false</IsPackable>
+		<Copyright>Copyright © Simon Mießler 2021</Copyright>
+		<Description>A sample application demonstrating some of the features of the MapView control</Description>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
