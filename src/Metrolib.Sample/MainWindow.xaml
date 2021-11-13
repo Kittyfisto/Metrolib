@@ -5,7 +5,8 @@
                            xmlns:controls="clr-namespace:Metrolib.Controls;assembly=Metrolib"
                            xmlns:tab="clr-namespace:Metrolib.Controls.Tab;assembly=Metrolib"
                            Title="Metrolib Sample"
-                           Height="370" Width="800">
+                           Height="370" Width="800"
+                           Background="Wheat">
 
     <Window.Icon>
         <DrawingImage>

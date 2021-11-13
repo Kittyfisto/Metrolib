@@ -3,7 +3,6 @@
 		<TargetFrameworks>net45;net5-windows</TargetFrameworks>
 		<AssemblyName>Metrolib.Sample</AssemblyName>
 		<RootNamespace>Metrolib.Sample</RootNamespace>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<Version>0.6.0.0</Version>
 		<AssemblyVersion>0.6.0.0</AssemblyVersion>
 		<FileVersion>0.6.0.0</FileVersion>
