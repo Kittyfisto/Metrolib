@@ -9,6 +9,9 @@
 		<FileVersion>0.3.0.65</FileVersion>
 		<IsPackable>false</IsPackable>
 		<Copyright>Copyright © Simon Mießler 2021</Copyright>
+		<ApplicationIcon />
+		<OutputType>Exe</OutputType>
+		<StartupObject />
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
