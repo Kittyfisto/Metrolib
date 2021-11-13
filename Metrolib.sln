@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metrolib", "Metrolib\Metrolib.csproj", "{8BDC066F-3253-49EF-8096-3DFB4E032D4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metrolib", "src\Metrolib\Metrolib.csproj", "{8BDC066F-3253-49EF-8096-3DFB4E032D4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metrolib.Test", "Metrolib.Test\Metrolib.Test.csproj", "{092515A0-A36C-4177-B2C5-32FCB5FF8E67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metrolib.Test", "src\Metrolib.Test\Metrolib.Test.csproj", "{092515A0-A36C-4177-B2C5-32FCB5FF8E67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metrolib.Sample", "Metrolib.Sample\Metrolib.Sample.csproj", "{47B2A88D-1E51-469D-A24E-8F05B1FB994D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metrolib.Sample", "src\Metrolib.Sample\Metrolib.Sample.csproj", "{47B2A88D-1E51-469D-A24E-8F05B1FB994D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C32FCBBE-2066-4B41-B19A-9D7106792A18}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,7 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{ACB0B72D-184C-4E3E-8D41-8560A0D25901}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netstat", "Netstat\Netstat.csproj", "{D082C633-AD0D-4EDD-AC73-611F88B0B9C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netstat", "src\Netstat\Netstat.csproj", "{D082C633-AD0D-4EDD-AC73-611F88B0B9C7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{BFEDFEA6-9998-468A-89B4-EDADFFEF6EA4}"
 EndProject
@@ -84,9 +84,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FlatPasswordBox", "FlatPass
 		Documentation\FlatPasswordBox\README.md = Documentation\FlatPasswordBox\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentationCreator", "DocumentationCreator\DocumentationCreator.csproj", "{D8464F07-F134-4F4D-ABCD-B0D4F4988DAA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentationCreator", "src\DocumentationCreator\DocumentationCreator.csproj", "{D8464F07-F134-4F4D-ABCD-B0D4F4988DAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterLiveStream", "TwitterLiveStream\TwitterLiveStream.csproj", "{289373A0-40F6-4421-941C-487F8431DCDF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterLiveStream", "src\TwitterLiveStream\TwitterLiveStream.csproj", "{289373A0-40F6-4421-941C-487F8431DCDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
