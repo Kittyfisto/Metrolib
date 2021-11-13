@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net5-windows</TargetFrameworks>
+		<TargetFrameworks>net45;net5-windows</TargetFrameworks>
 		<AssemblyName>Metrolib.Sample</AssemblyName>
 		<RootNamespace>Metrolib.Sample</RootNamespace>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -11,6 +11,7 @@
 		<OutputType>WinExe</OutputType>
 		<UseWPF>true</UseWPF>
 		<IsPackable>false</IsPackable>
+		<NoWarn>CA1416</NoWarn>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
