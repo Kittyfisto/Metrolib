@@ -1,33 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>net5-windows</TargetFrameworks>
-    <AssemblyName>Metrolib.Sample</AssemblyName>
-    <RootNamespace>Metrolib.Sample</RootNamespace>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-	<Version>0.6.0.0</Version>
-	<AssemblyVersion>0.6.0.0</AssemblyVersion>
-    <FileVersion>0.6.0.0</FileVersion>
-    <ApplicationIcon />
-    <OutputType>WinExe</OutputType>
-	<UseWPF>true</UseWPF>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <OutputPath>..\..\bin\Release\</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <OutputPath>..\..\bin\Debug\</OutputPath>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="log4net" Version="2.0.13" />
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="System.Threading.Extensions" Version="2.0.105" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Metrolib\Metrolib.csproj" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net5-windows</TargetFrameworks>
+		<AssemblyName>Metrolib.Sample</AssemblyName>
+		<RootNamespace>Metrolib.Sample</RootNamespace>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Version>0.6.0.0</Version>
+		<AssemblyVersion>0.6.0.0</AssemblyVersion>
+		<FileVersion>0.6.0.0</FileVersion>
+		<ApplicationIcon />
+		<OutputType>WinExe</OutputType>
+		<UseWPF>true</UseWPF>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<OutputPath>..\..\bin\Release\</OutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<OutputPath>..\..\bin\Debug\</OutputPath>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="log4net" Version="2.0.13" />
+		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="System.Threading.Extensions" Version="2.0.105" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Metrolib\Metrolib.csproj" />
+	</ItemGroup>
 </Project>
