@@ -3,7 +3,6 @@
     <TargetFrameworks>net45;net5-windows</TargetFrameworks>
     <AssemblyName>Metrolib</AssemblyName>
     <RootNamespace>Metrolib</RootNamespace>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	<UseWPF>true</UseWPF>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	
