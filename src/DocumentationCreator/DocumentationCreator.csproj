@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net5-windows</TargetFrameworks>
+		<AssemblyName>DocumentationCreator</AssemblyName>
+		<RootNamespace>DocumentationCreator</RootNamespace>
+		<UseWPF>true</UseWPF>
+		<Version>0.3.0.65</Version>
+		<AssemblyVersion>0.3.0.65</AssemblyVersion>
+		<FileVersion>0.3.0.65</FileVersion>
+		<IsPackable>false</IsPackable>
+		<Copyright>Copyright © Simon Mießler 2021</Copyright>
+		<ApplicationIcon />
+		<OutputType>Exe</OutputType>
+		<StartupObject />
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<OutputPath>..\..\bin\Release\</OutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<OutputPath>..\..\bin\Debug\</OutputPath>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="dotnetdoc" Version="0.1.25" />
+		<PackageReference Include="log4net" Version="2.0.13" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Metrolib\Metrolib.csproj" />
+	</ItemGroup>
+</Project>

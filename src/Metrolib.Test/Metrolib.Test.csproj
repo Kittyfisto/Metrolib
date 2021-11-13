@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net472;net5-windows</TargetFrameworks>
+		<AssemblyName>Metrolib.Test</AssemblyName>
+		<RootNamespace>Metrolib.Test</RootNamespace>
+		<UseWPF>true</UseWPF>
+		<Version>0.3.0.65</Version>
+		<AssemblyVersion>0.3.0.65</AssemblyVersion>
+		<FileVersion>0.3.0.65</FileVersion>
+		<IsPackable>false</IsPackable>
+		<NoWarn>CA1416</NoWarn>
+		<Copyright>Copyright © Simon Mießler 2021</Copyright>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<OutputPath>..\..\bin\Release\</OutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<OutputPath>..\..\bin\Debug\</OutputPath>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="FluentAssertions" Version="6.2.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+		<PackageReference Include="Moq" Version="4.16.1" />
+		<PackageReference Include="NUnit" Version="3.13.2" />
+		<PackageReference Include="NUnit3TestAdapter" Version="4.1.0" />
+		<PackageReference Include="System.Data.SQLite" Version="1.0.115.5" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Metrolib\Metrolib.csproj" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net45;net5-windows</TargetFrameworks>
+    <AssemblyName>Metrolib</AssemblyName>
+    <RootNamespace>Metrolib</RootNamespace>
+	<UseWPF>true</UseWPF>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	
+	<Authors>Simon Mießler</Authors>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<PackageProjectUrl>https://github.com/Kittyfisto/Metrolib</PackageProjectUrl>
+	<PackageTags>.NET WPF Metro</PackageTags>
+	<Description>.NET WPF library for metro apps</Description>
+	<Version>0.3.0.65</Version>
+	<AssemblyVersion>0.3.0.65</AssemblyVersion>
+    <FileVersion>0.3.0.65</FileVersion>
+    <Copyright>Copyright © Simon Mießler 2021</Copyright>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <OutputPath>..\..\bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+</Project>
